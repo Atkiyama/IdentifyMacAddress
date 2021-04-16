@@ -1,6 +1,13 @@
 package identifyMacAddress;
 
 import java.io.BufferedReader;
+/**
+ * macアドレスを示すクラス
+ * B4森本研究コード
+ * @author B4森本
+ * @version 1.0
+ *
+ */
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
