@@ -40,6 +40,8 @@ public class ShapeData {
 		              new FileReader(path));
 		    	//書き込み準備
 		    	fw = new FileWriter(oFile);
+		    	//変更点 １行目の日付を読み込む
+		    	fw.write(buffReader.readLine());
 		    	fw.write("AdvA,time,rssi"+System.getProperty("line.separator"));
 		      //必要な値を格納する変数
 		      String s;
