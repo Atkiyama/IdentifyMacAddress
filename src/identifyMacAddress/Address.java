@@ -36,14 +36,26 @@ public class Address {
 		this.nextAdr.add(nextAdr);
 	}
 
+	/**
+	 * rssiをaddする
+	 * @param rssi addするrssi
+	 */
 	public void addRssi(int rssi) {
 		this.rssi.add(rssi);
 	}
 
+	/**
+	 * 次のアドレスをaddする
+	 * @param nextAdr addするアドレス
+	 */
 	public void addNextAddr(Address nextAdr) {
 		this.nextAdr.add(nextAdr);
 	}
 
+	/*
+	 * このインスタンスの情報を表示するメソッド
+	 *
+	 */
 	public void printData() {
 		System.out.print(advA + ",");
 		System.out.print(ftime + ",");
@@ -57,7 +69,11 @@ public class Address {
 		System.out.println();
 
 	}
-
+	/**
+	 * 平均rssiのゲッター
+	 * @return 平均rssi
+	 *
+	 */
 	public int getAverageRssi() {
 		double sum = 0;
 		for (Integer rssi : this.rssi) {
