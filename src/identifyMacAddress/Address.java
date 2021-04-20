@@ -25,7 +25,7 @@ public class Address {
 	 * @param numPkt パケット数
 	 * @param nextAdr この次のものと思われるmacアドレス
 	 */
-	public Address(String advA, int ftime, int ltime, int rssi, int numPkt, Address nextAdr) {
+	public Address(String advA, int ftime, int ltime, int rssi, int numPkt) {
 		this.advA = advA;
 		this.ftime = ftime;
 		this.ltime = ltime;
@@ -33,7 +33,6 @@ public class Address {
 		this.rssi.add(rssi);
 		this.numPkt = numPkt;
 		this.nextAdr = new ArrayList<>();
-		this.nextAdr.add(nextAdr);
 	}
 
 	/**
@@ -81,5 +80,57 @@ public class Address {
 		}
 		return (int) Math.round(sum / rssi.size());
 
+	}
+
+	public void incrementNumPkt() {
+		numPkt++;
+	}
+
+	public void setAdvA(String advA) {
+		this.advA = advA;
+	}
+
+	public void setFtime(int ftime) {
+		this.ftime = ftime;
+	}
+
+	public void setLtime(int ltime) {
+		this.ltime = ltime;
+	}
+
+	public void setRssi(ArrayList<Integer> rssi) {
+		this.rssi = rssi;
+	}
+
+	public void setNumPkt(int numPkt) {
+		this.numPkt = numPkt;
+	}
+
+	public void setNextAdr(ArrayList<Address> nextAdr) {
+		this.nextAdr = nextAdr;
+	}
+
+	public String getAdvA() {
+		return advA;
+	}
+
+	public int getFtime() {
+		return ftime;
+	}
+
+	public int getLtime() {
+		return ltime;
+	}
+
+	public ArrayList<Integer> getRssi() {
+		return rssi;
+	}
+
+	public int getNumPkt() {
+		return numPkt;
+	}
+
+	public ArrayList<Address> getNextAdr() {
+		return nextAdr;
 	}
 }

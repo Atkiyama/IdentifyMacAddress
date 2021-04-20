@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 /**
  * ShapeData.javaで作ったcsvファイルを読みこむクラス
  * @author akiyama
@@ -17,7 +18,7 @@ public class Read {
 	 * @return csvファイルを読み込んだ結果(二次元配列)
 	 * @throws IOException
 	 */
-	public String[][] read() throws IOException {
+	public ArrayList<String[]> read() throws IOException {
 		File file = new File(inputFileName);
         FileReader fileReader =  new FileReader(file);
         BufferedReader in = new BufferedReader(fileReader);
@@ -26,14 +27,12 @@ public class Read {
         //２行目(Adva,time,rssi)を読み飛ばす
         in.readLine();
         String str = in.readLine();
-        //99999はとりあえずの最大値
-        String[][] inputData = new String[99999][]; ;
+        ArrayList<String[]> inputData = new ArrayList<>();
         //行末まで読み込む
         int linecount = 0;
         while(str != null) {
         	String[] line = str.split(",");
-        	inputData[linecount] = line;
-        	linecount++;
+        	inputData.add(line);
         }
 		return inputData;
 
