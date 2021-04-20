@@ -1,7 +1,6 @@
 package identifyMacAddress;
 
 import java.io.IOException;
-import java.util.Objects;
 /**
  * BLE機器のパケット情報を読み込んだcsvファイルからmacアドレスの特定を行うクラス
  * 引数にはそれぞれ 読み込むファイル名 R T N(それぞれ闘値、Nはデフォルト値を設定しているので最悪不要)を入れること
@@ -13,11 +12,15 @@ public class TestDrive {
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		Read read = new Read(args[0]);
-		Identify identify;
-		if(Objects.nonNull(args[2]))
+		Identify identify = null;
+		if(args.length == 4)
 			 identify = new Identify(Integer.parseInt(args[1]),Integer.parseInt(args[2]),Integer.parseInt(args[3]));
-		else
+		else if(args.length == 3)
 			 identify = new Identify(Integer.parseInt(args[1]),Integer.parseInt(args[2]));
+		else {
+			System.out.println("引数エラー");
+			System.exit(1);
+		}
 		identify.identify(read.read());
 		//以下テスト用
 		for(Address address:identify.getAddressList()) {

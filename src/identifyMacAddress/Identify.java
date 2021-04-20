@@ -90,6 +90,7 @@ public class Identify {
 					address.incrementNumPkt();
 					ad_known = true;
 				}
+
 			}
 			if(ad_known)
 				addressList.add(new Address(row[0],Integer.parseInt(row[1]),Integer.parseInt(row[1]),Integer.parseInt(row[2]),1));
