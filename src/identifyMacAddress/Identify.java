@@ -123,5 +123,12 @@ public class Identify {
 		else
 			return false;
 	}
+	/**
+	 * アドレスリストのゲッター
+	 * @return アドレスリスト
+	 */
+	public ArrayList<Address> getAddressList() {
+		return addressList;
+	}
 
 }
