@@ -13,6 +13,9 @@ import java.util.ArrayList;
 public class Read {
 	private String inputFileName; //読み込むファイル名
 	private String date;//日付(csvファイル１行目)
+	public Read(String inputFileName) {
+		this.inputFileName = inputFileName;
+	}
 	/**
 	 * csvファイルを読み込んで二次元配列として返すメソッド
 	 * @return csvファイルを読み込んだ結果(二次元配列)
@@ -29,7 +32,6 @@ public class Read {
         String str = in.readLine();
         ArrayList<String[]> inputData = new ArrayList<>();
         //行末まで読み込む
-        int linecount = 0;
         while(str != null) {
         	String[] line = str.split(",");
         	inputData.add(line);
