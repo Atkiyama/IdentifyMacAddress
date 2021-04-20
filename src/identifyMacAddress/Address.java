@@ -86,29 +86,10 @@ public class Address {
 		numPkt++;
 	}
 
-	public void setAdvA(String advA) {
-		this.advA = advA;
-	}
-
-	public void setFtime(int ftime) {
-		this.ftime = ftime;
-	}
-
 	public void setLtime(int ltime) {
 		this.ltime = ltime;
 	}
 
-	public void setRssi(ArrayList<Integer> rssi) {
-		this.rssi = rssi;
-	}
-
-	public void setNumPkt(int numPkt) {
-		this.numPkt = numPkt;
-	}
-
-	public void setNextAdr(ArrayList<Address> nextAdr) {
-		this.nextAdr = nextAdr;
-	}
 
 	public String getAdvA() {
 		return advA;
@@ -122,15 +103,7 @@ public class Address {
 		return ltime;
 	}
 
-	public ArrayList<Integer> getRssi() {
-		return rssi;
-	}
-
 	public int getNumPkt() {
 		return numPkt;
-	}
-
-	public ArrayList<Address> getNextAdr() {
-		return nextAdr;
 	}
 }
