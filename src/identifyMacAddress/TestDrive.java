@@ -11,6 +11,7 @@ public class TestDrive {
 
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
+
 		Read read = new Read(args[0]);
 		Identify identify = null;
 		if(args.length == 4)
@@ -26,6 +27,7 @@ public class TestDrive {
 		for(Address address:identify.getAddressList()) {
 			address.printData();
 		}
+
 
 	}
 
