@@ -61,6 +61,7 @@ public class Address {
 		System.out.print(ltime + ",");
 		System.out.print(getAverageRssi() + ",");
 		System.out.print(numPkt);
+		System.out.println("size"+this.nextAdr.size());
 		for (Address nextAdr : this.nextAdr) {
 			System.out.print(advA + ",");
 			nextAdr.printData();

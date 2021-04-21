@@ -97,16 +97,12 @@ public class Identify {
 
 			}
 			if(!ad_known) {
-				System.out.println(row[2].length());
 				addressList.add(new Address(row[0],Integer.parseInt(row[1]),Integer.parseInt(row[1])
 						,Integer.parseInt(row[2]),1));
-				System.out.println(row[2].length());
 			}
 			ad_known = false;
-
 		}
-		System.out.println(addressList.size());
-		addressList.get(0).printData();
+		
 	}
 
 	/**
