@@ -53,7 +53,7 @@ public class Address {
 
 	/*
 	 * このインスタンスの情報を表示するメソッド
-	 *
+	 * デバック用
 	 */
 	public void printData() {
 		System.out.print(advA + ",");
@@ -61,7 +61,6 @@ public class Address {
 		System.out.print(ltime + ",");
 		System.out.print(getAverageRssi() + ",");
 		System.out.print(numPkt);
-		System.out.println("size"+this.nextAdr.size());
 		for (Address nextAdr : this.nextAdr) {
 			System.out.print(advA + ",");
 			nextAdr.printData();

@@ -55,7 +55,7 @@ public class Identify {
 		for(Address adr_base:addressList) {
 			for(Address adr_tmp:addressList) {
 				//同一機器のものとみなしたらnextAdrにaddする
-				if(adr_base.getAdvA().equals(adr_tmp.getAdvA())&&checkT(adr_base,adr_tmp)&&checkR(adr_base,adr_tmp))
+				if(!adr_base.getAdvA().equals(adr_tmp.getAdvA())&&checkT(adr_base,adr_tmp)&&checkR(adr_base,adr_tmp))
 					adr_base.addNextAddr(adr_tmp);
 			}
 		}
