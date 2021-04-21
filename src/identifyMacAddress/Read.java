@@ -33,9 +33,9 @@ public class Read {
         ArrayList<String[]> inputData = new ArrayList<>();
         //行末まで読み込む
         while(str != null) {
-        	String[] line = str.split(",");
-        	inputData.add(line);
+        	inputData.add(str.split(","));
         }
+
 		return inputData;
 
 	}
