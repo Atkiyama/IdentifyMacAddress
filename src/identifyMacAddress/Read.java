@@ -72,7 +72,11 @@ public class Read {
 	    			  m = ad.matcher(s);
 	    			  m.find();
 	    			  address = m.group(12)+":"+m.group(10)+":"+m.group(8)+":"+m.group(6)+":"+m.group(4)+":"+m.group(2);
-	    			  String[] line= {address,String.valueOf(Math.round(time)),rssi+System.getProperty("line.separator")};
+	    			  String[] line= {address,String.valueOf(Math.round(time)),rssi};
+	    			  for(String data:line) {
+	    				  data.trim();
+	    				  data.replaceAll("　", "");
+	    			  }
 	    			  inputData.add(line);
 	    		  }
 	    	  }

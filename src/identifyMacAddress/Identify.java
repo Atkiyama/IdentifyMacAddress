@@ -66,10 +66,14 @@ public class Identify {
 	 */
 	public void removeFewAddress() {
 		// TODO 自動生成されたメソッド・スタブ
+		ArrayList<Address> removeList = new ArrayList<>();
 		for(Address address:addressList) {
 			if(address.getNumPkt() <= N) {
-				addressList.remove(address);
+				removeList.add(address);
 			}
+		}
+		for(Address address:removeList) {
+			addressList.remove(address);
 		}
 
 	}
@@ -92,10 +96,17 @@ public class Identify {
 				}
 
 			}
-			if(ad_known)
-				addressList.add(new Address(row[0],Integer.parseInt(row[1]),Integer.parseInt(row[1]),Integer.parseInt(row[2]),1));
+			if(!ad_known) {
+				System.out.println(row[2].length());
+				addressList.add(new Address(row[0],Integer.parseInt(row[1]),Integer.parseInt(row[1])
+						,Integer.parseInt(row[2]),1));
+				System.out.println(row[2].length());
+			}
+			ad_known = false;
+
 		}
-		ad_known = false;
+		System.out.println(addressList.size());
+		addressList.get(0).printData();
 	}
 
 	/**
