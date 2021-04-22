@@ -60,7 +60,7 @@ public class Address {
 		System.out.print(ftime + ",");
 		System.out.print(ltime + ",");
 		System.out.print(getAverageRssi() + ",");
-		System.out.print(numPkt);
+		System.out.println(numPkt);
 		for (Address nextAdr : this.nextAdr) {
 			System.out.print(advA + ",");
 			nextAdr.printData();
