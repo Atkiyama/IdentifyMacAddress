@@ -15,7 +15,7 @@ public class Address {
 	private int ltime;
 	private ArrayList<Integer> rssi;
 	private int numPkt;
-	private ArrayList<Address> nextAdr;
+	private ArrayList<Address> nextAdr;//この次のものと思われるmacアドレス
 	/**
 	 * 初期化し代入
 	 * @param advA アドレス
@@ -23,7 +23,6 @@ public class Address {
 	 * @param ltime 最終受診時刻
 	 * @param rssi rssiのリスト
 	 * @param numPkt パケット数
-	 * @param nextAdr この次のものと思われるmacアドレス
 	 */
 	public Address(String advA, int ftime, int ltime, int rssi, int numPkt) {
 		this.advA = advA;

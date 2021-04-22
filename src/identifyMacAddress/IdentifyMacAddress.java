@@ -1,7 +1,12 @@
 package identifyMacAddress;
 
 import java.io.IOException;
-
+/**
+ * BLE機器のパケット情報を読み込んだテキストファイルからmacアドレスの特定を行うクラスのテスト用コード
+ * 引数にはそれぞれ 読み込むファイル名 R T N(それぞれ闘値、Nはデフォルト値を設定しているので最悪不要)を入れること
+ * @author akiyama
+ *
+ */
 public class IdentifyMacAddress {
 
 	public static void main(String[] args) throws IOException {
