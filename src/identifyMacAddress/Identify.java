@@ -9,9 +9,21 @@ import java.util.ArrayList;
  *
  */
 public class Identify {
-	public ArrayList<Address> addressList;//,macアドレスのリスト
+	/**
+	 * macアドレスのリスト
+	 */
+	public ArrayList<Address> addressList;
+	/**
+	 * 平均RSSIの闘値
+	 */
 	public int R;
+	/**
+	 * 時間(s)の闘値
+	 */
 	public int T;
+	/**
+	 * パケット数の闘値
+	 */
 	public int N;
 	/**
 	 * デフォルト値をそれぞれ代入する
@@ -102,7 +114,7 @@ public class Identify {
 			}
 			ad_known = false;
 		}
-		
+
 	}
 
 	/**

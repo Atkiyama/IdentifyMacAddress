@@ -9,13 +9,30 @@ import java.util.ArrayList;
  *
  */
 public class Address {
-
+/**
+ * アドレス名
+ */
 	private String advA;
+	/**
+	 * 初期受診時刻
+	 */
 	private int ftime;
+	/**
+	 * 最終受診時刻
+	 */
 	private int ltime;
+	/**
+	 * rssiのリスト
+	 */
 	private ArrayList<Integer> rssi;
+	/**
+	 * パケット数
+	 */
 	private int numPkt;
-	private ArrayList<Address> nextAdr;//この次のものと思われるmacアドレス
+	/**
+	 * この次のものと思われるmacアドレス
+	 */
+	private ArrayList<Address> nextAdr;
 	/**
 	 * 初期化し代入
 	 * @param advA アドレス
