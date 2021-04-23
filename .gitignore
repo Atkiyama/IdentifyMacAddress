@@ -1,6 +1,6 @@
-/text
+src/text
 
-/csv
+src/csv
 
 .DS_Store
 
@@ -14,10 +14,7 @@ bin/
 
 *.csv
 
-*.txt
 
 *.class
-
-/result
 
 src/*.class
