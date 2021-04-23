@@ -27,14 +27,15 @@ public class Read {
 
        while(str != null) {
     	  Data data = new Data(str);
-    	   while(!str.equals(firstLine)) {
+    	  str = in.readLine();
+    	   while(str !=null&&!str.equals(firstLine)) {
     		   data.addLine(str);
     		   str = in.readLine();
-    		   System.out.println("テスト１");
+
     	   }
     	   datas.add(data);
        }
-       System.out.println("テスト１");
+
 
 
 	}

@@ -22,6 +22,8 @@ public class DataAnalyze {
 		}
 		for(DataGroupe base:dataGroupes)
 			for(Data tmp:datas) {
+				//ぬるぽ
+
 				if(!base.getSecondLines().contains(tmp.getSecondLine())&&checkDiff(base.getData(),tmp))
 					base.addData(tmp);
 			}
@@ -71,12 +73,10 @@ public class DataAnalyze {
 		// TODO 自動生成されたメソッド・スタブ
 		Read read = new Read(args[0]);
 		read.read();
-		System.out.println("テスト１");
 		DataAnalyze dataAnalyze = new DataAnalyze(read.getDatas());
 		dataAnalyze.analyze();
-		System.out.println("テスト２");
 		dataAnalyze.showResult();
-		System.out.println("テスト３");
+
 
 
 	}
