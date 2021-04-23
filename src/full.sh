@@ -14,5 +14,7 @@ do
       fi
     done
   done
+  sleep 5m
+  java dataAnalyze/DataAnalyze result/$inputFileName.txt > analyze/analyze$inputFileName.txt
   echo "$inputFileName is done"
 done
