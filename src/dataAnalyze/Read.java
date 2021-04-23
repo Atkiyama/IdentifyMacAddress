@@ -26,6 +26,7 @@ public class Read {
 
 
        while(str != null) {
+    	  str = in.readLine();
     	  Data data = new Data(str);
     	  str = in.readLine();
     	   while(str !=null&&!str.equals(firstLine)) {
@@ -35,7 +36,14 @@ public class Read {
     	   }
     	   datas.add(data);
        }
-
+       /*
+        *デバック用
+       for(Data data:datas) {
+    	   System.out.println(data.getSecondLine());
+    	   for(String line :data.getData()) {
+    		   System.out.println(line);
+    	   }
+       }*/
 
 
 	}

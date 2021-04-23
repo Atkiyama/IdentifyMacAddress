@@ -11,25 +11,20 @@ public class DataAnalyze {
 		dataGroupes = new ArrayList<>();
 	}
 	public void analyze() {
-		boolean exist = false;
+		boolean ad_known = false;
 		for(Data base:datas) {
-			for(Data tmp:datas) {
-				if(checkDiff(base,tmp))
-					exist = true;
+			for(DataGroupe dataGroupe:dataGroupes) {
+				if(dataGroupe.getData().equals(base.getData())) {
+					dataGroupe.addData(base);
+					ad_known =true;
+				}
 			}
-			if(exist)
-				dataGroupes.add(new DataGroupe());
+			if(!ad_known) {
+				dataGroupes.add(new DataGroupe(base));
+			}else {
+				ad_known = false;
+			}
 		}
-		for(DataGroupe base:dataGroupes)
-			for(Data tmp:datas) {
-				//ぬるぽ
-
-				if(!base.getSecondLines().contains(tmp.getSecondLine())&&checkDiff(base.getData(),tmp))
-					base.addData(tmp);
-			}
-
-
-
 	}
 	public boolean checkDiff(Data base,Data tmp) {
 		if(base.getData().size() == tmp.getData().size()) {
@@ -43,6 +38,14 @@ public class DataAnalyze {
 		}else {
 			return false;
 		}
+	}
+
+	public boolean containData(Data data) {
+		for(DataGroupe dataGroupe:dataGroupes) {
+			if(dataGroupe.getData().equals(data.getData()))
+				return true;
+		}
+		return false;
 	}
 
 	public boolean checkDiff(ArrayList<String> base,Data tmp) {
@@ -59,13 +62,24 @@ public class DataAnalyze {
 		}
 	}
 	public void showResult() {
+		int i=1;
 		for(DataGroupe dataGroupe:dataGroupes) {
-			for(String secondLine:dataGroupe.getSecondLines())
-				System.out.print(secondLine+"::");
+			System.out.println("グループ"+i);
+			System.out.println("闘値");
+			for(String secondLine:dataGroupe.getSecondLines()) {
+				int count =0;
+				System.out.println(secondLine);
+				count++;
+				if(count>=5) {
+					System.out.println();
+					count=0;
+				}
+			}
 			System.out.println("データ");
 			for(String data:dataGroupe.getData()) {
 				System.out.println(data);
 			}
+			i++;
 		}
 
 	}
