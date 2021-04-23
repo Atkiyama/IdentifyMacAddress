@@ -12,8 +12,8 @@ do
       else
         java identifyMacAddress/IdentifyMacAddress text/$inputFileName.txt $R $T >>result/$inputFileName.txt
       fi
-      echo "$R,$T isdone"
     done
   done
   java dataAnalyze/DataAnalyze result/$inputFileName.txt > analyze/analyze$inputFileName.txt
+  echo "$inputFileName is done"
 done
