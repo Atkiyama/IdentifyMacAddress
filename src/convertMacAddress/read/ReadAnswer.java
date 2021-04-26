@@ -7,7 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import convertMacAddress.node.BTMachine;
-
+/**
+ * singleReasut.csvから各ファイルの正解macアドレスを読み出すクラス
+ * @author akiyama
+ *
+ */
 public class ReadAnswer {
 	public ArrayList<BTMachine> read() throws IOException {
 		File file = new File("singleResult.csv");

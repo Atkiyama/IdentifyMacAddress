@@ -10,7 +10,12 @@ import java.util.regex.Pattern;
 
 import convertMacAddress.node.BTMachine;
 import convertMacAddress.node.Packet;
-
+/**
+ * 正解macアドレスを元に各キャプチャファイルからパケットを読み出すクラス
+ * (パスを考慮してコーディングしなおすこと)
+ * @author akiyama
+ *
+ */
 public class ReadData {
 	public ReadData(ArrayList<BTMachine> btMachines) {
 		this.btMachines = btMachines;
