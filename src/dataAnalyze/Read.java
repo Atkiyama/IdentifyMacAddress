@@ -67,7 +67,7 @@ public class Read {
     		   System.out.println(line);
     	   }
        }*/
-
+       in.close();
 
 	}
 

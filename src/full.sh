@@ -8,13 +8,13 @@ do
     do
       if [ "$R" -eq "0" -a "$T" -eq "0" ]
       then
-        java identifyMacAddress/IdentifyMacAddress text/$inputFileName.txt $R $T >result/$inputFileName.txt
+        java identifyMacAddress/IdentifyMacAddress data/capure/$inputFileName.txt $R $T >data/result/single/$inputFileName.txt
       else
-        java identifyMacAddress/IdentifyMacAddress text/$inputFileName.txt $R $T >>result/$inputFileName.txt
+        java identifyMacAddress/IdentifyMacAddress data/capture/$inputFileName.txt $R $T >>data/result/single/$inputFileName.txt
       fi
     done
   done
   sleep 5m
-  java dataAnalyze/DataAnalyze result/$inputFileName.txt > analyze/analyze$inputFileName.txt
+  java dataAnalyze/DataAnalyze data/result/$inputFileName.txt > data/result/analyze/analyze$inputFileName.txt
   echo "$inputFileName is done"
 done

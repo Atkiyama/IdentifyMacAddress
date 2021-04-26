@@ -34,7 +34,6 @@ public class Read {
 	 */
 	public ArrayList<String[]> read() throws IOException {
 		File file = new File(inputFileName);
-		String path = file.getAbsolutePath();
 		FileReader fileReader = new FileReader(file);
 		BufferedReader buffReader = new BufferedReader(fileReader);
 		final Pattern ptn = Pattern
