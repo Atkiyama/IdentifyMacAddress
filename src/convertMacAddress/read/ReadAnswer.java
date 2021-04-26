@@ -1,10 +1,12 @@
-package convertMacAddress;
+package convertMacAddress.read;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import convertMacAddress.node.BTMachine;
 
 public class ReadAnswer {
 	public ArrayList<BTMachine> read() throws IOException {

@@ -1,4 +1,4 @@
-package convertMacAddress;
+package convertMacAddress.node;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,13 @@ public class BTMachine {
 	private ArrayList<String> address;
 	private ArrayList<Packet> packets;
 	private String fileName;
+	public BTMachine() {
+		address = new ArrayList<>();
+		packets = new ArrayList<>();
+	}
+	public void addPacket(Packet packet) {
+		packets.add(packet);
+	}
 	public void addData(String data) {
 		// TODO 自動生成されたメソッド・スタブ
 		if(fileName == null)
@@ -26,4 +33,5 @@ public class BTMachine {
 	public String getFileName() {
 		return fileName;
 	}
+
 }
