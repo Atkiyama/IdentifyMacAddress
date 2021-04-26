@@ -22,8 +22,6 @@ public class Packet {
         this.rssi = rssi;
     }
 
-
-
     /**
      * パケット情報を表示するメソッド.
      * デバック用
