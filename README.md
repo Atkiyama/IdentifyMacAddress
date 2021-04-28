@@ -13,5 +13,7 @@ IdentifyMacAddress.sh 全ての闘値のidentifyMacAddressSingle:dentifyMacAddre
 
 full.sh:data/result/single/フォルダにある全てのテキストフォルダを読み込んでdataAnalyzeのように解析結果を表示できます(要はdataAnalyze.shとidentify.shを全て実行する)
 
+compile.sh:全javaファイルをコンパイルします。文字コードはUTF-8に統一していますのでWindownsでもmacでも動くと思います。
+
 **ドキュメントについて
 doc/index.htmlに本リポジトリのjavadocドキュメントがあります。
