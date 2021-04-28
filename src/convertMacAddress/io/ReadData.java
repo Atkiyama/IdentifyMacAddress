@@ -83,8 +83,6 @@ public class ReadData {
 								+ m.group(4)
 								+ ":" + m.group(2);
 						if (btMachine.getAddress().contains(address)) {
-							break;
-						} else {
 							btMachine.addPacket(new Packet(address, Math.round(time), Integer.parseInt(rssi)));
 						}
 					}

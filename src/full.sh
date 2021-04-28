@@ -1,6 +1,6 @@
 #!/bin/bash
-
-for inputFileName in f50cm f50cmB l1m l1mB r20cm r20cmB r50cm r1m r60cm r50cm2 l70cm l90cm
+LS=$(ls data/capture/)
+for inputFileName in ${LS}
 do
   for R in {0..10}
   do
@@ -8,13 +8,13 @@ do
     do
       if [ "$R" -eq "0" -a "$T" -eq "0" ]
       then
-        java identifyMacAddress/IdentifyMacAddress data/capure/$inputFileName.txt $R $T >data/result/single/$inputFileName.txt
+        java identifyMacAddressSingle/drive/IdentifyMacAddress data/capture/$inputFileName $R $T >data/result/single/$inputFileName
       else
-        java identifyMacAddress/IdentifyMacAddress data/capture/$inputFileName.txt $R $T >>data/result/single/$inputFileName.txt
+        java identifyMacAddressSingle/drive/IdentifyMacAddress data/capture/$inputFileName $R $T >>data/result/single/$inputFileName
       fi
     done
   done
   sleep 5m
-  java dataAnalyze/DataAnalyze data/result/$inputFileName.txt > data/result/analyze/analyze$inputFileName.txt
+  java dataAnalyze/analyze/DataAnalyze data/result/$inputFileName > data/result/analyze/analyze$inputFileName
   echo "$inputFileName is done"
 done

@@ -81,8 +81,6 @@ public class ConvertMacAddress {
 		ReadAnswer read = new ReadAnswer();
 		ReadData readData = new ReadData(read.read());
 		readData.readData();
-		for(BTMachine btMachine:readData.getBtMachines())
-			System.out.println(btMachine.getPackets().size()+"なめ"+btMachine.getFileName());
 		ConvertMacAddress convert = new ConvertMacAddress(readData.getBtMachines());
 		convert.setDelay();
 		convert.convert();
