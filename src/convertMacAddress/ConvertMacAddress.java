@@ -81,11 +81,13 @@ public class ConvertMacAddress {
 		ReadAnswer read = new ReadAnswer();
 		ReadData readData = new ReadData(read.read());
 		readData.readData();
-		readData.getBtMachines();
+		for(BTMachine btMachine:readData.getBtMachines())
+			System.out.println(btMachine.getPackets().size()+"なめ"+btMachine.getFileName());
 		ConvertMacAddress convert = new ConvertMacAddress(readData.getBtMachines());
 		convert.setDelay();
 		convert.convert();
 		WriteConvertData write = new WriteConvertData();
+		System.out.println(convert.getPackets().size());
 		write.write(convert.getPackets());
 	}
 

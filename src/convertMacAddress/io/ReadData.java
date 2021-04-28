@@ -37,14 +37,13 @@ public class ReadData {
 		File file;
 		FileReader fileReader;
 		BufferedReader buffReader;
-		final Pattern ptn = Pattern
-				.compile("(systime=)(.*?)( freq.*? addr=)(.*?)( delta_t=)([[1-9]|¥.]*?)( ms rssi=)(-?[0-9]+)");
+		final Pattern ptn = Pattern.compile("(systime=)(.*?)( freq.*? addr=)(.*?)( delta_t=)([[1-9]|¥.]*?)( ms rssi=)(-?[0-9]+)");
 		//入力される文字列をパターンにする(今回は手動で書き換える)
 		final Pattern filter = Pattern.compile("6f fd");
 		//アドレスの形
 		final Pattern ad = Pattern.compile("(.. .. )(..)( )(..)( )(..)( )(..)( )(..)( )(..)");
 		for (BTMachine btMachine : btMachines) {
-			file = new File(btMachine.getFileName());
+			file = new File("data/capture/"+btMachine.getFileName());
 			fileReader = new FileReader(file);
 			buffReader = new BufferedReader(fileReader);
 			//必要な値を格納する変数
@@ -83,7 +82,7 @@ public class ReadData {
 						address = m.group(12) + ":" + m.group(10) + ":" + m.group(8) + ":" + m.group(6) + ":"
 								+ m.group(4)
 								+ ":" + m.group(2);
-						if (!btMachine.getAddress().contains(address)) {
+						if (btMachine.getAddress().contains(address)) {
 							break;
 						} else {
 							btMachine.addPacket(new Packet(address, Math.round(time), Integer.parseInt(rssi)));
