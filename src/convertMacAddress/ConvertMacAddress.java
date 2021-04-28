@@ -38,7 +38,7 @@ public class ConvertMacAddress {
 	}
 	/**
 	 * ランダムに遅延を発生させるメソッド
-	 * 0~300(五分)の遅れを想定
+	 * 0~600(10分)の遅れを想定
 	 */
 	public void setDelay() {
 		 Random random = new Random();
@@ -46,7 +46,7 @@ public class ConvertMacAddress {
 		 int setZero = random.nextInt(btMachines.size()-1);
 		 for(int i=0;i<btMachines.size();i++) {
 			 if(i!=setZero)
-				 btMachines.get(i).setDelay(random.nextInt(300));
+				 btMachines.get(i).setDelay(random.nextInt(600));
 		 }
 	}
 
