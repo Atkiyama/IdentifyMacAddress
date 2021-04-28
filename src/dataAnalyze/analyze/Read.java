@@ -28,7 +28,7 @@ public class Read {
 
 	/**
 	 * flieNameを引数から代入し、datasをnewする
-	 * @param fileName
+	 * @param fileName 読み込むファイル名
 	 */
 	public Read(String fileName) {
 		this.fileName = fileName;

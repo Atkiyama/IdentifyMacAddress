@@ -1,11 +1,27 @@
 package convertMacAddress.node;
 
 import java.util.ArrayList;
-
+/**
+ * 機器(キャプチャファイル)を示すクラス
+ * @author akiyama
+ *
+ */
 public class BTMachine {
+	/**
+	 * macアドレスのリスト
+	 */
 	private ArrayList<String> address;
+	/**
+	 * パケットのリスト
+	 */
 	private ArrayList<Packet> packets;
+	/**
+	 * ファイル名
+	 */
 	private String fileName;
+	/**
+	 * リストをそれぞれ初期化する
+	 */
 	public BTMachine() {
 		address = new ArrayList<>();
 		packets = new ArrayList<>();
@@ -13,6 +29,10 @@ public class BTMachine {
 	public void addPacket(Packet packet) {
 		packets.add(packet);
 	}
+	/**
+	 * 引数の文字列をaddする。一度目ならファイル名、それ以外ならアドレスにaddする
+	 * @param data addする文字列(ファイル名orMacアドレス)
+	 */
 	public void addData(String data) {
 		// TODO 自動生成されたメソッド・スタブ
 		if(fileName == null)
@@ -32,6 +52,16 @@ public class BTMachine {
 	}
 	public String getFileName() {
 		return fileName;
+	}
+
+	/**
+	 * 各パケットに遅延時間を設定する
+	 * @param delay 設定する遅延時間
+	 */
+	public void setDelay(int delay) {
+		for(Packet packet:packets) {
+			packet.setDelay(delay);
+		}
 	}
 
 }

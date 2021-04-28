@@ -1,4 +1,4 @@
-package convertMacAddress.read;
+package convertMacAddress.io;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,12 +17,22 @@ import convertMacAddress.node.Packet;
  *
  */
 public class ReadData {
+	/**
+	 * 引数を代入する
+	 * @param btMachines 機器(キャプチャファイル)のリスト
+	 */
 	public ReadData(ArrayList<BTMachine> btMachines) {
 		this.btMachines = btMachines;
 	}
-
+	/**
+	 * btMachines 機器(キャプチャファイル)のリスト
+	 */
 	private ArrayList<BTMachine> btMachines;
 
+	/**
+	 * フィールドの情報を頼りに正解データを各ファイルから読み出すメソッド
+	 * @throws IOException
+	 */
 	public void readData() throws IOException {
 		File file;
 		FileReader fileReader;
