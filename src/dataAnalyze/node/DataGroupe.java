@@ -1,4 +1,4 @@
-package dataAnalyze;
+package dataAnalyze.node;
 
 import java.util.ArrayList;
 

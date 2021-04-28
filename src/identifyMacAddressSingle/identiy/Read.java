@@ -1,4 +1,4 @@
-package identifyMacAddressSingle;
+package identifyMacAddressSingle.identiy;
 
 import java.io.BufferedReader;
 import java.io.File;
