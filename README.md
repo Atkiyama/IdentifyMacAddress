@@ -1,1 +1,15 @@
 # IdentifyMacAddress
+**src内のパッケージ
+
+identifyMacAddressSingle:dentifyMacAddressSingle.drive.IdentifyMacAddressSingleを実行すると指定したキャプチャファイルからmacアドレスを特定する
+
+dataAnalyze:dataAnalyze.DataAnalyze.javaを実行すると、IdentifyMacAddress.shで出力したデータをもとにグループを作成しその差分を表示する
+
+convertMacAddress:convertMacAddress.ConvertMacAddressを実行するとdata/result/single/singleResult.csv(dataフォルダは大容量のため本リポジトリには含まれていない)から上記パッケージの出力結果から推定したmacアドレスを読みこみ、そのアドレスのパケットデータをキャプチャファイルから取得し各キャプチャファイルから抽出した擬似キャプチャファイルを作成する
+
+dataAnalyze.sh パスなしでファイル名を入力することで楽にdataAnalyze:dataAnalyze.DataAnalyze.javaを実行できる
+
+IdentifyMacAddress.sh 全ての闘値のidentifyMacAddressSingle:dentifyMacAddressSingle.drive.IdentifyMacAddressSingleを実行できる
+
+**ドキュメントについて
+doc/index.htmlに本リポジトリのjavadocドキュメントがあります。
