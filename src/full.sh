@@ -15,6 +15,6 @@ do
     done
   done
   sleep 5m
-  java dataAnalyze/analyze/DataAnalyze data/result/$inputFileName > data/result/analyze/analyze$inputFileName
+  java dataAnalyze/analyze/DataAnalyze data/result/single/$inputFileName > data/result/analyze/analyze$inputFileName
   echo "$inputFileName is done"
 done
