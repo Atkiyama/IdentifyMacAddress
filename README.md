@@ -19,3 +19,19 @@ compile.sh:全javaファイルをコンパイルします。文字コードはUT
 
 **ドキュメントについて
 doc/index.htmlに本リポジトリのjavadocドキュメントがあります。
+
+**dataフォルダについて
+
+dataフォルダはsrc以下に保存してください
+
+*dataフォルダの構造
+
+capture :ubertoothOneでキャプチャしたデータをtxtにしたものがあります
+
+result:さまざまな結果を置いてあります
+
+result/single:キャプチャファイルを解析してmacアドレスを特定したデータがあります
+
+result/analyze:singleの中身をグループごとに分けて分類したものがあります
+
+result/multi/仮想的に複数端末によるパケットキャプチャデータを再現したcsvファイルがあります
