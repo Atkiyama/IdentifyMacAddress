@@ -17,21 +17,13 @@ fullfirst.sh:素早く動かすためにfull.shから制限をとっぱらった
 
 compile.sh:全javaファイルをコンパイルします。文字コードはUTF-8に統一していますのでWindownsでもmacでも動くと思います。
 
+getData.sh: src以下にdataフォルダ(https://github.com/Atkiyama/IdentifyMacAddressData.git)を作成します。
+
 **ドキュメントについて
 doc/index.htmlに本リポジトリのjavadocドキュメントがあります。
 
 **dataフォルダについて
 
-dataフォルダはsrc以下に保存してください
+dataフォルダはsrc以下に保存してください。(getData.shを使用すればその通りになります)
 
-*dataフォルダの構造
-
-capture :ubertoothOneでキャプチャしたデータをtxtにしたものがあります
-
-result:さまざまな結果を置いてあります
-
-result/single:キャプチャファイルを解析してmacアドレスを特定したデータがあります
-
-result/analyze:singleの中身をグループごとに分けて分類したものがあります
-
-result/multi/仮想的に複数端末によるパケットキャプチャデータを再現したcsvファイルがあります
+詳しい説明はdataフォルダのREADMEファイルをご確認ください
