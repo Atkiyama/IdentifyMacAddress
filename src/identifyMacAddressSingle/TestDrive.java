@@ -1,4 +1,4 @@
-package identifyMacAddressSingle.drive;
+package identifyMacAddressSingle;
 
 import java.io.IOException;
 
@@ -13,10 +13,11 @@ import identifyMacAddressSingle.identiy.Read;
  * @author akiyama
  *
  */
-public class IdentifyMacAddress {
+public class TestDrive {
 
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
+
 		Read read = new Read(args[0]);
 		Identify identify = null;
 		if(args.length == 4)
@@ -29,8 +30,6 @@ public class IdentifyMacAddress {
 		}
 		identify.identify(read.read());
 		//以下テスト用
-		System.out.println(args[0]+","+read.getDate());
-		System.out.println("R="+args[1]+",T="+args[2]);
 		for(Address address:identify.getAddressList()) {
 			address.printData();
 		}
