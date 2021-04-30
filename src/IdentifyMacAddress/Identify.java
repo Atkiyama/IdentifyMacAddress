@@ -47,6 +47,11 @@ public class Identify {
 			if(address.getNextAdr().size()!=1)
 				addressList.remove(address);
 		}
+		for(Address address:addressList) {
+			connectAddress(address);
+		}
+
+
 
 	}
 	/**
@@ -64,6 +69,17 @@ public class Identify {
 			addressList.remove(address);
 		}
 		addressListBase = addressList;
+
+	}
+
+	public void connectAddress(Address address) {
+		for(Address tmp:addressList) {
+			if(address.getNextAdr().equals(tmp)) {
+				connectAddress(tmp);
+				//nextadrをaddする
+			}
+		}
+
 
 	}
 
