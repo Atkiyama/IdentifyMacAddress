@@ -7,7 +7,7 @@ class ScanDelegate(DefaultDelegate):
                t_now = datetime.datetime.now().time()
                #print("%s %s (%s) [%s] %s dBm" % (t_now, dev.addr, dev.addrType, dev.iface, dev.rssi), end="")
                for (adtype, desc, value) in dev.getScanData():
-                     print(" %s(%s) = %s" % (desc, adtype, value), end="")
+                     #print(" %s(%s) = %s" % (desc, adtype, value), end="")
                print("")
 scanner = Scanner().withDelegate(ScanDelegate())
 while True:
