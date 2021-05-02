@@ -1,7 +1,7 @@
 # IdentifyMacAddress
 **src内のパッケージ
 
-identifyMacAddressSingle:dentifyMacAddressSingle.drive.IdentifyMacAddressSingleを実行すると指定したキャプチャファイルからmacアドレスを特定する
+identifyMacAddressSingle:dentifyMacAddressSingle.IdentifyMacAddressSingleを実行すると指定したキャプチャファイルからmacアドレスを特定する
 
 dataAnalyze:dataAnalyze.DataAnalyze.javaを実行すると、IdentifyMacAddress.shで出力したデータをもとにグループを作成しその差分を表示する
 
@@ -18,6 +18,8 @@ fullfirst.sh:素早く動かすためにfull.shから制限をとっぱらった
 compile.sh:全javaファイルをコンパイルします。文字コードはUTF-8に統一していますのでWindownsでもmacでも動くと思います。
 
 getData.sh: src以下にdataフォルダ(https://github.com/Atkiyama/IdentifyMacAddressData.git)を作成します。
+
+scan.py:BLEアドバタイズバケットをキャッチします(現在調整中)
 
 **ドキュメントについて
 doc/index.htmlに本リポジトリのjavadocドキュメントがあります。
