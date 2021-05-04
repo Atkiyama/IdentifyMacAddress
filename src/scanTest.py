@@ -1,4 +1,5 @@
 from bluepy import btle
+import Scanner
 
 # デバイスをスキャンするためのクラスを初期化する。
 # 引数(index=0)は、使用するBluetoothインターフェースの番号を表す
