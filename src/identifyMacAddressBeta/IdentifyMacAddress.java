@@ -1,23 +1,23 @@
-package identifyMacAddressSingle;
+package identifyMacAddressBeta;
 
 import java.io.IOException;
 
-import identifyMacAddressSingle.identiy.Address;
-import identifyMacAddressSingle.identiy.Identify;
-import identifyMacAddressSingle.identiy.Read;
+import identifyMacAddressBeta.identiy.Address;
+import identifyMacAddressBeta.identiy.Identify;
+import identifyMacAddressBeta.identiy.Read;
+
+
 
 
 /**
- * BLE機器のパケット情報を読み込んだテキストファイルからmacアドレスの特定を行うクラスのテスト用コード
+ * BLE機器のパケット情報を読み込んだテキストファイルからmacアドレスの特定を行うクラスの試作版用コード
  * 引数にはそれぞれ 読み込むファイル名 R T N(それぞれ闘値、Nはデフォルト値を設定しているので最悪不要)を入れること
  * @author akiyama
  *
  */
-public class TestDrive {
-
+public class IdentifyMacAddress {
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-
 		Read read = new Read(args[0]);
 		Identify identify = null;
 		if(args.length == 4)
@@ -30,6 +30,8 @@ public class TestDrive {
 		}
 		identify.identify(read.read());
 		//以下テスト用
+		System.out.println(args[0]+","+read.getDate());
+		System.out.println("R="+args[1]+",T="+args[2]);
 		for(Address address:identify.getAddressList()) {
 			address.printData();
 		}
