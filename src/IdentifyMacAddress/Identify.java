@@ -6,34 +6,49 @@ import java.util.ArrayList;
 import identifyMacAddress.node.Address;
 import identifyMacAddress.node.Packet;
 
-
+/**
+ * 平均RSSIとパケット受診時刻を元にmacアドレスの特定を行うための
+ * @author akiyama
+ *
+ */
 public class Identify {
 
 	/**
 	 * macアドレスのリスト
 	 */
 	private ArrayList<Address> addressList;
-	private ArrayList<Address> addressListBase;
+	/**
+	 * パケットのリスト(これからアドレスリストを作成)
+	 */
 	private ArrayList<Packet> packets;
+	/**
+	 * N以下のパケット数のアドレスを省くための定数
+	 */
 	private final int N=100;
-	private int T;
+	/**
+	 * 受診時刻の闘値
+	 */
+	private double T;
+	/**
+	 * 平均RSSIの闘値
+	 */
 	private double R;
 	public Identify(ArrayList<Packet> packets) {
 		this.packets = packets;
 		addressList = new ArrayList<>();
-		addressListBase = new ArrayList<>();
+
 	}
 
 
 
-	/**
-	 * 特定を行うメソッド
-	 * @param originalData csvデータを配列のリストにしたもの
-	 * @throws IOException
-	 */
+/**
+ * 特定を行うメソッド
+ * @param T 受診時刻の闘値
+ * @param R 平均RSSIの闘値
+ * @throws IOException
+ */
 	public void identify(int T,int R) throws IOException{
 		//ここ以下でアドレスを特定する
-		addressList = addressListBase;
 		this.T = T;
 		this.R = R;
 		for(Address adr_base:addressList) {
@@ -44,6 +59,9 @@ public class Identify {
 			}
 		}
 
+		/**
+		 * 結果を出力
+		 */
 		System.out.println("R="+R+"T="+T);
 		for(Address address:addressList) {
 			address.printData();
@@ -68,14 +86,14 @@ public class Identify {
 		for(Address address:removeList) {
 			addressList.remove(address);
 		}
-		addressListBase = addressList;
+
 
 	}
 
 
 	/**
 	 * 配列のリストからアドレスのリストを作成するメソッド
-	 * @param originalData csvを読み込んだ配列のリスト 0,1,2にそれぞれadva,time,rssiが入っている
+	 *
 	 */
 	public void makeAddressList() {
 		//既知のアドレスかどうかのフラグ

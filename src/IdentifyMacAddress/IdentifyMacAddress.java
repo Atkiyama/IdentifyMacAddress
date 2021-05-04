@@ -1,12 +1,19 @@
 package identifyMacAddress;
 
 import java.io.IOException;
-
-import identifyMacAddress.input.ReadData;
-
+/**
+ * 平均RSSIとパケット受診時刻を元にmacアドレスの特定を行うクラス
+ * @author akiyama
+ *
+ */
 public class IdentifyMacAddress {
+	/**
+	 * メインメソッド
+	 * @param args 0にR,１にTを入れる(別途スクリプで操作)
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
-		ReadData readData = new ReadData();
+		Read readData = new Read();
 		Identify identify = new Identify(readData.read());
 		identify.makeAddressList();
 		identify.removeFewAddress();

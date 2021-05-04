@@ -69,7 +69,7 @@ public class Address {
 
 	/**
 	 * 引数のアドレスがnextAdrに含まれているか判別するメソッド
-	 * @param address
+	 * @param address macアドレスs
 	 * @return 含まれていたらtrueを返す
 	 */
 	public boolean containNextAdr(Address address) {

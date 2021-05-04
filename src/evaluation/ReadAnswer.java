@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import convertMacAddress.node.BTMachine;
 /**
  * singleReasut.csvから各ファイルの正解macアドレスを読み出すクラス
  * @author akiyama
@@ -18,23 +16,18 @@ public class ReadAnswer {
 	 * @return 機器(キャプチャファイル)のリスト
 	 * @throws IOException
 	 */
-	public ArrayList<BTMachine> read() throws IOException {
+	public ArrayList<String[]> read() throws IOException {
 		File file = new File("/data/result/single/singleResult.csv");
 		FileReader fileReader = new FileReader(file);
-		BufferedReader in = new BufferedReader(fileReader);
-		ArrayList<BTMachine> btMachines = new ArrayList<>();
+		BufferedReader in = new BufferedReader(fileReader);;
 		String str = in.readLine();
+		ArrayList<String[]> data = new ArrayList<>();
 		while(str != null) {
 			//配列で取得してリストにする
-			String[] line = str.split(",");
-			BTMachine btMachine = new BTMachine();
-			for(String data:line) {
-				btMachine.addData(data);
-			}
-			btMachines.add(btMachine);
+			data.add(str.split(","));
 			str = in.readLine();
 		}
 		in.close();
-		return btMachines;
+		return data;
 	}
 }

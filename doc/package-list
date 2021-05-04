@@ -3,5 +3,8 @@ convertMacAddress.io
 convertMacAddress.node
 dataAnalyze.analyze
 dataAnalyze.node
-identifyMacAddressSingle
-identifyMacAddressSingle.identiy
+evaluation
+identifyMacAddress
+identifyMacAddress.node
+identifyMacAddressBeta
+identifyMacAddressBeta.identiy
