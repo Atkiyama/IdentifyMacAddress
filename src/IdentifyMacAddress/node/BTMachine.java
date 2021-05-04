@@ -1,4 +1,4 @@
-package IdentifyMacAddress.node;
+package identifyMacAddress.node;
 
 import java.util.ArrayList;
 /**

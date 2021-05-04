@@ -1,4 +1,4 @@
-package IdentifyMacAddress.node;
+package identifyMacAddress.node;
 
 public class Packet {
 	public Packet(String address, double time, int rssi) {

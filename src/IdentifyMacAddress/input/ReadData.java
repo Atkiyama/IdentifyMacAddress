@@ -1,4 +1,4 @@
-package IdentifyMacAddress.input;
+package identifyMacAddress.input;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,11 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import IdentifyMacAddress.node.Packet;
+import identifyMacAddress.node.Packet;
 
 public class ReadData {
 	public ArrayList<Packet> read() throws IOException{
-		File file = new File("data/result/mulit/multiData.csv");
+		File file = new File("src/data/result/mulit/multiData.csv");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);
 		String str =in.readLine();

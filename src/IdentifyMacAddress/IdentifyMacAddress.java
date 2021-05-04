@@ -1,8 +1,8 @@
-package IdentifyMacAddress;
+package identifyMacAddress;
 
 import java.io.IOException;
 
-import IdentifyMacAddress.input.ReadData;
+import identifyMacAddress.input.ReadData;
 
 public class IdentifyMacAddress {
 	public static void main(String[] args) throws IOException {

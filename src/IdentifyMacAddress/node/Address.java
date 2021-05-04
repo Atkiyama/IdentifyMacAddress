@@ -1,4 +1,4 @@
-package IdentifyMacAddress.node;
+package identifyMacAddress.node;
 
 import java.util.ArrayList;
 /**
@@ -67,6 +67,20 @@ public class Address {
 		this.nextAdr.add(nextAdr);
 	}
 
+	/**
+	 * 引数のアドレスがnextAdrに含まれているか判別するメソッド
+	 * @param address
+	 * @return 含まれていたらtrueを返す
+	 */
+	public boolean containNextAdr(Address address) {
+		for(Address next:nextAdr) {
+			if(next.equals(address))
+				return true;
+		}
+		return false;
+
+	}
+
 	/*
 	 * このインスタンスの情報を表示するメソッド
 	 * デバック用
@@ -78,7 +92,8 @@ public class Address {
 		System.out.print(getAverageRssi() + ",");
 		System.out.println(numPkt);
 		for (Address nextAdr : this.nextAdr) {
-			System.out.print(advA + ",");
+			if(this.nextAdr.size()!=1)
+				System.out.print("nextAdr size is"+this.nextAdr.size());
 			nextAdr.printData();
 		}
 		System.out.println();
@@ -97,6 +112,7 @@ public class Address {
 		return (int) Math.round(sum / rssi.size());
 
 	}
+
 
 	public ArrayList<Address> getNextAdr() {
 		return nextAdr;

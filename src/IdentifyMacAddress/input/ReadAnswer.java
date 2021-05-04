@@ -1,4 +1,4 @@
-package IdentifyMacAddress.input;
+package identifyMacAddress.input;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,7 +19,7 @@ public class ReadAnswer {
 	 * @throws IOException
 	 */
 	public ArrayList<BTMachine> read() throws IOException {
-		File file = new File("data/result/single/singleResult.csv");
+		File file = new File("src/data/result/single/singleResult.csv");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);
 		ArrayList<BTMachine> btMachines = new ArrayList<>();

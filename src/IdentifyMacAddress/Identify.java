@@ -1,10 +1,10 @@
-package IdentifyMacAddress;
+package identifyMacAddress;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import IdentifyMacAddress.node.Address;
-import IdentifyMacAddress.node.Packet;
+import identifyMacAddress.node.Address;
+import identifyMacAddress.node.Packet;
 
 
 public class Identify {
@@ -43,13 +43,12 @@ public class Identify {
 					adr_base.addNextAddr(adr_tmp);
 			}
 		}
+
 		for(Address address:addressList) {
-			if(address.getNextAdr().size()!=1)
-				addressList.remove(address);
+			address.printData();
 		}
-		for(Address address:addressList) {
-			connectAddress(address);
-		}
+
+
 
 
 
@@ -72,16 +71,6 @@ public class Identify {
 
 	}
 
-	public void connectAddress(Address address) {
-		for(Address tmp:addressList) {
-			if(address.getNextAdr().equals(tmp)) {
-				connectAddress(tmp);
-				//nextadrをaddする
-			}
-		}
-
-
-	}
 
 	/**
 	 * 配列のリストからアドレスのリストを作成するメソッド
