@@ -1,5 +1,5 @@
 from bluepy import btle
-import Scanner
+
 
 # デバイスをスキャンするためのクラスを初期化する。
 # 引数(index=0)は、使用するBluetoothインターフェースの番号を表す
@@ -19,10 +19,3 @@ for device in devices:
   print('MACアドレス：{device.addr}')
   print('  アドレスタイプ：{device.addrType}')
   print('  RSSI：{device.rssi}')
-
-  # adTypeCodeはアドバタイシングデータのキーで、
-  # descriptionはそれを人間が読めるように翻訳したもの。
-  # そしてvalueTextはアドバタイシングデータの値
-  print('  アドバタイシングデータ：')
-  for (adTypeCode, description, valueText) in device.getScanData():
-    print('    {description}：{valueText}')
