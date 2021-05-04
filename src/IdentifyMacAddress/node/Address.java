@@ -93,7 +93,7 @@ public class Address {
 		System.out.println(numPkt);
 		for (Address nextAdr : this.nextAdr) {
 			if(this.nextAdr.size()!=1)
-				System.out.print("nextAdr size is"+this.nextAdr.size());
+				System.out.println("nextAdr size is"+this.nextAdr.size());
 			nextAdr.printData();
 		}
 		System.out.println();

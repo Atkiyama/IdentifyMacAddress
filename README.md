@@ -1,7 +1,7 @@
 # IdentifyMacAddress
 **src内のパッケージ
 
-identifyMacAddressSingle:dentifyMacAddressSingle.IdentifyMacAddressSingleを実行すると指定したキャプチャファイルからmacアドレスを特定する
+identifyMacAddressSingle:identifyMacAddressSingle.IdentifyMacAddressSingleを実行すると指定したキャプチャファイルからmacアドレスを特定する
 
 dataAnalyze:dataAnalyze.DataAnalyze.javaを実行すると、IdentifyMacAddress.shで出力したデータをもとにグループを作成しその差分を表示する
 

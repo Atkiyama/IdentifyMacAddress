@@ -44,6 +44,7 @@ public class Identify {
 			}
 		}
 
+		System.out.println("R="+R+"T="+T);
 		for(Address address:addressList) {
 			address.printData();
 		}

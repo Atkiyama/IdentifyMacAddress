@@ -10,13 +10,14 @@ import identifyMacAddress.node.Packet;
 
 public class ReadData {
 	public ArrayList<Packet> read() throws IOException{
-		File file = new File("src/data/result/mulit/multiData.csv");
+		File file = new File("data/result/multi/multiData.csv");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);
 		String str =in.readLine();
 		ArrayList<String[]> data=new ArrayList<>();
 		while(str != null) {
 			data.add(str.split(","));
+			str = in.readLine();
 		}
 
 		in.close();

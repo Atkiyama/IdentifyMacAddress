@@ -14,7 +14,6 @@ import identifyMacAddressSingle.identiy.Read;
  *
  */
 public class IdentifyMacAddress {
-
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		Read read = new Read(args[0]);
