@@ -15,9 +15,9 @@ devices = scanner.scan(3.0)
 # ・アドバタイシングデータは、そのペリフェラルデバイスがアドバタイズパケットで
 # 　周囲に発信している、デバイスの情報を表すデータ
 for device in devices:
-  print(f'MACアドレス：{device.addr}')
-  print(f'  アドレスタイプ：{device.addrType}')
-  print(f'  RSSI：{device.rssi}')
+  print('MACアドレス：{device.addr}')
+  print('  アドレスタイプ：{device.addrType}')
+  print('  RSSI：{device.rssi}')
 
   # adTypeCodeはアドバタイシングデータのキーで、
   # descriptionはそれを人間が読めるように翻訳したもの。
