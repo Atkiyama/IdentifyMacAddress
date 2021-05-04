@@ -22,6 +22,6 @@ for device in devices:
   # adTypeCodeはアドバタイシングデータのキーで、
   # descriptionはそれを人間が読めるように翻訳したもの。
   # そしてvalueTextはアドバタイシングデータの値
-  print(f'  アドバタイシングデータ：')
+  print('  アドバタイシングデータ：')
   for (adTypeCode, description, valueText) in device.getScanData():
-    print(f'    {description}：{valueText}')
+    print('    {description}：{valueText}')
