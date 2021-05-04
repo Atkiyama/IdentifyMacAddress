@@ -8,7 +8,7 @@ scanner = btle.Scanner(0)
 
 # デバイスをスキャンする(結果はValuesView[ScanEntry]型で返される)
 # 引数(timeout=10.0)は、スキャンする秒数を表す
-devices = scanner.scan(10.0, passive=True)
+devices = scanner.scan()
 
 # スキャンした結果を表示
 # ・ペリフェラルデバイスとの接続にはMACアドレスとアドレスタイプが必要
