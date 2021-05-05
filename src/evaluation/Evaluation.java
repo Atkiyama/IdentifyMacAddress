@@ -29,6 +29,7 @@ public class Evaluation {
 				}
 			}
 		}
+		System.out.println(score.size());
 
 
 	}
@@ -57,7 +58,7 @@ public class Evaluation {
 	}
 
 	public void showScore() {
-		System.out.println("R="+R+"T="+T+",score is"+Math.round(trueCount()/score.size())+"%");
+		System.out.println("R="+R+"T="+T+",score is "+Math.round(trueCount()/score.size())+"%");
 		for(int i=0;i<score.size();i++) {
 			System.out.print(answer.get(i)[0]+":");
 			if(score.get(i))
@@ -73,7 +74,23 @@ public class Evaluation {
 		ReadAnswer readAnswer = new ReadAnswer();
 		Evaluation eval = new Evaluation(readData.read(),readAnswer.read(),Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 		eval.evaluation();
-		eval.showScore();
+		if(args.length == 3)
+			System.out.println("R="+eval.getR()+"T="+eval.getT()+",score is "+Math.round(eval.trueCount()/eval.getScore().size())+"%");
+		else {
+			eval.showScore();
+		}
+	}
+
+	public ArrayList<Boolean> getScore() {
+		return score;
+	}
+
+	public int getR() {
+		return R;
+	}
+
+	public int getT() {
+		return T;
 	}
 
 }
