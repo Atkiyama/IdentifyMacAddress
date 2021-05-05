@@ -1,4 +1,4 @@
-package evaluation;
+package evaluation.read;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,7 +17,7 @@ public class ReadAnswer {
 	 * @throws IOException
 	 */
 	public ArrayList<String[]> read() throws IOException {
-		File file = new File("/data/result/single/singleResult.csv");
+		File file = new File("data/result/singleResult.csv");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);;
 		String str = in.readLine();
