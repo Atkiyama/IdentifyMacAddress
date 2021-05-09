@@ -4,6 +4,7 @@ convertMacAddress.node
 dataAnalyze.analyze
 dataAnalyze.node
 evaluation
+evaluation.read
 identifyMacAddress
 identifyMacAddress.node
 identifyMacAddressBeta
