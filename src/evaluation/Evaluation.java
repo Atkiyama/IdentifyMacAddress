@@ -7,13 +7,13 @@ import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
 
 public class Evaluation {
-	private ArrayList<String> data;
+	private ArrayList<String[]> data;
 	private ArrayList<String[]> answer;
 	private ArrayList<Boolean> score;
 	private int R;
 	private int T;
 
-	public Evaluation(ArrayList<String> data, ArrayList<String[]> answer,int R,int T) {
+	public Evaluation(ArrayList<String[]> data, ArrayList<String[]> answer,int R,int T) {
 		this.data = data;
 		this.answer = answer;
 		score = new ArrayList<>();
@@ -24,20 +24,20 @@ public class Evaluation {
 	public void evaluation() {
 		for(String[] ans:answer) {
 			for(int i=0;i<data.size();i++) {
-				if(data.get(i).contains(ans[0])) {
+				if(data.get(i)[0].equals(ans[1])) {
 					score.add(check(i,ans));
 				}
 			}
 		}
-		System.out.println(score.size());
 
 
 	}
 
 	public boolean check(int i, String[] ans) {
 		// TODO 自動生成されたメソッド・スタブ
-		for(int j = 0;j<ans.length;j++) {
-			if(!data.get(i).equals(ans[j])) {
+		for(int j = 1;j<ans.length;j++) {
+			System.out.println("data ="+data.get(i)[0]+",ans = "+ans[j]);
+			if(!data.get(i)[0].equals(ans[j])) {
 				return false;
 			}
 			i++;
@@ -58,8 +58,11 @@ public class Evaluation {
 	}
 
 	public void showScore() {
-		System.out.println("R="+R+"T="+T+",score is "+Math.round(trueCount()/score.size())+"%");
-		for(int i=0;i<score.size();i++) {
+		System.out.println(score.size());
+		System.out.println(answer.size());
+		System.out.println(trueCount()/score.size());
+		System.out.println("R="+R+"T="+T+",score is "+trueCount()/score.size()*100+"%");
+		for(int i=0;i<answer.size();i++) {
 			System.out.print(answer.get(i)[0]+":");
 			if(score.get(i))
 				System.out.println("○");
@@ -75,7 +78,7 @@ public class Evaluation {
 		Evaluation eval = new Evaluation(readData.read(),readAnswer.read(),Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 		eval.evaluation();
 		if(args.length == 3)
-			System.out.println("R="+eval.getR()+"T="+eval.getT()+",score is "+Math.round(eval.trueCount()/eval.getScore().size())+"%");
+			System.out.println("R="+eval.getR()+"T="+eval.getT()+",score is "+Math.round(eval.trueCount()/eval.getScore().size())*100+"%");
 		else {
 			eval.showScore();
 		}

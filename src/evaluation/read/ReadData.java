@@ -18,15 +18,14 @@ public class ReadData {
 	}
 
 
-	public ArrayList<String> read() throws IOException{
+	public ArrayList<String[]> read() throws IOException{
 		File file = new File("data/result/multi/"+R+","+T+".txt");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);;
 		String str = in.readLine();
-		ArrayList<String> data = new ArrayList<>();
+		ArrayList<String[]> data = new ArrayList<>();
 		while(str != null) {
-			//配列で取得してリストにする
-			data.add(str);
+			data.add(str.split(","));
 			str = in.readLine();
 		}
 		in.close();
