@@ -18,7 +18,7 @@ public class WriteConvertData {
  */
 	public void write(ArrayList<Packet> packets) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		 FileWriter fileWriter = new FileWriter("data/result/multi/mulitData.csv");
+		 FileWriter fileWriter = new FileWriter("data/result/mulitData.csv");
 		 for(Packet packet:packets) {
 			 fileWriter.append(packet.getAddress());
 			 fileWriter.append(",");
