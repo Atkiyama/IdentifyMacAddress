@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import convertMacAddress.io.ReadAnswer;
 import convertMacAddress.node.BTMachine;
 
+/**
+ * convertMacAddressのテストコード
+ * @author akiyama
+ *
+ */
 public class TestConvert {
 
 	public static void main(String[] args) throws IOException {

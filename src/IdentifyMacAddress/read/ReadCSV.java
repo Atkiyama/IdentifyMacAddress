@@ -1,4 +1,4 @@
-package identifyMacAddress;
+package identifyMacAddress.read;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,14 +12,18 @@ import identifyMacAddress.node.Packet;
  * @author akiyama
  *
  */
-public class Read {
+public class ReadCSV extends Read{
+	public ReadCSV(String fileName) {
+		super(fileName);
+	}
+
 	/**
 	 * BLEパケットデータを読み込むメソッド
 	 * @return パケットのリスト
 	 * @throws IOException
 	 */
 	public ArrayList<Packet> read() throws IOException{
-		File file = new File("data/result/multi/multiData.csv");
+		File file = new File(fileName);
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);
 		String str =in.readLine();
