@@ -19,8 +19,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
-var tabs = {65535:["t0","すべてのメソッド"],2:["t2","インスタンス・メソッド"],8:["t4","concreteメソッド"]};
+var methods = {"i0":6};
+var tabs = {65535:["t0","すべてのメソッド"],2:["t2","インスタンス・メソッド"],4:["t3","abstractメソッド"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -49,11 +49,11 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../dataAnalyze/analyze/DataAnalyze.html" title="dataAnalyze.analyze内のクラス"><span class="typeNameLink">前のクラス</span></a></li>
-<li>次のクラス</li>
+<li>前のクラス</li>
+<li><a href="../../identifyMacAddress/read/ReadCSV.html" title="identifyMacAddress.read内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
 </ul>
 <ul class="navList">
-<li><a href="../../index.html?dataAnalyze/analyze/Read.html" target="_top">フレーム</a></li>
+<li><a href="../../index.html?identifyMacAddress/read/Read.html" target="_top">フレーム</a></li>
 <li><a href="Read.html" target="_top">フレームなし</a></li>
 </ul>
 <ul class="navList" id="allclasses_navbar_top">
@@ -92,7 +92,7 @@ var activeTableTab = "activeTableTab";
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">dataAnalyze.analyze</div>
+<div class="subTitle">identifyMacAddress.read</div>
 <h2 title="クラス Read" class="title">クラス Read</h2>
 </div>
 <div class="contentContainer">
@@ -100,18 +100,22 @@ var activeTableTab = "activeTableTab";
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>dataAnalyze.analyze.Read</li>
+<li>identifyMacAddress.read.Read</li>
 </ul>
 </li>
 </ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>直系の既知のサブクラス:</dt>
+<dd><a href="../../identifyMacAddress/read/ReadCSV.html" title="identifyMacAddress.read内のクラス">ReadCSV</a>, <a href="../../identifyMacAddress/read/ReadTXT.html" title="identifyMacAddress.read内のクラス">ReadTXT</a></dd>
+</dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">Read</span>
+<pre>public abstract class <span class="typeNameLabel">Read</span>
 extends java.lang.Object</pre>
-<div class="block">identyfiMacAddressの出力結果を読み込むクラス</div>
+<div class="block">ファイルを読み込むための抽象クラス</div>
 <dl>
 <dt><span class="simpleTagLabel">作成者:</span></dt>
 <dd>akiyama</dd>
@@ -134,8 +138,8 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">コンストラクタと説明</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../dataAnalyze/analyze/Read.html#Read-java.lang.String-">Read</a></span>(java.lang.String&nbsp;fileName)</code>
-<div class="block">flieNameを引数から代入し、datasをnewする</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../identifyMacAddress/read/Read.html#Read-java.lang.String-">Read</a></span>(java.lang.String&nbsp;fileName)</code>
+<div class="block">引数で初期化する</div>
 </td>
 </tr>
 </table>
@@ -148,21 +152,16 @@ extends java.lang.Object</pre>
 </a>
 <h3>メソッドのサマリー</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="メソッドのサマリー表、メソッドのリストおよび説明">
-<caption><span id="t0" class="activeTableTab"><span>すべてのメソッド</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">インスタンス・メソッド</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">concreteメソッド</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>すべてのメソッド</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">インスタンス・メソッド</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">abstractメソッド</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">修飾子とタイプ</th>
 <th class="colLast" scope="col">メソッドと説明</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>java.util.ArrayList&lt;<a href="../../dataAnalyze/node/Data.html" title="dataAnalyze.node内のクラス">Data</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../dataAnalyze/analyze/Read.html#getDatas--">getDatas</a></span>()</code>
-<div class="block">datasのゲッター</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../dataAnalyze/analyze/Read.html#read--">read</a></span>()</code>
-<div class="block">読み込むメソッド</div>
+<td class="colFirst"><code>abstract java.util.ArrayList&lt;<a href="../../identifyMacAddress/node/Packet.html" title="identifyMacAddress.node内のクラス">Packet</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../identifyMacAddress/read/Read.html#read--">read</a></span>()</code>
+<div class="block">パケットデータを読み込むクラス
+ 子クラスで実装する</div>
 </td>
 </tr>
 </table>
@@ -194,10 +193,10 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Read</h4>
 <pre>public&nbsp;Read(java.lang.String&nbsp;fileName)</pre>
-<div class="block">flieNameを引数から代入し、datasをnewする</div>
+<div class="block">引数で初期化する</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>fileName</code> - 読み込むファイル名</dd>
+<dd><code>fileName</code> - ファイル名</dd>
 </dl>
 </li>
 </ul>
@@ -212,29 +211,18 @@ extends java.lang.Object</pre>
 <a name="read--">
 <!--   -->
 </a>
-<ul class="blockList">
-<li class="blockList">
-<h4>read</h4>
-<pre>public&nbsp;void&nbsp;read()
-          throws java.io.IOException</pre>
-<div class="block">読み込むメソッド</div>
-<dl>
-<dt><span class="throwsLabel">例外:</span></dt>
-<dd><code>java.io.IOException</code></dd>
-</dl>
-</li>
-</ul>
-<a name="getDatas--">
-<!--   -->
-</a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>getDatas</h4>
-<pre>public&nbsp;java.util.ArrayList&lt;<a href="../../dataAnalyze/node/Data.html" title="dataAnalyze.node内のクラス">Data</a>&gt;&nbsp;getDatas()</pre>
-<div class="block">datasのゲッター</div>
+<h4>read</h4>
+<pre>public abstract&nbsp;java.util.ArrayList&lt;<a href="../../identifyMacAddress/node/Packet.html" title="identifyMacAddress.node内のクラス">Packet</a>&gt;&nbsp;read()
+                                          throws java.io.IOException</pre>
+<div class="block">パケットデータを読み込むクラス
+ 子クラスで実装する</div>
 <dl>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>datas</dd>
+<dd>パケットのリスト</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code></dd>
 </dl>
 </li>
 </ul>
@@ -265,11 +253,11 @@ extends java.lang.Object</pre>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../dataAnalyze/analyze/DataAnalyze.html" title="dataAnalyze.analyze内のクラス"><span class="typeNameLink">前のクラス</span></a></li>
-<li>次のクラス</li>
+<li>前のクラス</li>
+<li><a href="../../identifyMacAddress/read/ReadCSV.html" title="identifyMacAddress.read内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
 </ul>
 <ul class="navList">
-<li><a href="../../index.html?dataAnalyze/analyze/Read.html" target="_top">フレーム</a></li>
+<li><a href="../../index.html?identifyMacAddress/read/Read.html" target="_top">フレーム</a></li>
 <li><a href="Read.html" target="_top">フレームなし</a></li>
 </ul>
 <ul class="navList" id="allclasses_navbar_bottom">

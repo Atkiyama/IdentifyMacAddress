@@ -9,7 +9,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import identifyMacAddress.node.Packet;
-
+/**
+ * テキストファイルからパケット情報を読み取るクラス
+ * @author akiyama
+ *
+ */
 public class ReadTXT extends Read {
 	/**
 	 * 時間の正規表現
@@ -24,6 +28,10 @@ public class ReadTXT extends Read {
 	 */
 	final Pattern pRssi;
 
+	/**
+	 * fileNameは引数で初期化、その他は各の正規表現で初期化する
+	 * @param fileName ファイル名
+	 */
 	public ReadTXT(String fileName) {
 		super(fileName);
 		pTime = Pattern.compile("([0-9]{2}):([0-9]{2}):(.{9})");
@@ -31,7 +39,10 @@ public class ReadTXT extends Read {
 		pRssi = Pattern.compile("(-[0-9]{1,2})");
 	}
 
-	@Override
+	/**
+	 * ファイルから情報を読み取るメソッド
+	 * @return パケットのリスト
+	 */
 	public ArrayList<Packet> read() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		File file = new File(fileName);
@@ -42,42 +53,57 @@ public class ReadTXT extends Read {
 		Matcher mTime;
 		Matcher mAddress;
 		Matcher mRssi;
-		int i=0;
+		int i = 0;
 		while (str != null) {
 			i++;
 			mTime = pTime.matcher(str);
 			mAddress = pAddress.matcher(str);
 			mRssi = pRssi.matcher(str);
-			if(mTime.find()&&mAddress.find()&&mRssi.find()) {
-				packets.add(makePackets(mTime,mAddress,mRssi));
-				System.out.println(mTime.group(3));
-			}else {
-				System.out.println(i+"行目にパターンに一致しない文字列を確認しました。ご確認ください");
+			if (mTime.find() && mAddress.find() && mRssi.find()) {
+				packets.add(makePackets(mTime, mAddress, mRssi));
+			} else {
+				//例外処理
+				System.out.println(i + "行目にパターンに一致しない文字列を確認しました。ご確認ください");
+				System.exit(0);
 			}
 			str = in.readLine();
 		}
 		in.close();
-
+		//初回受診時刻を取得
 		double fTime = packets.get(0).getTime();
-		for(Packet packet:packets)
+		//データをフォーマット
+		for (Packet packet : packets)
 			packet.formatTime(fTime);
 
 		return packets;
 
 	}
 
+	/**
+	 * パケットのインスタンスを作るメソッド
+	 * @param mTime 時間のmatcher
+	 * @param mAddress macアドレスのmatcher
+	 * @param mRssi rssiのmatcher
+	 * @return パケットのインスタンス
+	 */
+
 	public Packet makePackets(Matcher mTime, Matcher mAddress, Matcher mRssi) {
 		// TODO 自動生成されたメソッド・スタブ
 		double hour = Double.parseDouble(mTime.group(1));
 		double minute = Double.parseDouble(mTime.group(2));
 		double second = Double.parseDouble(mTime.group(3));
-		return new Packet(mAddress.group(1),hour*3600+minute*60+second,Integer.parseInt(mRssi.group(1)));
+		return new Packet(mAddress.group(1), hour * 3600 + minute * 60 + second, Integer.parseInt(mRssi.group(1)));
 	}
 
+	/**
+	 * テスト用メインメソッド。読み込んでパケット情報を出力する
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 		Read readtxt = new ReadTXT("data/capture/test.txt");
-		ArrayList<Packet> packets =readtxt.read();
-		for(Packet packet:packets)
+		ArrayList<Packet> packets = readtxt.read();
+		for (Packet packet : packets)
 			packet.printData();
 	}
 

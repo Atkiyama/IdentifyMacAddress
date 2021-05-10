@@ -7,5 +7,4 @@ evaluation
 evaluation.read
 identifyMacAddress
 identifyMacAddress.node
-identifyMacAddressBeta
-identifyMacAddressBeta.identiy
+identifyMacAddress.read

@@ -1,6 +1,7 @@
 package identifyMacAddress.node;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * パケットを示すクラス
@@ -41,6 +42,10 @@ public class Packet {
 		return rssi;
 	}
 
+	/**
+	 * timeを初期受診時刻をベースにしてフォーマットします
+	 * @param fTime 初期受診時刻
+	 */
 	public void formatTime(double fTime) {
 		 BigDecimal bTime = new BigDecimal(time);
 		 BigDecimal bFTime = new BigDecimal(fTime);
@@ -50,11 +55,14 @@ public class Packet {
 			time = time + 24*3600;
 			bTime = new BigDecimal(time);
 		}
-		BigDecimal bTime2 = bTime.setScale(6,BigDecimal.ROUND_HALF_UP);
+		BigDecimal bTime2 = bTime.setScale(6,RoundingMode.HALF_UP);
 		time = bTime2.doubleValue();
 
 	}
 
+	/**
+	 * パケット情報を出力するメソッド ReadTXTのテスト用
+	 */
 	public void printData() {
 		System.out.println(address+"|"+time+"|"+rssi);
 	}
