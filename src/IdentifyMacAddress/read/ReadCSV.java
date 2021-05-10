@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import identifyMacAddress.node.Packet;
 /**
  * BLEパケットデータを読み込むクラス
+ * CSVファイル用
  * @author akiyama
  *
  */
