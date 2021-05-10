@@ -19,7 +19,7 @@ compile.sh:全javaファイルをコンパイルします。文字コードはUT
 
 getData.sh: src以下にdataフォルダ(https://github.com/Atkiyama/IdentifyMacAddressData.git)を作成します。
 
-scan.py:BLEアドバタイズバケットをキャッチします(現在調整中)
+scan.py:BLEアドバタイズバケットをキャッチします
 
 scan.sh: scan.pyを１時間起動してキャプチャデータをテキストデータに起こします(src/data/capture)
 *scan.pyとscan.shはbluepyをインストールしたLinux環境で使用してください
