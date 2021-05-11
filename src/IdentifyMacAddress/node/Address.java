@@ -86,10 +86,10 @@ public class Address {
 	 * デバック用
 	 */
 	public void printData() {
-		System.out.print(advA + ",");
-		System.out.print(ftime + ",");
-		System.out.print(ltime + ",");
-		System.out.print(getAverageRssi() + ",");
+		System.out.print(advA + ",ftime =");
+		System.out.print(ftime + ",ltime =");
+		System.out.print(ltime + ",aveRssi=");
+		System.out.print(getAverageRssi() + ",numTkt=");
 		System.out.println(numPkt);
 		for (Address nextAdr : this.nextAdr) {
 			if(this.nextAdr.size()!=1)
