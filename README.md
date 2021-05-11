@@ -23,6 +23,7 @@ scan.py:BLEアドバタイズバケットをキャッチします
 
 scan.sh: scan.pyを１時間起動してキャプチャデータをテキストデータに起こします(src/data/capture)
 *scan.pyとscan.shはbluepyをインストールしたLinux環境で使用してください
+また、sudoで実行してください
 
 **ドキュメントについて
 doc/index.htmlに本リポジトリのjavadocドキュメントがあります。
