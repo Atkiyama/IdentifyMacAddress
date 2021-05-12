@@ -4,6 +4,7 @@
 #sudoで実行してください
 echo "ファイル名を入力"
 read fileName
+date > $fileName.txt
 while true
 do
   python3 scan2.py >>data/capture/$fileName.txt
