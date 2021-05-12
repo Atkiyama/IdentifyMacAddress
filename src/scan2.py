@@ -9,4 +9,4 @@ class ScanDelegate(DefaultDelegate):
                print("")
 scanner = Scanner().withDelegate(ScanDelegate())
 while True:
-      scanner.scan(5.0)
+      scanner.scan(3600.0)
