@@ -61,7 +61,7 @@ public class ReadTXT extends Read {
 			mRssi = pRssi.matcher(str);
 			if (mTime.find() && mAddress.find() && mRssi.find()) {
 				packets.add(makePackets(mTime, mAddress, mRssi));
-			} else {
+			} else if(i != 1){
 				//例外処理
 				System.out.println(i + "行目にパターンに一致しない文字列を確認しました。ご確認ください");
 				System.exit(0);

@@ -30,7 +30,7 @@ public class IdentifyMacAddress {
 		Identify identify = new Identify(read.read());
 		identify.makeAddressList();
 		identify.removeFewAddress();
-		identify.identify(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
+		identify.identify(Integer.parseInt(args[1]),Integer.parseInt(args[2]));
 	}
 
 
