@@ -66,11 +66,6 @@ public class Identify {
 		for(Address address:addressList) {
 			address.printData();
 		}
-
-
-
-
-
 	}
 	/**
 	 * リストの中からパケット数が闘値N(デフォルトは100)以下のものを削除するメソッド
@@ -149,5 +144,33 @@ public class Identify {
 	 */
 	public ArrayList<Address> getAddressList() {
 		return addressList;
+	}
+
+
+	/**
+	 * データが正しく取れているかチェックするメソッド
+	 * データの最終時刻が3999(59分59秒)以前の場合と受診間隔が2秒以上空いている場合に警告文を出力する
+	 */
+	public void checkData() {
+		// TODO 自動生成されたメソッド・スタブ
+		ArrayList<String> exeptionList = new ArrayList<>();
+		if(packets.get(packets.size()-1).getTime() >= 3599) {
+			exeptionList.add("最後にとったパケットの時間が"+packets.get(packets.size()-1).getTime()+"です");
+		}
+		double tmp = 0;
+		for(Packet packet:packets) {
+			if(packet.getTime() -tmp >= 2) {
+				String timeDiff = String.valueOf(packet.getTime() -tmp);
+				exeptionList.add("パケットの受診間隔が"+timeDiff+"秒空いています in"+packet.getTime());
+			}
+			tmp = packet.getTime();
+		}
+		if(exeptionList.size()>0) {
+			System.out.println("以下の理由から正しくパケットをキャプチャできていない可能性があります");
+			for(String error:exeptionList) {
+				System.out.println(error);
+			}
+		}
+
 	}
 }

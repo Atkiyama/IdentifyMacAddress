@@ -31,6 +31,7 @@ public class IdentifyMacAddress {
 		identify.makeAddressList();
 		identify.removeFewAddress();
 		identify.identify(Integer.parseInt(args[1]),Integer.parseInt(args[2]));
+		identify.checkData();
 	}
 
 
