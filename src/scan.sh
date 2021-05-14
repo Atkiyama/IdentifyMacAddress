@@ -2,6 +2,8 @@
 
 #このスクリプトはUbuntuで動かすことを想定しています
 #sudoで実行してください
-date
-timeout 1h ./while1h.sh
+echo "ファイル名を入力"
+read fileName
+echo "キャプチャを開始します"
+python3 scan.py > data/capture/$fileName.txt
 echo "パケットキャプチャが終了しました"
