@@ -8,5 +8,4 @@ class ScanDelegate(DefaultDelegate):
                print("%s %s (%s) [%s] %s dBm" % (t_now, dev.addr, dev.addrType, dev.iface, dev.rssi), end = "")
                print("")
 scanner = Scanner().withDelegate(ScanDelegate())
-while True:
-      scanner.scan(1.0)
+scanner.scan(3600.0)

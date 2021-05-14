@@ -8,4 +8,6 @@ echo "パケットキャプチャを開始します"
 while true
 do
   python3 scan.py >>data/capture/fileName.txt
+  echo "コマンドが終了しました"
+  date
 done
