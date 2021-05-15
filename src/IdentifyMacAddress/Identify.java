@@ -149,17 +149,17 @@ public class Identify {
 
 	/**
 	 * データが正しく取れているかチェックするメソッド
-	 * データの最終時刻が3999(59分59秒)以前の場合と受診間隔が2秒以上空いている場合に警告文を出力する
+	 * データの最終時刻が3999(59分55秒)以前の場合と受診間隔が10秒以上空いている場合に警告文を出力する
 	 */
 	public void checkData() {
 		// TODO 自動生成されたメソッド・スタブ
 		ArrayList<String> exeptionList = new ArrayList<>();
-		if(packets.get(packets.size()-1).getTime() >= 3599) {
+		if(packets.get(packets.size()-1).getTime() >= 3595) {
 			exeptionList.add("最後にとったパケットの時間が"+packets.get(packets.size()-1).getTime()+"です");
 		}
 		double tmp = 0;
 		for(Packet packet:packets) {
-			if(packet.getTime() -tmp >= 2) {
+			if(packet.getTime() -tmp >= 10) {
 				String timeDiff = String.valueOf(packet.getTime() -tmp);
 				exeptionList.add("パケットの受診間隔が"+timeDiff+"秒空いています in"+packet.getTime());
 			}
