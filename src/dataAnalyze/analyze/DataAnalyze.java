@@ -107,9 +107,9 @@ public class DataAnalyze {
 		for(DataGroupe dataGroupe:dataGroupes) {
 			System.out.println("グループ"+i);
 			System.out.println("闘値");
-			for(String secondLine:dataGroupe.getSecondLines()) {
+			for(String firstLine:dataGroupe.getFirstLines()) {
 				int count =0;
-				System.out.println(secondLine);
+				System.out.println(firstLine);
 				count++;
 				if(count>=5) {
 					System.out.println();

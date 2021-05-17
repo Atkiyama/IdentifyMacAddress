@@ -8,19 +8,19 @@ import java.util.ArrayList;
  */
 public class Data {
 	/**
-	 * ２行目(闘値データ)記録する変数
+	 * 1行目(闘値データ)記録する変数
 	 */
-	private String secondLine;
+	private String firstLine;
 	/**
 	 * ２行目以降の本データを１行ごとにリストにしたもの
 	 */
 	private ArrayList<String> data;
 	/**
 	 * 引数で初期化しdataもnewする
-	 * @param secondLine ２行目(闘値データ)記録する変数
+	 * @param firstLine ２行目(闘値データ)記録する変数
 	 */
-	public Data(String secondLine) {
-		this.secondLine = secondLine;
+	public Data(String firstLine) {
+		this.firstLine = firstLine;
 		data = new ArrayList<>();
 	}
 	/**
@@ -34,8 +34,8 @@ public class Data {
 	 * 闘値データのゲッター
 	 * @return 闘値データ
 	 */
-	public String getSecondLine() {
-		return secondLine;
+	public String getFirstLine() {
+		return firstLine;
 	}
 	/**
 	 * データのゲッター

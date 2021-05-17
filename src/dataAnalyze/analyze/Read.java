@@ -17,10 +17,7 @@ public class Read {
 	 * 読み込むファイル名
 	 */
 	private String fileName;
-	/**
-	 * データ１行目(日付データ)
-	 */
-	private String firstLine;
+
 	/**
 	 * 読み込んだデータのリスト
 	 */
@@ -44,31 +41,23 @@ public class Read {
        FileReader fileReader =  new FileReader(file);
        BufferedReader in = new BufferedReader(fileReader);
        String str = in.readLine();
-       //１行目を記録
-       firstLine = str;
-
-
+       Data data = null;
        while(str != null) {
-    	  str = in.readLine();
-    	  //インスタンス生成とともに２行目を記録
-    	  Data data = new Data(str);
+    	  //インスタンス生成とともに1行目を記録
+
+    	   data = new Data(str);
     	  str = in.readLine();
     	  //１行目がくるまで記録
-    	   while(str !=null&&!str.equals(firstLine)) {
+    	   while(str !=null&&!str.contains("R=")&&!str.contains("T=")) {
     		   data.addLine(str);
     		   str = in.readLine();
     	   }
     	   //記録し終わったらaddする
     	   datas.add(data);
        }
-       /*
-        *デバック用
-       for(Data data:datas) {
-    	   System.out.println(data.getSecondLine());
-    	   for(String line :data.getData()) {
-    		   System.out.println(line);
-    	   }
-       }*/
+
+
+       System.out.println("テスト");
        in.close();
 
 	}
