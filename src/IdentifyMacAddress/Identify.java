@@ -24,7 +24,7 @@ public class Identify {
 	/**
 	 * N以下のパケット数のアドレスを省くための定数
 	 */
-	private final int N=100;
+	private final int N=0;
 	/**
 	 * 受診時刻の闘値
 	 */

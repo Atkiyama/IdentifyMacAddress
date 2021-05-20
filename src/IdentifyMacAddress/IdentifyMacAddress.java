@@ -29,7 +29,7 @@ public class IdentifyMacAddress {
 		}
 		Identify identify = new Identify(read.read());
 		identify.makeAddressList();
-		identify.removeFewAddress();
+		//identify.removeFewAddress();
 		identify.identify(Integer.parseInt(args[1]),Integer.parseInt(args[2]));
 		identify.checkData();
 	}
