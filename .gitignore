@@ -10,8 +10,4 @@ bin/
 
 *.csv
 
-*.class
-
-src/*.class
-
 src/data

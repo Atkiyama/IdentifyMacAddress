@@ -10,7 +10,7 @@ do
       then
         java identifyMacAddress/IdentifyMacAddress data/capture/$inputFileName $R $T >data/result/single/$inputFileName
       else
-        java identifyMacAddressIdentifyMacAddress data/capture/$inputFileName $R $T >>data/result/single/$inputFileName
+        java identifyMacAddress/IdentifyMacAddress data/capture/$inputFileName $R $T >>data/result/single/$inputFileName
       fi
     done
   done
