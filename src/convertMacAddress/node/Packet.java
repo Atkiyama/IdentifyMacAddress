@@ -1,4 +1,8 @@
 package convertMacAddress.node;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * パケットを示すクラス
  */
@@ -6,7 +10,7 @@ public class Packet {
 	/**
 	 * パケット取得時間
 	 */
-    private int time;
+    private double time;
     /**
      * rssi
      */
@@ -23,13 +27,13 @@ public class Packet {
     /**
      * 引数で初期化する
      * @param address macアドレス
-     * @param time 受診時刻
+     * @param d 受診時刻
      * @param rssi rssi
      */
-	public Packet(String address, int time, int rssi) {
+	public Packet(String address, double d, int rssi) {
 		// TODO 自動生成されたコンストラクター・スタブ
     	this.address = address;
-    	this.time = time;
+    	this.time = d;
     	this.rssi = rssi;
 	}
 
@@ -49,10 +53,23 @@ public class Packet {
     	time += delay;
     }
 
-	public int getTime() {
+	public double getTime() {
 		return time;
 	}
 
+	public void formatTime(double fTime) {
+		 BigDecimal bTime = new BigDecimal(time);
+		 BigDecimal bFTime = new BigDecimal(fTime);
+		if(fTime<=time) {
+			bTime = bTime.subtract(bFTime);
+		}else {
+			time = time + 24*3600;
+			bTime = new BigDecimal(time);
+		}
+		BigDecimal bTime2 = bTime.setScale(6,RoundingMode.HALF_UP);
+		time = bTime2.doubleValue();
+
+	}
 
 }
 
