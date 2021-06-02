@@ -133,6 +133,7 @@ public class Evaluation {
 		}
 	}
 
+
 	public ArrayList<Boolean> getScore() {
 		return score;
 	}

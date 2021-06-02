@@ -54,6 +54,11 @@ public class BTMachine {
 		return fileName;
 	}
 
+	public double getAverageRssi() {
+		return 0;
+
+	}
+
 
 
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for R in {0..10}
+for R in {0..20}
 do
   for T in {0..10}
   do
