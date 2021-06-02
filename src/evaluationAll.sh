@@ -7,9 +7,9 @@ do
   do
     if [ "$R" -eq "0" -a "$T" -eq "0" ]
     then
-      java evaluation/Evaluation $R $T 1>data/result/evaluation.txt
+      java evaluation/Evaluation $R $T 1 >data/result/evaluation.txt
     else
-      java evaluation/Evaluation $R $T 1>>data/result/evaluation.txt
+      java evaluation/Evaluation $R $T 1 >>data/result/evaluation.txt
     fi
   done
 done

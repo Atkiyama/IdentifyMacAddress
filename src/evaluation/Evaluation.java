@@ -118,7 +118,7 @@ public class Evaluation {
 
 	/**
 	 * メインメソッド 引数によって結果出力方法が変わる
-	 * @param args 0には闘値R,1には闘値Tを入れること.２に何かを入れると精度のみ出力する(スクリプト用)
+	 * @param args 0には闘値R,1には闘値Tを入れること.2に引数を入れると精度のみ出力する(スクリプト用)
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
@@ -126,7 +126,7 @@ public class Evaluation {
 		ReadAnswer readAnswer = new ReadAnswer();
 		Evaluation eval = new Evaluation(readData.read(),readAnswer.read(),Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 		eval.evaluation();
-		if(args.length == 3)
+		if(args.length>2)
 			System.out.println("R="+eval.getR()+"T="+eval.getT()+",score is "+eval.getAccuracy()+"%");
 		else {
 			eval.showScore();
