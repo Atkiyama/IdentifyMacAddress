@@ -5,6 +5,7 @@ dataAnalyze.analyze
 dataAnalyze.node
 evaluation
 evaluation.read
+evaluation.table
 identifyMacAddress
 identifyMacAddress.node
 identifyMacAddress.read
