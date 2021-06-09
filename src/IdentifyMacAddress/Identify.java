@@ -69,6 +69,7 @@ public class Identify {
 	}
 	/**
 	 * リストの中からパケット数が闘値N(デフォルトは100)以下のものを削除するメソッド
+	 * (作ったものの結局使用してない)
 	 */
 	public void removeFewAddress() {
 		// TODO 自動生成されたメソッド・スタブ

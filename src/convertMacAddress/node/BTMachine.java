@@ -1,6 +1,7 @@
 package convertMacAddress.node;
 
 import java.util.ArrayList;
+
 /**
  * 機器(キャプチャファイル)を示すクラス
  * @author akiyama
@@ -52,6 +53,13 @@ public class BTMachine {
 	}
 	public String getFileName() {
 		return fileName;
+	}
+	public int getAverageRssi() {
+		int sum = 0;
+		for(Packet packet:packets)
+			sum+=packet.getRssi();
+		return Math.round(sum/packets.size());
+
 	}
 
 	/**

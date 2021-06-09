@@ -82,11 +82,21 @@ public class ConvertMacAddress {
 		ReadData readData = new ReadData(read.read());
 		readData.readData();
 		ConvertMacAddress convert = new ConvertMacAddress(readData.getBtMachines());
+		if(args.length==0) {
 		convert.setDelay();
 		convert.convert();
 		WriteConvertData write = new WriteConvertData();
 		System.out.println(convert.getPackets().size());
 		write.write(convert.getPackets());
+		}else {
+			convert.getAverageRssi();
+		}
+	}
+	public void getAverageRssi() {
+		// TODO 自動生成されたメソッド・スタブ
+		for(BTMachine btMachine:btMachines) {
+			System.out.println(btMachine.getFileName()+":averageRssi ="+btMachine.getAverageRssi());
+		}
 	}
 
 
