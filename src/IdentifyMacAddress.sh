@@ -1,15 +1,13 @@
 #!/bin/bash
 
-for R in {0..20}
+for n in {1..100}
 do
-  for T in {0..10}
+  for R in {0..20}
   do
-    if [ "$R" -eq "0" -a "$T" -eq "0" ]
-    then
-      java identifyMacAddress/IdentifyMacAddress data/result/multiData.csv $R $T >data/result/multi/$R,$T.txt
-    else
-      java identifyMacAddress/IdentifyMacAddress data/result/multiData.csv $R $T >>data/result/multi/$R,$T.txt
-    fi
-    echo "$R,$T isdone"
+    for T in {0..10}
+    do
+      java identifyMacAddress/IdentifyMacAddress data/capture/convert/$n,convertData.csv $R $T >data/result/multi/$n/$R,$T.txt
+      echo "$n,$R,$T"
+    done
   done
 done

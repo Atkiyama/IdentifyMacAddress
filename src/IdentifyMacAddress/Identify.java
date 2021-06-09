@@ -1,6 +1,7 @@
 package identifyMacAddress;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import identifyMacAddress.node.Address;
@@ -75,22 +76,27 @@ public class Identify {
 	 * @param address nextAdrが複数あるアドレス
 	 */
 	private void identify(Address address) {
+	//ここの計算にある程度の丸め込みが必要？
 	// TODO 自動生成されたメソッド・スタブ
 		address.setDeltaLT(T);
 		address.setDeltaR(R);
-		double length = 999999;
-		Address nextAdr = new Address();;
+		BigDecimal length = new BigDecimal(999999999);
+		Address nextAdr = new Address();
 		for(Address tmpNextAdr:address.getNextAdr()){
 			tmpNextAdr.setDeltaFT(T);
 			tmpNextAdr.setDeltaR(R);
-			tmpNextAdr.setTmpLength(Math.pow(address.getDeltaFT()-tmpNextAdr.getDeltaLT(),2)+Math.pow(address.getDeltaR()-tmpNextAdr.getDeltaR(),2));
-			if(tmpNextAdr.getTmpLength()<length) {
+			tmpNextAdr.setTmpLength((address.getDeltaLT().subtract(tmpNextAdr.getDeltaFT())).pow(2).add((address.getDeltaR().subtract(tmpNextAdr.getDeltaR())).pow(2)));
+			System.out.println("address: deltaT="+address.getDeltaLT()+",deltaR="+address.getDeltaR());
+			System.out.println("nextAdr: deltaT="+tmpNextAdr.getDeltaLT()+",deltaR="+tmpNextAdr.getDeltaR()+"tmpLength="+tmpNextAdr.getTmpLength());
+			if(tmpNextAdr.getTmpLength().compareTo(length)<0) {
 				nextAdr = tmpNextAdr;
 				length = tmpNextAdr.getTmpLength();
 			}
 		}
-		address.getNextAdr().clear();
-		address.addNextAddr(nextAdr);
+		ArrayList<Address> na = new ArrayList<>();
+		na.add(nextAdr);
+		address.setNextAdr(na);
+
 	}
 
 

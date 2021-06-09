@@ -1,5 +1,6 @@
 package identifyMacAddress.node;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 /**
  * macアドレスを示すクラス
@@ -33,28 +34,31 @@ public class Address {
 	/**
 	 * 相対初期受信時刻
 	 */
-	private double deltaFT;
+	private BigDecimal deltaFT;
 	/**
 	 * 相対最終受診時刻
 	 */
-	private double deltaLT;
+	private BigDecimal deltaLT;
 	/**
 	 * 相対平均RSSI
 	 */
-	private double deltaR;
+	private BigDecimal deltaR;
 	/**
 	 * この次のものと思われるmacアドレス
 	 */
-	private double tmpLength;
-	public double getTmpLength() {
+	private ArrayList<Address> nextAdr;
+	/**
+	 *RとTの相対距離
+	 */
+	private BigDecimal tmpLength;
+	public BigDecimal getTmpLength() {
 		return tmpLength;
 	}
 
-	public void setTmpLength(double tmpLength) {
+	public void setTmpLength(BigDecimal tmpLength) {
 		this.tmpLength = tmpLength;
 	}
 
-	private ArrayList<Address> nextAdr;
 	/**
 	 * 初期化し代入
 	 * @param advA アドレス
@@ -81,27 +85,42 @@ public class Address {
 	}
 
 	public void setDeltaFT(double t) {
-		this.deltaFT = deltaFT/t;
+		if(t==0) {
+			t=1;
+		}
+		BigDecimal ft =new BigDecimal(ftime);
+		BigDecimal bigT = new BigDecimal(t);
+		this.deltaFT = ft.divide(bigT);
 	}
 
-	public double getDeltaFT() {
+	public BigDecimal getDeltaFT() {
 		return deltaFT;
 	}
 
-	public double getDeltaLT() {
+	public BigDecimal getDeltaLT() {
 		return deltaLT;
 	}
 
-	public double getDeltaR() {
+	public BigDecimal getDeltaR() {
 		return deltaR;
 	}
 
 	public void setDeltaLT(double t) {
-		this.deltaLT = deltaLT/t;
+		if(t==0) {
+			t=1;
+		}
+		BigDecimal lt =new BigDecimal(ltime);
+		BigDecimal BigT = new BigDecimal(t);
+		this.deltaLT = lt.divide(BigT);;
 	}
 
 	public void setDeltaR(double r) {
-		this.deltaR = deltaR/r;
+		if(r==0) {
+			r=1;
+		}
+		BigDecimal aveR = new BigDecimal(getAverageRssi());
+		BigDecimal BigR = new BigDecimal(r);
+		this.deltaR = aveR.divide(BigR);
 	}
 
 	/**
@@ -142,16 +161,18 @@ public class Address {
 		System.out.print(advA + ",ftime =");
 		System.out.print(ftime + ",ltime =");
 		System.out.print(ltime + ",aveRssi=");
-		System.out.print(getAverageRssi() + ",numTkt=");
+		System.out.print(getAverageRssi() + ",numPkt=");
 		System.out.println(numPkt);
 		for (Address nextAdr : this.nextAdr) {
-			if(this.nextAdr.size()!=1)
-				System.out.println("nextAdr size is"+this.nextAdr.size());
 			nextAdr.printData();
 		}
 		System.out.println();
 
 	}
+	public void setNextAdr(ArrayList<Address> nextAdr) {
+		this.nextAdr = nextAdr;
+	}
+
 	/**
 	 * 平均rssiのゲッター
 	 * @return 平均rssi
@@ -161,10 +182,10 @@ public class Address {
 
 	public int getAverageRssi() {
 		double sum = 0;
-		for (Integer rssi : this.rssi) {
+		for (int rssi : this.rssi) {
 			sum += rssi;
 		}
-		return (int) Math.round(sum / rssi.size());
+		return (int) Math.round(sum / this.rssi.size());
 
 	}
 

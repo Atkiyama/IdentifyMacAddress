@@ -86,7 +86,6 @@ public class ConvertMacAddress {
 		convert.setDelay();
 		convert.convert();
 		WriteConvertData write = new WriteConvertData();
-		System.out.println(convert.getPackets().size());
 		write.write(convert.getPackets(),args[0]);
 		}else {
 			convert.getAverageRssi();

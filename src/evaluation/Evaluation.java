@@ -126,9 +126,12 @@ public class Evaluation {
 		ReadAnswer readAnswer = new ReadAnswer();
 		Evaluation eval = new Evaluation(readData.read(),readAnswer.read(),Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 		eval.evaluation();
-		if(args.length>2)
+		if(args.length>3) {
+			if(args[2].equals(100)) {
+				System.out.print("eval.getAccuracy()");
+			}
 			System.out.println("R="+eval.getR()+"T="+eval.getT()+",score is "+eval.getAccuracy()+"%");
-		else {
+		}else {
 			eval.showScore();
 		}
 	}
