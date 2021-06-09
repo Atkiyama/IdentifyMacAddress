@@ -64,9 +64,37 @@ public class Identify {
 		 */
 		System.out.println("R="+R+"T="+T);
 		for(Address address:addressList) {
+			if(address.getNextAdr().size()>1)
+				identify(address);
 			address.printData();
 		}
 	}
+
+	/**
+	 * nextAddrが複数ある場合にそれを一つに絞るメソッド
+	 * @param address nextAdrが複数あるアドレス
+	 */
+	private void identify(Address address) {
+	// TODO 自動生成されたメソッド・スタブ
+		address.setDeltaLT(T);
+		address.setDeltaR(R);
+		double length = 999999;
+		Address nextAdr = new Address();;
+		for(Address tmpNextAdr:address.getNextAdr()){
+			tmpNextAdr.setDeltaFT(T);
+			tmpNextAdr.setDeltaR(R);
+			tmpNextAdr.setTmpLength(Math.pow(address.getDeltaFT()-tmpNextAdr.getDeltaLT(),2)+Math.pow(address.getDeltaR()-tmpNextAdr.getDeltaR(),2));
+			if(tmpNextAdr.getTmpLength()<length) {
+				nextAdr = tmpNextAdr;
+				length = tmpNextAdr.getTmpLength();
+			}
+		}
+		address.getNextAdr().clear();
+		address.addNextAddr(nextAdr);
+	}
+
+
+
 	/**
 	 * リストの中からパケット数が闘値N(デフォルトは100)以下のものを削除するメソッド
 	 * (作ったものの結局使用してない)

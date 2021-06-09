@@ -29,9 +29,31 @@ public class Address {
 	 * パケット数
 	 */
 	private int numPkt;
+
+	/**
+	 * 相対初期受信時刻
+	 */
+	private double deltaFT;
+	/**
+	 * 相対最終受診時刻
+	 */
+	private double deltaLT;
+	/**
+	 * 相対平均RSSI
+	 */
+	private double deltaR;
 	/**
 	 * この次のものと思われるmacアドレス
 	 */
+	private double tmpLength;
+	public double getTmpLength() {
+		return tmpLength;
+	}
+
+	public void setTmpLength(double tmpLength) {
+		this.tmpLength = tmpLength;
+	}
+
 	private ArrayList<Address> nextAdr;
 	/**
 	 * 初期化し代入
@@ -49,6 +71,37 @@ public class Address {
 		this.rssi.add(rssi);
 		this.numPkt = numPkt;
 		this.nextAdr = new ArrayList<>();
+	}
+
+	/**
+	 * 相対値で比較するときの初期値用
+	 */
+	public Address() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+	public void setDeltaFT(double t) {
+		this.deltaFT = deltaFT/t;
+	}
+
+	public double getDeltaFT() {
+		return deltaFT;
+	}
+
+	public double getDeltaLT() {
+		return deltaLT;
+	}
+
+	public double getDeltaR() {
+		return deltaR;
+	}
+
+	public void setDeltaLT(double t) {
+		this.deltaLT = deltaLT/t;
+	}
+
+	public void setDeltaR(double r) {
+		this.deltaR = deltaR/r;
 	}
 
 	/**
@@ -104,6 +157,8 @@ public class Address {
 	 * @return 平均rssi
 	 *
 	 */
+
+
 	public int getAverageRssi() {
 		double sum = 0;
 		for (Integer rssi : this.rssi) {

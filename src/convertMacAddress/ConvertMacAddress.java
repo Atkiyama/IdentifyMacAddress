@@ -82,12 +82,12 @@ public class ConvertMacAddress {
 		ReadData readData = new ReadData(read.read());
 		readData.readData();
 		ConvertMacAddress convert = new ConvertMacAddress(readData.getBtMachines());
-		if(args.length==0) {
+		if(args.length==1) {
 		convert.setDelay();
 		convert.convert();
 		WriteConvertData write = new WriteConvertData();
 		System.out.println(convert.getPackets().size());
-		write.write(convert.getPackets());
+		write.write(convert.getPackets(),args[0]);
 		}else {
 			convert.getAverageRssi();
 		}
