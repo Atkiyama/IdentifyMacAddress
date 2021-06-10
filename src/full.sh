@@ -2,9 +2,9 @@
 LS=$(ls data/capture/)
 for inputFileName in ${LS}
 do
-  for R in {0..10}
+  for R in {1..10}
   do
-    for T in {0..10}
+    for T in {1..10}
     do
       if [ "$R" -eq "0" -a "$T" -eq "0" ]
       then

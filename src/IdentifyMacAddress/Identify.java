@@ -2,6 +2,7 @@ package identifyMacAddress;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import identifyMacAddress.node.Address;
@@ -29,7 +30,7 @@ public class Identify {
 	/**
 	 * 受診時刻の闘値
 	 */
-	private double T;
+	private  double T;
 	/**
 	 * 平均RSSIの闘値
 	 */
@@ -73,6 +74,9 @@ public class Identify {
 
 	/**
 	 * nextAddrが複数ある場合にそれを一つに絞るメソッド
+	 * RとTを正規化して二次元の座標に起こした上でその距離が近い方を採用する
+	 * 丸め込み処理による例外のエラー(以下)が出るが気にしないこと
+	 * (java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result)
 	 * @param address nextAdrが複数あるアドレス
 	 */
 	private void identify(Address address) {
@@ -80,14 +84,14 @@ public class Identify {
 	// TODO 自動生成されたメソッド・スタブ
 		address.setDeltaLT(T);
 		address.setDeltaR(R);
-		BigDecimal length = new BigDecimal(999999999);
+		BigDecimal length = BigDecimal.valueOf(999999999);
 		Address nextAdr = new Address();
 		for(Address tmpNextAdr:address.getNextAdr()){
 			tmpNextAdr.setDeltaFT(T);
 			tmpNextAdr.setDeltaR(R);
-			tmpNextAdr.setTmpLength((address.getDeltaLT().subtract(tmpNextAdr.getDeltaFT())).pow(2).add((address.getDeltaR().subtract(tmpNextAdr.getDeltaR())).pow(2)));
-			System.out.println("address: deltaT="+address.getDeltaLT()+",deltaR="+address.getDeltaR());
-			System.out.println("nextAdr: deltaT="+tmpNextAdr.getDeltaLT()+",deltaR="+tmpNextAdr.getDeltaR()+"tmpLength="+tmpNextAdr.getTmpLength());
+			tmpNextAdr.setTmpLength((address.getDeltaLT().subtract(tmpNextAdr.getDeltaFT())).pow(2).add((address.getDeltaR().subtract(tmpNextAdr.getDeltaR())).pow(2)).setScale(3,RoundingMode.HALF_UP));
+//			System.out.println("address: deltaT="+address.getDeltaLT()+",deltaR="+address.getDeltaR());
+//			System.out.println("nextAdr: deltaT="+tmpNextAdr.getDeltaFT()+",deltaR="+tmpNextAdr.getDeltaR()+"tmpLength="+tmpNextAdr.getTmpLength());
 			if(tmpNextAdr.getTmpLength().compareTo(length)<0) {
 				nextAdr = tmpNextAdr;
 				length = tmpNextAdr.getTmpLength();
@@ -185,6 +189,7 @@ public class Identify {
 	/**
 	 * データが正しく取れているかチェックするメソッド
 	 * データの最終時刻が3999(59分55秒)以前の場合と受診間隔が10秒以上空いている場合に警告文を出力する
+	 * 単体データのときはこのチェックをかけること
 	 */
 	public void checkData() {
 		// TODO 自動生成されたメソッド・スタブ

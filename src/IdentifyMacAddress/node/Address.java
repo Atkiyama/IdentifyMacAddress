@@ -1,6 +1,7 @@
 package identifyMacAddress.node;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 /**
  * macアドレスを示すクラス
@@ -32,15 +33,15 @@ public class Address {
 	private int numPkt;
 
 	/**
-	 * 相対初期受信時刻
+	 * 正規化初期受信時刻
 	 */
 	private BigDecimal deltaFT;
 	/**
-	 * 相対最終受診時刻
+	 * 正規化最終受診時刻
 	 */
 	private BigDecimal deltaLT;
 	/**
-	 * 相対平均RSSI
+	 * 正規化平均RSSI
 	 */
 	private BigDecimal deltaR;
 	/**
@@ -85,12 +86,13 @@ public class Address {
 	}
 
 	public void setDeltaFT(double t) {
-		if(t==0) {
-			t=1;
-		}
-		BigDecimal ft =new BigDecimal(ftime);
-		BigDecimal bigT = new BigDecimal(t);
-		this.deltaFT = ft.divide(bigT);
+		BigDecimal ft = BigDecimal.valueOf(ftime);
+		BigDecimal bigT;
+		if(t==0)
+			bigT =BigDecimal.ONE;
+		else
+			bigT =BigDecimal.valueOf(t);
+		this.deltaFT = ft.divide(bigT,4,RoundingMode.HALF_UP);
 	}
 
 	public BigDecimal getDeltaFT() {
@@ -106,21 +108,23 @@ public class Address {
 	}
 
 	public void setDeltaLT(double t) {
-		if(t==0) {
-			t=1;
-		}
-		BigDecimal lt =new BigDecimal(ltime);
-		BigDecimal BigT = new BigDecimal(t);
-		this.deltaLT = lt.divide(BigT);;
+		BigDecimal lt =BigDecimal.valueOf(ltime);
+		BigDecimal bigT;
+		if(t==0)
+			bigT =BigDecimal.ONE;
+		else
+			bigT =BigDecimal.valueOf(t);
+		this.deltaLT = lt.divide(bigT,3,RoundingMode.HALF_UP);
 	}
 
 	public void setDeltaR(double r) {
-		if(r==0) {
-			r=1;
-		}
-		BigDecimal aveR = new BigDecimal(getAverageRssi());
-		BigDecimal BigR = new BigDecimal(r);
-		this.deltaR = aveR.divide(BigR);
+		BigDecimal aveR = BigDecimal.valueOf(getAverageRssi());
+		BigDecimal bigR;
+		if(r == 0)
+			bigR = BigDecimal.ONE;
+		else
+			bigR = BigDecimal.valueOf(r);
+		this.deltaR = aveR.divide(bigR,3,RoundingMode.HALF_UP);
 	}
 
 	/**
@@ -141,7 +145,7 @@ public class Address {
 
 	/**
 	 * 引数のアドレスがnextAdrに含まれているか判別するメソッド
-	 * @param address macアドレスs
+	 * @param address macアドレス
 	 * @return 含まれていたらtrueを返す
 	 */
 	public boolean containNextAdr(Address address) {

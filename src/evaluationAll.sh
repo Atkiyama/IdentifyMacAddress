@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "evaluation.Evaluation.javaを使用して精度を評価します"
-for R in {0..20}
+for R in {1..20}
 do
-  for T in {0..10}
+  for T in {1..10}
   do
     if [ "$R" -eq "0" -a "$T" -eq "0" ]
     then
@@ -14,9 +14,9 @@ do
   done
 done
 
-for R in {0..20}
+for R in {1..20}
 do
-  for T in {0..10}
+  for T in {1..10}
   do
       java evaluation/Evaluation $R $T >>data/result/evaluation.txt
   done
