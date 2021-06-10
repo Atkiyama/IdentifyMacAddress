@@ -2,11 +2,15 @@ package evaluation.table;
 
 import java.io.FileWriter;
 import java.io.IOException;
-
+/**
+ * データを表形式にして出力するためのクラス
+ * @author akiyama
+ *
+ */
 public class Write {
 	/**
-	 * データを表形式にして出力するためのクラス
-	 * @param data　出力するデータ
+	 * データを表形式にして出力するためのメソッド
+	 * @param data 出力するデータ
 	 * @throws IOException
 	 */
 	public static void write(String[][] data) throws IOException {

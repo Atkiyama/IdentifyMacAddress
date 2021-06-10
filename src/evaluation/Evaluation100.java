@@ -4,7 +4,11 @@ import java.io.IOException;
 
 import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
-
+/**
+ * multi以下のファイルに対して一斉評価を行うためのクラス
+ * @author akiyama
+ *
+ */
 public class Evaluation100 {
 	/**
 	 *

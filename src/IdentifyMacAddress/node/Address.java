@@ -85,6 +85,10 @@ public class Address {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
+	/**
+	 * 闘値が0のときの例外処理を記述しているが結局使わない。他も同様
+	 * @param t
+	 */
 	public void setDeltaFT(double t) {
 		BigDecimal ft = BigDecimal.valueOf(ftime);
 		BigDecimal bigT;

@@ -1,21 +1,28 @@
 # IdentifyMacAddress
 **src内のパッケージ
 
-identifyMacAddress:identifyMacAddressSingle.IdentifyMacAddressを実行すると指定したキャプチャファイルからmacアドレスを特定する
+identifyMacAddress:identifyMacAddress.IdentifyMacAddressを実行すると指定したキャプチャファイルからmacアドレスを特定する
 
 dataAnalyze:dataAnalyze.DataAnalyze.javaを実行すると、IdentifyMacAddress.shで出力したデータをもとにグループを作成しその差分を表示する
 
 convertMacAddress:convertMacAddress.ConvertMacAddressを実行するとdata/result/singleResult.csv(dataフォルダは大容量のため本リポジトリには含まれていない)から上記パッケージの出力結果から推定したmacアドレスを読みこみ、そのアドレスのパケットデータをキャプチャファイルから取得し各キャプチャファイルから抽出した擬似キャプチャファイルを作成する
 
+evaluation:主に結果を評価するためのクラスが入っている
+evaluation/Evaluation 結合データ単体での評価をする
+evaluation/Evaluation100 100の結合データを評価する
+evaluation/table/EvaluationTable 結果を元に表(csv)を作成
+
 dataAnalyze.sh パスなしでファイル名を入力することで楽にdataAnalyze:dataAnalyze.DataAnalyze.javaを実行できる
 
-IdentifyMacAddress.sh 全ての闘値のidentifyMacAddressSingle:dentifyMacAddressSingle.drive.IdentifyMacAddressSingleを実行できる
+IdentifyMacAddress.sh 100件のデータに対して全ての闘値のidentifyMacAddres.IdentifyMacAddressSingleを実行できる
 
 full.sh:data/result/single/フォルダにある全てのテキストフォルダを読み込んでdataAnalyzeのように解析結果を表示できます(要はdataAnalyze.shとidentify.shを全て実行する)
 
 fullfirst.sh:素早く動かすためにfull.shから制限をとっぱらったものです。場合によってはフリーズする可能性があるので扱いにはご注意ください
 
 compile.sh:全javaファイルをコンパイルします。文字コードはUTF-8に統一していますのでWindownsでもmacでも動くと思います。
+
+makeConvert100.sh:100個の結合データを作成します
 
 getData.sh: src以下にdataフォルダ(https://github.com/Atkiyama/IdentifyMacAddressData.git)を作成します。
 

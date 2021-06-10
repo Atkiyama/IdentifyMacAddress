@@ -91,6 +91,10 @@ public class ConvertMacAddress {
 			convert.getAverageRssi();
 		}
 	}
+
+	/**
+	 * 平均Rssiを表示するメソッド
+	 */
 	public void getAverageRssi() {
 		// TODO 自動生成されたメソッド・スタブ
 		for(BTMachine btMachine:btMachines) {

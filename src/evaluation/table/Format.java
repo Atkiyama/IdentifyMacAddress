@@ -1,10 +1,14 @@
 package evaluation.table;
 
 import java.util.ArrayList;
-
+/**
+ * データを二次元配列に整えるクラス
+ * @author akiyama
+ *
+ */
 public class Format {
 	/**
-	 * データを二次元配列に整えるクラス
+	 * データを二次元配列に整えるメソッド
 	 * @param dataList　配列のリストに納められたデータ
 	 * @return 二次元配列に納められたデータ
 	 */

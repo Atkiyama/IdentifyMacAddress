@@ -7,6 +7,7 @@ import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
 /**
  * identifyMacAddressで出した結果を評価するクラス
+ * mainメソッドは結合データ単体用
  * @author akiyama
  *
  */
