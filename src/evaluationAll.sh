@@ -5,20 +5,12 @@ for R in {1..20}
 do
   for T in {1..10}
   do
-    if [ "$R" -eq "0" -a "$T" -eq "0" ]
+    if [ "$R" -eq "1" -a "$T" -eq "1" ]
     then
-      java evaluation/Evaluation $R $T 1 >data/result/evaluation.txt
+      java evaluation/Evaluation100 $R $T 1 >data/result/evaluation.txt
     else
-      java evaluation/Evaluation $R $T 1 >>data/result/evaluation.txt
+      java evaluation/Evaluation100 $R $T 1 >>data/result/evaluation.txt
     fi
-  done
-done
-
-for R in {1..20}
-do
-  for T in {1..10}
-  do
-      java evaluation/Evaluation $R $T >>data/result/evaluation.txt
   done
 done
 
