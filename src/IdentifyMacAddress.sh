@@ -10,4 +10,5 @@ do
     done
   done
   echo "$n is done"
+  sleep 3m
 done

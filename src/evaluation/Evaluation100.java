@@ -5,7 +5,7 @@ import java.io.IOException;
 import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
 
-public class Evalation100 {
+public class Evaluation100 {
 	/**
 	 *
 	 * @param args 0には闘値R,1には闘値Tを入れること
