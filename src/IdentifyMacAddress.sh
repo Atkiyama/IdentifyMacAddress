@@ -6,9 +6,8 @@ do
   do
     for T in {1..10}
     do
-      java identifyMacAddress/IdentifyMacAddress data/capture/convert/$n,convertData.csv $R $T >data/result/multi/$n/$R,$T.txt
+      java identifyMacAddress/IdentifyMacAddress data/capture/convert/$n,convertData.csv $R $T >data/result/multi/$n/$R,$T.txt &
     done
   done
-  echo "$n is done"
-  sleep 3m
+  sleep 5m
 done
