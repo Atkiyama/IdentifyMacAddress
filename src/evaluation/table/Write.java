@@ -18,16 +18,16 @@ public class Write {
 		FileWriter fw = new FileWriter("data/result/evaluationTable.csv");
 		fw.append("T/R");
 		//列数の出力
-		for (int i = 0; i < data.length; i++) {
+		for (int i = 1; i < data.length; i++) {
 			fw.append(",");
 			fw.append(Integer.toString(i));
 		}
 		fw.append("\r\n");
 
-		for (int i = 0; i < data[0].length; i++) {
+		for (int i = 1; i < data[0].length; i++) {
 			//行数の出力
 			fw.append(Integer.toString(i));
-			for (int j = 0; j < data.length; j++) {
+			for (int j = 1; j < data.length; j++) {
 				fw.append(",");
 				fw.append(data[j][i] + "%");
 			}

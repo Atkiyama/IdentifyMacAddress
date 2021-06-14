@@ -35,8 +35,7 @@ public class Read {
 				break;
 			str = in.readLine();
 		}
-		//余計なデータを削除
-		dataList.remove(dataList.size() - 1);
+
 		in.close();
 		return dataList;
 	}
