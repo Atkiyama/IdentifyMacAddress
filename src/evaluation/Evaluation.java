@@ -98,7 +98,7 @@ public class Evaluation {
 			if(tr)
 				trueCount++;
 		}
-		return trueCount/score.size()*100;
+		return (trueCount/score.size())*100;
 
 	}
 

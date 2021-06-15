@@ -49,7 +49,7 @@ public class Identify {
  * @param R 平均RSSIの闘値
  * @throws IOException
  */
-	public void identify(int T,int R) throws IOException{
+	public void identify(int R,int T) throws IOException{
 		//ここ以下でアドレスを特定する
 		this.T = T;
 		this.R = R;
@@ -132,7 +132,6 @@ public class Identify {
 	public void makeAddressList() {
 		//既知のアドレスかどうかのフラグ
 		boolean ad_known = false;
-		addressList = new ArrayList<>();
 		for(Packet packet:packets) {
 			for(Address address:addressList) {
 				if(address.getAdvA().equals(packet.getAddress())) {
@@ -194,7 +193,7 @@ public class Identify {
 	public void checkData() {
 		// TODO 自動生成されたメソッド・スタブ
 		ArrayList<String> exeptionList = new ArrayList<>();
-		if(packets.get(packets.size()-1).getTime() >= 3595) {
+		if(packets.get(packets.size()-1).getTime() <= 3595) {
 			exeptionList.add("最後にとったパケットの時間が"+packets.get(packets.size()-1).getTime()+"です");
 		}
 		double tmp = 0;
