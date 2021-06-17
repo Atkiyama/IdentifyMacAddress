@@ -83,15 +83,23 @@ public class ConvertMacAddress {
 		readData.readData();
 		ConvertMacAddress convert = new ConvertMacAddress(readData.getBtMachines());
 		if(args.length==1) {
-		convert.setDelay();
-		convert.convert();
-		WriteConvertData write = new WriteConvertData();
-		write.write(convert.getPackets(),args[0]);
+			convert.setDelay();
+			convert.convert();
+			WriteConvertData write = new WriteConvertData();
+			write.write(convert.getPackets(),args[0]);
 		}else {
 			convert.getAverageRssi();
+			convert.getStandardDeviation();
 		}
 	}
 
+	private void getStandardDeviation() {
+		// TODO 自動生成されたメソッド・スタブ
+		for(BTMachine btMachine:btMachines) {
+			System.out.println(btMachine.getFileName()+":standard deviation ="+btMachine.getStandardDeviation());
+		}
+
+	}
 	/**
 	 * 平均Rssiを表示するメソッド
 	 */

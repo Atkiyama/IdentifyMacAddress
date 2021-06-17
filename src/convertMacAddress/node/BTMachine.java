@@ -1,5 +1,7 @@
 package convertMacAddress.node;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 /**
@@ -70,6 +72,17 @@ public class BTMachine {
 		for(Packet packet:packets) {
 			packet.setDelay(delay);
 		}
+	}
+	public double getStandardDeviation() {
+		// TODO 自動生成されたメソッド・スタブ
+		double sum = 0;
+		for(Packet packet:packets) {
+			sum += Math.pow(packet.getRssi()-getAverageRssi(),2);
+		}
+		sum /= packets.size();
+		BigDecimal bd = BigDecimal.valueOf(Math.sqrt(sum));
+		bd.setScale(2,RoundingMode.HALF_UP).doubleValue();
+		return bd.setScale(2,RoundingMode.HALF_UP).doubleValue();
 	}
 
 }
