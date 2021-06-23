@@ -33,7 +33,15 @@ public class Evaluation100 {
 			evals.add(eval);
 			sum += eval.getAccuracy();
 		}
-		System.out.println("R="+args[0]+"T="+args[1]+",score is "+sum/100+"%");
+		sum = sum/100;
+		if(Double.isNaN(sum)) {
+			long sumlong = 0;
+			for(Evaluation eval:evals) {
+				sumlong = (long) eval.getAccuracy();
+			}
+			sum = sumlong/100;
+		}
+		System.out.println("R="+args[0]+"T="+args[1]+",score is "+sum+"%");
 		if(args.length==3)
 		outputDetails(evals);
 	}

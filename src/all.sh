@@ -1,5 +1,5 @@
 #bin/bash
-for numOfData in {10,15,20,5}
+for numOfData in 5 10 15 20
 do
   for n in {1..100}
   do
@@ -12,9 +12,9 @@ do
     do
       if [ "$R" -eq "1" -a "$T" -eq "1" ]
       then
-        java evaluation/Evaluation100 $R $T 1 >data/result/evaluation$numOfData.txt
+        java evaluation/Evaluation100 $R $T hoge >data/result/evaluation$numOfData.txt
       else
-        java evaluation/Evaluation100 $R $T 1 >>data/result/evaluation$numOfData.txt
+        java evaluation/Evaluation100 $R $T hoge >>data/result/evaluation$numOfData.txt
       fi
     done
   done
