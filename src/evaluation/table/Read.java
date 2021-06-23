@@ -7,7 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * ファイルを読み込むクラス
+ * @author akiyama
+ *
+ */
 public class Read {
 
 	/**
@@ -15,16 +19,33 @@ public class Read {
 	 * @return　配列のリストに納めたデータ
 	 * @throws IOException
 	 */
+
+
+	/**
+	 * 読み込むファイル名
+	 */
 	private String inputFileName;
+
+	/**
+	 * 引数で初期化する
+	 * @param inputFileName 読み込むファイル名
+	 */
 	public Read(String inputFileName) {
 		this.inputFileName = inputFileName;
 	}
 
-
+	/**
+	 * デフォルトの値で初期化する
+	 */
 	public Read() {
 		this.inputFileName = "data/result/evaluation.txt";
 	}
 
+	/**
+	 * ファイルを読み込むメソッド
+	 * @return　配列のリストに納めたデータ
+	 * @throws IOException
+	 */
 
 	public  ArrayList<String[]> read() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ

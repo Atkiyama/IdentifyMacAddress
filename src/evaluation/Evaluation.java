@@ -23,7 +23,7 @@ public class Evaluation {
 	 */
 	private ArrayList<String[]> answer;
 	/**
-	 * 各機器ごとの正誤を格納したリスト
+	 * 各機器ごとの正誤を格納したマップ
 	 */
 	private HashMap<String,Boolean> score;
 	/**
@@ -62,13 +62,7 @@ public class Evaluation {
 				}
 			}
 		}
-		//scoreとanswerのサイズが一致しない場合は一致させる
-		//ここ削除でおk？/
-		/*
-		if(score.size()<answer.size()) {
-			while(score.size() <answer.size())
-				score.add(false);
-		}*/
+
 
 
 	}

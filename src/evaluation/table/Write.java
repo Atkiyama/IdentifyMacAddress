@@ -8,18 +8,29 @@ import java.io.IOException;
  *
  */
 public class Write {
+
+	/**
+	 *出力ファイル名
+	 */
+	private String outputFileName;
+	/**
+	 * ファイル名をデフォルトで初期化する
+	 */
+	public Write() {
+		this.outputFileName = "data/result/evaluationTable.csv";
+	}
+	/**
+	 *
+	 * @param outputFileName 出力ファイル名
+	 */
+	public Write(String outputFileName) {
+		this.outputFileName = outputFileName;
+	}
 	/**
 	 * データを表形式にして出力するためのメソッド
 	 * @param data 出力するデータ
 	 * @throws IOException
 	 */
-	private String outputFileName;
-	public Write() {
-		this.outputFileName = "data/result/evaluationTable.csv";
-	}
-	public Write(String outputFileName) {
-		this.outputFileName = outputFileName;
-	}
 	public  void write(String[][] data) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		FileWriter fw = new FileWriter(outputFileName);
