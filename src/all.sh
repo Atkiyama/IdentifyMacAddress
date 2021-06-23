@@ -1,5 +1,5 @@
 #bin/bash
-for numOfData in {10,15,20}
+for numOfData in {10,15,20,5}
 do
   for n in {1..100}
   do
