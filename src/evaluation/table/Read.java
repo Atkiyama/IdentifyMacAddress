@@ -15,12 +15,23 @@ public class Read {
 	 * @return　配列のリストに納めたデータ
 	 * @throws IOException
 	 */
-	public static ArrayList<String[]> read() throws IOException {
+	private String inputFileName;
+	public Read(String inputFileName) {
+		this.inputFileName = inputFileName;
+	}
+
+
+	public Read() {
+		this.inputFileName = "data/result/evaluation.txt";
+	}
+
+
+	public  ArrayList<String[]> read() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		//評価のパターン
 		final Pattern pEval = Pattern.compile("(R=)([0-9]+)(T=)([0-9]+)(,score is )(.+)(%)");
 		Matcher mEval;
-		File file = new File("data/result/evaluation.txt");
+		File file = new File(inputFileName);
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);
 		String str = in.readLine();

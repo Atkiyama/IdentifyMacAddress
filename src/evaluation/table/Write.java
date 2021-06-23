@@ -13,9 +13,16 @@ public class Write {
 	 * @param data 出力するデータ
 	 * @throws IOException
 	 */
-	public static void write(String[][] data) throws IOException {
+	private String outputFileName;
+	public Write() {
+		this.outputFileName = "data/result/evaluationTable.csv";
+	}
+	public Write(String outputFileName) {
+		this.outputFileName = outputFileName;
+	}
+	public  void write(String[][] data) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		FileWriter fw = new FileWriter("data/result/evaluationTable.csv");
+		FileWriter fw = new FileWriter(outputFileName);
 		//列数の出力
 
 		for (int i = 1; i < data.length; i++) {

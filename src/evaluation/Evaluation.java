@@ -2,6 +2,8 @@ package evaluation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
@@ -23,7 +25,7 @@ public class Evaluation {
 	/**
 	 * 各機器ごとの正誤を格納したリスト
 	 */
-	private ArrayList<Boolean> score;
+	private HashMap<String,Boolean> score;
 	/**
 	 * RSSIの闘値
 	 */
@@ -43,7 +45,7 @@ public class Evaluation {
 	public Evaluation(ArrayList<String[]> data, ArrayList<String[]> answer,int R,int T) {
 		this.data = data;
 		this.answer = answer;
-		score = new ArrayList<>();
+		score = new HashMap<>();
 		this.R = R;
 		this.T = T;
 	}
@@ -56,15 +58,17 @@ public class Evaluation {
 			for(int i=0;i<data.size();i++) {
 				if(data.get(i)[0].equals(ans[1])) {
 					//answerの一つ目とdataが一致したら評価を開始する
-					score.add(check(i,ans));
+					score.put(ans[0],check(i,ans));
 				}
 			}
 		}
 		//scoreとanswerのサイズが一致しない場合は一致させる
+		//ここ削除でおk？/
+		/*
 		if(score.size()<answer.size()) {
 			while(score.size() <answer.size())
 				score.add(false);
-		}
+		}*/
 
 
 	}
@@ -94,7 +98,7 @@ public class Evaluation {
 	 */
 	public double getAccuracy() {
 		double trueCount =0;
-		for(Boolean tr:score) {
+		for(Boolean tr:score.values()) {
 			if(tr)
 				trueCount++;
 		}
@@ -107,9 +111,9 @@ public class Evaluation {
 	 */
 	public void showScore() {
 		System.out.println("R="+R+"T="+T+",score is "+getAccuracy()+"%");
-		for(int i=0;i<answer.size();i++) {
-			System.out.print(answer.get(i)[0]+":");
-			if(score.get(i))
+		for(Entry<String, Boolean> sc : score.entrySet()) {
+			System.out.print(sc.getKey()+":");
+			if(sc.getValue())
 				System.out.println("○");
 			else {
 				System.out.println("×");
@@ -138,7 +142,9 @@ public class Evaluation {
 	}
 
 
-	public ArrayList<Boolean> getScore() {
+
+
+	public HashMap<String, Boolean> getScore() {
 		return score;
 	}
 

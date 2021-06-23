@@ -73,7 +73,7 @@ public class ConvertMacAddress {
 
 	/**
 	 * メインメソッド 正解データを読み込んで結合してcsvに起こす
-	 * @param args
+	 * @param args 0に選出するデータ数を入れる
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
@@ -82,17 +82,41 @@ public class ConvertMacAddress {
 		ReadData readData = new ReadData(read.read());
 		readData.readData();
 		ConvertMacAddress convert = new ConvertMacAddress(readData.getBtMachines());
-		if(args.length==1) {
+		if(args.length >= 1) {
+			if(args.length == 2) {
+				int numOfData = Integer.valueOf(args[1]);
+				convert.selectData(numOfData);
+			}
 			convert.setDelay();
 			convert.convert();
 			WriteConvertData write = new WriteConvertData();
 			write.write(convert.getPackets(),args[0]);
 		}else {
+			System.out.println(args.length);
 			convert.getAverageRssi();
 			convert.getStandardDeviation();
 		}
 	}
 
+	/**
+	 * 使用するデータを引数の数だけ選出するメソッド
+	 * @param numOfData
+	 */
+	private void selectData(int numOfData) {
+		// TODO 自動生成されたメソッド・スタブ
+		if(numOfData == 20)
+			return;
+		else {
+			Random random;
+			int randomInt;
+			while(btMachines.size()>numOfData) {
+				random = new Random();
+				randomInt = random.nextInt(btMachines.size());
+				btMachines.remove(randomInt);
+			}
+		}
+
+	}
 	private void getStandardDeviation() {
 		// TODO 自動生成されたメソッド・スタブ
 		for(BTMachine btMachine:btMachines) {
