@@ -63,8 +63,7 @@ public class Read {
 			if (mEval.find()) {
 				String row[] = { mEval.group(2), mEval.group(4), mEval.group(6) };
 				dataList.add(row);
-			} else
-				break;
+			}
 			str = in.readLine();
 		}
 
