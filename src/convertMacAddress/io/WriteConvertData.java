@@ -14,6 +14,7 @@ public class WriteConvertData {
 /**
  * 結合データを書き出すメソッド
  * @param packets パケットのリスト
+ * @param fileName 書き出すファイル名
  * @throws IOException
  */
 	public void write(ArrayList<Packet> packets,String fileName) throws IOException {
