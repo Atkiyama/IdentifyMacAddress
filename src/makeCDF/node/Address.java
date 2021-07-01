@@ -1,4 +1,4 @@
-package dataAnalyze.makeCDF.node;
+package makeCDF.node;
 
 import java.util.ArrayList;
 

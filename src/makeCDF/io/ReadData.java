@@ -1,4 +1,4 @@
-package dataAnalyze.makeCDF.io;
+package makeCDF.io;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import dataAnalyze.makeCDF.node.BTMachine;
-import dataAnalyze.makeCDF.node.Packet;
+import makeCDF.node.BTMachine;
+import makeCDF.node.Packet;
 
 
 /**

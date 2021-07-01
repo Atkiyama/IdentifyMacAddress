@@ -1,4 +1,4 @@
-package dataAnalyze.makeCDF.io;
+package makeCDF.io;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import dataAnalyze.makeCDF.node.BTMachine;
+import makeCDF.node.BTMachine;
 
 
 /**

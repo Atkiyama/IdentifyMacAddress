@@ -1,23 +1,20 @@
-package dataAnalyze.makeCDF;
+package makeCDF.cdf;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 
-import dataAnalyze.makeCDF.io.ReadAnswer;
-import dataAnalyze.makeCDF.io.ReadData;
-import dataAnalyze.makeCDF.node.Address;
-import dataAnalyze.makeCDF.node.BTMachine;
+import makeCDF.node.Address;
+import makeCDF.node.BTMachine;
 
 /**
  * 単体データからCDFを作成するクラス
  * @author akiyama
  *
  */
-public class MakeCDF {
+public abstract class Make {
 	/**
 	 * 機器毎のリスト
 	 */
@@ -30,7 +27,7 @@ public class MakeCDF {
 	 * 引数で初期化する
 	 * @param btMachines 機器のリスト
 	 */
-	public MakeCDF(ArrayList<BTMachine> btMachines) {
+	public Make(ArrayList<BTMachine> btMachines) {
 		this.btMachines = btMachines;
 		deltaT = new ArrayList<>();
 	}
@@ -40,28 +37,22 @@ public class MakeCDF {
 	 * @param args
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException {
-		ReadAnswer readAnswer = new ReadAnswer();
-		ReadData readData = new ReadData(readAnswer.read());
-		readData.readData();
-		MakeCDF makeCDF = new MakeCDF(readData.getBtMachines());
-		makeCDF.readDeltaT();
-		makeCDF.sort();
-		makeCDF.printDeltaT();
-	}
+
 
 	/**
 	 * ソートするメソッド
 	 */
-	private void sort() {
+	public void sort() {
 		// TODO 自動生成されたメソッド・スタブ
 		Collections.sort(deltaT);
 	}
 
+
+
 	/**
 	 * データを出力するメソッド
 	 */
-	private void printDeltaT() {
+	public void printData() {
 		// TODO 自動生成されたメソッド・スタブ
 
 		for(Double t:deltaT) {
@@ -73,7 +64,7 @@ public class MakeCDF {
 	/**
 	 * データからdeltaTを読み込むメソッド
 	 */
-	private void readDeltaT() {
+	public void makeData() {
 		// TODO 自動生成されたメソッド・スタブ
 		for(BTMachine btMachine:btMachines) {
 			btMachine.setAddressList();
