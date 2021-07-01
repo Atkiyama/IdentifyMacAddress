@@ -57,6 +57,10 @@ public class Packet {
 		return time;
 	}
 
+	/**
+	 * timeをフォーマットするメソッド
+	 * @param fTime フォーマットする時間
+	 */
 	public void formatTime(double fTime) {
 		 BigDecimal bTime = new BigDecimal(time);
 		 BigDecimal bFTime = new BigDecimal(fTime);

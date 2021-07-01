@@ -96,6 +96,13 @@ public class ReadData {
 
 	}
 
+	/**
+	 * パケットのクラスを生成するメソッド
+	 * @param mTime timeのmatcher
+	 * @param mAddress addressのmatcher
+	 * @param mRssi rssiのmatcher
+	 * @return
+	 */
 	public Packet makePackets(Matcher mTime, Matcher mAddress, Matcher mRssi) {
 		// TODO 自動生成されたメソッド・スタブ
 		double hour = Double.parseDouble(mTime.group(1));

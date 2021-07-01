@@ -92,6 +92,10 @@ public class BTMachine {
 		}
 	}
 
+	/**
+	 * 標準偏差のゲッター
+	 * @return
+	 */
 	public double getStandardDeviation() {
 		// TODO 自動生成されたメソッド・スタブ
 		double sum = 0;
