@@ -3,6 +3,7 @@ package makeCDF.node;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * 機器(キャプチャファイル)を示すクラス
@@ -121,6 +122,8 @@ public class BTMachine {
 			}
 
 		}
+
+		Collections.sort(packets, new PacketComparator());
 
 	}
 

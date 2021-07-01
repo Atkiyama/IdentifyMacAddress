@@ -4,9 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
-import makeCDF.node.Address;
 import makeCDF.node.BTMachine;
 
 /**
@@ -20,16 +18,16 @@ public abstract class Make {
 	 */
 	ArrayList<BTMachine> btMachines;
 	/**
-	 * CDFのx軸(時間)のリスト
+	 * データのリスト
 	 */
-	ArrayList<Double> deltaT;
+	ArrayList<Double> data;
 	/**
 	 * 引数で初期化する
 	 * @param btMachines 機器のリスト
 	 */
 	public Make(ArrayList<BTMachine> btMachines) {
 		this.btMachines = btMachines;
-		deltaT = new ArrayList<>();
+		data = new ArrayList<>();
 	}
 
 	/**
@@ -44,7 +42,7 @@ public abstract class Make {
 	 */
 	public void sort() {
 		// TODO 自動生成されたメソッド・スタブ
-		Collections.sort(deltaT);
+		Collections.sort(data);
 	}
 
 
@@ -54,35 +52,26 @@ public abstract class Make {
 	 */
 	public void printData() {
 		// TODO 自動生成されたメソッド・スタブ
-
-		for(Double t:deltaT) {
-			System.out.println(t);
+		BigDecimal i = BigDecimal.ONE;
+		BigDecimal size = BigDecimal.valueOf(data.size());
+		for(Double t:data) {
+			System.out.println(i.divide(size,20,RoundingMode.HALF_UP).toPlainString()+","+t);
+			i=i.add(BigDecimal.ONE);
 		}
+	}
 
+	public ArrayList<Double> getData() {
+		return data;
+	}
+
+	public void setData(ArrayList<Double> data) {
+		this.data = data;
 	}
 
 	/**
-	 * データからdeltaTを読み込むメソッド
+	 * データからdataを読み込むメソッド
 	 */
-	public void makeData() {
-		// TODO 自動生成されたメソッド・スタブ
-		for(BTMachine btMachine:btMachines) {
-			btMachine.setAddressList();
-
-		}
-		for(BTMachine btMachine:btMachines) {
-			Address base = null;
-			for(Address address:btMachine.getAddressList()) {
-				address.setTimes();
-				if(Objects.isNull(base)) {
-					base = address;
-				}else{
-					deltaT.add(format(address.getFtime(),base.getLtime()));
-					base = address;
-				}
-			}
-		}
-	}
+	public abstract void makeData();
 
 	/**
 	 * データをフォーマットするメソッド
@@ -90,11 +79,17 @@ public abstract class Make {
 	 * @param d2 フォーマットするデータ2
 	 * @return d1-d2を小数点第二位まで丸め込んだもの
 	 */
-	private Double format(double d1,double d2) {
+	protected Double format(double d1,double d2) {
 		// TODO 自動生成されたメソッド・スタブ
 		BigDecimal bd1 = BigDecimal.valueOf(d1);
 		BigDecimal bd2 = BigDecimal.valueOf(d2);
 		BigDecimal sub = bd1.subtract(bd2);
 		return sub.setScale(2, RoundingMode.HALF_UP).doubleValue();
+	}
+
+	public  void setAddressList() {;
+		for(BTMachine btMachine:btMachines) {
+			btMachine.setAddressList();
+		}
 	}
 }

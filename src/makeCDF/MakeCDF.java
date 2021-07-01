@@ -19,6 +19,7 @@ public class MakeCDF {
 			ReadData readData = new ReadData(readAnswer.read());
 			readData.readData();
 			Make makeCDF = getInstance(readData.getBtMachines(),args[0]);
+			makeCDF.setAddressList();
 			makeCDF.makeData();
 			makeCDF.sort();
 			makeCDF.printData();
