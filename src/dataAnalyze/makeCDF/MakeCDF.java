@@ -18,12 +18,28 @@ import dataAnalyze.makeCDF.node.BTMachine;
  *
  */
 public class MakeCDF {
+	/**
+	 * 機器毎のリスト
+	 */
 	ArrayList<BTMachine> btMachines;
+	/**
+	 * CDFのx軸(時間)のリスト
+	 */
 	ArrayList<Double> deltaT;
+	/**
+	 * 引数で初期化する
+	 * @param btMachines 機器のリスト
+	 */
 	public MakeCDF(ArrayList<BTMachine> btMachines) {
 		this.btMachines = btMachines;
 		deltaT = new ArrayList<>();
 	}
+
+	/**
+	 * メイン関数
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 		ReadAnswer readAnswer = new ReadAnswer();
 		ReadData readData = new ReadData(readAnswer.read());
@@ -33,19 +49,30 @@ public class MakeCDF {
 		makeCDF.sort();
 		makeCDF.printDeltaT();
 	}
+
+	/**
+	 * ソートするメソッド
+	 */
 	private void sort() {
 		// TODO 自動生成されたメソッド・スタブ
 		Collections.sort(deltaT);
 	}
+
+	/**
+	 * データを出力するメソッド
+	 */
 	private void printDeltaT() {
 		// TODO 自動生成されたメソッド・スタブ
-		int base = 1;
+
 		for(Double t:deltaT) {
-			System.out.println(base+","+t);
-			base++;
+			System.out.println(t);
 		}
 
 	}
+
+	/**
+	 * データからdeltaTを読み込むメソッド
+	 */
 	private void readDeltaT() {
 		// TODO 自動生成されたメソッド・スタブ
 		for(BTMachine btMachine:btMachines) {
@@ -65,6 +92,13 @@ public class MakeCDF {
 			}
 		}
 	}
+
+	/**
+	 * データをフォーマットするメソッド
+	 * @param d1 フォーマットするデータ1
+	 * @param d2 フォーマットするデータ2
+	 * @return d1-d2を小数点第二位まで丸め込んだもの
+	 */
 	private Double format(double d1,double d2) {
 		// TODO 自動生成されたメソッド・スタブ
 		BigDecimal bd1 = BigDecimal.valueOf(d1);
