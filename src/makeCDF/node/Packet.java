@@ -24,6 +24,10 @@ public class Packet {
 		return address;
 	}
 
+    public void printData() {
+    	System.out.println(address+","+rssi+","+time);
+    }
+
     /**
      * 引数で初期化する
      * @param address macアドレス

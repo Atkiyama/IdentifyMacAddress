@@ -44,26 +44,6 @@ public class Write {
 
 		for (int i = 1; i < data[0].length; i++) {
 			//行数の出力
-			fw.append("T="+Integer.toString(i));
-			for (int j = 1; j < data.length; j++) {
-				fw.append(",");
-				fw.append(data[j][i] + "%");
-			}
-			fw.append("\r\n");
-		}
-
-		for(int i=0;i<4;i++)
-			fw.append("\r\n");
-
-
-		for (int i = 1; i < data.length; i++) {
-			fw.append(",");
-			fw.append("R="+Integer.toString(i));
-		}
-		fw.append("\r\n");
-
-		for (int i = 1; i < data[0].length; i++) {
-			//行数の出力
 			fw.append(Integer.toString(i));
 			for (int j = 1; j < data.length; j++) {
 				fw.append(",");
@@ -71,6 +51,8 @@ public class Write {
 			}
 			fw.append("\r\n");
 		}
+
+
 		fw.close();
 
 	}

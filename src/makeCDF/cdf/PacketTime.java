@@ -26,6 +26,11 @@ public class PacketTime extends Make{
 						base = packet;
 					}else{
 						data.add(format(packet.getTime(),base.getTime()));
+						if(format(packet.getTime(),base.getTime())>80) {
+							base.printData();
+							packet.printData();
+						}
+
 						base = packet;
 					}
 				}
