@@ -13,12 +13,14 @@ import graph.type.Time;
  *
  */
 public abstract class Graph {
-	private ArrayList<String[]> data;
+	protected ArrayList<String[]> data;
 	protected int parameta;
+	protected ArrayList<Double> output;
 
 	public Graph(ArrayList<String[]> data) {
 		super();
 		this.data = data;
+		output = new ArrayList<>();
 	}
 	/**
 	 *
@@ -28,11 +30,18 @@ public abstract class Graph {
 	public static void main(String[] args) throws IOException {
 		Read.read(args[0]);
 		Graph graph = getInstance(Read.read(args[0]),args[1],args[2]);
+		graph.removePercent();
 		graph.extract();
 		graph.print();
 	}
-	protected abstract void print();
-	protected abstract void extract();
+	public void print() {
+		int i=1;
+		for(double outputData:output) {
+			System.out.println(i+","+outputData);
+			i++;
+		}
+	}
+	protected abstract void extract() throws IOException;
 	private static Graph getInstance(ArrayList<String[]> data, String instance,String parameta) {
 		// TODO 自動生成されたメソッド・スタブ
 		switch (instance) {
@@ -45,6 +54,22 @@ public abstract class Graph {
 		}
 		System.exit(0);
 		return null;
+	}
+
+	protected void removePercent() {
+		ArrayList<String[]> swaps = new ArrayList<>();
+		String swap[];
+		for(String[] line:data) {
+			swap = new String[line.length];
+			int i=0;
+			for(String inputData:line) {
+					swap[i] = inputData.replace("%","");
+					i++;
+			}
+
+			swaps.add(swap);
+		}
+		data = swaps;
 	}
 
 }

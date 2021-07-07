@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public class Read {
 	public static ArrayList<String[]> read(String fileName) throws IOException{
+		if(!fileName.contains("."))
+			return null;
 		File file = new File(fileName);
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);;

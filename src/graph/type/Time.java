@@ -13,14 +13,15 @@ public class Time extends Graph{
 	}
 
 	@Override
-	protected void print() {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
-	@Override
 	protected void extract() {
 		// TODO 自動生成されたメソッド・スタブ
+		for(String[] line:this.data) {
+			for(int i=0 ;i<line.length;i++) {
+				if(i==parameta)
+					output.add(Double.parseDouble(line[i]));
+			}
+		}
+		output.remove(0);
 
 	}
 

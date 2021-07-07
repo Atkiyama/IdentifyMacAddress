@@ -22,7 +22,7 @@ public class MakeCDF {
 			makeCDF.setAddressList();
 			makeCDF.makeData();
 			makeCDF.sort();
-			//makeCDF.printData();
+			makeCDF.printData();
 
 	}
 

@@ -13,14 +13,14 @@ public class Rssi extends Graph{
 	}
 
 	@Override
-	protected void print() {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
-	@Override
 	protected void extract() {
 		// TODO 自動生成されたメソッド・スタブ
+		String[] line = data.get(parameta);
+		for(String outputData:line)
+			output.add(Double.parseDouble(outputData));
+
+		output.remove(0);
+
 
 	}
 
