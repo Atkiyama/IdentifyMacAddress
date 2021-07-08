@@ -7,4 +7,5 @@ javac evaluation/Evaluation.java -encoding UTF-8
 javac evaluation/table/EvaluationTable.java -encoding UTF-8
 javac evaluation/Evaluation100.java -encoding UTF-8
 javac makeCDF/MakeCDF.java -encoding UTF-8
+javac graph/Graph.java
 echo "全javaファイルのコンパイルが完了しました"

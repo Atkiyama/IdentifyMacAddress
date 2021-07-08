@@ -19,7 +19,7 @@ do
     done
   done
 
-  java evaluation/table/EvaluationTable data/result/evaluation$numOfData.txt data/result/evaluationTable$numOfData.csv
+  java evaluation/table/EvaluationTable data/result/evaluation$numOfData.txt data/result/table/evaluationTable$numOfData.csv
 done
 
 echo "評価結果をdata/result/evaluation.txtに保存しました"

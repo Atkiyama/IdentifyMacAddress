@@ -117,6 +117,10 @@ public class ConvertMacAddress {
 		}
 
 	}
+
+	/**
+	 * 標準偏差を表示するメソッド
+	 */
 	private void getStandardDeviation() {
 		// TODO 自動生成されたメソッド・スタブ
 		for(BTMachine btMachine:btMachines) {

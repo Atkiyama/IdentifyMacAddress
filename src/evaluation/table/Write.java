@@ -17,7 +17,7 @@ public class Write {
 	 * ファイル名をデフォルトで初期化する
 	 */
 	public Write() {
-		this.outputFileName = "data/result/evaluationTable.csv";
+		this.outputFileName = "data/result/table/evaluationTable.csv";
 	}
 	/**
 	 *
