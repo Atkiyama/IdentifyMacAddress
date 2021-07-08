@@ -4,7 +4,7 @@ set term pdfcairo enhanced color font ",16"
 set xlabel "Rssi"
 set ylabel "CDF"
 set yrange [0:1]
-set xrange [0:100]
+set xrange [0:20]
 set datafile separator ","
 
 set nokey
