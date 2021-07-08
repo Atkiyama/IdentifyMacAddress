@@ -10,13 +10,17 @@ import makeCDF.node.BTMachine;
 
 public class AddressTime extends Make{
 
+	/**
+	 * 親クラスのフィールドを初期化する
+	 * @param btMachines 機器のリスト
+	 */
 	public AddressTime(ArrayList<BTMachine> btMachines) {
 		super(btMachines);
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
 	/**
-	 * データからdeltaTを読み込むメソッド
+	 * アドレス間の時間の差分データを作成するメソッド
 	 */
 	public void makeData() {
 		// TODO 自動生成されたメソッド・スタブ

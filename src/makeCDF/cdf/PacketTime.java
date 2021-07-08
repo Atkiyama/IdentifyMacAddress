@@ -7,13 +7,25 @@ import makeCDF.node.Address;
 import makeCDF.node.BTMachine;
 import makeCDF.node.Packet;
 
+/**
+ * パケット間の時間差のcdfを作るためのクラス
+ * @author akiyama
+ *
+ */
 public class PacketTime extends Make{
 
+	/**
+	 * 親クラスを初期化する
+	 * @param btMachines　機器のリスト
+	 */
 	public PacketTime(ArrayList<BTMachine> btMachines) {
 		super(btMachines);
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
+	/**
+	 * パケット間の時間差のデータを作るメソッド
+	 */
 	@Override
 	public void makeData() {
 		// TODO 自動生成されたメソッド・スタブ

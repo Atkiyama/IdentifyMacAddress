@@ -6,9 +6,27 @@ import java.util.ArrayList;
 import graph.Graph;
 import graph.Read;
 
+/**
+ * データセット毎のデータを作成するためのメソッド
+ * @author akiyama
+ *
+ */
 public class DataSet extends Graph{
+	/**
+	 * 最大値を求めるかどうか(falseの場合は平均値を求める)
+	 */
 	boolean isMax;
+	/**
+	 * 読み込むファイル名
+	 */
 	ArrayList<String> tables;
+
+	/**
+	 * 引数で初期化する
+	 * tablesはあらかじめ決めたものをリストに追加する
+	 * @param data 読み込むデータ(ただしこのクラスの場合は意味がない)
+	 * @param parameta maxなら最大値、そうでないなら平均値を求める
+	 */
 	public DataSet(ArrayList<String[]> data, String parameta) {
 		super(data);
 		tables = new ArrayList<>();
@@ -25,6 +43,9 @@ public class DataSet extends Graph{
 
 
 
+	/**
+	 * データを生成するためのメソッド
+	 */
 	@Override
 	protected void extract() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
@@ -32,10 +53,18 @@ public class DataSet extends Graph{
 			extract(table);
 	}
 
+	/**
+	 * %を取り除くためのメソッド(メインメソッドで何もしないためのメソッド)
+	 */
 	protected void removePercent() {
 
 	}
 
+	/**
+	 * データを出力するメソッド
+	 *
+	 */
+	@Override
 	public void print() {
 		int i=0;
 		for(double outputData:output) {
@@ -45,6 +74,11 @@ public class DataSet extends Graph{
 
 	}
 
+	/**
+	 * 引数の表のデータを生成するためのメソッド
+	 * @param table データを生成したい表
+	 * @throws IOException
+	 */
 	public void extract(String table) throws IOException {
 		data = Read.read(table);
 		super.removePercent();
@@ -64,6 +98,10 @@ public class DataSet extends Graph{
 
 
 
+	/**
+	 * 引数の最大値を求めるメソッド
+	 * @param calc 表データ
+	 */
 	private void calcMax(ArrayList<Double> calc) {
 		// TODO 自動生成されたメソッド・スタブ
 		double max = 0;
@@ -77,6 +115,10 @@ public class DataSet extends Graph{
 
 
 
+	/**
+	 * 引数の平均値を求めるメソッド
+	 * @param calc 表データ
+	 */
 	private void calcAve(ArrayList<Double> calc) {
 		// TODO 自動生成されたメソッド・スタブ
 		double add = 0;

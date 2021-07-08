@@ -7,18 +7,30 @@ import graph.type.DataSet;
 import graph.type.Rssi;
 import graph.type.Time;
 /**
- * グラフ制作のためのtxtファイルを作成するためのクラス
+ * gnuplotを用いてのグラフ制作のためのtxtファイルを作成するためのクラス
  *
  * @author akiyama
  *
  */
 public abstract class Graph {
+	/**
+	 * 読み込んだデータ
+	 */
 	protected ArrayList<String[]> data;
+	/**
+	 * 各種パラメータ(子クラスによって変わる)
+	 */
 	protected int parameta;
+	/**
+	 * 出力するデータ
+	 */
 	protected ArrayList<Double> output;
 
+	/**
+	 * 引数で初期化しリストをnewする
+	 * @param data 読み込んだデータ
+	 */
 	public Graph(ArrayList<String[]> data) {
-		super();
 		this.data = data;
 		output = new ArrayList<>();
 	}
@@ -34,6 +46,10 @@ public abstract class Graph {
 		graph.extract();
 		graph.print();
 	}
+
+	/**
+	 * データを出力するメソッド
+	 */
 	public void print() {
 		int i=1;
 		for(double outputData:output) {
@@ -41,7 +57,20 @@ public abstract class Graph {
 			i++;
 		}
 	}
+
+	/**
+	 * データを抽出するメソッド
+	 * @throws IOException
+	 */
 	protected abstract void extract() throws IOException;
+
+	/**
+	 * 引数に応じたインスタンスを生成するメソッド
+	 * @param data 読み込んだデータ
+	 * @param instance 生成したいインスタンスの文字列
+	 * @param parameta　各種パラメタ
+	 * @return 引数に応じたインスタンス
+	 */
 	private static Graph getInstance(ArrayList<String[]> data, String instance,String parameta) {
 		// TODO 自動生成されたメソッド・スタブ
 		switch (instance) {
@@ -56,6 +85,9 @@ public abstract class Graph {
 		return null;
 	}
 
+	/**
+	 * 読み込んだデータから%の記号を取り除くメソッド
+	 */
 	protected void removePercent() {
 		ArrayList<String[]> swaps = new ArrayList<>();
 		String swap[];
