@@ -8,12 +8,12 @@ set xrange[5:20]
 set xtics 5
 set datafile separator ","
 
-set key right bottom
+set key right bottom outside
 
 set output file
 
 plot \
 "data/result/graph/data/max.txt" using 1:2 lw 6 dt 2 lc rgb "red" title "Max"\
- with lines ,\
+ with linespoint ,\
 "data/result/graph/data/ave.txt" using 1:2 lw 6 lc rgb "green" title "Average"\
-with lines
+with linespoint

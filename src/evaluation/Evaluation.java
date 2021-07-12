@@ -3,10 +3,10 @@ package evaluation;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
+
 /**
  * identifyMacAddressで出した結果を評価するクラス
  * mainメソッドは結合データ単体用
@@ -17,15 +17,15 @@ public class Evaluation {
 	/**
 	 * 読み込んだデータ
 	 */
-	private ArrayList<String[]> data;
+	private ArrayList<String> data;
 	/**
 	 * 正解データ
 	 */
-	private ArrayList<String[]> answer;
+	private HashMap<String, ArrayList<String>> answer;
 	/**
 	 * 各機器ごとの正誤を格納したマップ
 	 */
-	private HashMap<String,Boolean> score;
+	private ArrayList<Boolean> score;
 	/**
 	 * RSSIの闘値
 	 */
@@ -42,10 +42,21 @@ public class Evaluation {
 	 * @param R RSSIの闘値
 	 * @param T 受診時刻の闘値
 	 */
-	public Evaluation(ArrayList<String[]> data, ArrayList<String[]> answer,int R,int T) {
-		this.data = data;
-		this.answer = answer;
-		score = new HashMap<>();
+	public Evaluation(ArrayList<String[]> data, ArrayList<String[]> answer, int R, int T) {
+		this.answer = new HashMap<>();
+		this.data = new ArrayList<>();
+		for (String[] line : answer) {
+			ArrayList<String> strs = new ArrayList<>();
+			for (int i = 1; i < line.length; i++) {
+				strs.add(line[i]);
+			}
+			this.answer.put(line[0], strs);
+		}
+
+		for (String[] str : data)
+			this.data.add(str[0]);
+
+		score = new ArrayList<>();
 		this.R = R;
 		this.T = T;
 	}
@@ -54,35 +65,40 @@ public class Evaluation {
 	 * 精度を評価するメソッド
 	 */
 	public void evaluation() {
-		for(String[] ans:answer) {
-			for(int i=0;i<data.size();i++) {
-				if(data.get(i)[0].equals(ans[1])) {
-					//answerの一つ目とdataが一致したら評価を開始する
-					score.put(ans[0],check(i,ans));
-				}
+		for (ArrayList<String> ansList : answer.values()) {
+			for (int i = 0; i < data.size(); i++) {
+				for (int j = 0; j < ansList.size(); j++)
+					if (data.get(i).equals(ansList.get(j))) {
+						//answerの一つ目とdataが一致したら評価を開始する
+						check(i, j, ansList);
+					}
 			}
 		}
-
-
-
 	}
 
 	/**
 	 * 正誤判定をするメソッド
 	 * @param i 評価するデータの開始行
-	 * @param ans 正解データ
-	 * @return 一致する場合はtrueを返す
+	 * @param j 正解データ
+	 * @param ansList2
+	 *&&ansList.size()-1>j&&data.size()-1>i
 	 */
-	public boolean check(int i, String[] ans) {
+	public void check(int i, int j, ArrayList<String> ansList) {
 		// TODO 自動生成されたメソッド・スタブ
-		for(int j = 1;j<ans.length;j++) {
-			if(!data.get(i)[0].equals(ans[j])) {
-				return false;
+		if (!(data.size() - 1 > i)) {
+			//データに次がない場合
+			//なにもしない
+		} else if(ansList.size()-1>j){
+			//データにも回答にも次がある場合
+			if (data.get(i + 1).equals(ansList.get(j + 1))) {
+				score.add(true);
+			} else {
+				score.add(false);
 			}
-			i++;
+		}else {
+			//回答にのみ次がある場合
+			score.add(false);
 		}
-		return true;
-
 
 	}
 
@@ -91,28 +107,18 @@ public class Evaluation {
 	 * @return 精度
 	 */
 	public double getAccuracy() {
-		double trueCount =0;
-		for(Boolean tr:score.values()) {
-			if(tr)
+		double trueCount = 0;
+		for (Boolean tr : score) {
+			if (tr)
 				trueCount++;
 		}
-		return (trueCount/score.size())*100;
+		return (trueCount / getChange()) * 100;
 
 	}
 
-	/**
-	 * 結果を表示するメソッド
-	 */
-	public void showScore() {
-		System.out.println("R="+R+"T="+T+",score is "+getAccuracy()+"%");
-		for(Entry<String, Boolean> sc : score.entrySet()) {
-			System.out.print(sc.getKey()+":");
-			if(sc.getValue())
-				System.out.println("○");
-			else {
-				System.out.println("×");
-			}
-		}
+	private double getChange() {
+		// TODO 自動生成されたメソッド・スタブ
+		return data.size()-1;
 	}
 
 	/**
@@ -121,24 +127,18 @@ public class Evaluation {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		ReadData readData = new ReadData(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
+		ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
 		ReadAnswer readAnswer = new ReadAnswer();
-		Evaluation eval = new Evaluation(readData.read(),readAnswer.read(),Integer.parseInt(args[0]),Integer.parseInt(args[1]));
+		Evaluation eval = new Evaluation(readData.read(), readAnswer.read(), Integer.parseInt(args[0]),
+				Integer.parseInt(args[1]));
 		eval.evaluation();
-		if(args.length>3) {
-			if(args[2].equals(100)) {
-				System.out.print("eval.getAccuracy()");
-			}
-			System.out.println("R="+eval.getR()+"T="+eval.getT()+",score is "+eval.getAccuracy()+"%");
-		}else {
-			eval.showScore();
-		}
+		if (args.length > 3)
+			System.out.print(eval.getAccuracy());
+		else
+			System.out.println("R=" + eval.getR() + "T=" + eval.getT() + ",score is " + eval.getAccuracy() + "%");
 	}
 
-
-
-
-	public HashMap<String, Boolean> getScore() {
+	public ArrayList<Boolean> getScore() {
 		return score;
 	}
 
