@@ -21,6 +21,6 @@ do
 
   java evaluation/table/EvaluationTable data/result/evaluation$numOfData _2.txt data/result/table/evaluationTable$numOfData _2.csv
 done
-  java ./graph2.sh
+  ./graph2.sh
 echo "評価結果をdata/result/evaluation.txtに保存しました"
 echo "評価結果を表形式でdata/result/以下に保存しました"

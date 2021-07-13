@@ -7,13 +7,13 @@ do
   do
     if [ "$R" -eq "1" -a "$T" -eq "1" ]
     then
-      java evaluation/Evaluation100 $R $T  >data/result/evaluation5.txt
+      java evaluation/Evaluation100 $R $T  >data/result/evaluation20.txt
     else
-      java evaluation/Evaluation100 $R $T  >>data/result/evaluation5.txt
+      java evaluation/Evaluation100 $R $T  >>data/result/evaluation20.txt
     fi
   done
 done
 
-java evaluation/table/EvaluationTable data/result/evaluation5.txt data/result/evaluationTable5.csv
+java evaluation/table/EvaluationTable data/result/evaluation20.txt data/result/table/evaluationTable20.csv
 echo "評価結果をdata/result/evaluation.txtに保存しました"
 echo "評価結果を表形式でdata/result/evaluationtable.csvに保存しました"

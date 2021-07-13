@@ -23,7 +23,7 @@ public class Evaluation {
 	 */
 	private HashMap<String, ArrayList<String>> answer;
 	/**
-	 * 各機器ごとの正誤を格納したマップ
+	 * 各機器ごとの正誤を格納したリスト
 	 */
 	private ArrayList<Boolean> score;
 	/**
@@ -34,6 +34,7 @@ public class Evaluation {
 	 * 受診時刻の闘値
 	 */
 	private int T;
+	private int change;
 
 	/**
 	 *  各引数で初期化,scoreのみnewする
@@ -59,48 +60,56 @@ public class Evaluation {
 		score = new ArrayList<>();
 		this.R = R;
 		this.T = T;
+		this.change = 0;
 	}
 
 	/**
 	 * 精度を評価するメソッド
 	 */
 	public void evaluation() {
-		for (ArrayList<String> ansList : answer.values()) {
-			for (int i = 0; i < data.size(); i++) {
-				for (int j = 0; j < ansList.size(); j++)
-					if (data.get(i).equals(ansList.get(j))) {
-						//answerの一つ目とdataが一致したら評価を開始する
-						check(i, j, ansList);
-					}
-			}
+		for (String address : data) {
+			//System.out.println(address);
+			for (ArrayList<String> answerAddressList : answer.values())
+				if (answerAddressList.contains(address) && existNext(address))
+					if(!data.get(data.indexOf(address) + 1).equals(""))
+							check(address, answerAddressList);
 		}
 	}
 
-	/**
-	 * 正誤判定をするメソッド
-	 * @param i 評価するデータの開始行
-	 * @param j 正解データ
-	 * @param ansList2
-	 *&&ansList.size()-1>j&&data.size()-1>i
-	 */
-	public void check(int i, int j, ArrayList<String> ansList) {
-		// TODO 自動生成されたメソッド・スタブ
-		if (!(data.size() - 1 > i)) {
-			//データに次がない場合
-			//なにもしない
-		} else if(ansList.size()-1>j){
-			//データにも回答にも次がある場合
-			if (data.get(i + 1).equals(ansList.get(j + 1))) {
+	private void check(String address, ArrayList<String> answerAddressList) {
+//		System.out.print(data.get(data.indexOf(address) + 1)+",");
+//		System.out.println(answerAddressList.get(answerAddressList.indexOf(address) + 1));
+		change++;
+		if (existNext(address, answerAddressList)) {
+			// TODO 自動生成されたメソッド・スタブ
+			if (data.get(data.indexOf(address) + 1)
+					.equals(answerAddressList.get(answerAddressList.indexOf(address) + 1)))
 				score.add(true);
-			} else {
+			else
 				score.add(false);
-			}
 		}else {
-			//回答にのみ次がある場合
 			score.add(false);
 		}
 
 	}
+
+	private boolean existNext(String address, ArrayList<String> answerAddressList) {
+		// TODO 自動生成されたメソッド・スタブ
+		if(answerAddressList.indexOf(address)<answerAddressList.size()-1)
+			return true;
+		else
+			return false;
+	}
+
+	private boolean existNext(String address) {
+		// TODO 自動生成されたメソッド・スタブ
+		if (data.indexOf(address)< data.size() - 1)
+			return true;
+		else
+			return false;
+	}
+
+
 
 	/**
 	 * 精度を計算するメソッド
@@ -112,13 +121,16 @@ public class Evaluation {
 			if (tr)
 				trueCount++;
 		}
-		return (trueCount / getChange()) * 100;
+		System.out.println(trueCount);
+		System.out.println(getChange());
+
+		return (trueCount / change) * 100;
 
 	}
 
 	private double getChange() {
 		// TODO 自動生成されたメソッド・スタブ
-		return data.size()-1;
+		return change;
 	}
 
 	/**

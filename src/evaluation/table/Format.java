@@ -25,7 +25,7 @@ public class Format {
 			if (maxT < Integer.parseInt(row[1]))
 				maxT = Integer.parseInt(row[1]);
 		}
-		System.out.print(maxT);
+
 
 		String[][] data = new String[maxR + 1][];
 		//行数

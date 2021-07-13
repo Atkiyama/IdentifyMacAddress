@@ -13,7 +13,7 @@ import evaluation.read.ReadData;
 public class Evaluation100 {
 	/**
 	 *
-	 * @param args 0には闘値R,1には闘値Tを入れること,2に引数を入れると詳細を表示する
+	 * @param args 0には闘値R,1には闘値Tを入れること,2にデータ数
 	 * @throws NumberFormatException
 	 * @throws IOException
 	 */
@@ -23,7 +23,7 @@ public class Evaluation100 {
 		// TODO 自動生成されたメソッド・スタブ
 		ArrayList<Evaluation> evals = new ArrayList<>();
 		for (int i = 1; i <= 100; i++) {
-			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]), i);
+			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]),i);
 
 			Evaluation eval = new Evaluation(readData.read(), readAnswer.read(), Integer.parseInt(args[0]),
 					Integer.parseInt(args[1]));

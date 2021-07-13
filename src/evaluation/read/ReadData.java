@@ -42,10 +42,10 @@ public class ReadData {
 	 * @param t
 	 * @param fileNumber 読み込むフォルダ(mulit以下)のナンバー
 	 */
-	public ReadData(int r,int t,int fileNumber) {
+	public ReadData(int r,int t,int numOfData ,int fileNumber) {
 		R = r;
 		T = t;
-		fileName = "data/result/multi/"+fileNumber+"/"+R+","+T+".txt";
+		fileName = "data/result/multi/"+numOfData+"/"+fileNumber+"/"+R+","+T+".txt";
 	}
 
 /**
