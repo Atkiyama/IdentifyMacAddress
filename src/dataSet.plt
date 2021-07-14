@@ -8,7 +8,7 @@ set xrange[5:20]
 set xtics 5
 set datafile separator ","
 
-set key right bottom outside
+set key right bottom
 
 set output file
 
