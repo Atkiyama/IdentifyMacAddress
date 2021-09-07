@@ -30,10 +30,10 @@ public class DataSet extends Graph{
 	public DataSet(ArrayList<String[]> data, String parameta) {
 		super(data);
 		tables = new ArrayList<>();
-		tables.add("data/result/table/evaluationTable5.csv");
-		tables.add("data/result/table/evaluationTable10.csv");
-		tables.add("data/result/table/evaluationTable15.csv");
-		tables.add("data/result/table/evaluationTable20.csv");
+		tables.add("data/result/table/evaluationTable5,2.csv");
+		tables.add("data/result/table/evaluationTable10,2.csv");
+		tables.add("data/result/table/evaluationTable15,2.csv");
+		tables.add("data/result/table/evaluationTable20,2.csv");
 		// TODO 自動生成されたコンストラクター・スタブ
 		if(parameta.equals("max"))
 			isMax = true;
