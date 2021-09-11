@@ -1,9 +1,11 @@
 #bin/bash
+echo "move or stay?"
+read isMove
 for numOfData in 5 10 15 20
 do
   for n in {1..100}
   do
-    java convertMacAddress/ConvertMacAddress data/capture/convert/$n,convertData.csv $numOfData
+    java convertMacAddress/ConvertMacAddress data/capture/$isMove/convert/$n,convertData.csv $numOfData
   done
   ./IdentifyMacAddress.sh
   for R in {1..20}
