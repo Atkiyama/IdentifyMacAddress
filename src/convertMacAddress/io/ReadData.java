@@ -48,13 +48,13 @@ public class ReadData {
 	 * フィールドの情報を頼りに正解データを各ファイルから読み出すメソッド
 	 * @throws IOException
 	 */
-	public void readData() throws IOException {
+	public void readData(String isMove) throws IOException {
 		File file;
 		FileReader fileReader;
 		BufferedReader in;
 
 		for (BTMachine btMachine : btMachines) {
-			file = new File("data/capture/"+btMachine.getFileName()+".txt");
+			file = new File(isMove+btMachine.getFileName()+".txt");
 			fileReader = new FileReader(file);
 			in = new BufferedReader(fileReader);
 			//必要な値を格納する変数

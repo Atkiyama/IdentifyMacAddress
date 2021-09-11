@@ -73,14 +73,14 @@ public class ConvertMacAddress {
 
 	/**
 	 * メインメソッド 正解データを読み込んで結合してcsvに起こす
-	 * @param args 0に選出するデータ数を入れる
+	 * @param args 0に出力先,1に選出するデータ数,2にインプットするフォルダのパスを入れる
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		ReadAnswer read = new ReadAnswer();
 		ReadData readData = new ReadData(read.read());
-		readData.readData();
+		readData.readData(args[2]);
 		ConvertMacAddress convert = new ConvertMacAddress(readData.getBtMachines());
 		if(args.length >= 1) {
 			if(args.length == 2) {

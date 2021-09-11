@@ -15,7 +15,7 @@ import evaluation.read.ReadData;
 public class Evaluation100_2 {
 	/**
 	 *
-	 * @param args 0には闘値R,1には闘値Tを入れること,2に引数を入れると詳細を表示する
+	 * @param args 0には闘値R,1には闘値Tを入れること,2に使用するデータ数を入れる,3にmoveかstayかを入れる
 	 * @throws NumberFormatException
 	 * @throws IOException
 	 */
@@ -25,7 +25,7 @@ public class Evaluation100_2 {
 		// TODO 自動生成されたメソッド・スタブ
 		ArrayList<Evaluation2> evals = new ArrayList<>();
 		for (int i = 1; i <= 100; i++) {
-			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]), i);
+			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]), i,args[3]);
 
 			Evaluation2 eval = new Evaluation2(readData.read(), readAnswer.read(), Integer.parseInt(args[0]),
 					Integer.parseInt(args[1]));
