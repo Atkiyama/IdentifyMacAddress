@@ -1,11 +1,11 @@
-package graph;
+package graph.stay;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import graph.type.DataSet;
-import graph.type.Rssi;
-import graph.type.Time;
+import graph.stay.type.DataSet;
+import graph.stay.type.Rssi;
+import graph.stay.type.Time;
 /**
  * gnuplotを用いてのグラフ制作のためのtxtファイルを作成するためのクラス
  *

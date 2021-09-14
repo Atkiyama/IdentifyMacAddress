@@ -1,10 +1,10 @@
-package graph.type;
+package graph.stay.type;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import graph.Graph;
-import graph.Read;
+import graph.stay.Graph;
+import graph.stay.Read;
 
 /**
  * データセット毎のデータを作成するためのメソッド

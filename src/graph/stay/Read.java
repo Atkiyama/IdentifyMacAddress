@@ -1,4 +1,4 @@
-package graph;
+package graph.stay;
 
 import java.io.BufferedReader;
 import java.io.File;

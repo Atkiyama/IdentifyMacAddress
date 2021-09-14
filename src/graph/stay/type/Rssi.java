@@ -1,8 +1,8 @@
-package graph.type;
+package graph.stay.type;
 
 import java.util.ArrayList;
 
-import graph.Graph;
+import graph.stay.Graph;
 
 /**
  * rssiのデータを生成するためのクラス
