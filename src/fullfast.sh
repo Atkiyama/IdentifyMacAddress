@@ -8,9 +8,9 @@ do
     do
       if [ "$R" -eq "1" -a "$T" -eq "1" ]
       then
-        java identifyMacAddress/IdentifyMacAddress data/capture/$inputFileName $R $T >data/result/single/$inputFileName
+        java identifyMacAddress/identify/IdentifyStay data/capture/$inputFileName $R $T >data/result/single/$inputFileName
       else
-        java identifyMacAddress/IdentifyMacAddress data/capture/$inputFileName $R $T >>data/result/single/$inputFileName
+        java identifyMacAddress/identify/IdentifyStay data/capture/$inputFileName $R $T >>data/result/single/$inputFileName
       fi
     done
   done

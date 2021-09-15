@@ -12,5 +12,5 @@ set key right bottom
 set output file
 
 plot \
-"data/result/graph/data/moveL45.txt" using 1:2 lw 1  lc rgb "green" title "moveL45"\
+"data/result/graph/data/move_L45_3.txt" using 1:2 lw 1  lc rgb "green" title "moveL45_3"\
 with lines

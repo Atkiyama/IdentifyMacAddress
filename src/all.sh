@@ -17,7 +17,7 @@ do
     do
       for T in {1..20}
       do
-        java identifyMacAddress/IdentifyMacAddress data/capture/convert/$numOfData/$n,convertData.csv $R $T >data/result/multi/$numOfData/$n/$R,$T.txt
+        java identifyMacAddress/identify/IdentifyStay data/capture/convert/$numOfData/$n,convertData.csv $R $T >data/result/multi/$numOfData/$n/$R,$T.txt
       done
     done
     sleep 5m

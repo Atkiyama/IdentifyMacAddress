@@ -1,8 +1,7 @@
 #!/bin/bash
 
-echo "move or stay?"
-read isMove
-LS=$(ls data/capture/single/$isMove)
+
+LS=$(ls data/capture/single/stay)
 for inputFileName in ${LS}
 do
   for R in {1..20}
@@ -11,13 +10,13 @@ do
     do
       if [ "$R" -eq "0" -a "$T" -eq "0" ]
       then
-        java identifyMacAddress/IdentifyMacAddress data/capture/single/$isMove/$inputFileName $R $T >data/result/single/$isMove/$inputFileName
+        java identifyMacAddress/identify/IdentifyStay data/capture/single/stay/$inputFileName $R $T >data/result/single/stay/$inputFileName
       else
-        java identifyMacAddress/IdentifyMacAddress data/capture/single/$isMove/$inputFileName $R $T >>data/result/single/$isMove/$inputFileName
+        java identifyMacAddress/identify/IdentifyStay data/capture/single/stay/$inputFileName $R $T >>data/result/single/stay/$inputFileName
       fi
     done
   done
   sleep 5m
-  java dataAnalyze/analyze/DataAnalyze data/result/single/$isMove/$inputFileName > data/result/analyze/$isMove/analyze$inputFileName
+  java dataAnalyze/analyze/DataAnalyze data/result/single/stay/$inputFileName > data/result/analyze/stay/analyze$inputFileName
   echo "$inputFileName is done"
 done
