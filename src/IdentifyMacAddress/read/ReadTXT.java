@@ -97,11 +97,11 @@ public class ReadTXT extends Read {
 
 	/**
 	 * テスト用メインメソッド。読み込んでパケット情報を出力する
-	 * @param args
+	 * @param args 読み込むデータ名
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		Read readtxt = new ReadTXT("data/capture/test.txt");
+		Read readtxt = new ReadTXT(args[0]);
 		ArrayList<Packet> packets = readtxt.read();
 		for (Packet packet : packets)
 			packet.printData();

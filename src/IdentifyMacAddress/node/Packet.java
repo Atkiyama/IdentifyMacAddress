@@ -20,6 +20,9 @@ public class Packet {
 		this.time = time;
 		this.rssi = rssi;
 	}
+	public void setRssi(int rssi) {
+		this.rssi = rssi;
+	}
 	/**
 	 * macアドレス
 	 */
@@ -64,7 +67,7 @@ public class Packet {
 	 * パケット情報を出力するメソッド ReadTXTのテスト用
 	 */
 	public void printData() {
-		System.out.println(address+"|"+time+"|"+rssi);
+		System.out.println(address+","+time+","+rssi);
 	}
 
 
