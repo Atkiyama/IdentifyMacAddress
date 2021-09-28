@@ -12,8 +12,6 @@ class ScanDelegate(DefaultDelegate):
 scanner = Scanner().withDelegate(ScanDelegate())
 while True:
        try:
-               scanner.scan(5.0)
+               scanner.scan(3.0)
        except BLEException:
                MSG('BTLE Exception while scanning')
-
-
