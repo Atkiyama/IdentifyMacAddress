@@ -44,4 +44,9 @@ public class ReadCSV extends Read{
 		return packets;
 
 	}
+	public static void main(String args[]) throws IOException {
+		Read read = new ReadCSV(args[0]);
+		ArrayList<Packet> packets= read.read();
+		System.out.println(packets.size()/360);
+	}
 }

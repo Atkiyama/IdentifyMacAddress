@@ -11,7 +11,7 @@ import identifyMacAddress.node.Packet;
  * @author akiyama
  *
  */
-public class Identify {
+public abstract class Identify {
 
 	/**
 	 * macアドレスのリスト
@@ -64,6 +64,8 @@ public class Identify {
 		}
 
 	}
+
+	public abstract void identify(int R,int T) throws IOException;
 
 	/**
 	 * パケットの時間差が闘値Tに収まっているか判定するメソッド

@@ -21,6 +21,7 @@ public class IdentifyMove extends Identify{
 	 */
 
 
+
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		Read read;
@@ -38,6 +39,12 @@ public class IdentifyMove extends Identify{
 		//identify.removeFewAddress();
 		((IdentifyStay) identify).identify(Integer.parseInt(args[1]),Integer.parseInt(args[2]));
 		//identify.checkData();
+	}
+
+	@Override
+	public void identify(int R, int T) throws IOException {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 
