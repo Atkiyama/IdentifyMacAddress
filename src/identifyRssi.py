@@ -9,37 +9,42 @@ baseAddress = args[2]
 testAddress = args[3]
 R = int(args[4])
 
-#テストデータ作成
-
+#学習用データ作成
+x = []
 x_train = []
 y = []
 y_train = []
 for line in range(len(capture)):
     if capture.address[line] == baseAddress:
-        x_train.append(capture.time[line])
+        x.append(capture.time[line])
         y.append(capture.rssi[line])
 
 
-for num in range(len(y)):
-    if len(y) - num <= R:
+for num in range(len(x)):
+    if x[len(x)-1] - x[num] <= R:
+        x_train.append(x[num])
         y_train.append(y[num])
-
 
 #モデル生成
 from sklearn.linear_model import LinearRegression
 clf = LinearRegression()
-clf.fit(pd.DataFrame(x_train).tail(R),y_train)
+clf.fit(pd.DataFrame(x_train),y_train)
 
 #テストデータ作成
+x = []
+y = []
 x_test = []
 y_test = []
 for line in range(len(capture)):
-    if capture.address[line] == testAddress and len(x_test) < R:
-        x_test.append(capture.time[line])
-        y_test.append(capture.rssi[line])
+    if capture.address[line] == testAddress:
+        x.append(capture.time[line])
+        y.append(capture.rssi[line])
 
-#実際に回帰する
-import time
-time.sleep(5)
-for result in clf.predict(pd.DataFrame(x_test)):
-    print(result)
+for num in range(len(x)):
+    if x[num] - x[0] <= R:
+        x_test.append(x[num])
+        y_test.append(y[num])
+
+f = open('data/result/identifyRssi.txt', 'w')
+f.write(str(np.average(clf.predict(pd.DataFrame(x_test)))))
+f.close()
