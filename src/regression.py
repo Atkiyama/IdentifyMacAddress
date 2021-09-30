@@ -2,12 +2,12 @@ import sys
 import pandas as pd
 import numpy as np
 
-#コマンドライン引数 1 読み込むファイル 2前アドレス 3類似度を出したいアドレス 4閾値R 5使用する手法
+#コマンドライン引数 1 読み込むファイル 2前アドレス 3類似度を出したいアドレス 4閾値P 5使用する手法
 args = sys.argv
 capture = pd.read_csv(args[1], sep=",")
 baseAddress = args[2]
 testAddress = args[3]
-R = int(args[4])
+P = int(args[4])
 
 #学習用データ作成
 x = []
@@ -21,7 +21,7 @@ for line in range(len(capture)):
 
 
 for num in range(len(x)):
-    if x[len(x)-1] - x[num] <= R:
+    if x[len(x)-1] - x[num] <= P:
         x_train.append(x[num])
         y_train.append(y[num])
 
@@ -41,10 +41,10 @@ for line in range(len(capture)):
         y.append(capture.rssi[line])
 
 for num in range(len(x)):
-    if x[num] - x[0] <= R:
+    if x[num] - x[0] <= P:
         x_test.append(x[num])
         y_test.append(y[num])
 
-f = open('data/result/identifyRssi.txt', 'w')
+f = open('data/result/regression.txt', 'w')
 f.write(str(np.average(clf.predict(pd.DataFrame(x_test)))))
 f.close()

@@ -51,6 +51,8 @@ public class Address {
 	/**
 	 *RとTの相対距離
 	 */
+
+	private ArrayList<Packet> packets;
 	private BigDecimal tmpLength;
 	public BigDecimal getTmpLength() {
 		return tmpLength;
@@ -76,6 +78,16 @@ public class Address {
 		this.rssi.add(rssi);
 		this.numPkt = numPkt;
 		this.nextAdr = new ArrayList<>();
+		packets = new ArrayList<>();
+		packets.add(new Packet(advA,ftime,rssi));
+	}
+
+	public void addPacket(Packet packet) {
+		packets.add(packet);
+	}
+
+	public ArrayList<Packet> getPackets() {
+		return packets;
 	}
 
 	/**

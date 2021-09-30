@@ -108,4 +108,14 @@ public class ReadTXT extends Read {
 			packet.printData();
 	}
 
+	public double readRegression() throws IOException {
+		// TODO 自動生成されたメソッド・スタブ
+		File file = new File(fileName);
+		FileReader fileReader = new FileReader(file);
+		BufferedReader in = new BufferedReader(fileReader);
+		String str = in.readLine();
+		return Double.parseDouble(str);
+
+	}
+
 }

@@ -30,9 +30,13 @@ public abstract class Identify {
 	 */
 	protected double T;
 
-	public Identify(ArrayList<Packet> packets) {
+	protected int R;
+
+	public Identify(ArrayList<Packet> packets,int R,double T) {
 		this.packets = packets;
 		addressList = new ArrayList<>();
+		this.R = R;
+		this.T = T;
 
 	}
 
@@ -53,6 +57,7 @@ public abstract class Identify {
 					address.addRssi(packet.getRssi());
 					address.incrementNumPkt();
 					ad_known = true;
+					address.addPacket(packet);
 				}
 
 			}
@@ -65,7 +70,7 @@ public abstract class Identify {
 
 	}
 
-	public abstract void identify(int R,int T) throws IOException;
+	public abstract void identify() throws IOException;
 
 	/**
 	 * パケットの時間差が闘値Tに収まっているか判定するメソッド
@@ -81,12 +86,6 @@ public abstract class Identify {
 		}
 	}
 
-	/**
-	 * パケットのRSSI差が闘値Rに収まっているか判定するメソッド
-	 * @param adr_base 比較するアドレス1
-	 * @param adr_tmp 比較するアドレス2
-	 * @return 条件を満たしていればtrueを返す
-	 */
 
 	/**
 	 * アドレスリストのゲッター
