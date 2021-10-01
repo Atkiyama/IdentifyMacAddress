@@ -1,4 +1,4 @@
-package evaluation.table;
+package evaluation.table.move;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -50,7 +50,7 @@ public class Read {
 	public  ArrayList<String[]> read() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		//評価のパターン
-		final Pattern pEval = Pattern.compile("(R=)([0-9]+)(T=)([0-9]+)(,score is )(.+)(%)");
+		final Pattern pEval = Pattern.compile("(R=)([0-9]+)(T=)([0-9]+)(P=)([0-9]+)(,score is )(.+)(%)");
 		Matcher mEval;
 		File file = new File(inputFileName);
 		FileReader fileReader = new FileReader(file);
@@ -61,7 +61,7 @@ public class Read {
 		while (str != null) {
 			mEval = pEval.matcher(str);
 			if (mEval.find()) {
-				String row[] = { mEval.group(2), mEval.group(4), mEval.group(6) };
+				String row[] = { mEval.group(2), mEval.group(4), mEval.group(6), mEval.group(8) };
 				dataList.add(row);
 			}
 			str = in.readLine();

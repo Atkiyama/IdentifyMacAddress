@@ -2,8 +2,6 @@ package evaluation.evaluation;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
 
 import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
@@ -39,51 +37,10 @@ public class EvaluationMove {
 			sum = sumlong/100;
 		}
 		System.out.println("R="+args[0]+"T="+args[1]+"P="+args[2]+",score is "+sum+"%");
-		if(args.length==3)
-		outputDetails(evals);
 	}
 
 
-	/**
-	 *詳細を表示するメソッド
-	 * @param evals 評価のリスト
-	 * @throws IOException
-	 */
-	private static void outputDetails(ArrayList<Evaluation2> evals) throws IOException {
-		// TODO 自動生成されたメソッド・スタブ
-		HashMap<String,Boolean> score = calcScore(evals);
-		for(Entry<String,Boolean> sc:score.entrySet()) {
-			System.out.print(sc.getKey()+":");
-			if(sc.getValue())
-				System.out.println("○");
-			else {
-				System.out.println("×");
-			}
-		}
-	}
 
-	/**
-	 * スコアを計算するメソッド
-	 * @param evals 評価のリスト
-	 * @return スコアのリスト
-	 */
-	private static HashMap<String,Boolean> calcScore(ArrayList<Evaluation2> evals) {
-		HashMap<String,Boolean> score = new HashMap<>();
-		// TODO 自動生成されたメソッド・スタブ
-		for(Evaluation2 eval:evals) {
-			for(Entry<String,Boolean> sc:eval.getScore().entrySet()) {
-				if(!sc.getValue()) {
-					score.put(sc.getKey(),sc.getValue());
-				}
-			}
-		}
 
-		for(Entry<String,Boolean> sc:evals.get(0).getScore().entrySet()) {
-			if(!score.containsKey(sc.getKey())) {
-				score.put(sc.getKey(),sc.getValue());
-			}
-		}
-		return score;
-	}
 
 }

@@ -43,7 +43,7 @@ public class Evaluation100_2 {
 		}
 		System.out.println("R="+args[0]+"T="+args[1]+",score is "+sum+"%");
 		if(args.length==3)
-		outputDetails(evals);
+			outputDetails(evals);
 	}
 
 

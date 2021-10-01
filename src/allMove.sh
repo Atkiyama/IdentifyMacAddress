@@ -5,4 +5,5 @@ do
   ./convertMacAddress.sh move $numOfData
   ./identifyMove.sh $numOfData
   ./EvaluationMove.sh $numOfData
+#  ./moveGraph.sh $numOfData
 done

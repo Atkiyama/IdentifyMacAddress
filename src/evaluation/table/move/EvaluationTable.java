@@ -1,4 +1,4 @@
-package evaluation.table;
+package evaluation.table.move;
 
 import java.io.IOException;
 /**
@@ -9,7 +9,7 @@ import java.io.IOException;
 public class EvaluationTable {
 /**
  * メインメソッド
- * @param args
+ * @param args 0に入力先 1
  * @throws IOException
  */
 	public static void main(String[] args) throws IOException {

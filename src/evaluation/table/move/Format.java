@@ -1,4 +1,4 @@
-package evaluation.table;
+package evaluation.table.move;
 
 import java.util.ArrayList;
 /**
