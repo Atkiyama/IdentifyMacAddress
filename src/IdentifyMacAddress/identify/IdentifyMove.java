@@ -55,7 +55,7 @@ public class IdentifyMove extends Identify{
 	}
 
 
-	private boolean checkR(Address adr_base, Address adr_tmp) throws IOException {
+	protected boolean checkR(Address adr_base, Address adr_tmp) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 
 		String command = "regression.py " + fileName + " " + adr_base.getAdvA() + " " + adr_tmp.getAdvA() + " " + P;
@@ -64,14 +64,30 @@ public class IdentifyMove extends Identify{
 		ReadTXT read = new ReadTXT("data/result/regression.txt");
 		//回帰の平均値
 		double regression = read.readRegression();
-		ArrayList<Packet> packets = new ArrayList<>();
+		ArrayList<Integer> rssis = new ArrayList<>();
+		double first = 0;
+		int sum = 0;
 		for(Packet packet:adr_tmp.getPackets()) {
 			//adr_tmpの中からP秒以内のパケットを抽出
 			//その後平均を出してregressionがR以内に収まってるかをチェック
+			if(first == 0) {
+				first = packet.getTime();
+				rssis.add(packet.getRssi());
+				sum += packet.getRssi();
+			}
+			else if(packet.getTime()-first <= P) {
+				rssis.add(packet.getRssi());
+				sum += packet.getRssi();
+			}else {
+				break;
+			}
 		}
 
 
-		return false;
+		if(Math.abs(sum/rssis.size()-regression) <= R)
+			return true;
+		else
+			return false;
 	}
 
 	public static void main(String[] args) throws NumberFormatException, IOException {

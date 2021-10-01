@@ -1,6 +1,8 @@
 package identifyMacAddress.identify;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import identifyMacAddress.node.Address;
@@ -70,7 +72,65 @@ public abstract class Identify {
 
 	}
 
-	public abstract void identify() throws IOException;
+	public void identify() throws IOException {
+		//ここ以下でアドレスを特定する
+		for (Address adr_base : addressList) {
+			for (Address adr_tmp : addressList) {
+				//同一機器のものとみなしたらnextAdrにaddする
+				if (!adr_base.getAdvA().equals(adr_tmp.getAdvA()) && checkT(adr_base, adr_tmp)
+						&& checkR(adr_base, adr_tmp))
+					adr_base.addNextAddr(adr_tmp);
+			}
+		}
+
+		/**
+		 * 結果を出力
+		 */
+		System.out.println("R=" + R + "T=" + T);
+		for (Address address : addressList) {
+			if (address.getNextAdr().size() > 1)
+				identify(address);
+			address.printData();
+		}
+	}
+
+
+	protected abstract boolean checkR(Address adr_base, Address adr_tmp) throws IOException;
+
+	/**
+	 * nextAddrが複数ある場合にそれを一つに絞るメソッド
+	 * RとTを正規化して二次元の座標に起こした上でその距離が近い方を採用する
+	 * 丸め込み処理による例外のエラー(以下)が出るが気にしないこと
+	 * (java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result)
+	 * @param address nextAdrが複数あるアドレス
+	 */
+	protected void identify(Address address) {
+		//ここの計算にある程度の丸め込みが必要？
+		// TODO 自動生成されたメソッド・スタブ
+		address.setDeltaLT(T);
+		address.setDeltaR(R);
+		BigDecimal length = BigDecimal.valueOf(999999999);
+		Address nextAdr = new Address();
+		for (Address tmpNextAdr : address.getNextAdr()) {
+			tmpNextAdr.setDeltaFT(T);
+			tmpNextAdr.setDeltaR(R);
+			tmpNextAdr.setTmpLength((address.getDeltaLT().subtract(tmpNextAdr.getDeltaFT())).pow(2)
+					.add((address.getDeltaR().subtract(tmpNextAdr.getDeltaR())).pow(2))
+					.setScale(3, RoundingMode.HALF_UP));
+			//			System.out.println("address: deltaT="+address.getDeltaLT()+",deltaR="+address.getDeltaR());
+			//			System.out.println("nextAdr: deltaT="+tmpNextAdr.getDeltaFT()+",deltaR="+tmpNextAdr.getDeltaR()+"tmpLength="+tmpNextAdr.getTmpLength());
+			if (tmpNextAdr.getTmpLength().compareTo(length) < 0) {
+				nextAdr = tmpNextAdr;
+				length = tmpNextAdr.getTmpLength();
+			}
+		}
+		ArrayList<Address> na = new ArrayList<>();
+		na.add(nextAdr);
+		address.setNextAdr(na);
+
+	}
+
+
 
 	/**
 	 * パケットの時間差が闘値Tに収まっているか判定するメソッド
