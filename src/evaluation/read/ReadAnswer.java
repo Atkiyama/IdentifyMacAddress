@@ -16,8 +16,8 @@ public class ReadAnswer {
 	 * @return 機器(キャプチャファイル)のリスト
 	 * @throws IOException
 	 */
-	public ArrayList<String[]> read() throws IOException {
-		File file = new File("data/result/moveResult.csv");
+	public ArrayList<String[]> read(String fileName) throws IOException {
+		File file = new File(fileName);
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);;
 		String str = in.readLine();
@@ -29,5 +29,9 @@ public class ReadAnswer {
 		}
 		in.close();
 		return data;
+	}
+	public ArrayList<String[]> read() throws IOException{
+		return read("data/result/moveResult.csv");
+
 	}
 }

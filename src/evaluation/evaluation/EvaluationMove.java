@@ -1,4 +1,4 @@
-package evaluation;
+package evaluation.evaluation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,15 +7,12 @@ import java.util.Map.Entry;
 
 import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
-/**
- * multi以下のファイルに対して一斉評価を行うためのクラス
- * @author akiyama
- *
- */
-public class Evaluation100_2 {
+
+public class EvaluationMove {
 	/**
 	 *
-	 * @param args 0には闘値R,1には闘値Tを入れること,2に使用するデータ数を入れる,3にmoveかstayかを入れる
+	 * @param args 0には闘値R,1には闘値T,2には閾値Pを入れること
+	 * 3に使用するデータ数を入れる
 	 * @throws NumberFormatException
 	 * @throws IOException
 	 */
@@ -25,10 +22,10 @@ public class Evaluation100_2 {
 		// TODO 自動生成されたメソッド・スタブ
 		ArrayList<Evaluation2> evals = new ArrayList<>();
 		for (int i = 1; i <= 100; i++) {
-			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]), i,args[3]);
+			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]),Integer.parseInt(args[3]), i,args[4]);
 
 			Evaluation2 eval = new Evaluation2(readData.read(), readAnswer.read(), Integer.parseInt(args[0]),
-					Integer.parseInt(args[1]));
+					Integer.parseInt(args[1]),Integer.parseInt(args[3]));
 			eval.evaluation();
 			evals.add(eval);
 			sum += eval.getAccuracy();
@@ -41,7 +38,7 @@ public class Evaluation100_2 {
 			}
 			sum = sumlong/100;
 		}
-		System.out.println("R="+args[0]+"T="+args[1]+",score is "+sum+"%");
+		System.out.println("R="+args[0]+"T="+args[1]+"P="+args[2]+",score is "+sum+"%");
 		if(args.length==3)
 		outputDetails(evals);
 	}

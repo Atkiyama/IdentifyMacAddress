@@ -21,6 +21,10 @@ public class ReadData {
 	 */
 	private int T;
 	/**
+	 * 閾値P
+	 */
+	private int P;
+	/**
 	 * 読み込むファイル名
 	 */
 	private String fileName;
@@ -48,6 +52,25 @@ public class ReadData {
 		fileName = "data/result/multi/"+isMove+"/"+numOfData+"/"+fileNumber+"/"+R+","+T+".txt";
 	}
 
+	/**
+	 * move用
+	 * @param r
+	 * @param t
+	 * @param p
+	 * @param numOfData
+	 * @param fileNumber
+	 * @param isMove
+	 */
+	public ReadData(int r,int t,int p,int numOfData,int fileNumber,String isMove) {
+		R = r;
+		T = t;
+		P = p;
+		fileName = "data/result/multi/"+isMove+"/"+numOfData+"/"+fileNumber+"/"+R+","+T+","+P+".txt";
+	}
+
+public ReadData(int parseInt, int parseInt2, int parseInt3, int i) {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
 /**
  * 読み込むメソッド
  * @return 配列のリストにした結果

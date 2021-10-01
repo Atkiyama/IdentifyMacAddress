@@ -1,7 +1,9 @@
-package evaluation;
+package evaluation.evaluation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
@@ -10,10 +12,10 @@ import evaluation.read.ReadData;
  * @author akiyama
  *
  */
-public class Evaluation100 {
+public class Evaluation100_2 {
 	/**
 	 *
-	 * @param args 0には闘値R,1には闘値Tを入れること,2にデータ数
+	 * @param args 0には闘値R,1には闘値Tを入れること,2に使用するデータ数を入れる,3にmoveかstayかを入れる
 	 * @throws NumberFormatException
 	 * @throws IOException
 	 */
@@ -21,11 +23,11 @@ public class Evaluation100 {
 		ReadAnswer readAnswer = new ReadAnswer();
 		double sum =0;
 		// TODO 自動生成されたメソッド・スタブ
-		ArrayList<Evaluation> evals = new ArrayList<>();
+		ArrayList<Evaluation2> evals = new ArrayList<>();
 		for (int i = 1; i <= 100; i++) {
-			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]),i);
+			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]), i,args[3]);
 
-			Evaluation eval = new Evaluation(readData.read(), readAnswer.read(), Integer.parseInt(args[0]),
+			Evaluation2 eval = new Evaluation2(readData.read(), readAnswer.read(), Integer.parseInt(args[0]),
 					Integer.parseInt(args[1]));
 			eval.evaluation();
 			evals.add(eval);
@@ -34,14 +36,14 @@ public class Evaluation100 {
 		sum = sum/100;
 		if(Double.isNaN(sum)) {
 			long sumlong = 0;
-			for(Evaluation eval:evals) {
+			for(Evaluation2 eval:evals) {
 				sumlong = (long) eval.getAccuracy();
 			}
 			sum = sumlong/100;
 		}
 		System.out.println("R="+args[0]+"T="+args[1]+",score is "+sum+"%");
-		//if(args.length==3)
-		//outputDetails(evals);
+		if(args.length==3)
+		outputDetails(evals);
 	}
 
 
@@ -50,8 +52,7 @@ public class Evaluation100 {
 	 * @param evals 評価のリスト
 	 * @throws IOException
 	 */
-	/*
-	private static void outputDetails(ArrayList<Evaluation> evals) throws IOException {
+	private static void outputDetails(ArrayList<Evaluation2> evals) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		HashMap<String,Boolean> score = calcScore(evals);
 		for(Entry<String,Boolean> sc:score.entrySet()) {
@@ -62,19 +63,18 @@ public class Evaluation100 {
 				System.out.println("×");
 			}
 		}
-	}*/
+	}
 
 	/**
 	 * スコアを計算するメソッド
 	 * @param evals 評価のリスト
 	 * @return スコアのリスト
 	 */
-	/*
-	private static HashMap<String,Boolean> calcScore(ArrayList<Evaluation> evals) {
+	private static HashMap<String,Boolean> calcScore(ArrayList<Evaluation2> evals) {
 		HashMap<String,Boolean> score = new HashMap<>();
 		// TODO 自動生成されたメソッド・スタブ
-		for(Evaluation eval:evals) {
-			for(Entry<String,Boolean> sc:eval.getScore().entr) {
+		for(Evaluation2 eval:evals) {
+			for(Entry<String,Boolean> sc:eval.getScore().entrySet()) {
 				if(!sc.getValue()) {
 					score.put(sc.getKey(),sc.getValue());
 				}
@@ -88,6 +88,5 @@ public class Evaluation100 {
 		}
 		return score;
 	}
-	*/
 
 }

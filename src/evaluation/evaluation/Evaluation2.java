@@ -1,4 +1,4 @@
-package evaluation;
+package evaluation.evaluation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +34,10 @@ public class Evaluation2 {
 	 * 受診時刻の闘値
 	 */
 	private int T;
-
+	/**
+	 * 回帰の閾値
+	 */
+	private int P;
 	/**
 	 *  各引数で初期化,scoreのみnewする
 	 * @param data 読み込んだデータ
@@ -48,6 +51,15 @@ public class Evaluation2 {
 		score = new HashMap<>();
 		this.R = R;
 		this.T = T;
+	}
+
+	public Evaluation2(ArrayList<String[]> data, ArrayList<String[]> answer,int R,int T,int P) {
+		this.data = data;
+		this.answer = answer;
+		score = new HashMap<>();
+		this.R = R;
+		this.T = T;
+		this.P = P;
 	}
 
 	/**
@@ -114,6 +126,7 @@ public class Evaluation2 {
 			}
 		}
 	}
+
 
 	/**
 	 * メインメソッド 引数によって結果出力方法が変わる
