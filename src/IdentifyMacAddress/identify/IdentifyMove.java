@@ -17,13 +17,19 @@ public class IdentifyMove extends Identify{
 	 */
 	private int P;
 
-	private String fileName;
+	ArrayList<String> command;
 
 	public IdentifyMove(ArrayList<Packet> read,String fileName,int R,double T,int P) {
 		// TODO 自動生成されたコンストラクター・スタブ
 		super(read,R,T);
-		this.fileName = fileName;
 		this.P = P;
+		command = new ArrayList<>();
+		command.add("python");
+		command.add("regression.py");
+		command.add(fileName);
+		command.add(null);
+		command.add(null);
+		command.add(String.valueOf(P));
 	}
 
 	/**
@@ -45,21 +51,22 @@ public class IdentifyMove extends Identify{
 
 		/**
 		 * 結果を出力
+		 */
 
-		System.out.println("R=" + R + "T=" + T);
+		System.out.println("R=" + R + "T=" + T+ "P=" + P);
 		for (Address address : addressList) {
 			if (address.getNextAdr().size() > 1)
 				identify(address);
 			address.printData();
-		}*/
+		}
 	}
 
 
 	protected boolean checkR(Address adr_base, Address adr_tmp) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-
-		String command = "regression.py " + fileName + " " + adr_base.getAdvA() + " " + adr_tmp.getAdvA() + " " + P;
-		ProcessBuilder processBuilder = new ProcessBuilder("python", command);
+		command.set(3,adr_base.getAdvA());
+		command.set(4,adr_tmp.getAdvA());
+		ProcessBuilder processBuilder = new ProcessBuilder(command);
 		processBuilder.start();
 		ReadTXT read = new ReadTXT("data/result/regression.txt");
 		//回帰の平均値

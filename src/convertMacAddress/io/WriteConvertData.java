@@ -20,6 +20,7 @@ public class WriteConvertData {
 	public void write(ArrayList<Packet> packets,String fileName) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		 FileWriter fileWriter = new FileWriter(fileName);
+		 fileWriter.append("address,time,rssi\r\n");
 		 for(Packet packet:packets) {
 			 fileWriter.append(packet.getAddress());
 			 fileWriter.append(",");

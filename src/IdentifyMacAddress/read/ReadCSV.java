@@ -36,6 +36,8 @@ public class ReadCSV extends Read{
 		}
 
 		in.close();
+		//１行目(address,time,rssi)をカット
+		data.remove(0);
 		//その後pakcetのリストに書き換える
 		ArrayList<Packet> packets =new ArrayList<>();
 		for(String[] line:data) {

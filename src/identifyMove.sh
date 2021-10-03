@@ -11,7 +11,7 @@ do
     do
       for P in {1..20}
       do
-        java identifyMacAddress/identify/IdentifyMove data/capture/convert/move/$numOfData/$n,convertData.csv $R $T $P >data/result/multi/stay/$numOfData/$n/$R,$T,$P.txt
+        java identifyMacAddress/identify/IdentifyMove data/capture/convert/move/$numOfData/$n,convertData.csv $R $T $P >data/result/multi/move/$numOfData/$n/$R,$T,$P.txt
       done
     done
   done
