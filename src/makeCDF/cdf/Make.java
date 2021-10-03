@@ -55,7 +55,7 @@ public abstract class Make {
 		BigDecimal i = BigDecimal.ONE;
 		BigDecimal size = BigDecimal.valueOf(data.size());
 		for(Double t:data) {
-			System.out.println(i.divide(size,20,RoundingMode.HALF_UP).toPlainString()+","+t);
+			System.out.println(t+","+i.divide(size,20,RoundingMode.HALF_UP).toPlainString());
 			i=i.add(BigDecimal.ONE);
 		}
 	}
@@ -87,7 +87,7 @@ public abstract class Make {
 		return sub.setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
 
-	public  void setAddressList() {;
+	public  void setAddressList() {
 		for(BTMachine btMachine:btMachines) {
 			btMachine.setAddressList();
 		}

@@ -1,6 +1,7 @@
 package makeCDF.node;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Address {
 	/**
@@ -37,6 +38,8 @@ public class Address {
 	public  void addPacket(Packet packet) {
 		// TODO 自動生成されたメソッド・スタブ
 		packets.add(packet);
+		Collections.sort(packets, new PacketComparator());
+		setTimes();
 	}
 
 	/**

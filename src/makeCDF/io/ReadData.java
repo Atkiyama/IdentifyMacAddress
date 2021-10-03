@@ -56,7 +56,7 @@ public class ReadData {
 		BufferedReader in;
 
 		for (BTMachine btMachine : btMachines) {
-			file = new File("data/capture/"+btMachine.getFileName()+".txt");
+			file = new File("data/capture/single/move/txt/"+btMachine.getFileName()+".txt");
 			fileReader = new FileReader(file);
 			in = new BufferedReader(fileReader);
 			//必要な値を格納する変数

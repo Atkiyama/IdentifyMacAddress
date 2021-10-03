@@ -112,6 +112,7 @@ public class BTMachine {
 	 * アドレスリストを生成するメソッド
 	 */
 	public void setAddressList() {
+		Collections.sort(packets, new PacketComparator());
 		for (String addressName : addresses) {
 			addressList.add(new Address(addressName));
 		}
@@ -121,9 +122,9 @@ public class BTMachine {
 					address.addPacket(packet);
 			}
 
+
 		}
 
-		Collections.sort(packets, new PacketComparator());
 
 	}
 

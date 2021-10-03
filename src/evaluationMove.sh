@@ -1,10 +1,10 @@
 #bin/bash
 
 #コマンドライン引数
-numOfData = $1
+numOfData=$1
 for R in {1..20}
 do
-  for T in {1..20}
+  for T in 5
   do
     for P in {1..20}
     do
