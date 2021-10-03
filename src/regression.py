@@ -2,49 +2,17 @@ import sys
 import pandas as pd
 import numpy as np
 
-#コマンドライン引数 1 読み込むファイル 2前アドレス 3類似度を出したいアドレス 4閾値P 5使用する手法
+#コマンドライン引数 1閾値P 2使用する手法
 args = sys.argv
-capture = pd.read_csv(args[1], sep=",")
-baseAddress = args[2]
-testAddress = args[3]
-P = int(args[4])
-
-#学習用データ作成
-x = []
-x_train = []
-y = []
-y_train = []
-for line in range(len(capture)):
-    if capture.address[line] == baseAddress:
-        x.append(capture.time[line])
-        y.append(capture.rssi[line])
-
-
-for num in range(len(x)):
-    if x[len(x)-1] - x[num] <= P:
-        x_train.append(x[num])
-        y_train.append(y[num])
+capture = pd.read_csv("data/result/forRegression.csv", sep=",")
+P = int(args[1])
 
 #モデル生成
 from sklearn.linear_model import LinearRegression
-clf = LinearRegression()
-clf.fit(pd.DataFrame(x_train),y_train)
-
-#テストデータ作成
-x = []
-y = []
-x_test = []
-y_test = []
-for line in range(len(capture)):
-    if capture.address[line] == testAddress:
-        x.append(capture.time[line])
-        y.append(capture.rssi[line])
-
-for num in range(len(x)):
-    if x[num] - x[0] <= P:
-        x_test.append(x[num])
-        y_test.append(y[num])
-
+clf = LinearRegression(fit_intercept = True, normalize = False, copy_X = True, n_jobs = -1)
+clf.fit(pd.DataFrame(capture.trainTime),capture.trainRssi)
+#ファイル出力
 f = open('data/result/regression.txt', 'w')
-f.write(str(np.average(clf.predict(pd.DataFrame(x_test)))))
+for data in clf.predict(pd.DataFrame(capture.testTime))
+    f.write(data)
 f.close()

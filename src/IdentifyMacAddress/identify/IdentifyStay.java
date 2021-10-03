@@ -3,11 +3,11 @@ package identifyMacAddress.identify;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import identifyMacAddress.io.Read;
+import identifyMacAddress.io.ReadCSV;
+import identifyMacAddress.io.ReadTXT;
 import identifyMacAddress.node.Address;
 import identifyMacAddress.node.Packet;
-import identifyMacAddress.read.Read;
-import identifyMacAddress.read.ReadCSV;
-import identifyMacAddress.read.ReadTXT;
 
 /**
  * 旧同定用プログラム

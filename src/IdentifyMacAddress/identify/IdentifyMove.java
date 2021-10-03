@@ -3,11 +3,12 @@ package identifyMacAddress.identify;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import identifyMacAddress.io.Read;
+import identifyMacAddress.io.ReadCSV;
+import identifyMacAddress.io.ReadTXT;
+import identifyMacAddress.io.Write;
 import identifyMacAddress.node.Address;
 import identifyMacAddress.node.Packet;
-import identifyMacAddress.read.Read;
-import identifyMacAddress.read.ReadCSV;
-import identifyMacAddress.read.ReadTXT;
 
 /**
  * 移動するBLE機器のMACアドレスを同定するクラス
@@ -35,16 +36,13 @@ public class IdentifyMove extends Identify{
 	 * @param T	時間の閾値
 	 * @param P 回帰範囲(秒)の閾値
 	 */
-	public IdentifyMove(ArrayList<Packet> read,String fileName,int R,double T,int P) {
+	public IdentifyMove(ArrayList<Packet> read,int R,double T,int P) {
 		// TODO 自動生成されたコンストラクター・スタブ
 		super(read,R,T);
 		this.P = P;
 		command = new ArrayList<>();
 		command.add("python");
 		command.add("regression.py");
-		command.add(fileName);
-		command.add(null);
-		command.add(null);
 		command.add(String.valueOf(P));
 	}
 
@@ -85,8 +83,7 @@ public class IdentifyMove extends Identify{
 	protected boolean checkR(Address adr_base, Address adr_tmp) throws IOException, InterruptedException {
 		// TODO 自動生成されたメソッド・スタブ
 		//コマンドライン引数を更新
-		command.set(3,adr_base.getAdvA());
-		command.set(4,adr_tmp.getAdvA());
+		Write.write(adr_base,adr_tmp,P);
 		ProcessBuilder processBuilder = new ProcessBuilder(command);
 		Process process = processBuilder.start();
 		//この行を絶対に消さないこと
@@ -140,7 +137,7 @@ public class IdentifyMove extends Identify{
 			read = null;
 			System.exit(0);
 		}
-		Identify identify = new IdentifyMove(read.read(),args[0],Integer.parseInt(args[1]),Integer.parseInt(args[2]),Integer.parseInt(args[3]));
+		Identify identify = new IdentifyMove(read.read(),Integer.parseInt(args[1]),Integer.parseInt(args[2]),Integer.parseInt(args[3]));
 		identify.makeAddressList();
 		//identify.removeFewAddress();
 		identify.identify();

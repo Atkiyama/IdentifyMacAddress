@@ -3,9 +3,9 @@ package graph;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import identifyMacAddress.io.Read;
+import identifyMacAddress.io.ReadTXT;
 import identifyMacAddress.node.Packet;
-import identifyMacAddress.read.Read;
-import identifyMacAddress.read.ReadTXT;
 
 /**
  * 単一MACアドレスのグラフを描画するためのデータを出力するクラス

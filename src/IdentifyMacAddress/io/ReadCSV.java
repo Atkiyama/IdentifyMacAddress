@@ -1,4 +1,4 @@
-package identifyMacAddress.read;
+package identifyMacAddress.io;
 
 import java.io.BufferedReader;
 import java.io.File;
