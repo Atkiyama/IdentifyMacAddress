@@ -9,6 +9,11 @@ import identifyMacAddress.read.Read;
 import identifyMacAddress.read.ReadCSV;
 import identifyMacAddress.read.ReadTXT;
 
+/**
+ * 移動するBLE機器のMACアドレスを同定するクラス
+ * @author akiyama
+ *
+ */
 public class IdentifyMove extends Identify{
 	/**
 	 * 閾値P
@@ -17,8 +22,19 @@ public class IdentifyMove extends Identify{
 	 */
 	private int P;
 
+	/**
+	 * pythonを使って回帰を行う際のコマンド
+	 */
 	ArrayList<String> command;
 
+	/**
+	 * 引数で初期化,コマンドを作る
+	 * @param read パケットのリスト
+	 * @param fileName 読み込むファイル名
+	 * @param R RSSIの閾値
+	 * @param T	時間の閾値
+	 * @param P 回帰範囲(秒)の閾値
+	 */
 	public IdentifyMove(ArrayList<Packet> read,String fileName,int R,double T,int P) {
 		// TODO 自動生成されたコンストラクター・スタブ
 		super(read,R,T);
@@ -36,9 +52,10 @@ public class IdentifyMove extends Identify{
 	 * メインメソッド
 	 * @param args 0に読み込むキャプチャファイル名(絶対or相対パス),１にTを入れる
 	 * @throws IOException
+	 * @throws InterruptedException
 	 */
 
-	public void identify() throws IOException {
+	public void identify() throws IOException, InterruptedException {
 		//ここ以下でアドレスを特定する
 		for (Address adr_base : addressList) {
 			for (Address adr_tmp : addressList) {
@@ -53,7 +70,7 @@ public class IdentifyMove extends Identify{
 		 * 結果を出力
 		 */
 
-		System.out.println("R=" + R + "T=" + T+ "P=" + P);
+		System.out.println("R=" + R + "T=" + (int)T+ "P=" + P);
 		for (Address address : addressList) {
 			if (address.getNextAdr().size() > 1)
 				identify(address);
@@ -62,12 +79,19 @@ public class IdentifyMove extends Identify{
 	}
 
 
-	protected boolean checkR(Address adr_base, Address adr_tmp) throws IOException {
+	/**
+	 * 回帰を用いてRSSIを精査する
+	 */
+	protected boolean checkR(Address adr_base, Address adr_tmp) throws IOException, InterruptedException {
 		// TODO 自動生成されたメソッド・スタブ
+		//コマンドライン引数を更新
 		command.set(3,adr_base.getAdvA());
 		command.set(4,adr_tmp.getAdvA());
 		ProcessBuilder processBuilder = new ProcessBuilder(command);
-		processBuilder.start();
+		Process process = processBuilder.start();
+		//この行を絶対に消さないこと
+		//プロセスが終了するまでプログラムを一時停止させるメソッド
+		process.waitFor();
 		ReadTXT read = new ReadTXT("data/result/regression.txt");
 		//回帰の平均値
 		double regression = read.readRegression();
@@ -97,7 +121,14 @@ public class IdentifyMove extends Identify{
 			return false;
 	}
 
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	/**
+	 * メインメソッド
+	 * @param args 0に読み込むファイル名,1,2,3に閾値R,T,Pを入れる
+	 * @throws NumberFormatException
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	public static void main(String[] args) throws NumberFormatException, IOException, InterruptedException {
 		// TODO 自動生成されたメソッド・スタブ
 		Read read;
 		if(args[0].contains("txt"))

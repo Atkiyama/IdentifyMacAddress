@@ -1,42 +1,64 @@
 # IdentifyMacAddress
-**src内のパッケージ
+src内には主に以下のパッケージが存在します
 
-identifyMacAddress:identifyMacAddress.IdentifyMacAddressを実行すると指定したキャプチャファイルからmacアドレスを特定する
+convertMacAddress
+パケットのキャプチャデータを結合します
 
-dataAnalyze:dataAnalyze.DataAnalyze.javaを実行すると、IdentifyMacAddress.shで出力したデータをもとにグループを作成しその差分を表示する
+IdentifyMacAddress
+MACアドレスの同定を行います
 
-convertMacAddress:convertMacAddress.ConvertMacAddressを実行するとdata/result/singleResult.csv(dataフォルダは大容量のため本リポジトリには含まれていない)から上記パッケージの出力結果から推定したmacアドレスを読みこみ、そのアドレスのパケットデータをキャプチャファイルから取得し各キャプチャファイルから抽出した擬似キャプチャファイルを作成する
+dataAnalyze
+キャプチャデータをアドレス間の時間のみで擬似的に同定します。
+MACアドレス変化の正解を追うのに役立つツールです
 
-evaluation:主に結果を評価するためのクラスが入っている
-evaluation/Evaluation 結合データ単体での評価をする
-evaluation/Evaluation100 100の結合データを評価する
-evaluation/table/EvaluationTable 結果を元に表(csv)を作成
+evaluation
+同定精度の評価を行います
 
-dataAnalyze.sh パスなしでファイル名を入力することで楽にdataAnalyze:dataAnalyze.DataAnalyze.javaを実行できる
+graph
+gnuplotによるグラフを生成するためのツールです
 
-IdentifyMacAddress.sh 100件のデータに対して全ての闘値のidentifyMacAddres.IdentifyMacAddressSingleを実行できる
+makeCDF
+gnuplotでCDF(累積分布関数)を作成するためのツールです
 
-full.sh:data/result/single/フォルダにある全てのテキストフォルダを読み込んでdataAnalyzeのように解析結果を表示できます(要はdataAnalyze.shとidentify.shを全て実行する)
+その他ファイルやフォルダ
 
-fullfirst.sh:素早く動かすためにfull.shから制限をとっぱらったものです。場合によってはフリーズする可能性があるので扱いにはご注意ください
+regression.py
+identifyMaCAddress内にて回帰を行うスクリプトです
 
-compile.sh:全javaファイルをコンパイルします。文字コードはUTF-8に統一していますのでWindownsでもmacでも動くと思います。
+scan.py
+パケットキャプチャを行うスクリプトです
 
-makeConvert100.sh:100個の結合データを作成します
+allMove.sh
+結合データ生成,同定,評価を一気に行います
 
-getData.sh: src以下にdataフォルダ(https://github.com/Atkiyama/IdentifyMacAddressData.git)を作成します。
+compile.sh
+全てのjavaファイルを一気にコンパイルします
 
-scan.py:BLEアドバタイズバケットをキャッチします
+convertMacAddress.sh
+結合データを一気に100パターン作成します
 
-scan.sh: scan.pyを１時間起動してキャプチャデータをテキストデータに起こします(src/data/capture)
-*scan.pyとscan.shはbluepyをインストールしたLinux環境で使用してください
-また、sudoで実行してください
+dataAnalyze.sh
+全キャプチャデータに対してdataAnalyzeパッケージ内のプログラムを使用します
+
+evaluationMove.sh
+全ての同定結果に対して評価を行います
+
+identifyMove.sh
+全結合データに対して同定を行います
+
+data
+本システムに使うデータが入っています
+
+script
+過去に使用したスクリプトです
+現在使用してもまともに動かないものが大半ですのでご注意ください
+
 
 **ドキュメントについて
 doc/index.htmlに本リポジトリのjavadocドキュメントがあります。
 
 **dataフォルダについて
 
-dataフォルダはsrc以下に保存してください。(getData.shを使用すればその通りになります)
+dataフォルダはsrc以下に保存してください。(getData.shを使用すればその通りになります.scpirtフォルダ内にあります)
 
 詳しい説明はdataフォルダのREADMEファイルをご確認ください

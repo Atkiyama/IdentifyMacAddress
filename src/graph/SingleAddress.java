@@ -61,6 +61,9 @@ public class SingleAddress {
 
 	}
 
+	/**
+	 * 平滑化する
+	 */
 	public void smoothing3() {
 		for(int i=1 ;i<data.size()-1;i++) {
 			int sum =data.get(i-1).getRssi();
@@ -70,6 +73,9 @@ public class SingleAddress {
 		}
 	}
 
+	/**
+	 * 平滑化する
+	 */
 	public void smoothing5() {
 		for(int i=2 ;i<data.size()-2;i++) {
 			int sum = data.get(i-1).getRssi();

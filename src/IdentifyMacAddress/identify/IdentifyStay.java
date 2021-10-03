@@ -9,6 +9,11 @@ import identifyMacAddress.read.Read;
 import identifyMacAddress.read.ReadCSV;
 import identifyMacAddress.read.ReadTXT;
 
+/**
+ * 旧同定用プログラム
+ * @author akiyama
+ *
+ */
 public class IdentifyStay extends Identify {
 
 	public IdentifyStay(ArrayList<Packet> packets,int R,double T) {
@@ -102,8 +107,9 @@ public class IdentifyStay extends Identify {
 	 * メインメソッド
 	 * @param args 0に読み込むキャプチャファイル名(絶対or相対パス),１にR,2にTを入れる(別途スクリプトで操作)
 	 * @throws IOException
+	 * @throws InterruptedException
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		Read read;
 		if(args[0].contains("txt"))
 			read = new ReadTXT(args[0]);

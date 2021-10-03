@@ -9,10 +9,14 @@ import identifyMacAddress.read.Read;
 import identifyMacAddress.read.ReadTXT;
 /**
  * キャプチャデータを抽出するクラス
+ * アドレス間の秒数のみで一旦抽出する
  * @author akiyama
  *
  */
 public class DataAnalyze {
+	/**
+	 * パケットのリスト
+	 */
 	public ArrayList<Packet> packets;
 	public DataAnalyze(ArrayList<Packet> packets) {
 		this.packets = packets;
@@ -20,11 +24,20 @@ public class DataAnalyze {
 		history = new ArrayList<>();
 	}
 
+	/**
+	 * アドレスのリスト
+	 */
 	public ArrayList<Address> addressList;
 
+	/**
+	 * アドレス変更の履歴
+	 */
 	public ArrayList<Address> history;
 
 
+	/**
+	 * アドレスリストを生成するメソッド
+	 */
 	public void makeAddressList() {
 		//既知のアドレスかどうかのフラグ
 		boolean ad_known = false;
@@ -48,6 +61,10 @@ public class DataAnalyze {
 
 	}
 
+	/**
+	 * パケット間の最大間隔だけで擬似的に同定するクラス
+	 * @param time パケット間の最大間隔
+	 */
 	public void identify(int time){
 		for (Address adr_base : addressList) {
 			for (Address adr_tmp : addressList) {
@@ -58,6 +75,12 @@ public class DataAnalyze {
 		}
 
 	}
+
+	/**
+	 * 最初のアドレスを抽出するメソッド
+	 * @param lowwer 下限
+	 * @param upper 上限
+	 */
 	public void extract(int lowwer,int upper) {
 		ArrayList<Address> extract = new ArrayList<>();
 		for(Address address:addressList) {
@@ -84,6 +107,9 @@ public class DataAnalyze {
 
 
 	}
+	 /**
+	  * データを出力するクラス
+	  */
 	private void print() {
 		// TODO 自動生成されたメソッド・スタブ
 		for(Address first:addressList) {
@@ -91,6 +117,10 @@ public class DataAnalyze {
 		}
 	}
 
+	/**
+	 * 再起処理によりデータを出力するクラス
+	 * @param address データ出力をしたいアドレス
+	 */
 	public void printNext(Address address) {
 		if(address.getNextAdr().size() == 0) {
 			for(Address his:history)

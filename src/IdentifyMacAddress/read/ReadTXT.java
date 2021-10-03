@@ -114,6 +114,8 @@ public class ReadTXT extends Read {
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);
 		String str = in.readLine();
+		if(str == null)
+			return 999; //絶対に失敗する値
 		return Double.parseDouble(str);
 
 	}

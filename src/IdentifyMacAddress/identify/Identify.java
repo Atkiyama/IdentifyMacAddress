@@ -72,7 +72,7 @@ public abstract class Identify {
 
 	}
 
-	public void identify() throws IOException {
+	public void identify() throws IOException, InterruptedException {
 		//ここ以下でアドレスを特定する
 		for (Address adr_base : addressList) {
 			for (Address adr_tmp : addressList) {
@@ -95,7 +95,7 @@ public abstract class Identify {
 	}
 
 
-	protected abstract boolean checkR(Address adr_base, Address adr_tmp) throws IOException;
+	protected abstract boolean checkR(Address adr_base, Address adr_tmp) throws IOException, InterruptedException;
 
 	/**
 	 * nextAddrが複数ある場合にそれを一つに絞るメソッド
