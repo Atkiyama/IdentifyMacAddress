@@ -1,4 +1,4 @@
-package dataAnalyze.analyze;
+package dataAnalyze.old.analyze;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import dataAnalyze.node.Data;
+import dataAnalyze.old.node.Data;
 /**
  * identyfiMacAddressの出力結果を読み込むクラス
  * @author akiyama

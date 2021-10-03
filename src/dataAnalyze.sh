@@ -1,5 +1,7 @@
 #!/bin/bash
 
-echo "resultフォルダの読み込むファイル名を拡張子抜きで入力してください"
-read inputFileName
-java dataAnalyze/DataAnalyze data/result/single/$inputFileName.txt > data/result/analyze/analyze$inputFileName.txt
+LS=$(ls data/capture/single/move/txt/)
+for inputFileName in ${LS}
+  do
+    java dataAnalyze/DataAnalyze data/capture/single/move/txt/$inputFileName 10 20 20 > data/result/analyze/move/$inputFileName
+  done

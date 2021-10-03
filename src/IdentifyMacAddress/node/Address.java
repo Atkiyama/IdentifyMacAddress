@@ -189,6 +189,16 @@ public class Address {
 		System.out.println();
 
 	}
+
+	public void printDataForAnalyze() {
+		System.out.print(advA + ",ftime =");
+		System.out.print(ftime + ",ltime =");
+		System.out.print(ltime + ",aveRssi=");
+		System.out.print(getAverageRssi() + ",numPkt=");
+		System.out.println(numPkt);
+
+	}
+
 	public void setNextAdr(ArrayList<Address> nextAdr) {
 		this.nextAdr = nextAdr;
 	}

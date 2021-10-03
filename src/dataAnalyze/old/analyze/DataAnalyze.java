@@ -1,12 +1,13 @@
-package dataAnalyze.analyze;
+package dataAnalyze.old.analyze;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import dataAnalyze.node.Data;
-import dataAnalyze.node.DataGroupe;
+import dataAnalyze.old.node.Data;
+import dataAnalyze.old.node.DataGroupe;
 /**
  * identifyMacAddressで出た出力結果を解析し、結果ごとに分類するメインクラス
+ *(旧システム)
  * @author akiyama
  *
  */
