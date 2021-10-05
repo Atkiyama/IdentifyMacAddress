@@ -43,8 +43,6 @@ public class IdentifyMove extends Identify{
 		command = new ArrayList<>();
 		command.add("python");
 		command.add("regression.py");
-		command.add("data/regression/regression.csv");
-
 		command.add(String.valueOf(P));
 	}
 
