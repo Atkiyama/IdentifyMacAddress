@@ -17,9 +17,10 @@ public class Write {
 		else
 			roop = test.size();
 
-		String fileName = "data/result/forRegression.csv";
+		String fileName = "data/regression/regression.csv";
 		FileWriter fileWriter = new FileWriter(fileName);
 		fileWriter.append("trainTime,trainRssi,testTime");
+		fileWriter.append("\r\n");
 		for (int i = 0; i < roop; i++) {
 			if (i >= train.size()) {
 				fileWriter.append("");

@@ -61,7 +61,7 @@ public class Read {
 		while (str != null) {
 			mEval = pEval.matcher(str);
 			if (mEval.find()) {
-				String row[] = { mEval.group(2), mEval.group(4), mEval.group(6), mEval.group(8) };
+				String row[] = { mEval.group(2),  mEval.group(6), mEval.group(8) };
 				dataList.add(row);
 			}
 			str = in.readLine();
