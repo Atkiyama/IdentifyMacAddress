@@ -10,9 +10,9 @@ do
     do
       if [ "$R" -eq "1" -a "$T" -eq "1" -a "$P" -eq "1" ]
       then
-        java evaluation/EvaluationMove $R $T $numOfData move >data/result/evaluation/move/evaluation$numOfData .txt
+        java evaluation/evaluation/EvaluationMove $R $T $P $numOfData >data/result/evaluation/move/evaluation$numOfData .txt
       else
-        java evaluation/EvaluationMove $R $T $numOfData move >>data/result/evaluation/move/evaluation$numOfData .txt
+        java evaluation/evaluation/EvaluationMove $R $T $P $numOfData >>data/result/evaluation/move/evaluation$numOfData .txt
       fi
     done
   done

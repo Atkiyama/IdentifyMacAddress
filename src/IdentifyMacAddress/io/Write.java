@@ -8,7 +8,7 @@ import identifyMacAddress.node.Address;
 import identifyMacAddress.node.Packet;
 
 public class Write {
-	public static void write(Address adr_base, Address adr_tmp, int P) throws IOException {
+	public static void write(Address adr_base, Address adr_tmp,String fileName,int P) throws IOException {
 		ArrayList<Packet> train = extractTrain(adr_base, P);
 		ArrayList<Double> test = extractTest(adr_tmp, P);
 		int roop;
@@ -17,7 +17,6 @@ public class Write {
 		else
 			roop = test.size();
 
-		String fileName = "data/regression/regression.csv";
 		FileWriter fileWriter = new FileWriter(fileName);
 		fileWriter.append("trainTime,trainRssi,testTime");
 		fileWriter.append("\r\n");

@@ -36,6 +36,9 @@ public class IdentifyMove extends Identify{
 	 * @param T	時間の閾値
 	 * @param P 回帰範囲(秒)の閾値
 	 */
+
+	private String fileName;
+	private String output;
 	public IdentifyMove(ArrayList<Packet> read,String fileNumber,int R,double T,int P) {
 		// TODO 自動生成されたコンストラクター・スタブ
 		super(read,R,T);
@@ -43,7 +46,13 @@ public class IdentifyMove extends Identify{
 		command = new ArrayList<>();
 		command.add("python");
 		command.add("regression.py");
+		fileName = "data/regression/"+fileNumber+R+(int)T+P+".csv";
+		command.add(fileName);
 		command.add(String.valueOf(P));
+		command.add("&");
+		command.add(">");
+		output = "data/regression/"+fileNumber+R+(int)T+P+".txt";
+		command.add(output);
 	}
 
 	/**
@@ -84,13 +93,13 @@ public class IdentifyMove extends Identify{
 	protected boolean checkR(Address adr_base, Address adr_tmp) throws IOException, InterruptedException {
 		// TODO 自動生成されたメソッド・スタブ
 		//コマンドライン引数を更新
-		Write.write(adr_base,adr_tmp,P);
+		Write.write(adr_base,adr_tmp,fileName,P);
 		ProcessBuilder processBuilder = new ProcessBuilder(command);
 		Process process = processBuilder.start();
 		//この行を絶対に消さないこと
 		//プロセスが終了するまでプログラムを一時停止させるメソッド
 		process.waitFor();
-		ReadTXT read = new ReadTXT("data/regression/regression.txt");
+		ReadTXT read = new ReadTXT(output);
 		//回帰の平均値
 		double regression = read.readRegression();
 		ArrayList<Integer> rssis = new ArrayList<>();
