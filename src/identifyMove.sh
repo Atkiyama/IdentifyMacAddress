@@ -13,7 +13,7 @@ do
       do
         forCount='ps|grep java|wc -l'
         count=$(eval $forCount)
-        while [$count -gt 10 ]
+        while [$count -gt 50 ]
         do
           forCount='ps|grep java|wc -l'
           count=$(eval $forCount)
