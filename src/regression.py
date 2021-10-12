@@ -15,14 +15,11 @@ def main(arg1,arg2,arg3,arg4):
     #ファイル出力
     #平均を出力？
     f = open(arg4, 'w')
-    regression = []
-    capture = pd.read_csv(arg2, sep=",")
-    for first in capture.testTime:
-        for data in range(P*10):
-            regression.append(float(first)+float(data)/10)
-        f.write(str(np.average(clf.predict(pd.DataFrame(regression))+'\n')))
-        regression=[]
+    capture = pd.read_csv(arg2)
+    for number in range(len(capture)):
+        print(capture.number)
+        f.write(np.average(clf.predict(capture.number)))
     f.close()
-    return 0
+
 
 main(args[1],args[2],args[3],args[4])
