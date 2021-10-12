@@ -8,51 +8,37 @@ import identifyMacAddress.node.Address;
 import identifyMacAddress.node.Packet;
 
 public class Write {
-	public static void write(Address adr_base, Address adr_tmp,String fileName,int P) throws IOException {
+	public static void write(Address adr_base, String trainFile, String testFile, int P)
+			throws IOException {
 		ArrayList<Packet> train = extractTrain(adr_base, P);
-		ArrayList<Double> test = extractTest(adr_tmp, P);
-		int roop;
-		if (train.size() > test.size())
-			roop = train.size();
-		else
-			roop = test.size();
-
-		FileWriter fileWriter = new FileWriter(fileName);
-		fileWriter.append("trainTime,trainRssi,testTime");
+		FileWriter fileWriter = new FileWriter(trainFile);
+		fileWriter.append("trainTime,trainRssi");
 		fileWriter.append("\r\n");
-		for (int i = 0; i < roop; i++) {
-			if (i >= train.size()) {
-				fileWriter.append("");
-				fileWriter.append(",");
-				fileWriter.append("");
-				fileWriter.append(",");
-			} else {
-				fileWriter.append(String.valueOf(train.get(i).getTime()));
-				fileWriter.append(",");
-				fileWriter.append(String.valueOf(train.get(i).getRssi()));
-				fileWriter.append(",");
-			}
-			if (i >= test.size()) {
-				fileWriter.append("");
-			} else {
-				fileWriter.append(String.valueOf(test.get(i)));
-			}
-
+		for (Packet packet : train) {
+			fileWriter.append(String.valueOf(packet.getTime()));
+			fileWriter.append(",");
+			fileWriter.append(String.valueOf(packet.getRssi()));
 			fileWriter.append("\r\n");
 		}
 		fileWriter.close();
-	}
 
-	private static ArrayList<Double> extractTest(Address adr_tmp, int p) {
-		// TODO 自動生成されたメソッド・スタブ
-		Packet first = adr_tmp.getPackets().get(0);
-		ArrayList<Double> test = new ArrayList<>();
-		for (Packet packet : adr_tmp.getPackets()) {
-			if (packet.getTime() - first.getTime() <= p)
-				test.add(packet.getTime());
-
+		fileWriter = new FileWriter(testFile);
+		//通し番号でヘッダーをつける
+		for (int i = 0;i< adr_base.getNextAdr().size();i++) {
+			fileWriter.append(String.valueOf(i));
+			fileWriter.append(",");
 		}
-		return test;
+		//改行
+		fileWriter.append("\r\n");
+		//データを列ごとに出力
+		for (double i = 0; i < P; i += 0.1) {
+			for (Address address : adr_base.getNextAdr()) {
+				fileWriter.append(String.valueOf(address.getFtime() + i));
+				fileWriter.append(",");
+			}
+			fileWriter.append("\r\n");
+		}
+		fileWriter.close();
 	}
 
 	private static ArrayList<Packet> extractTrain(Address adr_base, int p) {

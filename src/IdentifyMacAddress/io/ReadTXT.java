@@ -108,20 +108,18 @@ public class ReadTXT extends Read {
 			packet.printData();
 	}
 
-	public double readRegression() throws IOException {
+	public ArrayList<Double> readRegression() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		File file = new File(fileName);
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);
 		String str = in.readLine();
-		double sum = 0;
-		double divide = 0;
+		ArrayList<Double> data = new ArrayList<>();
 		while(str != null) {
-			sum += Double.parseDouble(str);
-			divide++;
+			data.add(Double.parseDouble(str));
 			str = in.readLine();
 		}
-		return sum/divide;
+		return data;
 
 	}
 
