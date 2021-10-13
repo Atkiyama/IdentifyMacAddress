@@ -47,7 +47,7 @@ public class IdentifyMove extends Identify {
 		this.P = P;
 		command = new ArrayList<>();
 		command.add("python");
-		command.add("regression.py");
+		command.add("linerRegression.py");
 		trainFile = "data/regression/train" + fileNumber + "," + R + "," + (int) T + "," + P + ".csv";
 		testFile = "data/regression/test" + fileNumber + "," + R + "," + (int) T + "," + P + ".csv";
 		output = "data/regression/" + fileNumber + "," + R + "," + (int) T + "," + P + ".txt";
@@ -55,7 +55,7 @@ public class IdentifyMove extends Identify {
 		command.add(testFile);
 		command.add(String.valueOf(P));
 		command.add(output);
-		command.add("&");
+		command.add("0");
 	}
 
 	/**
@@ -77,7 +77,8 @@ public class IdentifyMove extends Identify {
 
 		//Rだけここで別判定
 		for (Address adr_base : addressList) {
-			checkR(adr_base);
+			if(adr_base.getNextAdr().size()!=0)
+				checkR(adr_base);
 		}
 		/**
 		 * 結果を出力
@@ -99,6 +100,7 @@ public class IdentifyMove extends Identify {
 		// TODO 自動生成されたメソッド・スタブ
 		//コマンドライン引数を更新
 		Write.write(adr_base, trainFile, testFile, P);
+		command.set(6,String.valueOf(adr_base.getNextAdr().size()));
 		ProcessBuilder processBuilder = new ProcessBuilder(command);
 		Process process = processBuilder.start();
 		//この行を絶対に消さないこと
