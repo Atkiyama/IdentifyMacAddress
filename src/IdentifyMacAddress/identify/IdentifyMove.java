@@ -48,14 +48,15 @@ public class IdentifyMove extends Identify {
 		command = new ArrayList<>();
 		command.add("python");
 		command.add("linerRegression.py");
-		trainFile = "data/regression/train" + fileNumber + "," + R + "," + (int) T + "," + P + ".csv";
-		testFile = "data/regression/test" + fileNumber + "," + R + "," + (int) T + "," + P + ".csv";
-		output = "data/regression/" + fileNumber + "," + R + "," + (int) T + "," + P + ".txt";
+		trainFile = "data/regression/train" + R + "," + (int) T + "," + P +","+fileNumber+ ".csv";
+		testFile = "data/regression/test" + R + "," + (int) T + "," + P +","+fileNumber+ ".csv";
+		output = "data/regression/" + R + "," + (int) T + "," + P +","+fileNumber+ ".txt";
 		command.add(trainFile);
 		command.add(testFile);
 		command.add(String.valueOf(P));
 		command.add(output);
 		command.add("0");
+		command.add("&");
 	}
 
 	/**
@@ -109,9 +110,11 @@ public class IdentifyMove extends Identify {
 		ReadTXT read = new ReadTXT(output);
 		//回帰の平均値
 		ArrayList<Double> regression = read.readRegression();
+		ArrayList<Address> overWrite = new ArrayList<>();
 		for (int i = 0; i < regression.size(); i++) {
 			double sum = 0;
 			double count = 0;
+			adr_base.getNextAdr().get(i);
 			double first = adr_base.getNextAdr().get(i).getPackets().get(0).getTime();
 			for (Packet packet : adr_base.getNextAdr().get(i).getPackets()) {
 				if (packet.getTime() - first <= P) {
@@ -120,9 +123,10 @@ public class IdentifyMove extends Identify {
 				} else
 					break;
 			}
-			if(!(Math.abs(sum/count -regression.get(i) )<= R))
-				adr_base.getNextAdr().remove(i);
+			if(Math.abs(sum/count -regression.get(i))<= R)
+				overWrite.add(adr_base.getNextAdr().get(i));
 		}
+		adr_base.setNextAdr(overWrite);
 
 	}
 

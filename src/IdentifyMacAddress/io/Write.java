@@ -23,18 +23,12 @@ public class Write {
 		fileWriter.close();
 
 		fileWriter = new FileWriter(testFile);
-		//通し番号でヘッダーをつける
-		for (int i = 0;i< adr_base.getNextAdr().size();i++) {
-			fileWriter.append(String.valueOf(i));
-			fileWriter.append(",");
-		}
-		//改行
-		fileWriter.append("\r\n");
-		//データを列ごとに出力
+
 		for (double i = 0; i < P; i += 0.1) {
-			for (Address address : adr_base.getNextAdr()) {
-				fileWriter.append(String.valueOf(address.getFtime() + i));
-				fileWriter.append(",");
+			for (int j =0 ;j<adr_base.getNextAdr().size();j++) {
+				fileWriter.append(String.valueOf(adr_base.getNextAdr().get(j).getFtime() + i));
+				if(j!=adr_base.getNextAdr().size()-1)
+					fileWriter.append(",");
 			}
 			fileWriter.append("\r\n");
 		}

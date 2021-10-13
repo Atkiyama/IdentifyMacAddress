@@ -17,7 +17,7 @@ def main(arg1,arg2,arg3,arg4,arg5):
     f = open(arg4, 'w')
     for column in range(int(arg5)):
         df = pd.read_csv(arg2,header = None,usecols=[int(column)])
-        print(np.average(clf.predict(pd.DataFrame(df))))
+        f.write(str(np.average(clf.predict(pd.DataFrame(df))))+'\n')
     f.close()
 
 
