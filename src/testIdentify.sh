@@ -6,11 +6,11 @@ do
   do
     for T in 5
     do
-      for P in {1..10}
+      for P in 1
       do
         forCount='ps|grep java|wc -l'
         count=$(eval $forCount)
-        while [$count -gt 5 ]
+        while [$count -gt 1 ]
         do
           forCount='ps|grep java|wc -l'
           count=$(eval $forCount)

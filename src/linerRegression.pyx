@@ -1,7 +1,7 @@
+import cython
 import sys
 import pandas as pd
 import numpy as np
-
 
 #コマンドライン引数 1学習ファイル名 2テストファイル 3閾値P 4書き込みファイル名 5テストファイルのアドレス(列)数
 args = sys.argv
@@ -11,8 +11,6 @@ def main(arg1,arg2,arg3,arg4,arg5):
     P = int(arg3)
     #モデル生成
     from sklearn.linear_model import LinearRegression
-    #from sklearnex import patch_sklearn
-    #patch_sklearn()
     clf = LinearRegression(fit_intercept = True, normalize = False, copy_X = True, n_jobs = -1)
     clf.fit(pd.DataFrame(df.trainTime),df.trainRssi)
     #ファイル出力
