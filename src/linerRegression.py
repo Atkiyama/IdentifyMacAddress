@@ -23,5 +23,4 @@ def main(arg1,arg2,arg3,arg4,arg5):
         f.write(str(np.average(clf.predict(pd.DataFrame(df))))+'\n')
     f.close()
 
-
 main(args[1],args[2],args[3],args[4],args[5])
