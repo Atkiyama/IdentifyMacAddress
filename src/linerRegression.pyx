@@ -1,3 +1,4 @@
+# cython:language_level=3
 import cython
 import sys
 import pandas as pd

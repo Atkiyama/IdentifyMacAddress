@@ -2,6 +2,7 @@
 
 javac dataAnalyze/DataAnalyze.java -encoding UTF-8
 javac convertMacAddress/ConvertMacAddress.java -encoding UTF-8
+javac convertMacAddress/ConvertOriginal.java -encoding UTF-8
 javac identifyMacAddress/identify/IdentifyStay.java -encoding UTF-8
 javac identifyMacAddress/identify/IdentifyMove.java -encoding UTF-8
 javac identifyMacAddress/io/ReadTXT.java -encoding UTF-8

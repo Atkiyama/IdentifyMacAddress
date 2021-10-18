@@ -2,7 +2,7 @@
 
 #コマンドライン引数
 numOfData=$1
-for n in {1..100}
+for n in 5
 do
   for R in {1..20}
   do
@@ -12,7 +12,7 @@ do
       do
         forCount='ps|grep java|wc -l'
         count=$(eval $forCount)
-        while [$count -gt 20 ]
+        while [$count -gt 25 ]
         do
           forCount='ps|grep java|wc -l'
           count=$(eval $forCount)

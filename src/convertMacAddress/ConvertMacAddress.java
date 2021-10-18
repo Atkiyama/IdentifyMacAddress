@@ -101,7 +101,7 @@ public class ConvertMacAddress {
 	 * 使用するデータを引数の数だけ選出するメソッド
 	 * @param numOfData
 	 */
-	private void selectData(int numOfData) {
+	void selectData(int numOfData) {
 		// TODO 自動生成されたメソッド・スタブ
 		if(numOfData == 20)
 			return;

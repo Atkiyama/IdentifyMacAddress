@@ -101,13 +101,27 @@ public class DataAnalyze {
 		Read read = new ReadTXT(args[0]);
 		DataAnalyze analyze = new DataAnalyze(read.read());
 		analyze.makeAddressList();
+		analyze.removeFewAddress(50);
 		analyze.identify(Integer.parseInt(args[3]));
 		analyze.extract(Integer.parseInt(args[1]),Integer.parseInt(args[2]));
 		analyze.print();
 
 
 	}
-	 /**
+	 private void removeFewAddress(int i) {
+		// TODO 自動生成されたメソッド・スタブ
+		 ArrayList<Address> toRemove = new ArrayList<>();
+		 for(Address address:addressList) {
+			 if(address.getNumPkt() <i)
+				 toRemove.add(address);
+
+		 }
+		 for(Address address:toRemove)
+			 addressList.remove(address);
+
+	}
+
+	/**
 	  * データを出力するクラス
 	  */
 	private void print() {
