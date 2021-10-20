@@ -92,7 +92,7 @@ public class DataAnalyze {
 	}
 
 	/**
-	 * @param args 0に読み込むファイル名,1,2に最初のデータ範囲(秒),3にデータ範囲(T)
+	 * @param args 0に読み込むファイル名,1,2に最初のデータ範囲(秒),3にデータ範囲(T),4にカットするアドレス下限
 	 * @throws IOException
 	 *
 	 */
@@ -101,7 +101,7 @@ public class DataAnalyze {
 		Read read = new ReadTXT(args[0]);
 		DataAnalyze analyze = new DataAnalyze(read.read());
 		analyze.makeAddressList();
-		analyze.removeFewAddress(50);
+		analyze.removeFewAddress(Integer.parseInt(args[4]));
 		analyze.identify(Integer.parseInt(args[3]));
 		analyze.extract(Integer.parseInt(args[1]),Integer.parseInt(args[2]));
 		analyze.print();
