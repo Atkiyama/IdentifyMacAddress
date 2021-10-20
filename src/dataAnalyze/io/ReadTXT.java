@@ -1,4 +1,4 @@
-package identifyMacAddress.io;
+package dataAnalyze.io;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import identifyMacAddress.node.Packet;
+import dataAnalyze.node.Packet;
 /**
  * テキストファイルからパケット情報を読み取るクラス
  * @author akiyama

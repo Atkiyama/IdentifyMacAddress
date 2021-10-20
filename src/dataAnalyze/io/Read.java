@@ -1,9 +1,9 @@
-package identifyMacAddress.io;
+package dataAnalyze.io;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import identifyMacAddress.node.Packet;
+import dataAnalyze.node.Packet;
 
 /**
  * ファイルを読み込むための抽象クラス

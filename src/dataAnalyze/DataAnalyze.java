@@ -3,10 +3,10 @@ package dataAnalyze;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import identifyMacAddress.io.Read;
-import identifyMacAddress.io.ReadTXT;
-import identifyMacAddress.node.Address;
-import identifyMacAddress.node.Packet;
+import dataAnalyze.io.Read;
+import dataAnalyze.io.ReadTXT;
+import dataAnalyze.node.Address;
+import dataAnalyze.node.Packet;
 /**
  * キャプチャデータを抽出するクラス
  * アドレス間の秒数のみで一旦抽出する

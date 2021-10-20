@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 
-import identifyMacAddress.node.Address;
-import identifyMacAddress.node.Packet;
+import dataAnalyze.node.Address;
+import dataAnalyze.node.Packet;
 
 /**
  * 平均RSSIとパケット受診時刻を元にmacアドレスの特定を行うための
@@ -30,9 +30,9 @@ public abstract class Identify {
 	/**
 	 * 受診時刻の闘値
 	 */
-	protected double T;
+	protected final double T;
 
-	protected int R;
+	protected final int R;
 
 	public Identify(ArrayList<Packet> packets,int R,double T) {
 		this.packets = packets;

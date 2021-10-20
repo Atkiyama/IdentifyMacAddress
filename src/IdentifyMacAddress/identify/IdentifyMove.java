@@ -3,12 +3,12 @@ package identifyMacAddress.identify;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import identifyMacAddress.io.Read;
-import identifyMacAddress.io.ReadCSV;
-import identifyMacAddress.io.ReadTXT;
-import identifyMacAddress.io.Write;
-import identifyMacAddress.node.Address;
-import identifyMacAddress.node.Packet;
+import dataAnalyze.io.Read;
+import dataAnalyze.io.ReadCSV;
+import dataAnalyze.io.ReadTXT;
+import dataAnalyze.io.Write;
+import dataAnalyze.node.Address;
+import dataAnalyze.node.Packet;
 
 /**
  * 移動するBLE機器のMACアドレスを同定するクラス
@@ -21,7 +21,7 @@ public class IdentifyMove extends Identify {
 	 * 回帰する際に使用するデータの範囲(秒)
 	 * predictから
 	 */
-	private int P;
+	private final int P;
 
 	/**
 	 * pythonを使って回帰を行う際のコマンド
@@ -37,9 +37,9 @@ public class IdentifyMove extends Identify {
 	 * @param P 回帰範囲(秒)の閾値
 	 */
 
-	private String trainFile;
-	private String testFile;
-	private String output;
+	private final String trainFile;
+	private final String testFile;
+	private final String output;
 
 	public IdentifyMove(ArrayList<Packet> read, String fileNumber, int R, double T, int P) {
 		// TODO 自動生成されたコンストラクター・スタブ
@@ -107,11 +107,14 @@ public class IdentifyMove extends Identify {
 		//この行を絶対に消さないこと
 		//プロセスが終了するまでプログラムを一時停止させるメソッド
 		process.waitFor();
+		processBuilder = null;
+		process = null;
 		ReadTXT read = new ReadTXT(output);
 		//回帰の平均値
 		ArrayList<Double> regression = read.readRegression();
+		read = null;
 		ArrayList<Address> overWrite = new ArrayList<>();
-		for (int i = 0; i < regression.size(); i++) {
+		for (int i = 0,len =regression.size(); i < len; i++) {
 			double sum = 0;
 			double count = 0;
 			adr_base.getNextAdr().get(i);
@@ -151,6 +154,7 @@ public class IdentifyMove extends Identify {
 		}
 		Identify identify = new IdentifyMove(read.read(), args[4], Integer.parseInt(args[1]), Integer.parseInt(args[2]),
 				Integer.parseInt(args[3]));
+		read = null;
 		identify.makeAddressList();
 		//identify.removeFewAddress();
 		identify.identify();

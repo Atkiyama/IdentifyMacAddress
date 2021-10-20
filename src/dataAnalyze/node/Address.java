@@ -1,4 +1,4 @@
-package identifyMacAddress.node;
+package dataAnalyze.node;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -235,6 +235,10 @@ public class Address {
 
 	public String getAdvA() {
 		return advA;
+	}
+
+	public void setNumPkt(int numPkt) {
+		this.numPkt = numPkt;
 	}
 
 	public double getFtime() {

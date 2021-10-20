@@ -1,11 +1,11 @@
-package identifyMacAddress.io;
+package dataAnalyze.io;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import identifyMacAddress.node.Address;
-import identifyMacAddress.node.Packet;
+import dataAnalyze.node.Address;
+import dataAnalyze.node.Packet;
 
 public class Write {
 	public static void write(Address adr_base, String trainFile, String testFile, int P)
@@ -21,11 +21,12 @@ public class Write {
 			fileWriter.append("\r\n");
 		}
 		fileWriter.close();
+		train = null;
 
 		fileWriter = new FileWriter(testFile);
 
 		for (double i = 0; i < P; i += 0.1) {
-			for (int j =0 ;j<adr_base.getNextAdr().size();j++) {
+			for (int j = 0 , len = adr_base.getNextAdr().size() ; j<len ; j++) {
 				fileWriter.append(String.valueOf(adr_base.getNextAdr().get(j).getFtime() + i));
 				if(j!=adr_base.getNextAdr().size()-1)
 					fileWriter.append(",");

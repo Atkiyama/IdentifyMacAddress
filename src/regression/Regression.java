@@ -1,6 +1,6 @@
 package regression;
 
-import identifyMacAddress.io.Read;
+import dataAnalyze.io.Read;
 
 public class Regression {
 	/**
