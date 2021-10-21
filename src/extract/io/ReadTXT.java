@@ -36,33 +36,35 @@ public class ReadTXT {
 		BufferedReader in;
 		String str;
 		ArrayList<Packet> packets = new ArrayList<>();
+		ArrayList<Packet> capturePackets;
 		Matcher mTime;
 		Matcher mAddress;
 		Matcher mRssi;
-		int i;
 		for (CaptureFile capture : captures) {
 			file = new File("data/capture/single/move/txt/"+capture.getFileName()+".txt");
 			fileReader = new FileReader(file);
 			in = new BufferedReader(fileReader);
 			str = in.readLine();
+			capturePackets = new ArrayList<>();
 
-			i = 0;
+
 			while (str != null) {
-				i++;
 				mTime = pTime.matcher(str);
 				mAddress = pAddress.matcher(str);
 				mRssi = pRssi.matcher(str);
 				if (mTime.find() && mAddress.find() && mRssi.find() &&capture.getAddressList().contains(mAddress.group(1))) {
-					packets.add(makePackets(mTime, mAddress, mRssi));
+					capturePackets.add(makePackets(mTime, mAddress, mRssi));
 				}
 				str = in.readLine();
 			}
 			in.close();
 			//初回受診時刻を取得
-			double fTime = packets.get(0).getTime();
+			double fTime = capturePackets.get(0).getTime();
 			//データをフォーマット
-			for (Packet packet : packets)
+			for (Packet packet : capturePackets) {
 				packet.formatTime(fTime);
+				packets.add(packet);
+			}
 
 		}
 

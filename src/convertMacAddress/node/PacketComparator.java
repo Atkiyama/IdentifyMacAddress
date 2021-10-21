@@ -1,6 +1,8 @@
 package convertMacAddress.node;
 
 import java.util.Comparator;
+
+import extract.node.Packet;
 /**
  * パケットをソートするのに使うクラス
  * @author akiyama
