@@ -1,26 +1,39 @@
-import sys
+#諸々のインポート
 import pandas as pd
 import numpy as np
+from sklearn.linear_model import LinearRegression
 
-
-#コマンドライン引数 1学習ファイル名 2テストファイル 3閾値P 4書き込みファイル名 5テストファイルのアドレス(列)数
-args = sys.argv
-
-def main(arg1,arg2,arg3,arg4,arg5):
-    df = pd.read_csv(arg1, sep=",")
-    P = int(arg3)
-    #モデル生成
-    from sklearn.linear_model import LinearRegression
-    #from sklearnex import patch_sklearn
-    #patch_sklearn()
+def main():
+    df = pd.read_csv("data/address/addressList.csv", sep=",",usecols=[1,3])
     clf = LinearRegression(fit_intercept = True, normalize = False, copy_X = True, n_jobs = -1)
-    clf.fit(pd.DataFrame(df.trainTime),df.trainRssi)
-    #ファイル出力
-    #平均を出力？
-    f = open(arg4, 'w')
-    for column in range(int(arg5)):
-        df = pd.read_csv(arg2,header = None,usecols=[int(column)])
-        f.write(str(np.average(clf.predict(pd.DataFrame(df))))+'\n')
+    for I in range(1,21):
+        for line in range(len(df)):
+            regression(df.address[line],df.lTime[line],I,clf)
+
+def regression(address,lTime,I,clf):
+    x_train = []
+    y_train = []
+    df = pd.read_csv("data/address/lAddress/"+address+".csv", sep=",")
+    for line in range(len(df)):
+        time = df.time[line]
+        if(lTime-time <= I):
+            x_train.append(time)
+            y_train.append(df.rssi[line])
+
+    clf.fit(pd.DataFrame(x_train),y_train)
+    x_test = []
+    data = np.arange(lTime, lTime+41, 0.1)
+    data = np.round(data, 1)
+    for fTime in data:
+        x_test.append(fTime)
+    predict = clf.predict(pd.DataFrame(x_test))
+    write(address,I,data,predict)
+
+def write(address,I,data,predict):
+    f = open("data/address/regression/"+address+"_"+str(I)+".csv", 'w')
+    for line in range(len(predict)):
+        f.write(str(data[line])+","+str(predict[line]))
+        f.write("\r\n")
     f.close()
 
-main(args[1],args[2],args[3],args[4],args[5])
+main()
