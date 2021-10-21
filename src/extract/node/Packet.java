@@ -7,10 +7,15 @@ public class Packet {
 	private String address;
 	private double time;
 	private int rssi;
-	public Packet(String address, double time, int rssi) {
+	private String fileName;
+	public Packet(String address, double time, int rssi,String fileName) {
 		this.address = address;
 		this.time = time;
 		this.rssi = rssi;
+		this.fileName = fileName;
+	}
+	public String getFileName() {
+		return fileName;
 	}
 	public String getAddress() {
 		return address;

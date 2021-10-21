@@ -10,10 +10,10 @@ import extract.node.Packet;
 public class Write {
 	public static void writeAllAddress(ArrayList<Address> addressList) throws IOException {
 		FileWriter fileWriter = new FileWriter("data/address/addressList.csv");
-		fileWriter.append("address,fTime,LTime");
+		fileWriter.append("fileName,address,fTime,lTime");
 		fileWriter.append("\r\n");
 		for(Address address:addressList) {
-			fileWriter.append(address.getName()+","+address.getfTime()+","+address.getlTime());
+			fileWriter.append(address.getFileName()+","+address.getName()+","+address.getfTime()+","+address.getlTime());
 			fileWriter.append("\r\n");
 		}
 		fileWriter.close();

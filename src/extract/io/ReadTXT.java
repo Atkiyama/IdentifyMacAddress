@@ -53,7 +53,7 @@ public class ReadTXT {
 				mAddress = pAddress.matcher(str);
 				mRssi = pRssi.matcher(str);
 				if (mTime.find() && mAddress.find() && mRssi.find() &&capture.getAddressList().contains(mAddress.group(1))) {
-					capturePackets.add(makePackets(mTime, mAddress, mRssi));
+					capturePackets.add(makePackets(mTime, mAddress, mRssi,capture.getFileName()));
 				}
 				str = in.readLine();
 			}
@@ -99,15 +99,16 @@ public class ReadTXT {
 	 * @param mTime 時間のmatcher
 	 * @param mAddress macアドレスのmatcher
 	 * @param mRssi rssiのmatcher
+	 * @param fileName
 	 * @return パケットのインスタンス
 	 */
 
-	public static Packet makePackets(Matcher mTime, Matcher mAddress, Matcher mRssi) {
+	public static Packet makePackets(Matcher mTime, Matcher mAddress, Matcher mRssi, String fileName) {
 		// TODO 自動生成されたメソッド・スタブ
 		double hour = Double.parseDouble(mTime.group(1));
 		double minute = Double.parseDouble(mTime.group(2));
 		double second = Double.parseDouble(mTime.group(3));
-		return new Packet(mAddress.group(1), hour * 3600 + minute * 60 + second, Integer.parseInt(mRssi.group(1)));
+		return new Packet(mAddress.group(1), hour * 3600 + minute * 60 + second, Integer.parseInt(mRssi.group(1)),fileName);
 	}
 
 	/**

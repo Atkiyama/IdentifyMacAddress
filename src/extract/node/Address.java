@@ -9,6 +9,7 @@ public class Address {
 	private double lTime;
 	private ArrayList<Packet> fPackets;
 	private ArrayList<Packet> lPackets;
+	private String fileName;
 	public Address(Packet packet) {
 		packets = new ArrayList<>();
 		fPackets = new ArrayList<>();
@@ -17,6 +18,10 @@ public class Address {
 		fTime = packet.getTime();
 		lTime = 0;
 		name = packet.getAddress();
+		this.fileName = packet.getFileName();
+	}
+	public String getFileName() {
+		return fileName;
 	}
 	public String getName() {
 		return name;
