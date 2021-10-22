@@ -74,7 +74,7 @@ public class ReadTXT {
 
 	private static ArrayList<CaptureFile> readAnswer() throws IOException {
 		ArrayList<CaptureFile> captures = new ArrayList<>();
-		File file = new File("data/result/testResult.csv");
+		File file = new File("data/result/moveResult.csv");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);
 		String str = in.readLine();
