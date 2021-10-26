@@ -22,11 +22,12 @@ std::vector<Address> selectData(std::vector<Address>,int);
 bool contains(int,std::vector<int>);
 
 void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address> originalAddressList){
-   if(numOfTimes !=20)
-      std::vector<Address> addressList = selectData(originalAddressList,numOfData);
+   std::vector<Address> addressList;
+   if(numOfData !=20)
+      addressList = selectData(originalAddressList,numOfData);
    else
-      std::vector<Address> addressList = originalAddressList;
-   std::cout << addressList.size() <<std::endl;
+      addressList = originalAddressList;
+   //std::cout << addressList.size() <<std::endl;
 
    for(int i=0;i<addressList.size();i++){
       std::cout << addressList.size()<<std::endl;
@@ -59,7 +60,7 @@ std::vector<Address> selectData(std::vector<Address> originalAddressList,int num
    std::vector<Address> addressList;
    while(dataNumbers.size()<=numOfData){
       int random = distr(eng);
-      std::cout << random <<std::endl;
+      //std::cout << random <<std::endl;
       if(!contains(random,dataNumbers)){
          dataNumbers.push_back(random);
          for(int i=0;i<originalAddressList.size();i++){
@@ -77,11 +78,11 @@ std::vector<Address> selectData(std::vector<Address> originalAddressList,int num
 bool contains(int random,std::vector<int> dataNumbers){
    for(int i=0;i<dataNumbers.size();i++){
       if(dataNumbers[i]==random){
-         std::cout << "おまえ" <<std::endl;
+         std::cout << dataNumbers.size() <<std::endl;
          return true;
       }
    }
-   std::cout << "あいつ" <<std::endl;
+   std::cout << dataNumbers.size() <<std::endl;
    return false;
 }
 
