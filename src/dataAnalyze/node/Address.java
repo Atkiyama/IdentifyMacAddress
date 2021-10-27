@@ -3,6 +3,7 @@ package dataAnalyze.node;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+
 /**
  * macアドレスを示すクラス
  * B4森本研究コード untiiled.ipynbを元に作成

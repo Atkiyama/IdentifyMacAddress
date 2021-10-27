@@ -9,12 +9,11 @@
 
 
 class Address;
-class Packet;
 
 Address makeAddress(std::string);
 std::vector<Address> readAddressList();
 int readDelay(int,int);
-double readFPackets(std::string,double,int);
+double readFPackets(std::string,double,int,int);
 
 Address makeAddress(std::string buf){
     int first = buf.find(",");
@@ -52,7 +51,7 @@ std::vector<Address> readAddressList(){
     return addressList;
 }
 
-double readFPackets(std::string address,double fTime,int I){
+double readFPackets(std::string address,double fTime,int I,int delay){
     std::string inputName = "./data/address/fAddress/";
     inputName += address; 
     inputName +=".csv";
@@ -72,7 +71,7 @@ double readFPackets(std::string address,double fTime,int I){
         std::getline(ifs, buf);
         if(buf.size()!=0){
             int first = buf.find(",");
-            double time = std::stod(buf.substr(0,first));
+            double time = std::stod(buf.substr(0,first))+delay;
             int rssi = std::stoi(buf.substr(first+1));
             if(time-fTime<=I){
                 sum +=rssi;
@@ -87,22 +86,24 @@ double readFPackets(std::string address,double fTime,int I){
         
 }
 
-double readRegression(std::string address,std::string method,double fTime,int I){
+double readRegression(std::string address,std::string method,double fTime,int I,int delay){
     std::string inputName = "./data/address/regression/";
     inputName += method;
     inputName += "/"; 
     inputName += address;
     inputName += "_";
-    inputName += I;
+    std::ostringstream oss;
+    oss << I;
+    inputName += oss.str();
     inputName +=".csv";
     std::ifstream ifs(inputName);
     std::string data;
     std::string buf;
     if (!ifs){
         std::cout << "ファイルが開けませんでした。" << std::endl;
+        std::cout << inputName << std::endl;
         std::cin.get();
     }
-    std::vector<Packet> regression;
     double sum=0;
     double count=0;
     while (!ifs.eof()){
@@ -110,7 +111,7 @@ double readRegression(std::string address,std::string method,double fTime,int I)
        
         if(buf.size()!=0){
             int first = buf.find(",");
-            double time = std::stod(buf.substr(0,first));
+            double time = std::stod(buf.substr(0,first))+delay;
             int rssi = std::stoi(buf.substr(first+1));
             double sub=time-fTime;
            if(0<=sub&&sub<=I){

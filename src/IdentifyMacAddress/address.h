@@ -3,13 +3,14 @@
 #include <stdio.h>
 #include <vector>
 #include "read.h"
-#include "packet.h"
+#include<math.h>
 
 int readDelay(int,int);
-double readFPackets(std::string,double,int);
+double readFPackets(std::string,double,int,int);
 void setFPackets(int);
 void setRegression(int);
-double readRegression(std::string,std::string,double,int);
+double readRegression(std::string,std::string,double,int,int);
+double getNormalized();
 
 
 class Address{
@@ -18,8 +19,11 @@ public:
     std::string address;
     double fTime;
     double lTime;
+    int delay;
     double fPackets;
     double regression;
+    double normalizedT;
+    double normalizedR;
     std::vector<Address> nextAddressList;
     Address(std::string fileName,std::string address,double fTime,double lTime){
         this->fileName = fileName;
@@ -30,10 +34,30 @@ public:
 
     void setDelay(int numOfTimes){
         int dataNumber =std::stoi(fileName.substr(4));
-        int delay = readDelay(dataNumber,numOfTimes);
+        delay = readDelay(dataNumber,numOfTimes);
         fTime +=delay;
         lTime += delay;
 
+    }
+
+    void setNormalizedR(double normalizedR){
+        this->normalizedR = normalizedR;
+    }
+
+    void setNormalizedT(double normalizedT){
+        this->normalizedT = normalizedT;
+    }
+
+    double getNormaliedR(){
+        return normalizedR;
+    }
+
+    double getNormaliedT(){
+        return normalizedT;
+    }
+
+    double getNormalized(){
+        return sqrt(normalizedR+normalizedT);
     }
 
     void addNextAddressList(Address address){
@@ -41,7 +65,7 @@ public:
     }
 
     void setNextAddressList(std::vector<Address> addressList){
-        this->nextAddressList = nextAddressList;
+        this->nextAddressList = addressList;
     }
 
     std::vector<Address> getNextAddressList(){
@@ -69,16 +93,23 @@ public:
     }
 
     void setFPackets(int I){
-        fPackets = readFPackets(address,fTime,I);
+        fPackets = readFPackets(address,fTime,I,delay);
     }
 
     void setRegression(std::string method,int I){
-        regression = readRegression(address,method,fTime,I);
+        regression = readRegression(address,method,fTime,I,delay);
     }
 
 
-    void print(){
+    void printData(){
         std::cout << fileName <<","<< address << "," << fTime << "," << lTime << std::endl;
+        if(nextAddressList.size()==1)
+            nextAddressList[0].printData();
+        else if(nextAddressList.size()>1)
+             std::cout << "nextAddress size is over 1" << std::endl;
+
+        std::cout << std::endl;
+
 
     }
 

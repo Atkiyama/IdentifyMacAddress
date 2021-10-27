@@ -10,11 +10,12 @@
 /*
 srcディレクトリからパスを通してコンパイル、実行すること
 コマンドライン引数
-1 閾値Rの上限
+1 閾値R
 2 閾値T
-3 閾値Iの上限
+3 閾値I
 4 使用するデータ数
-5 シュミレーション回数 
+5 シュミレーション回数(n番目)
+6 回帰手法 
 */
 
 void identify(int,int,int,int,int,std::vector<Address>,std::string method);
@@ -23,6 +24,7 @@ bool contains(int,std::vector<int>);
 std::vector<Address> normalize(Address,int,int);
 
 void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address> originalAddressList,std::string method){
+   //データ選出
    std::vector<Address> addressList;
    if(numOfData !=20)
       addressList = selectData(originalAddressList,numOfData);
@@ -30,11 +32,14 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
       addressList = originalAddressList;
    //std::cout << addressList.size() <<std::endl;
 
+
+   //遅延設定
    for(int i=0;i<addressList.size();i++){
       //std::cout << addressList.size()<<std::endl;
       addressList[i].setDelay(numOfTimes);
     }
 
+   //Tで絞り込み
    for(int i = 0; i < addressList.size() ;i++){
       for(int j = 0; j < addressList.size() ;j++){
          double sub = addressList[j].getFTime()-addressList[i].getLTime();
@@ -43,12 +48,13 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
       }
     }
 
+   //回帰
     for(int i=0;i<addressList.size();i++){
-       //回帰
       addressList[i].setFPackets(I);
       addressList[i].setRegression(method,I);
     }
 
+   //RとIで絞り込み
     for(int i=0;i<addressList.size();i++){
       std::vector<Address> replace;
       int times = addressList[i].getNextAddressList().size();
@@ -59,12 +65,17 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
       addressList[i].setNextAddressList(replace);
     }
 
+   //正規化
     for(int i=0;i<addressList.size();i++){
        if(addressList[i].getNextAddressList().size()>1)
          addressList[i].setNextAddressList(normalize(addressList[i],R,T));
 
     }
+
    //データ表示
+    for(int i=0;i<addressList.size();i++){
+         addressList[i].printData();
+    }
 }
 
 std::vector<Address> selectData(std::vector<Address> originalAddressList,int numOfData){
@@ -101,7 +112,25 @@ bool contains(int random,std::vector<int> dataNumbers){
 }
 
 std::vector<Address> normalize(Address address,int R,int T){
+   int times = address.getNextAddressList().size();
+   int min = 999999;
+   Address minAddress =address.getNextAddressList()[0];
+   for(int i=0;i<times;i++){
+      address.getNextAddressList()[i].setNormalizedT(std::pow(address.getNextAddressList()[i].getFTime()-address.getLTime()/T,2));
+      address.getNextAddressList()[i].setNormalizedR(std::pow(address.getNextAddressList()[i].getFPacket()-address.getRegression()/R,2));
+      double distance = address.getNextAddressList()[i].getNormalized();
+      if(distance<min){
+         min = distance;
+         minAddress = address.getNextAddressList()[i];
+      }
 
+   }
+   std::vector<Address> replace;
+   replace.push_back(minAddress);
+   return replace;
+   
+    
+  
 }
 
 
@@ -112,16 +141,8 @@ int main(int argc, char *argv[]){
    int numOfData = std::stod(argv[4]);
    int numOfTimes = std::stod(argv[5]);
    std::string  method = argv[6];
-   int r;
-   int i;
-   int n;
-   for(r=1;r<=R;r++){
-       for(i=1;i<=I;i++){
-          for(n=1;n<=numOfTimes;n++){
-             identify(r,T,I,n,numOfData,readAddressList(),method);
-         }
-      }
-   }
+   identify(R,T,I,numOfTimes,numOfData,readAddressList(),method);
+  
     
    
 }
