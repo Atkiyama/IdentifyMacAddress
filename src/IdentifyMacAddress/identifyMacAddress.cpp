@@ -59,12 +59,17 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
       std::vector<Address> replace;
       int times = addressList[i].getNextAddressList().size();
       for(int j=0;j<times;j++){
-         if(std::abs(addressList[i].getRegression()-addressList[i].getNextAddressList()[j].getFPacket())<=R)
+         //ここでこの値がnanをだしている
+         std::cout << addressList[i].getRegression()-addressList[i].getNextAddressList()[j].getFPacket() <<std::endl;
+         if(std::abs(addressList[i].getRegression()-addressList[i].getNextAddressList()[j].getFPacket())<=R){
             replace.push_back(addressList[i].getNextAddressList()[j]);
+            std::cout << std::abs(addressList[i].getRegression()-addressList[i].getNextAddressList()[j].getFPacket()) <<std::endl;
+         }
       }
       addressList[i].setNextAddressList(replace);
     }
    
+
    //正規化
     for(int i=0;i<addressList.size();i++){
        if(addressList[i].getNextAddressList().size()>1)
@@ -116,8 +121,8 @@ std::vector<Address> normalize(Address address,int R,int T){
    int min = 999999;
    Address minAddress =address.getNextAddressList()[0];
    for(int i=0;i<times;i++){
-      address.getNextAddressList()[i].setNormalizedT(std::pow(address.getNextAddressList()[i].getFTime()-address.getLTime()/T,2));
-      address.getNextAddressList()[i].setNormalizedR(std::pow(address.getNextAddressList()[i].getFPacket()-address.getRegression()/R,2));
+      address.getNextAddressList()[i].setNormalizedT(std::pow(address.getNextAddressList()[i].getFTime()-address.getLTime()/(double)T,2));
+      address.getNextAddressList()[i].setNormalizedR(std::pow(address.getNextAddressList()[i].getFPacket()-address.getRegression()/(double)R,2));
       double distance = address.getNextAddressList()[i].getNormalized();
       if(distance<min){
          min = distance;

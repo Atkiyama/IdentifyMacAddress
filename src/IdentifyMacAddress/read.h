@@ -72,7 +72,7 @@ double readFPackets(std::string address,double fTime,int I,int delay){
         if(buf.size()!=0){
             int first = buf.find(",");
             double time = std::stod(buf.substr(0,first))+delay;
-            int rssi = std::stoi(buf.substr(first+1));
+            double rssi = std::stod(buf.substr(first+1));
             if(time-fTime<=I){
                 sum +=rssi;
                 count++;
@@ -112,7 +112,7 @@ double readRegression(std::string address,std::string method,double fTime,int I,
         if(buf.size()!=0){
             int first = buf.find(",");
             double time = std::stod(buf.substr(0,first))+delay;
-            int rssi = std::stoi(buf.substr(first+1));
+            double rssi = std::stod(buf.substr(first+1));
             double sub=time-fTime;
            if(0<=sub&&sub<=I){
                 sum +=rssi;

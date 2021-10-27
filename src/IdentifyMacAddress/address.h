@@ -103,10 +103,8 @@ public:
 
     void printData(){
         std::cout << fileName <<","<< address << "," << fTime << "," << lTime << std::endl;
-        if(nextAddressList.size()==1)
-            nextAddressList[0].printData();
-        else if(nextAddressList.size()>1)
-             std::cout << "nextAddress size is over 1" << std::endl;
+        for(int i=0;i<nextAddressList.size();i++)
+            nextAddressList[i].printData();
 
         std::cout << std::endl;
 
