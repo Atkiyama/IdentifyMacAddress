@@ -47,13 +47,13 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
             addressList[i].addNextAddressList(addressList[j]);
       }
     }
-
+   
    //回帰
     for(int i=0;i<addressList.size();i++){
       addressList[i].setFPackets(I);
       addressList[i].setRegression(method,I);
     }
-
+   
    //RとIで絞り込み
     for(int i=0;i<addressList.size();i++){
       std::vector<Address> replace;
@@ -64,7 +64,7 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
       }
       addressList[i].setNextAddressList(replace);
     }
-
+   
    //正規化
     for(int i=0;i<addressList.size();i++){
        if(addressList[i].getNextAddressList().size()>1)
