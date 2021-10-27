@@ -5,18 +5,21 @@
 
 class Packet{
 public:
-  std::string address;
   double time;
   int rssi;
-  Packet(std::string address,double time,int rssi){
-    this->address = address;
+  Packet(double time,int rssi){
     this->time = time;
     this->rssi = rssi;
   }
 
-  void print(){
-    std::cout << address << "," << time << rssi;
-
+  double getTime(){
+    return time;
   }
+
+  int getRssi(){
+    return rssi;
+  }
+
+
 
 };

@@ -17,11 +17,12 @@ srcディレクトリからパスを通してコンパイル、実行するこ�
 5 シュミレーション回数 
 */
 
-void identify(int,int,int,int,int,std::vector<Address>);
+void identify(int,int,int,int,int,std::vector<Address>,std::string method);
 std::vector<Address> selectData(std::vector<Address>,int);
 bool contains(int,std::vector<int>);
+std::vector<Address> normalize(Address,int,int);
 
-void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address> originalAddressList){
+void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address> originalAddressList,std::string method){
    std::vector<Address> addressList;
    if(numOfData !=20)
       addressList = selectData(originalAddressList,numOfData);
@@ -30,7 +31,7 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
    //std::cout << addressList.size() <<std::endl;
 
    for(int i=0;i<addressList.size();i++){
-      std::cout << addressList.size()<<std::endl;
+      //std::cout << addressList.size()<<std::endl;
       addressList[i].setDelay(numOfTimes);
     }
 
@@ -44,27 +45,44 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
 
     for(int i=0;i<addressList.size();i++){
        //回帰
+      addressList[i].setFPackets(I);
+      addressList[i].setRegression(method,I);
     }
-   //正規化
+
+    for(int i=0;i<addressList.size();i++){
+      std::vector<Address> replace;
+      int times = addressList[i].getNextAddressList().size();
+      for(int j=0;j<times;j++){
+         if(std::abs(addressList[i].getRegression()-addressList[i].getNextAddressList()[j].getFPacket())<=R)
+            replace.push_back(addressList[i].getNextAddressList()[j]);
+      }
+      addressList[i].setNextAddressList(replace);
+    }
+
+    for(int i=0;i<addressList.size();i++){
+       if(addressList[i].getNextAddressList().size()>1)
+         addressList[i].setNextAddressList(normalize(addressList[i],R,T));
+
+    }
    //データ表示
 }
 
 std::vector<Address> selectData(std::vector<Address> originalAddressList,int numOfData){
    //リストから削除していく方向に切り替える
    int MIN = 1;
-   int MAX = 20;
+   int MAX = numOfData;
    std::random_device rd;
    std::default_random_engine eng(rd());
    std::uniform_int_distribution<int> distr(MIN, MAX);
-   std::vector<int> dataNumbers; 
+   std::vector<int> dataNumbers ; 
    std::vector<Address> addressList;
-   while(dataNumbers.size()<=numOfData){
+   while(dataNumbers.size()<numOfData){
       int random = distr(eng);
       //std::cout << random <<std::endl;
       if(!contains(random,dataNumbers)){
          dataNumbers.push_back(random);
          for(int i=0;i<originalAddressList.size();i++){
-            if(originalAddressList[i].getFileName().find(random)==std::string::npos)
+            if(originalAddressList[i].getFileName().find(random)!=std::string::npos)
                addressList.push_back(originalAddressList[i]);
          }     
       }
@@ -76,14 +94,14 @@ std::vector<Address> selectData(std::vector<Address> originalAddressList,int num
 }
 
 bool contains(int random,std::vector<int> dataNumbers){
-   for(int i=0;i<dataNumbers.size();i++){
-      if(dataNumbers[i]==random){
-         std::cout << dataNumbers.size() <<std::endl;
+   for(int i=0;i<dataNumbers.size();i++)
+      if(dataNumbers[i]==random)
          return true;
-      }
-   }
-   std::cout << dataNumbers.size() <<std::endl;
    return false;
+}
+
+std::vector<Address> normalize(Address address,int R,int T){
+
 }
 
 
@@ -93,13 +111,14 @@ int main(int argc, char *argv[]){
    int I = std::stod(argv[3]);
    int numOfData = std::stod(argv[4]);
    int numOfTimes = std::stod(argv[5]);
+   std::string  method = argv[6];
    int r;
    int i;
    int n;
-   for(r=1;r<R;r++){
-       for(i=1;i<I;i++){
-          for(n=1;n<numOfTimes;n++){
-             identify(r,T,I,n,numOfData,readAddressList());
+   for(r=1;r<=R;r++){
+       for(i=1;i<=I;i++){
+          for(n=1;n<=numOfTimes;n++){
+             identify(r,T,I,n,numOfData,readAddressList(),method);
          }
       }
    }

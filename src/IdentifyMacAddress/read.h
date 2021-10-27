@@ -6,11 +6,15 @@
 #include <vector>
 #pragma once
 #include"address.h"
+
+
 class Address;
+class Packet;
 
 Address makeAddress(std::string);
 std::vector<Address> readAddressList();
 int readDelay(int,int);
+double readFPackets(std::string,double,int);
 
 Address makeAddress(std::string buf){
     int first = buf.find(",");
@@ -46,6 +50,80 @@ std::vector<Address> readAddressList(){
     }
 
     return addressList;
+}
+
+double readFPackets(std::string address,double fTime,int I){
+    std::string inputName = "./data/address/fAddress/";
+    inputName += address; 
+    inputName +=".csv";
+    std::ifstream ifs(inputName);
+    std::string data;
+    std::string buf;
+    if (!ifs){
+        std::cout << "ファイルが開けませんでした。" << std::endl;
+        std::cin.get();
+    }
+    
+    double sum = 0;
+    double count =0;
+    //ヘッダを読み飛ばす
+    std::getline(ifs, buf);
+    while (!ifs.eof()){
+        std::getline(ifs, buf);
+        if(buf.size()!=0){
+            int first = buf.find(",");
+            double time = std::stod(buf.substr(0,first));
+            int rssi = std::stoi(buf.substr(first+1));
+            if(time-fTime<=I){
+                sum +=rssi;
+                count++;
+            }
+            else
+                break;
+        }
+               
+    }
+    return sum/count;
+        
+}
+
+double readRegression(std::string address,std::string method,double fTime,int I){
+    std::string inputName = "./data/address/regression/";
+    inputName += method;
+    inputName += "/"; 
+    inputName += address;
+    inputName += "_";
+    inputName += I;
+    inputName +=".csv";
+    std::ifstream ifs(inputName);
+    std::string data;
+    std::string buf;
+    if (!ifs){
+        std::cout << "ファイルが開けませんでした。" << std::endl;
+        std::cin.get();
+    }
+    std::vector<Packet> regression;
+    double sum=0;
+    double count=0;
+    while (!ifs.eof()){
+        std::getline(ifs, buf);
+       
+        if(buf.size()!=0){
+            int first = buf.find(",");
+            double time = std::stod(buf.substr(0,first));
+            int rssi = std::stoi(buf.substr(first+1));
+            double sub=time-fTime;
+           if(0<=sub&&sub<=I){
+                sum +=rssi;
+                count++;
+            }
+            else
+                break;
+            
+        }
+               
+    }
+    return sum/count;
 }
 
 int readDelay(int dataNumber,int numOfTimes){
