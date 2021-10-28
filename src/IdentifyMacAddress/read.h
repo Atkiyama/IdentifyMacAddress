@@ -86,7 +86,7 @@ double readFPackets(std::string address,double fTime,int I,int delay){
         
 }
 
-double readRegression(std::string address,std::string method,double fTime,int I,int delay){
+std::vector<std::vector<double> > readRegression(std::string address,std::string method,double fTime,int I,int delay){
     std::string inputName = "./data/address/regression/";
     inputName += method;
     inputName += "/"; 
@@ -106,25 +106,20 @@ double readRegression(std::string address,std::string method,double fTime,int I,
     }
     double sum=0;
     double count=0;
+    std::vector<std::vector<double> > regressions;
     while (!ifs.eof()){
         std::getline(ifs, buf);
-       
         if(buf.size()!=0){
             int first = buf.find(",");
-            double time = std::stod(buf.substr(0,first))+delay;
-            double rssi = std::stod(buf.substr(first+1));
-            double sub=time-fTime;
-           if(0<=sub&&sub<=I){
-                sum +=rssi;
-                count++;
-            }
-            else
-                break;
-            
+            std::vector<double> data;
+            //dataの0にtime,1にrssiをつっこむ
+            data.push_back(std::stod(buf.substr(0,first))+(double)delay);
+            data.push_back(std::stod(buf.substr(first+1)));
+            regressions.push_back(data);
         }
                
     }
-    return sum/count;
+    return regressions;
 }
 
 int readDelay(int dataNumber,int numOfTimes){
