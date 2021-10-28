@@ -39,6 +39,18 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
       addressList[i].setDelay(numOfTimes);
     }
 
+    //アドレスリストのソート
+   for(int i=0;i<addressList.size()-1;i++){
+      for(int j = addressList.size()-1 ;j>i;j--){
+         if(addressList[j-1].getFTime() > addressList[i].getFTime()){
+            Address swap = addressList[i];
+            addressList[i]=addressList[j-1];
+            addressList[j-1] = swap;
+
+         }
+      }
+   }
+
    //Tで絞り込み
    for(int i = 0; i < addressList.size() ;i++){
       for(int j = 0; j < addressList.size() ;j++){
@@ -73,9 +85,11 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
    
    //正規化
     for(int i=0;i<addressList.size();i++){
-       if(addressList[i].getNextAddressList().size()>1)
+       if(addressList[i].getNextAddressList().size()>=2)
          addressList[i].setNextAddressList(normalize(addressList[i],R,T));
     }
+
+    //結合分の処理
 
    //データ表示
     for(int i=0;i<addressList.size();i++){
@@ -118,7 +132,7 @@ bool contains(int random,std::vector<int> dataNumbers){
 
 std::vector<Address> normalize(Address address,int R,int T){
    int times = address.getNextAddressList().size();
-   int min = 999999;
+   double min = 999999;
    Address minAddress =address.getNextAddressList()[0];
    for(int i=0;i<times;i++){
       address.getNextAddressList()[i].setNormalizedT(std::pow(address.getNextAddressList()[i].getFTime()-address.getLTime()/(double)T,2));
@@ -132,6 +146,7 @@ std::vector<Address> normalize(Address address,int R,int T){
    }
    std::vector<Address> replace;
    replace.push_back(minAddress);
+   std::cout <<replace.size()<<std::endl;
    return replace;
    
     
