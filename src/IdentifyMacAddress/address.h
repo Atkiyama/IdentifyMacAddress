@@ -67,6 +67,8 @@ public:
         this->normalizedR = normalizedR;
     }
 
+    
+
     void setNormalizedT(double normalizedT){
         this->normalizedT = normalizedT;
     }
@@ -128,11 +130,19 @@ public:
         return eRegression;
     }
 
+    std::string getAddress(){
+        return address;
+    }
+
+  
+
 
     void printData(){
-        std::cout << "fileName:"<<fileName <<",address:"<< address << ",fTime:" << fTime << ",lTime:" << lTime << ",nextAddSize:"<<nextAddressList.size()<<std::endl;
-        for(int i=0;i<nextAddressList.size();i++)
-            nextAddressList[i].printData();
+        std::cout << "fileName:"<<fileName <<",address:"<< address << ",fTime:" << fTime << ",lTime:" << lTime <<std::endl;
+        if(nextAddressList.size()==1)
+            std::cout << "fileName:"<<nextAddressList[0].getFileName() <<",address:"<< nextAddressList[0].getAddress() << ",fTime:" << nextAddressList[0].getFTime() << ",lTime:" << nextAddressList[0].getLTime() <<std::endl;
+        else if(nextAddressList.size()>1)
+            std::cout <<"warning nextAddress size is over 1"<<std::endl;
         std::cout << std::endl;
 
 

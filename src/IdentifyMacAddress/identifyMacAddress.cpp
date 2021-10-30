@@ -38,7 +38,7 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
       //std::cout << addressList.size()<<std::endl;
       addressList[i].setDelay(numOfTimes);
     }
-
+   /*
     //アドレスリストのソート
    for(int i=0;i<addressList.size()-1;i++){
       for(int j = addressList.size()-1 ;j>i;j--){
@@ -49,7 +49,7 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
 
          }
       }
-   }
+   }*/
 
    //Tで絞り込み
    for(int i = 0; i < addressList.size() ;i++){
@@ -59,6 +59,7 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
             addressList[i].addNextAddressList(addressList[j]);
       }
     }
+   
    
    //回帰
     for(int i=0;i<addressList.size();i++){
@@ -88,6 +89,8 @@ void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<Address
        if(addressList[i].getNextAddressList().size()>=2)
          addressList[i].setNextAddressList(normalize(addressList[i],R,T));
     }
+
+    
 
     //結合分の処理
 
@@ -146,7 +149,6 @@ std::vector<Address> normalize(Address address,int R,int T){
    }
    std::vector<Address> replace;
    replace.push_back(minAddress);
-   std::cout <<replace.size()<<std::endl;
    return replace;
    
     
