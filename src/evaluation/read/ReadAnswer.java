@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import evaluation.CaptureFile;
 /**
  * singleReasut.csvから各ファイルの正解macアドレスを読み出すクラス
  * @author akiyama
@@ -16,21 +18,21 @@ public class ReadAnswer {
 	 * @return 機器(キャプチャファイル)のリスト
 	 * @throws IOException
 	 */
-	public ArrayList<String[]> read(String fileName) throws IOException {
+	public static ArrayList<CaptureFile> read(String fileName) throws IOException {
 		File file = new File(fileName);
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);;
 		String str = in.readLine();
-		ArrayList<String[]> data = new ArrayList<>();
+		ArrayList<CaptureFile> captures = new ArrayList<>();
 		while(str != null) {
 			//配列で取得してリストにする
-			data.add(str.split(","));
+			captures.add(new CaptureFile(str.split(",")));
 			str = in.readLine();
 		}
 		in.close();
-		return data;
+		return captures;
 	}
-	public ArrayList<String[]> read() throws IOException{
+	public static ArrayList<CaptureFile> read() throws IOException{
 		return read("data/result/moveResult.csv");
 
 	}
