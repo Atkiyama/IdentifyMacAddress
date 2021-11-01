@@ -5,12 +5,12 @@
 #include "read.h"
 #include<math.h>
 
-int readDelay(int,int);
-double readFPackets(std::string,double,int,int);
-void setFPackets(int);
-void setRegression(int);
-std::vector<std::vector<double> > readRegression(std::string,std::string,double,int,int);
-double getNormalized();
+inline int readDelay(int,int);
+inline double readFPackets(std::string,double,int,int);
+inline void setFPackets(int);
+inline void setRegression(int);
+inline std::vector<std::vector<double> > readRegression(std::string,std::string,double,int,int);
+inline double getNormalized();
 
 
 class Address{
@@ -34,7 +34,7 @@ public:
         this->lTime = lTime;
     }
 
-    void setDelay(int numOfTimes){
+    inline void setDelay(int numOfTimes){
         int dataNumber =std::stoi(fileName.substr(4));
         delay = readDelay(dataNumber,numOfTimes);
         fTime +=delay;
@@ -42,7 +42,7 @@ public:
 
     }
 
-    double extract(int j,int I){
+    inline double extract(int j,int I){
         //NextAddressの引数
         double nextFTime = nextAddressList[j].getFTime();
         double sum=0;
@@ -63,81 +63,81 @@ public:
         
     }
 
-    void setNormalizedR(double normalizedR){
+    inline void setNormalizedR(double normalizedR){
         this->normalizedR = normalizedR;
     }
 
     
 
-    void setNormalizedT(double normalizedT){
+    inline void setNormalizedT(double normalizedT){
         this->normalizedT = normalizedT;
     }
 
-    double getNormaliedR(){
+    inline double getNormaliedR(){
         return normalizedR;
     }
 
-    double getNormaliedT(){
+    inline double getNormaliedT(){
         return normalizedT;
     }
 
-    double getNormalized(){
+    inline double getNormalized(){
         return sqrt(normalizedR+normalizedT);
     }
 
-    void addNextAddressList(Address address){
+    inline void addNextAddressList(Address address){
         nextAddressList.push_back(address);
     }
 
-    void setNextAddressList(std::vector<Address> addressList){
+    inline void setNextAddressList(std::vector<Address> addressList){
         nextAddressList = addressList;
     }
 
-    std::vector<Address> getNextAddressList(){
+    inline std::vector<Address> getNextAddressList(){
         return nextAddressList;
     }
-    std::string getFileName(){
+    inline std::string getFileName(){
         return fileName;
     }
 
     
 
-    double getFTime(){
+    inline double getFTime(){
         return fTime;
     }
 
-    double getLTime(){
+    inline double getLTime(){
         return lTime;
     }
 
-   double getFPackets(){
+   inline double getFPackets(){
         return fPackets;
     }
 
-    std::vector<std::vector<double> > getRegression(){
+    inline std::vector<std::vector<double> > getRegression(){
         return regression;
     }
 
-    void setFPackets(int I){
+    inline void setFPackets(int I){
         fPackets = readFPackets(address,fTime,I,delay);
     }
 
-    void setRegression(std::string method,int I){
+    inline void setRegression(std::string method,int I){
         regression = readRegression(address,method,fTime,I,delay);
     }
 
-    double getERegression(){
+    inline double getERegression(){
         return eRegression;
     }
 
-    std::string getAddress(){
+    inline std::string getAddress(){
         return address;
     }
 
   
 
 
-    void printData(){
+    inline void printData(){
         std::cout << "fileName:"<<fileName <<",address:"<< address << ",fTime:" << fTime << ",lTime:" << lTime <<std::endl;
         if(nextAddressList.size()==1)
             std::cout << "fileName:"<<nextAddressList[0].getFileName() <<",address:"<< nextAddressList[0].getAddress() << ",fTime:" << nextAddressList[0].getFTime() << ",lTime:" << nextAddressList[0].getLTime() <<std::endl;

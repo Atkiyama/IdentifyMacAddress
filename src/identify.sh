@@ -9,7 +9,7 @@ do
     do
       for R in {1..20}
       do
-        for T in 5 6
+        for T in 6
         do
           for I in {1..20}
           do

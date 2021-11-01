@@ -10,12 +10,12 @@
 
 class Address;
 
-Address makeAddress(std::string);
-std::vector<Address> readAddressList();
-int readDelay(int,int);
-double readFPackets(std::string,double,int,int);
+inline Address makeAddress(std::string);
+inline std::vector<Address> readAddressList();
+inline int readDelay(int,int);
+inline double readFPackets(std::string,double,int,int);
 
-Address makeAddress(std::string buf){
+inline Address makeAddress(std::string buf){
     int first = buf.find(",");
     int second = buf.find(",",first+1);
     int third = buf.find(",",second+1);
@@ -26,7 +26,7 @@ Address makeAddress(std::string buf){
     return Address(fileName,address,std::stod(fTime),std::stod(lTime));
 }
 
-std::vector<Address> readAddressList(){
+inline std::vector<Address> readAddressList(){
 
     const char *inputName = "./data/address/addressList.csv";
     std::ifstream ifs(inputName);
@@ -51,7 +51,7 @@ std::vector<Address> readAddressList(){
     return addressList;
 }
 
-double readFPackets(std::string address,double fTime,int I,int delay){
+inline double readFPackets(std::string address,double fTime,int I,int delay){
     std::string inputName = "./data/address/fAddress/";
     inputName += address; 
     inputName +=".csv";
@@ -86,7 +86,7 @@ double readFPackets(std::string address,double fTime,int I,int delay){
         
 }
 
-std::vector<std::vector<double> > readRegression(std::string address,std::string method,double fTime,int I,int delay){
+inline std::vector<std::vector<double> > readRegression(std::string address,std::string method,double fTime,int I,int delay){
     std::string inputName = "./data/address/regression/";
     inputName += method;
     inputName += "/"; 
@@ -122,7 +122,7 @@ std::vector<std::vector<double> > readRegression(std::string address,std::string
     return regressions;
 }
 
-int readDelay(int dataNumber,int numOfTimes){
+inline int readDelay(int dataNumber,int numOfTimes){
     std::ostringstream oss;
     oss << dataNumber;
 

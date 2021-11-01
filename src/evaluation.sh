@@ -13,9 +13,9 @@ do
         do
           if [ "$R" -eq "1" -a "$T" -eq "6" -a "$I" -eq "1" -a "$numOfData" -eq "5" -a]
           then
-            java evaluation/evaluation/Evaluation $R $T $I $numOfData $method >data/result/evaluation/move/$method evaluation$numOfData.txt
+            java evaluation/evaluation/Evaluation $R $T $I $numOfData $method >data/result/evaluation/move/$method evaluation$numOfData.txt &
           else
-            java evaluation/evaluation/Evaluation $R $T $I $numOfData $method >>data/result/evaluation/move/$method evaluation$numOfData.txt
+            java evaluation/evaluation/Evaluation $R $T $I $numOfData $method >>data/result/evaluation/move/$method evaluation$numOfData.txt &
           fi
         done
       done
