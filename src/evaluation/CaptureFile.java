@@ -14,5 +14,8 @@ public class CaptureFile {
 				address.add(data);
 		}
 	}
+	public ArrayList<String> getAddress(){
+		return address;
+	}
 
 }

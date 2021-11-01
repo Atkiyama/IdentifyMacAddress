@@ -50,7 +50,7 @@ public class Read {
 	public  ArrayList<String[]> read() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		//評価のパターン
-		final Pattern pEval = Pattern.compile("(R=)([0-9]+)(T=)([0-9]+)(P=)([0-9]+)(,score is )(.+)(%)");
+		final Pattern pEval = Pattern.compile("(R=)([0-9]+)(T=)([0-9]+)(I=)([0-9]+)(,score is )(.+)(%)");
 		Matcher mEval;
 		File file = new File(inputFileName);
 		FileReader fileReader = new FileReader(file);

@@ -9,7 +9,7 @@ import java.io.IOException;
 public class EvaluationTable {
 /**
  * メインメソッド
- * @param args 0に入力先 1に書き込み先
+ * @param args 0に読み込みファイル名 1に書き込み先
  * @throws IOException
  */
 	public static void main(String[] args) throws IOException {
