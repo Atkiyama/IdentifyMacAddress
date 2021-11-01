@@ -89,7 +89,7 @@ public:
         nextAddressList.push_back(address);
     }
 
-    inline void setNextAddressList(std::vector<Address> addressList){
+    void setNextAddressList(std::vector<Address> addressList){
         nextAddressList = addressList;
     }
 
