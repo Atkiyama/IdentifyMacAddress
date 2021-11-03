@@ -24,6 +24,7 @@ inline void identify(int,int,int,int,int,std::vector<Address>,std::string method
 inline std::vector<Address> selectData(std::vector<Address>,int);
 inline bool contains(int,std::vector<int>);
 std::vector<Address> normalize(Address,int,int);
+inline double getFPackets();
 
 /*
 同定を行うメソッド
@@ -43,13 +44,13 @@ inline void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<
       addressList = selectData(originalAddressList,numOfData);
    else
       addressList = originalAddressList;
-   //std::cout << addressList.size() <<std::endl;
+  
 
 
-   //遅延設定
+   //遅延設定とfPacketを設定
    for(int i=0;i<addressList.size();i++){
-      //std::cout << addressList.size()<<std::endl;
       addressList[i].setDelay(numOfTimes);
+      addressList[i].setFPackets(I);
     }
    /*
     //アドレスリストのソート
@@ -74,9 +75,8 @@ inline void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<
     }
    
    
-   //回帰
+   //回帰値をセット
     for(int i=0;i<addressList.size();i++){
-      addressList[i].setFPackets(I);
       addressList[i].setRegression(method,I);
     }
 
@@ -91,9 +91,7 @@ inline void identify(int R,int T,int I,int numOfTimes,int numOfData,std::vector<
             replace.push_back(addressList[i].getNextAddressList()[j]);
          }
       }
-      std::cout << replace.size()<<std::endl;
       addressList[i].setNextAddressList(replace);
-      //std::cout << addressList[i].getNextAddressList().size() << std::endl;
     }
     
 
@@ -127,25 +125,14 @@ inline std::vector<Address> selectData(std::vector<Address> originalAddressList,
    std::random_device rd;
    std::default_random_engine eng(rd());
    std::uniform_int_distribution<int> distr(MIN, MAX);
-//デバック用の処理(選出データの固定)
-   std::vector<int> test;
-   test.push_back(19);
-   test.push_back(17);
-   test.push_back(16);
-   test.push_back(7);
-   test.push_back(6);
-   //デバック用変数
-   int j=0;
    //選出済みの整数のリスト
    std::vector<int> dataNumbers ; 
    //選出データの格納先
    std::vector<Address> addressList;
    while(dataNumbers.size()<numOfData){
-     //int random = distr(eng);
-     int random = test[j];
+     int random = distr(eng);
       std::ostringstream oss;
       oss << random;
-      //std::cout << random <<std::endl;
       if(!contains(random,dataNumbers)){
          dataNumbers.push_back(random);
          for(int i=0;i<originalAddressList.size();i++){
@@ -156,18 +143,15 @@ inline std::vector<Address> selectData(std::vector<Address> originalAddressList,
                //二桁の場合
                if(originalAddressList[i].getFileName().find(randomStr)!=std::string::npos){
                   addressList.push_back(originalAddressList[i]);
-                  //std::cout << addressList.size() <<std::endl;
                }
             }else{
                //一桁の場合
                if(originalAddressList[i].getFileName().find(randomStr)!=std::string::npos&&originalAddressList[i].getFileName().size()==5){
                   addressList.push_back(originalAddressList[i]);
-                  //std::cout << addressList.size() <<std::endl;
                }
             }
          }     
       }
-      j++;
    }
    return addressList;
 

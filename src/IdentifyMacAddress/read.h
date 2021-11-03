@@ -12,8 +12,8 @@ class Address;
 
 inline Address makeAddress(std::string);
 inline std::vector<Address> readAddressList();
-inline int readDelay(int,int);
-inline double readFPackets(std::string,double,int,int);
+inline double readDelay(int,int);
+inline double readFPackets(std::string,double,int,double);
 
 
 /**
@@ -65,7 +65,7 @@ inline std::vector<Address> readAddressList(){
 /**
  * fPacketsを読み出してI秒までの平均を返すメソッド
  */ 
-inline double readFPackets(std::string address,double fTime,int I,int delay){
+inline double readFPackets(std::string address,double fTime,int I,double delay){
     std::string inputName = "./data/address/fAddress/";
     inputName += address; 
     inputName +=".csv";
@@ -92,15 +92,14 @@ inline double readFPackets(std::string address,double fTime,int I,int delay){
                 sum +=rssi;
                 count++;
             }
-            else
-                break;
         }
                
     }
     if(count==0)
         return 0;
-    else
+    else{
         return sum/count;
+    }
         
 }
 
@@ -108,7 +107,7 @@ inline double readFPackets(std::string address,double fTime,int I,int delay){
  *回帰値を読み込むメソッド
  */
 
-inline std::vector<std::vector<double> > readRegression(std::string address,std::string method,double fTime,int I,int delay){
+inline std::vector<std::vector<double> > readRegression(std::string address,std::string method,double fTime,int I,double delay){
     std::string inputName = "./data/address/regression/";
     inputName += method;
     inputName += "/"; 
@@ -135,17 +134,17 @@ inline std::vector<std::vector<double> > readRegression(std::string address,std:
             int first = buf.find(",");
             std::vector<double> data;
             //dataの0にtime,1にrssiをつっこむ
-            data.push_back(std::stod(buf.substr(0,first))+(double)delay);
+            data.push_back(std::stod(buf.substr(0,first))+delay);
             data.push_back(std::stod(buf.substr(first+1)));
             regressions.push_back(data);
         }
-               
+        
     }
     return regressions;
 }
 
 //遅延値を設定するメソッド
-inline int readDelay(int dataNumber,int numOfTimes){
+inline double readDelay(int dataNumber,int numOfTimes){
     std::ostringstream oss;
     oss << dataNumber;
 
@@ -160,14 +159,11 @@ inline int readDelay(int dataNumber,int numOfTimes){
         std::cin.get();
     }
     
-
-    //ヘッダを読み飛ばす
-    int delay;
     int i=1;
     while(true){
         std::getline(ifs, buf);
         if(i==numOfTimes)
-            return std::stoi(buf);
+            return std::stod(buf);
         i++;
     }
 

@@ -5,11 +5,12 @@
 #include "read.h"
 #include<math.h>
 
-inline int readDelay(int,int);
-inline double readFPackets(std::string,double,int,int);
+inline double readDelay(int,int);
+inline double readFPackets(std::string,double,int,double);
 inline void setFPackets(int);
 inline void setRegression(int);
-inline std::vector<std::vector<double> > readRegression(std::string,std::string,double,int,int);
+inline double getFPackets();
+inline std::vector<std::vector<double> > readRegression(std::string,std::string,double,int,double);
 inline double getNormalized();
 
 /**
@@ -32,7 +33,7 @@ public:
     std::string address;
     double fTime;
     double lTime;
-    int delay;
+    double delay;
     double fPackets;
     std::vector<std::vector<double> > regression;
     double eRegression;
@@ -70,10 +71,10 @@ public:
         double nextFTime = nextAddressList[j].getFTime();
         double sum=0;
         double count=0;
-        for(int i=0;i<nextAddressList[j].getRegression().size();i++){
-            double sub = nextAddressList[j].getRegression()[i][0]-nextFTime;
+        for(int i=0;i<regression.size();i++){
+            double sub = regression[i][0]-nextFTime;
             if(0<=sub&&sub<=I){
-                sum+=nextAddressList[j].getRegression()[i][1];
+                sum+=regression[i][1];
                 count++;
             }
 
@@ -81,8 +82,9 @@ public:
         //データ0の場合0除算を防ぐためにこの処理をする
         if(count!=0)
             eRegression = sum/count;
-        else
+        else{
             eRegression = 0;
+        }
         return eRegression;
         
     }
