@@ -15,6 +15,14 @@ inline std::vector<Address> readAddressList();
 inline int readDelay(int,int);
 inline double readFPackets(std::string,double,int,int);
 
+
+/**
+ * 様々なデータを読み込むファイル
+ */
+
+/**
+ * 引数の文字列からアドレスのクラスを生成するメソッド
+ */
 inline Address makeAddress(std::string buf){
     int first = buf.find(",");
     int second = buf.find(",",first+1);
@@ -26,6 +34,9 @@ inline Address makeAddress(std::string buf){
     return Address(fileName,address,std::stod(fTime),std::stod(lTime));
 }
 
+/**
+ * アドレスリストを読み込むクラス
+ */
 inline std::vector<Address> readAddressList(){
 
     const char *inputName = "./data/address/addressList.csv";
@@ -51,6 +62,9 @@ inline std::vector<Address> readAddressList(){
     return addressList;
 }
 
+/**
+ * fPacketsを読み出してI秒までの平均を返すメソッド
+ */ 
 inline double readFPackets(std::string address,double fTime,int I,int delay){
     std::string inputName = "./data/address/fAddress/";
     inputName += address; 
@@ -71,6 +85,7 @@ inline double readFPackets(std::string address,double fTime,int I,int delay){
         std::getline(ifs, buf);
         if(buf.size()!=0){
             int first = buf.find(",");
+            //遅延時間もここで設定する
             double time = std::stod(buf.substr(0,first))+delay;
             double rssi = std::stod(buf.substr(first+1));
             if(time-fTime<=I){
@@ -82,9 +97,16 @@ inline double readFPackets(std::string address,double fTime,int I,int delay){
         }
                
     }
-    return sum/count;
+    if(count==0)
+        return 0;
+    else
+        return sum/count;
         
 }
+
+/**
+ *回帰値を読み込むメソッド
+ */
 
 inline std::vector<std::vector<double> > readRegression(std::string address,std::string method,double fTime,int I,int delay){
     std::string inputName = "./data/address/regression/";
@@ -122,6 +144,7 @@ inline std::vector<std::vector<double> > readRegression(std::string address,std:
     return regressions;
 }
 
+//遅延値を設定するメソッド
 inline int readDelay(int dataNumber,int numOfTimes){
     std::ostringstream oss;
     oss << dataNumber;

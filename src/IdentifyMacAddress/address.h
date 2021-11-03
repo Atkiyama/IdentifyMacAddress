@@ -12,7 +12,20 @@ inline void setRegression(int);
 inline std::vector<std::vector<double> > readRegression(std::string,std::string,double,int,int);
 inline double getNormalized();
 
-
+/**
+ * アドレスを示すクラス
+ * fileName アドレスが格納されているファイル名
+ * address アドレス名
+ * fTime 初回受診時刻
+ * lTime 最終受診時刻
+ * delay 遅延時刻
+ * fPackets 初回受診時刻から閾値I秒までのパケットのRSSIの平均
+ * regression パケットの回帰データを格納したリスト 0にtime 1にrssiを格納する
+ * eRegression 同定用に特定区間のRSSIの平均を格納した変数
+ * normalizedT 正規化した閾値Tの値
+ * normalizedR 正規化した閾値Rの値
+ * nextAddressList 次アドレス候補のリスト　最終的に0に次アドレスを格納する
+ */
 class Address{
 public:
     std::string fileName;
@@ -27,6 +40,9 @@ public:
     double normalizedR;
     std::vector<Address> nextAddressList;
     
+    /**
+     * 初期化して代入する
+     */
     Address(std::string fileName,std::string address,double fTime,double lTime){
         this->fileName = fileName;
         this->address = address;
@@ -34,6 +50,10 @@ public:
         this->lTime = lTime;
     }
 
+    /**
+    *遅延時間を設定する
+    *read.hのメソッドから読みこむ
+    */
     inline void setDelay(int numOfTimes){
         int dataNumber =std::stoi(fileName.substr(4));
         delay = readDelay(dataNumber,numOfTimes);
@@ -42,7 +62,10 @@ public:
 
     }
 
-    inline double extract(int j,int I){
+    /**
+     * 特定区間から回帰値の平均を抽出するメソッド
+     */
+    double extract(int j,int I){
         //NextAddressの引数
         double nextFTime = nextAddressList[j].getFTime();
         double sum=0;
@@ -55,6 +78,7 @@ public:
             }
 
         }
+        //データ0の場合0除算を防ぐためにこの処理をする
         if(count!=0)
             eRegression = sum/count;
         else
@@ -118,10 +142,16 @@ public:
         return regression;
     }
 
-    inline void setFPackets(int I){
+    /**
+     * read.hのメソッドを用いてfPacketsを設定する
+     */
+    void setFPackets(int I){
         fPackets = readFPackets(address,fTime,I,delay);
     }
 
+    /**
+     * read.hのメソッドを用いてregressionを設定する
+     */
     inline void setRegression(std::string method,int I){
         regression = readRegression(address,method,fTime,I,delay);
     }
@@ -136,7 +166,9 @@ public:
 
   
 
-
+    /**
+     * 自アドレスの情報と次アドレスの情報を表示する
+     */
     inline void printData(){
         std::cout << "fileName:"<<fileName <<",address:"<< address << ",fTime:" << fTime << ",lTime:" << lTime <<std::endl;
         if(nextAddressList.size()==1)
