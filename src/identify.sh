@@ -15,7 +15,7 @@ do
           do
             forCount='ps|grep ./identify|wc -l'
             count=$(eval $forCount)
-            while [$count -gt 40 ]
+            while [$count -gt 25 ]
             do
               forCount='ps|grep ./identify|wc -l'
               count=$(eval $forCount)
