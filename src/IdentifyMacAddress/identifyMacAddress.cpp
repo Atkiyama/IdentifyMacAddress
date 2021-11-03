@@ -203,7 +203,4 @@ int main(int argc, char *argv[]){
    int numOfTimes = std::stod(argv[5]);
    std::string  method = argv[6];
    identify(R,T,I,numOfTimes,numOfData,readAddressList(),method);
-  
-    
-   
 }
