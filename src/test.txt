@@ -1,73 +1,70 @@
-fileName>move5,address>5a:bc:5d:6a:e6:ba,fTime>259,lTime>995.228
-fileName>move5,address>71:b8:32:1b:64:22,fTime>999.222,lTime>1834.6
+556
+556
+556
+556
+556
+556
+411
+411
+411
+411
+411
+165
+165
+165
+165
+5
+5
+5
+3
+3
+3
+3
+3
+fileName>move5,address>5a:bc:5d:6a:e6:ba,fTime>556,lTime>1292.23
 
-fileName>move5,address>71:b8:32:1b:64:22,fTime>999.222,lTime>1834.6
-fileName>move5,address>7f:a9:2a:14:12:f4,fTime>1839.35,lTime>2552.66
+fileName>move5,address>71:b8:32:1b:64:22,fTime>1296.22,lTime>2131.6
 
-fileName>move5,address>7f:a9:2a:14:12:f4,fTime>1839.35,lTime>2552.66
-fileName>move5,address>78:f4:32:4c:9c:80,fTime>2556.82,lTime>3374.56
+fileName>move5,address>7f:a9:2a:14:12:f4,fTime>2136.35,lTime>2849.66
 
-fileName>move5,address>78:f4:32:4c:9c:80,fTime>2556.82,lTime>3374.56
-fileName>move5,address>69:f1:4f:bf:2d:67,fTime>3377.5,lTime>3467.1
+fileName>move5,address>78:f4:32:4c:9c:80,fTime>2853.82,lTime>3671.56
 
-fileName>move5,address>69:f1:4f:bf:2d:67,fTime>3377.5,lTime>3467.1
-fileName>move5,address>4b:af:22:01:c4:fc,fTime>3469.75,lTime>3842.33
+fileName>move5,address>69:f1:4f:bf:2d:67,fTime>3674.5,lTime>3764.1
 
-fileName>move5,address>4b:af:22:01:c4:fc,fTime>3469.75,lTime>3842.33
+fileName>move5,address>4b:af:22:01:c4:fc,fTime>3766.75,lTime>4139.33
 
-fileName>move18,address>42:13:9d:1c:14:1c,fTime>301,lTime>1038.29
-fileName>move18,address>57:46:37:52:09:d0,fTime>1041.48,lTime>1838.34
+fileName>move13,address>40:00:2a:d4:81:95,fTime>411,lTime>1107.18
 
-fileName>move18,address>57:46:37:52:09:d0,fTime>1041.48,lTime>1838.34
-fileName>move5,address>7f:a9:2a:14:12:f4,fTime>1839.35,lTime>2552.66
+fileName>move13,address>7d:4a:ad:f4:b1:19,fTime>1109.3,lTime>1930.79
 
-fileName>move18,address>7a:67:a2:06:08:a2,fTime>1842.19,lTime>2537.94
-fileName>move18,address>6a:19:dc:ac:7d:f3,fTime>2540.26,lTime>3262.3
+fileName>move13,address>42:b5:96:d5:0d:76,fTime>1932.77,lTime>2674.57
 
-fileName>move18,address>6a:19:dc:ac:7d:f3,fTime>2540.26,lTime>3262.3
-fileName>move18,address>7d:02:e1:0a:64:e9,fTime>3266.75,lTime>3886.31
+fileName>move13,address>66:fe:78:47:45:f9,fTime>2677.24,lTime>3507.25
+fileName>move13,address>5c:6b:c6:3b:e2:e8,fTime>3508.33,lTime>3992.71
 
-fileName>move18,address>7d:02:e1:0a:64:e9,fTime>3266.75,lTime>3886.31
+fileName>move13,address>5c:6b:c6:3b:e2:e8,fTime>3508.33,lTime>3992.71
 
-fileName>move15,address>55:f3:1b:86:8c:1e,fTime>186,lTime>800.585
-fileName>move15,address>73:b4:28:47:8e:7d,fTime>802.461,lTime>1558.96
+fileName>move16,address>46:56:e7:66:90:01,fTime>165,lTime>900.768
 
-fileName>move15,address>73:b4:28:47:8e:7d,fTime>802.461,lTime>1558.96
-fileName>move15,address>5d:0c:96:b8:21:0e,fTime>1561.84,lTime>2275.65
+fileName>move16,address>44:e7:b6:9d:c5:20,fTime>904.138,lTime>1715
 
-fileName>move15,address>5d:0c:96:b8:21:0e,fTime>1561.84,lTime>2275.65
-fileName>move15,address>77:81:73:0b:c6:16,fTime>2276.78,lTime>2973.48
+fileName>move16,address>5b:d1:64:18:6d:3d,fTime>1718.65,lTime>2516.53
 
-fileName>move15,address>77:81:73:0b:c6:16,fTime>2276.78,lTime>2973.48
-fileName>move15,address>52:14:ea:df:22:de,fTime>2976.82,lTime>3768.2
+fileName>move16,address>39:a0:8a:34:ca:27,fTime>2521,lTime>3751.98
 
-fileName>move15,address>52:14:ea:df:22:de,fTime>2976.82,lTime>3768.2
+fileName>move17,address>0f:c3:bc:75:5c:f0,fTime>5,lTime>784.918
 
-fileName>move11,address>55:a9:50:16:e7:9c,fTime>91,lTime>961.544
-fileName>move11,address>70:39:88:34:50:d5,fTime>963.965,lTime>1677.88
+fileName>move17,address>21:87:69:4c:ae:f3,fTime>785.559,lTime>2003.68
 
-fileName>move11,address>70:39:88:34:50:d5,fTime>963.965,lTime>1677.88
-fileName>move11,address>7d:6e:ff:ee:45:52,fTime>1680.88,lTime>2467.84
+fileName>move17,address>3c:94:9d:65:68:1a,fTime>2006.63,lTime>2155.35
 
-fileName>move11,address>7d:6e:ff:ee:45:52,fTime>1680.88,lTime>2467.84
-fileName>move11,address>44:e5:08:5f:71:77,fTime>2470.91,lTime>3242.95
+fileName>move10,address>47:be:45:ed:ae:ee,fTime>3,lTime>766.522
 
-fileName>move11,address>44:e5:08:5f:71:77,fTime>2470.91,lTime>3242.95
-fileName>move11,address>7f:f6:89:df:26:d5,fTime>3245.49,lTime>3672.55
+fileName>move10,address>60:cb:08:fe:06:1b,fTime>770.26,lTime>1510.56
 
-fileName>move11,address>7f:f6:89:df:26:d5,fTime>3245.49,lTime>3672.55
+fileName>move10,address>7d:99:72:97:93:f9,fTime>1512.48,lTime>2101.54
 
-fileName>move13,address>40:00:2a:d4:81:95,fTime>365,lTime>1061.18
-fileName>move13,address>7d:4a:ad:f4:b1:19,fTime>1063.3,lTime>1884.79
+fileName>move10,address>7f:9f:71:ad:34:52,fTime>2105.09,lTime>2977.09
 
-fileName>move13,address>7d:4a:ad:f4:b1:19,fTime>1063.3,lTime>1884.79
-fileName>move13,address>42:b5:96:d5:0d:76,fTime>1886.77,lTime>2628.57
-
-fileName>move13,address>42:b5:96:d5:0d:76,fTime>1886.77,lTime>2628.57
-fileName>move13,address>66:fe:78:47:45:f9,fTime>2631.24,lTime>3461.25
-
-fileName>move13,address>66:fe:78:47:45:f9,fTime>2631.24,lTime>3461.25
-fileName>move13,address>5c:6b:c6:3b:e2:e8,fTime>3462.33,lTime>3946.71
-
-fileName>move13,address>5c:6b:c6:3b:e2:e8,fTime>3462.33,lTime>3946.71
+fileName>move10,address>6f:97:52:e2:72:d0,fTime>2979.5,lTime>3588.89
 

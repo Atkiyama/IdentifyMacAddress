@@ -17,11 +17,12 @@ public class RandomDelay {
 		for (int j = 1; j <= fileNumber; j++) {
 			fileWriter = new FileWriter("data/address/delay/randomDelay"+j+".csv");
 			for (int i = 1; i <= roop; i++) {
+				//System.out.println(i);
 				fileWriter.append(String.valueOf(random.nextInt(600)));
 				fileWriter.append("\r\n");
 			}
+			fileWriter.close();
 		}
-		fileWriter.close();
 
 	}
 

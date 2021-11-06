@@ -196,11 +196,11 @@ std::vector<Address> normalize(Address address,int R,int T){
 
 //変数の型を修正してidentifyメソッドに全てを投げる
 int main(int argc, char *argv[]){
-   int R = std::stod(argv[1]);
-   int T = std::stod(argv[2]);
-   int I = std::stod(argv[3]);
-   int numOfData = std::stod(argv[4]);
-   int numOfTimes = std::stod(argv[5]);
+   int R = std::stoi(argv[1]);
+   int T = std::stoi(argv[2]);
+   int I = std::stoi(argv[3]);
+   int numOfData = std::stoi(argv[4]);
+   int numOfTimes = std::stoi(argv[5]);
    std::string  method = argv[6];
    identify(R,T,I,numOfTimes,numOfData,readAddressList(),method);
 }

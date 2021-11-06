@@ -164,6 +164,7 @@ inline double readDelay(int dataNumber,int numOfTimes){
         std::getline(ifs, buf);
         if(i==numOfTimes)
             return std::stod(buf);
+        
         i++;
     }
 
