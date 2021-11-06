@@ -172,9 +172,9 @@ public:
      * 自アドレスの情報と次アドレスの情報を表示する
      */
     inline void printData(){
-        std::cout << "fileName:"<<fileName <<",address:"<< address << ",fTime:" << fTime << ",lTime:" << lTime <<std::endl;
+        std::cout << "fileName>"<<fileName <<",address>"<< address << ",fTime>" << fTime << ",lTime>" << lTime <<std::endl;
         if(nextAddressList.size()==1)
-            std::cout << "fileName:"<<nextAddressList[0].getFileName() <<",address:"<< nextAddressList[0].getAddress() << ",fTime:" << nextAddressList[0].getFTime() << ",lTime:" << nextAddressList[0].getLTime() <<std::endl;
+            std::cout << "fileName>"<<nextAddressList[0].getFileName() <<",address>"<< nextAddressList[0].getAddress() << ",fTime>" << nextAddressList[0].getFTime() << ",lTime>" << nextAddressList[0].getLTime() <<std::endl;
         else if(nextAddressList.size()>1)
             std::cout <<"warning nextAddress size is over 1"<<std::endl;
         std::cout << std::endl;
