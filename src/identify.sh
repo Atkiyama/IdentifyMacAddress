@@ -11,7 +11,7 @@ do
     do
       for n in {1..10000}
       do
-        ./identify $R $T $I $numOfData $n $method > data/result/multi/move/$method/$numOfData/$R,$T,$I,$n.txt
+        ./identify $R $T $I $numOfData $n $method > data/result/multi/move/$method/$numOfData/$n.txt
       done
       if [ "$R" -eq "1" -a "$I" -eq "1" ]
       then

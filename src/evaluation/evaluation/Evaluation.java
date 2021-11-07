@@ -13,10 +13,10 @@ public class Evaluation {
     int n;
     ArrayList<CaptureFile> captures;
     ArrayList<String> datas;
-    public Evaluation(int R,int T,int I,int n,String method,String numOfData) throws IOException{
+    public Evaluation(int n,String method,String numOfData) throws IOException{
 
     	captures = ReadAnswer.read();
-    	ReadData read = new ReadData(R,T,I,n,method,numOfData);
+    	ReadData read = new ReadData(n,method,numOfData);
     	datas = read.read();
         score = new ArrayList<>();
     }
@@ -90,7 +90,7 @@ public class Evaluation {
         //評価用のインスタンスを作成
 
         for(int n=1;n<=10000;n++){
-            evals.add(new Evaluation(R,T,I,n,args[3],args[4]));
+            evals.add(new Evaluation(n,args[3],args[4]));
         }
         double sumScore = 0;
         for(Evaluation eval:evals){
