@@ -18,8 +18,8 @@ public class ReadData {
 	 * 読み込むファイル名
 	 */
 	private String fileName;
-	public ReadData(int R,int T,int I,int n) {
-		fileName = "data/result/multi/move/"+R+","+T+","+I+","+n+".txt";
+	public ReadData(int R,int T,int I,int n, String method, String numOfData) {
+		fileName = "data/result/multi/move/"+method+"/"+numOfData+"/"+R+","+T+","+I+","+n+".txt";
 	}
 
 	public ReadData(String fileName){
