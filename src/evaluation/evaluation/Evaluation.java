@@ -21,6 +21,13 @@ public class Evaluation {
         score = new ArrayList<>();
     }
 
+    public Evaluation(int R,int T,int I,int numOfTime,int n ,String method,String numOfData) throws IOException{
+        captures = ReadAnswer.read();
+    	ReadData read = new ReadData(R,T,I,numOfTime,n,method,numOfData);
+    	datas = read.read();
+        score = new ArrayList<>();
+    }
+
     public Evaluation(String fileName) throws IOException{
         captures = ReadAnswer.read();
     	ReadData read = new ReadData(fileName);

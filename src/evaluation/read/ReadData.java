@@ -19,7 +19,11 @@ public class ReadData {
 	 */
 	private String fileName;
 	public ReadData(int n, String method, String numOfData) {
-		fileName = "data/result/multi/move/"+method+"/"+numOfData+"/"+n+".txt";
+		fileName = "data/result/multi/move/10000/"+method+"/"+numOfData+"/"+n+".txt";
+	}
+
+	public ReadData(int R,int T,int I,int numOfTime ,int n, String method, String numOfData) {
+		fileName = "data/result/multi/move/"+numOfTime+"/"+method+"/"+numOfData+"/"+R+","+T+","+I+","+n+".txt";
 	}
 
 	public ReadData(String fileName){
