@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 /**
  * ファイルを読み込むクラス
  * @author akiyama
@@ -50,20 +48,19 @@ public class Read {
 	public  ArrayList<String[]> read() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		//評価のパターン
-		final Pattern pEval = Pattern.compile("(R=)([0-9]+)(T=)([0-9]+)(I=)([0-9]+)(,score is )(.+)(%)");
-		Matcher mEval;
 		File file = new File(inputFileName);
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);
 		String str = in.readLine();
+		//ヘッダの読み飛ばし
+		str = in.readLine();
 		//配列のリストにデータを納める
 		ArrayList<String[]> dataList = new ArrayList<>();
 		while (str != null) {
-			mEval = pEval.matcher(str);
-			if (mEval.find()) {
-				String row[] = { mEval.group(2),  mEval.group(6), mEval.group(8) };
-				dataList.add(row);
-			}
+			String[] original = str.split(",");
+			String row[] = {original[0],original[2],original[3]};
+			dataList.add(row);
+
 			str = in.readLine();
 		}
 

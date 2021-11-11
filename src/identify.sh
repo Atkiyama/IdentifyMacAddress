@@ -1,24 +1,24 @@
 #bin/bash
 
-#コマンドライン引数
-method=$1
-numOfData=$2
-for R in {1..20}
+for method in linerRegression svr bagging
 do
-  for T in 6
+  for numOfData in 5 10 15 20
   do
-    for I in {1..20}
+    for R in {1..20}
     do
-      for n in {1..10000}
+      for T in 6
       do
-        ./identify $R $T $I $numOfData $n $method > data/result/multi/move/10000/$method/$numOfData/$n.txt
+        for I in {1..20}
+        do
+          for n in {1..10000}; do
+            ./identify $R $T $I $numOfData $n $method >data/result/multi/move/10000/$method/$numOfData/$n.txt
+          done
+          if [ "$R" -eq "1" -a "$I" -eq "1" ]; then
+            echo "R,T,I,score" > data/result/evaluation/move/10000/$method,$numOfData.csv
+          fi
+          java evaluation/evaluation/Evaluation $R $T $I $method $numOfData >>data/result/evaluation/move/10000/$method,$numOfData.csv
+        done
       done
-      if [ "$R" -eq "1" -a "$I" -eq "1" ]
-      then
-        java evaluation/evaluation/Evaluation $R $T $I $method $numOfData > data/result/evaluation/move/10000/$method,$numOfData.txt
-      else
-        java evaluation/evaluation/Evaluation $R $T $I $method $numOfData >> data/result/evaluation/move/10000/$method,$numOfData.txt
-      fi
     done
   done
 done

@@ -20,7 +20,7 @@ public class EvaluationMini{
             eval.evaluation();
             sumScore +=eval.getScore();
         }
-        System.out.println("R="+R+",T="+T+",I="+I+",score is " +sumScore/evals.size()+"%");
+        System.out.println(R+","+T+","+I+"," +sumScore/evals.size()+"%");
 
     }
 }
