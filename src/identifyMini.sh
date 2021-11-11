@@ -32,7 +32,7 @@ do
           if [ "$R" -eq "1" -a "$I" -eq "1" ]; then
             echo "R,T,I,score" > data/result/evaluation/move/100/$method,$numOfData.csv
           fi
-          java evaluation/evaluation/EvaluationMini $R $T $I $numOfTime $method $numOfData > data/result/evaluation/move/$numOfTime/$method,$numOfData.csv
+          java evaluation/evaluation/EvaluationMini $R $T $I $numOfTime $method $numOfData >> data/result/evaluation/move/$numOfTime/$method,$numOfData.csv
         done
       done
     done

@@ -1,19 +1,16 @@
 #コマンドライン引数
-numOfData = $1
+numOfData=$1
 
-for parameta1 in R T P
-do
-  for parameta2 in R T P
+LS=$(ls data/result/table/move/$numOfData/)
+
+for inputFileName in ${LS}; do
+  for threshold in Rssi Time
   do
-    for parameta3 in R T P
+    for parameta in {1..20}
     do
-      for number2 in {1..20}
-      do
-        for number3 in {1..20}
-        do
-          java graph/move/Graph data/result/evaluation/move/evaluation$numOfData.txt $parameta1 $parameta2 $number2 $parameta3 $number3 > $numOdData,$parameta1,$parameta2,$number2,$parameta3,$number3.txt
-        done
-      done
+      java graph/Graph data/result/table/move/$numOfData/$inputFileName $threshold $parameta > data/result/graph/data/$threshold,$parameta.txt
     done
   done
+  gnuplot -e "file='data/result/graph/graph/move/$threshold${inputFileName//.csv/.pdf}'" iFull.plt
+  gnuplot -e "file='data/result/graph/graph/move/$threshold${inputFileName//.csv/.pdf}'" rFull.plt
 done
