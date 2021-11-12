@@ -13,43 +13,43 @@ set key right bottom
 set output file
 
 plot \
-"data/result/graph/data/Time,1.txt" using 1:2 lw 6 lc  title "I=1"\
+"data/result/graph/data/Time,1.txt" using 1:2 lw 6   title "I=1"\
 with lines,\
-"data/result/graph/data/Time,2.txt" using 1:2 lw 6 lc  title "I=2"\
+"data/result/graph/data/Time,2.txt" using 1:2 lw 6   title "I=2"\
 with lines,\
-"data/result/graph/data/Time,3.txt" using 1:2 lw 6 lc  title "I=3"\
+"data/result/graph/data/Time,3.txt" using 1:2 lw 6   title "I=3"\
 with lines,\
-"data/result/graph/data/Time,4.txt" using 1:2 lw 6 lc  title "I=4"\
+"data/result/graph/data/Time,4.txt" using 1:2 lw 6   title "I=4"\
 with lines,\
-"data/result/graph/data/Time,5.txt" using 1:2 lw 6 lc  title "I=5"\
+"data/result/graph/data/Time,5.txt" using 1:2 lw 6   title "I=5"\
 with lines,\
-"data/result/graph/data/Time,6.txt" using 1:2 lw 6 lc  title "I=6"\
+"data/result/graph/data/Time,6.txt" using 1:2 lw 6   title "I=6"\
 with lines,\
-"data/result/graph/data/Time,7.txt" using 1:2 lw 6 lc  title "I=7"\
+"data/result/graph/data/Time,7.txt" using 1:2 lw 6   title "I=7"\
 with lines,\
-"data/result/graph/data/Time,8.txt" using 1:2 lw 6 lc  title "I=8"\
+"data/result/graph/data/Time,8.txt" using 1:2 lw 6   title "I=8"\
 with lines,\
-"data/result/graph/data/Time,9.txt" using 1:2 lw 6 lc  title "I=9"\
+"data/result/graph/data/Time,9.txt" using 1:2 lw 6   title "I=9"\
 with lines,\
-"data/result/graph/data/Time,10.txt" using 1:2 lw 6 lc  title "I=10"\
+"data/result/graph/data/Time,10.txt" using 1:2 lw 6   title "I=10"\
 with lines,\
-"data/result/graph/data/Time,11.txt" using 1:2 lw 6 lc  title "I=11"\
+"data/result/graph/data/Time,11.txt" using 1:2 lw 6   title "I=11"\
 with lines,\
-"data/result/graph/data/Time,12.txt" using 1:2 lw 6 lc  title "I=12"\
+"data/result/graph/data/Time,12.txt" using 1:2 lw 6   title "I=12"\
 with lines,\
-"data/result/graph/data/Time,13.txt" using 1:2 lw 6 lc  title "I=13"\
+"data/result/graph/data/Time,13.txt" using 1:2 lw 6   title "I=13"\
 with lines,\
-"data/result/graph/data/Time,14.txt" using 1:2 lw 6 lc  title "I=14"\
+"data/result/graph/data/Time,14.txt" using 1:2 lw 6   title "I=14"\
 with lines,\
-"data/result/graph/data/Time,15.txt" using 1:2 lw 6 lc  title "I=15"\
+"data/result/graph/data/Time,15.txt" using 1:2 lw 6   title "I=15"\
 with lines,\
-"data/result/graph/data/Time,16.txt" using 1:2 lw 6 lc  title "I=16"\
+"data/result/graph/data/Time,16.txt" using 1:2 lw 6   title "I=16"\
 with lines,\
-"data/result/graph/data/Time,17.txt" using 1:2 lw 6 lc  title "I=17"\
+"data/result/graph/data/Time,17.txt" using 1:2 lw 6   title "I=17"\
 with lines,\
-"data/result/graph/data/Time,18.txt" using 1:2 lw 6 lc  title "I=18"\
+"data/result/graph/data/Time,18.txt" using 1:2 lw 6   title "I=18"\
 with lines,\
-"data/result/graph/data/Time,19.txt" using 1:2 lw 6 lc  title "I=19"\
+"data/result/graph/data/Time,19.txt" using 1:2 lw 6   title "I=19"\
 with lines,\
-"data/result/graph/data/Time,20.txt" using 1:2 lw 6  title "I=20"\
+"data/result/graph/data/Time,20.txt" using 1:2 lw 6   title "I=20"\
 with lines
