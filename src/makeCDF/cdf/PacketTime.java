@@ -36,17 +36,14 @@ public class PacketTime extends Make{
 				for(Packet packet:address.getPackets()) {
 					if(Objects.isNull(base)) {
 						base = packet;
-					}else{
+					}else if(base.getAddress().equals(packet.getAddress())){
 						data.add(format(packet.getTime(),base.getTime()));
-//						if(format(packet.getTime(),base.getTime())>80) {
-//							base.printData();
-//							packet.printData();
-//						}
-
 						base = packet;
 					}
 				}
+				base=null;
 			}
+			base = null;
 		}
 
 	}
