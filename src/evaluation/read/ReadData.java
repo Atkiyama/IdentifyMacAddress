@@ -29,6 +29,11 @@ public class ReadData {
 	public ReadData(String fileName){
 		this.fileName = fileName;
 	}
+
+	public ReadData(int R, int T, int numOfData, int i, String move) {
+		fileName = "data/result/multi/move/100/old/"+numOfData+"/"+R+","+T+","+i+".txt";
+	}
+
 /**
  * 読み込むメソッド
  * @return 配列のリストにした結果
