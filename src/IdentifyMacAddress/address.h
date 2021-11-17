@@ -6,11 +6,11 @@
 #include <math.h>
 
 inline double readDelay(int, int);
-inline double readFPackets(std::string, double, int, double);
+inline std::vector<std::vector<double> > readFPackets(std::string, double, int, double);
 inline void setFPackets(int);
 inline void setRegression(int);
-inline double getFPackets();
-inline std::vector<std::vector<double>> readRegression(std::string, std::string, double, int, double);
+inline std::vector<std::vector<double> > getFPackets();
+inline std::vector<std::vector<double> > readRegression(std::string, std::string, double, int, double);
 inline double getNormalized();
 
 /**
@@ -35,8 +35,8 @@ public:
     double fTime;
     double lTime;
     double delay;
-    double fPackets;
-    std::vector<std::vector<double>> regression;
+    std::vector<std::vector<double> > fPackets;
+    std::vector<std::vector<double> > regression;
     double eRegression;
     double normalizedT;
     double normalizedR;
@@ -68,29 +68,24 @@ public:
     /**
      * 特定区間から回帰値の平均を抽出するメソッド
      */
-    double extract(int j, int I)
+    inline void extract(int j, int I)
     {
         //NextAddressの引数
         double nextFTime = nextAddressList[j].getFTime();
-        double sum = 0;
-        double count = 0;
+        std::vector<std::vector<double> > replace;
+
         for (int i = 0; i < regression.size(); i++)
         {
             double sub = regression[i][0] - nextFTime;
             if (0 <= sub && sub <= I)
             {
-                sum += regression[i][1];
-                count++;
+                std::vector<double> replaceData;
+                replaceData.push_back(regression[i][0]);
+                replaceData.push_back(regression[i][1]);
+                replace.push_back(replaceData);
             }
         }
-        //データ0の場合0除算を防ぐためにこの処理をする
-        if (count != 0)
-            eRegression = sum / count;
-        else
-        {
-            eRegression = 0;
-        }
-        return eRegression;
+        regression = replace;
     }
 
     inline void setNormalizedR(double normalizedR)
@@ -147,12 +142,12 @@ public:
         return lTime;
     }
 
-    inline double getFPackets()
+    inline std::vector<std::vector<double> > getFPackets()
     {
         return fPackets;
     }
 
-    inline std::vector<std::vector<double>> getRegression()
+    inline std::vector<std::vector<double> > getRegression()
     {
         return regression;
     }
@@ -160,7 +155,7 @@ public:
     /**
      * read.hのメソッドを用いてfPacketsを設定する
      */
-    void setFPackets(int I)
+    inline void setFPackets(int I)
     {
         fPackets = readFPackets(address, fTime, I, delay);
     }
