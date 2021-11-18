@@ -95,6 +95,7 @@ inline std::vector<std::vector<double> > readFPackets(std::string address, doubl
             double rssi = std::stod(buf.substr(first + 1));
             if (time - fTime <= I)
             {
+                std::cout << time << std::endl;
                 std::vector<double> fPacket;
                 fPacket.push_back(time);
                 fPacket.push_back(rssi);
