@@ -13,7 +13,7 @@ public class EvaluationMini{
         //評価用のインスタンスを作成
 
         for(int n=1;n<=numOfTime;n++){
-            evals.add(new Evaluation(R,T,I,numOfTime,n,args[4],args[5]));
+            evals.add(new Evaluation(args[4]));
         }
         double sumScore = 0;
         for(Evaluation eval:evals){
