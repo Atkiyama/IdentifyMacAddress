@@ -215,21 +215,25 @@ inline double getR(Address address, Address nextAddress)
 {
    double count = 0;
    double sum = 0;
-   for (int i = 0; i < address.getRegression().size(); i++)
+   for (int i = 0; i < nextAddress.getFPackets().size(); i++)
    {
-      for (int j = 0; j < nextAddress.getFPackets().size(); j++)
+      for (int j = 0; j < address.getRegression().size(); j++)
       {
        
-         if (address.getRegression()[i][0] == nextAddress.getFPackets()[j][0])
+         if (address.getRegression()[j][0] == nextAddress.getFPackets()[i][0])
          {
-            std::cout << "true" << std::endl;
-            sum += std::abs(address.getRegression()[i][1] - nextAddress.getFPackets()[j][1]);
+            sum += std::abs(address.getRegression()[j][1] - nextAddress.getFPackets()[i][1]);
+            count++;
+            break;
+         }
+         else if(address.getRegression()[i][0] < nextAddress.getFPackets()[j][0] && j != 0){
+            double middle = (address.getRegression()[j - 1][0] + address.getRegression()[j][0]) / 2;
+            sum += std::abs(middle - nextAddress.getFPackets()[i][1]);
             count++;
             break;
          }
       }
    }
-   std::cout << sum<<","<<count <<","<<sum/count<<std::endl;
    if (count == 0)
       return 99;
    return sum / count;
