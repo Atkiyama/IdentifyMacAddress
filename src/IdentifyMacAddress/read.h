@@ -11,8 +11,7 @@ class Address;
 
 inline Address makeAddress(std::string);
 inline std::vector<Address> readAddressList();
-inline double readDelay(int, int);
-inline std::vector<std::vector<double> > readFPackets(std::string, double, int, double);
+inline std::vector<std::vector<double> > readFPackets(std::string, double, int, int);
 inline bool checkR(Address, Address, int);
 inline double getR(Address, Address);
 
@@ -41,13 +40,14 @@ inline Address makeAddress(std::string buf)
 inline std::vector<Address> readAddressList()
 {
 
-    const char *inputName = "./data/address/addressList.csv";
+    const char *inputName = "./data/address/delay/addressList.csv";
     std::ifstream ifs(inputName);
     std::string data;
     std::string buf;
     if (!ifs)
     {
         std::cout << "ファイルが開けませんでした。" << std::endl;
+        std::cout << inputName << std::endl;
         std::cin.get();
     }
 
@@ -68,9 +68,9 @@ inline std::vector<Address> readAddressList()
 /**
  * fPacketsを読み出してI秒までの平均を返すメソッド
  */
-inline std::vector<std::vector<double> > readFPackets(std::string address, double fTime, int I, double delay)
+inline std::vector<std::vector<double> > readFPackets(std::string address, double fTime, int I)
 {
-    std::string inputName = "./data/address/fAddress/";
+    std::string inputName = "./data/address/delay/fAddress/";
     inputName += address;
     inputName += ".csv";
     std::ifstream ifs(inputName);
@@ -79,6 +79,7 @@ inline std::vector<std::vector<double> > readFPackets(std::string address, doubl
     if (!ifs)
     {
         std::cout << "ファイルが開けませんでした。" << std::endl;
+        std::cout << inputName << std::endl;
         std::cin.get();
     }
     std::vector<std::vector<double> > fPackets;
@@ -91,7 +92,7 @@ inline std::vector<std::vector<double> > readFPackets(std::string address, doubl
         {
             int first = buf.find(",");
             //遅延時間もここで設定する
-            double time = std::stod(buf.substr(0, first))+delay;
+            double time = std::stod(buf.substr(0, first));
             double rssi = std::stod(buf.substr(first + 1));
             if (time - fTime <= I)
             {
@@ -109,16 +110,10 @@ inline std::vector<std::vector<double> > readFPackets(std::string address, doubl
  *回帰値を読み込むメソッド
  */
 
-inline std::vector<std::vector<double> > readRegression(std::string address, std::string method, double fTime, int I, double delay)
+inline std::vector<std::vector<double> > readRegression(std::string address, std::string method)
 {
-    std::string inputName = "./data/address/regression/";
-    inputName += method;
-    inputName += "/";
+    std::string inputName = "./data/address/delay/regression/";
     inputName += address;
-    inputName += "_";
-    std::ostringstream oss;
-    oss << I;
-    inputName += oss.str();
     inputName += ".csv";
     std::ifstream ifs(inputName);
     std::string data;
@@ -138,39 +133,10 @@ inline std::vector<std::vector<double> > readRegression(std::string address, std
             int first = buf.find(",");
             std::vector<double> data;
             //0にtime.1にrssiをつっこむ
-            data.push_back(std::stod(buf.substr(0, first))+delay);
+            data.push_back(std::stod(buf.substr(0, first)));
             data.push_back(std::stod(buf.substr(first + 1)));
             regressions.push_back(data);
         }
     }
     return regressions;
-}
-
-//遅延値を設定するメソッド
-inline double readDelay(int dataNumber, int numOfTimes)
-{
-    std::ostringstream oss;
-    oss << dataNumber;
-
-    std::string inputName = "./data/address/delay/randomDelay";
-    inputName += oss.str();
-    inputName += ".csv";
-    std::ifstream ifs(inputName);
-    std::string data;
-    std::string buf;
-    if (!ifs)
-    {
-        std::cout << "ファイルが開けませんでした。" << std::endl;
-        std::cin.get();
-    }
-
-    int i = 1;
-    while (true)
-    {
-        std::getline(ifs, buf);
-        if (i == numOfTimes)
-            return std::stod(buf);
-
-        i++;
-    }
 }

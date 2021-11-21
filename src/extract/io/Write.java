@@ -9,7 +9,7 @@ import extract.node.Packet;
 
 public class Write {
 	public static void writeAllAddress(ArrayList<Address> addressList) throws IOException {
-		FileWriter fileWriter = new FileWriter("data/address/addressList.csv");
+		FileWriter fileWriter = new FileWriter("data/address/original/addressList.csv");
 		fileWriter.append("fileName,address,fTime,lTime");
 		fileWriter.append("\r\n");
 		for(Address address:addressList) {
@@ -20,7 +20,7 @@ public class Write {
 	}
 	public static void writeFAddress(Address address) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		FileWriter fileWriter = new FileWriter("data/address/fAddress/"+address.getName()+".csv");
+		FileWriter fileWriter = new FileWriter("data/address/original/fAddress/"+address.getName()+".csv");
 		fileWriter.append("time,rssi");
 		fileWriter.append("\r\n");
 		for(Packet packet:address.getfPackets()) {
@@ -31,7 +31,7 @@ public class Write {
 	}
 	public static void writeLAddress(Address address) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		FileWriter fileWriter = new FileWriter("data/address/lAddress/"+address.getName()+".csv");
+		FileWriter fileWriter = new FileWriter("data/address/original/lAddress/"+address.getName()+".csv");
 		fileWriter.append("time,rssi");
 		fileWriter.append("\r\n");
 		for(Packet packet:address.getlPackets()) {

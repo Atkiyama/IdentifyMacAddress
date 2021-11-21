@@ -5,12 +5,11 @@
 #include "read.h"
 #include <math.h>
 
-inline double readDelay(int, int);
-inline std::vector<std::vector<double> > readFPackets(std::string, double, int, double);
+inline std::vector<std::vector<double> > readFPackets(std::string, double,  int);
 inline void setFPackets(int);
-inline void setRegression(int);
+inline void setRegression(std::string);
 inline std::vector<std::vector<double> > getFPackets();
-inline std::vector<std::vector<double> > readRegression(std::string, std::string, double, int, double);
+inline std::vector<std::vector<double> > readRegression(std::string, std::string);
 inline double getNormalized();
 
 /**
@@ -19,12 +18,8 @@ inline double getNormalized();
  * address アドレス名
  * fTime 初回受診時刻
  * lTime 最終受診時刻
- * delay 遅延時刻
  * fPackets 初回受診時刻から閾値I秒までのパケットのRSSIの平均
  * regression パケットの回帰データを格納したリスト 0にtime 1にrssiを格納する
- * eRegression 同定用に特定区間のRSSIの平均を格納した変数
- * normalizedT 正規化した閾値Tの値
- * normalizedR 正規化した閾値Rの値
  * nextAddressList 次アドレス候補のリスト　最終的に0に次アドレスを格納する
  */
 class Address
@@ -34,12 +29,10 @@ public:
     std::string address;
     double fTime;
     double lTime;
-    double delay;
-    std::vector<std::vector<double> > fPackets;
-    std::vector<std::vector<double> > regression;
-    double eRegression;
     double normalizedT;
     double normalizedR;
+    std::vector<std::vector<double> > fPackets;
+    std::vector<std::vector<double> > regression;
     std::vector<Address> nextAddressList;
 
     /**
@@ -53,18 +46,7 @@ public:
         this->lTime = lTime;
     }
 
-    /**
-    *遅延時間を設定する
-    *read.hのメソッドから読みこむ
-    */
-    inline void setDelay(int numOfTimes)
-    {
-        int dataNumber = std::stoi(fileName.substr(4));
-        delay = readDelay(dataNumber, numOfTimes);
-        fTime += delay;
-        lTime += delay;
-    }
-
+    
     /**
      * 特定区間から回帰値の平均を抽出するメソッド
      */
@@ -87,30 +69,16 @@ public:
         }
         regression = replace;
     }
-
-    inline void setNormalizedR(double normalizedR)
-    {
+    inline void setNormalizedR(double normalizedR){
         this->normalizedR = normalizedR;
     }
 
-    inline void setNormalizedT(double normalizedT)
-    {
+    inline void setNormalizedT(double normalizedT){
         this->normalizedT = normalizedT;
     }
 
-    inline double getNormaliedR()
-    {
-        return normalizedR;
-    }
-
-    inline double getNormaliedT()
-    {
-        return normalizedT;
-    }
-
-    inline double getNormalized()
-    {
-        return sqrt(normalizedR + normalizedT);
+    inline double getNormalized(){
+        return normalizedR + normalizedT;
     }
 
     inline void addNextAddressList(Address address)
@@ -157,21 +125,17 @@ public:
      */
     inline void setFPackets(int I)
     {
-        fPackets = readFPackets(address, fTime, I, delay);
+        fPackets = readFPackets(address, fTime,I);
     }
 
     /**
      * read.hのメソッドを用いてregressionを設定する
      */
-    inline void setRegression(std::string method, int I)
+    inline void setRegression(std::string method)
     {
-        regression = readRegression(address, method, fTime, I, delay);
+        regression = readRegression(address, method);
     }
 
-    inline double getERegression()
-    {
-        return eRegression;
-    }
 
     inline std::string getAddress()
     {
