@@ -81,7 +81,7 @@ inline void identify(int R, int T, int I, int numOfData, std::vector<Address> or
    //回帰値をセット
    for (int i = 0; i < addressList.size(); i++)
    {
-      addressList[i].setRegression(method);
+      addressList[i].setRegression(method,I);
       addressList[i].setFPackets(I);
    }
 

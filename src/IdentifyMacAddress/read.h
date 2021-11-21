@@ -110,10 +110,13 @@ inline std::vector<std::vector<double> > readFPackets(std::string address, doubl
  *回帰値を読み込むメソッド
  */
 
-inline std::vector<std::vector<double> > readRegression(std::string address, std::string method)
+inline std::vector<std::vector<double> > readRegression(std::string address, std::string method,int I)
 {
     std::string inputName = "./data/address/delay/regression/";
     inputName += address;
+    std::ostringstream oss;
+    oss << I;
+    inputName += "_";
     inputName += ".csv";
     std::ifstream ifs(inputName);
     std::string data;

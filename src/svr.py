@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 from sklearn import svm
-import sys
+
 
  
 #線形回帰
@@ -10,7 +10,8 @@ import sys
 def svr(addressList,I):
     clf = svm.SVR(kernel='rbf')
     for line in range(len(addressList)):
-        regression(addressList,addressList.address[line],addressList.lTime[line],I,clf)
+        for I in range(1,21):
+            regression(addressList,addressList.address[line],addressList.lTime[line],I,clf)
 
 def regression(addressList,address,lTime,I,clf):
     x_train = []
@@ -37,16 +38,15 @@ def regression(addressList,address,lTime,I,clf):
     else:
         x_test.append(9999)
     predict = clf.predict(pd.DataFrame(x_test))
-    write(address,x_test,predict)
+    write(address,x_test,predict,I)
 
-def write(address,data,predict):
-    f = open("data/address/delay/regression/"+address+".csv", 'w')
+def write(address,data,predict,I):
+    f = open("data/address/delay/regression/svr/"+address+"_"+str(I)+".csv", 'w')
     for line in range(len(predict)):
         if(line != 0):
             f.write("\r\n")
         f.write(str(data[line])+","+str(predict[line]))
     f.close()
 
-args = sys.argv
 addressList = pd.read_csv("data/address/delay/addressList.csv", sep=",",usecols=[1,2,3])
-linerRegression(addressList,int(args[1]))
+svr(addressList)

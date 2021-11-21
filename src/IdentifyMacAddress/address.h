@@ -7,9 +7,9 @@
 
 inline std::vector<std::vector<double> > readFPackets(std::string, double,  int);
 inline void setFPackets(int);
-inline void setRegression(std::string);
+inline void setRegression(std::string,int);
 inline std::vector<std::vector<double> > getFPackets();
-inline std::vector<std::vector<double> > readRegression(std::string, std::string);
+inline std::vector<std::vector<double> > readRegression(std::string, std::string,int);
 inline double getNormalized();
 
 /**
@@ -131,9 +131,9 @@ public:
     /**
      * read.hのメソッドを用いてregressionを設定する
      */
-    inline void setRegression(std::string method)
+    inline void setRegression(std::string method,I)
     {
-        regression = readRegression(address, method);
+        regression = readRegression(address, method,I);
     }
 
 
