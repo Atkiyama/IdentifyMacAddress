@@ -77,7 +77,7 @@ public:
         for (int i = 0; i < regression.size(); i++)
         {
             double sub = regression[i][0] - nextFTime;
-            if (0 <= sub && sub <= I)
+            if (-0.5 <= sub && sub <= I)
             {
                 std::vector<double> replaceData;
                 replaceData.push_back(regression[i][0]);

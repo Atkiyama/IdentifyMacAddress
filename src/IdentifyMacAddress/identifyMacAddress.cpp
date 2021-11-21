@@ -110,7 +110,7 @@ inline void identify(int R, int T, int I, int numOfTimes, int numOfData, std::ve
    }
 
    //結合分の処理
-
+   
    //データ表示
    for (int i = 0; i < addressList.size(); i++)
    {
@@ -223,17 +223,20 @@ inline double getR(Address address, Address nextAddress)
          if (address.getRegression()[j][0] == nextAddress.getFPackets()[i][0])
          {
             sum += std::abs(address.getRegression()[j][1] - nextAddress.getFPackets()[i][1]);
+            std::cout <<"00>"<<address.getRegression()[j][1]<<","<<nextAddress.getFPackets()[i][1]<<std::endl;
             count++;
             break;
          }
          else if(address.getRegression()[i][0] < nextAddress.getFPackets()[j][0] && j != 0){
-            double middle = (address.getRegression()[j - 1][0] + address.getRegression()[j][0]) / 2;
+            double middle = (address.getRegression()[j - 1][1] + address.getRegression()[j][1]) / 2;
+            //std::cout <<"11>"<<middle<<","<<nextAddress.getFPackets()[i][1]<<std::endl;
             sum += std::abs(middle - nextAddress.getFPackets()[i][1]);
             count++;
             break;
          }
       }
    }
+   std::cout <<"sum="<< sum << ",count =" << count <<",sum/count="<<sum/count<< std::endl;
    if (count == 0)
       return 99;
    return sum / count;
