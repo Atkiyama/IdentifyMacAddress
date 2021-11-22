@@ -37,10 +37,14 @@ inline Address makeAddress(std::string buf)
 /**
  * アドレスリストを読み込むクラス
  */
-inline std::vector<Address> readAddressList()
+inline std::vector<Address> readAddressList(int numOfTimes)
 {
 
-    const char *inputName = "./data/address/delay/addressList.csv";
+    std::string inputName = "./data/address/delay/addressList/addressList";
+    std::ostringstream oss;
+    oss << numOfTimes;
+    inputName += oss.str();
+    inputName += ".csv";
     std::ifstream ifs(inputName);
     std::string data;
     std::string buf;
@@ -68,10 +72,14 @@ inline std::vector<Address> readAddressList()
 /**
  * fPacketsを読み出してI秒までの平均を返すメソッド
  */
-inline std::vector<std::vector<double> > readFPackets(std::string address, double fTime, int I)
+inline std::vector<std::vector<double> > readFPackets(std::string address, double fTime, int I,int numOfTimes)
 {
     std::string inputName = "./data/address/delay/fAddress/";
     inputName += address;
+    inputName += "_";
+    std::ostringstream oss;
+    oss << numOfTimes;
+    inputName += oss.str();
     inputName += ".csv";
     std::ifstream ifs(inputName);
     std::string data;
@@ -110,13 +118,20 @@ inline std::vector<std::vector<double> > readFPackets(std::string address, doubl
  *回帰値を読み込むメソッド
  */
 
-inline std::vector<std::vector<double> > readRegression(std::string address, std::string method,int I)
+inline std::vector<std::vector<double> > readRegression(std::string address, std::string method,int I,int numOfTimes)
 {
     std::string inputName = "./data/address/delay/regression/";
+    inputName += method;
+    inputName += "/";
     inputName += address;
     std::ostringstream oss;
     oss << I;
     inputName += "_";
+    inputName += oss.str();
+    std::ostringstream oss2;
+    oss2 << numOfTimes;
+    inputName += "_";
+    inputName += oss2.str();
     inputName += ".csv";
     std::ifstream ifs(inputName);
     std::string data;

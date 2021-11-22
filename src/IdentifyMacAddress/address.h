@@ -5,11 +5,11 @@
 #include "read.h"
 #include <math.h>
 
-inline std::vector<std::vector<double> > readFPackets(std::string, double,  int);
-inline void setFPackets(int);
-inline void setRegression(std::string,int);
+inline std::vector<std::vector<double> > readFPackets(std::string, double, int,int);
+inline void setFPackets(int,int);
+inline void setRegression(std::string,int,int);
 inline std::vector<std::vector<double> > getFPackets();
-inline std::vector<std::vector<double> > readRegression(std::string, std::string,int);
+inline std::vector<std::vector<double> > readRegression(std::string, std::string,int,int);
 inline double getNormalized();
 
 /**
@@ -123,17 +123,17 @@ public:
     /**
      * read.hのメソッドを用いてfPacketsを設定する
      */
-    inline void setFPackets(int I)
+    inline void setFPackets(int I,int numOfTimes)
     {
-        fPackets = readFPackets(address, fTime,I);
+        fPackets = readFPackets(address, fTime,I,numOfTimes);
     }
 
     /**
      * read.hのメソッドを用いてregressionを設定する
      */
-    inline void setRegression(std::string method,I)
+    inline void setRegression(std::string method,int I,int numOfTimes)
     {
-        regression = readRegression(address, method,I);
+        regression = readRegression(address, method,I,numOfTimes);
     }
 
 
