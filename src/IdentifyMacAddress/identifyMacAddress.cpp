@@ -35,8 +35,9 @@ originalAddressList 全てのデータが入ったvector
 method 回帰手法
 */
 
-inline void identify(int R, int T, int I, int numOfData, int numOfTimes,std::vector<Address> originalAddressList, std::string method)
+inline void identify(int R, int T, int I, int numOfData, int numOfTimes,std::vector<Address> addressList, std::string method)
 {
+   /*
    //データ選出
    //選出後のデータをここに格納する
    std::vector<Address> addressList;
