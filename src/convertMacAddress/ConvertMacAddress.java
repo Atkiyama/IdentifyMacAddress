@@ -97,6 +97,8 @@ public class ConvertMacAddress {
 		}
 	}
 
+
+
 	/**
 	 * 使用するデータを引数の数だけ選出するメソッド
 	 * @param numOfData

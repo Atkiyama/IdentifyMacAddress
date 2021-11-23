@@ -15,10 +15,10 @@ public class RandomDelay {
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		Random randomInstance = new Random();
-		double random = randomInstance.nextInt(599) + randomInstance.nextDouble();
 		ArrayList<String[]> addressList = read("data/address/original/addressList.csv");
 		for(int i=1;i<=100;i++) {
-		rewriteAddressList(addressList, random, "data/address/delay/addressList/addressList"+i+".csv");
+			double random = randomInstance.nextInt(599) + randomInstance.nextDouble();
+			rewriteAddressList(addressList, random, "data/address/delay/addressList/addressList"+i+".csv");
 			for (String[] address : addressList) {
 				if (address != addressList.get(0)) {
 					rewriteAddress("data/address/original/fAddress/" + address[1] +".csv", random,
