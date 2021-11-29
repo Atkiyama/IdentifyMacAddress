@@ -1,9 +1,9 @@
 #bin/bash
 
 
-for method in $1
+for method in linerRegression svr bagging
 do
-  for numOfData in 20
+  for numOfData in 5 10 15
   do
     for R in {1..20}
     do

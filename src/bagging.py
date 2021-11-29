@@ -3,20 +3,24 @@ import pandas as pd
 import numpy as np
 from sklearn import ensemble, tree
 
-
+def main():
+    for i in range (1,101):
+        print(str(i)+"%")
+        addressList = pd.read_csv("data/address/delay/addressList/addressList"+str(i)+".csv", sep=",",usecols=[1,2,3])
+        bagging(addressList,i)
 
 #バギング ランダムフォレスト使うやつ　アンサンブル学習
-def bagging(addressList):
+def bagging(addressList,i):
     clf = ensemble.BaggingRegressor(tree.DecisionTreeRegressor(),n_jobs = -1)
     #clf = ensemble.BaggingRegressor(tree.DecisionTreeRegressor(), n_estimators=100, max_samples=0.3)
-    for line in range(len(addressList)):
-        for I in range(1,21):
-            regression(addressList,addressList.address[line],addressList.lTime[line],I,clf)
+    for I in range(1,21):
+        for line in range(len(addressList)):
+            regression(addressList,addressList.address[line],addressList.lTime[line],I,clf,"bagging/",i)
 
-def regression(addressList,address,lTime,I,clf):
+def regression(addressList,address,lTime,I,clf,regression,i):
     x_train = []
     y_train = []
-    lAddress = pd.read_csv("data/address/delay/lAddress/.csv", sep=",")
+    lAddress = pd.read_csv("data/address/delay/lAddress/"+address+"_"+str(i)+".csv", sep=",")
     for line in range(len(lAddress)):
         time = lAddress.time[line]
         if(lTime-time <= I):
@@ -28,7 +32,7 @@ def regression(addressList,address,lTime,I,clf):
         #print(addressList.address[tmp_address])
         sub = addressList.fTime[tmp_address] - lTime
         if(0<=sub and sub<=6):
-            fAddress = pd.read_csv("data/address/delay/fAddress/"+addressList.address[tmp_address]+".csv", sep=",")
+            fAddress = pd.read_csv("data/address/delay/fAddress/"+addressList.address[tmp_address]+"_"+str(i)+".csv", sep=",")
             fTime = addressList.fTime[tmp_address]
             for time in fAddress.time:
                 if(time-fTime>=0):
@@ -38,16 +42,14 @@ def regression(addressList,address,lTime,I,clf):
     else:
         x_test.append(9999)
     predict = clf.predict(pd.DataFrame(x_test))
-    write(address,x_test,predict,I)
+    write(address,I,x_test,predict,regression,i)
 
-def write(address,data,predict,I):
-    f = open("data/address/delay/regression/bagging/"+address+"_"+str(I)+".csv", 'w')
+def write(address,I,data,predict,regression,i):
+    f = open("data/address/delay/regression/"+regression+address+"_"+str(I)+"_"+str(i)+".csv", 'w')
     for line in range(len(predict)):
         if(line != 0):
             f.write("\r\n")
         f.write(str(data[line])+","+str(predict[line]))
     f.close()
 
-
-addressList = pd.read_csv("data/address/delay/addressList.csv", sep=",",usecols=[1,2,3])
-bagging(addressList)
+main()

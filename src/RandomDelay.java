@@ -37,9 +37,9 @@ public class RandomDelay {
 		}
 			addressList=replace;
 		for(int i=1;i<=100;i++) {
-			double random = randomInstance.nextInt(599) + randomInstance.nextDouble();
+			//double random = randomInstance.nextInt(599) + randomInstance.nextDouble();
+			double random = randomInstance.nextInt(600);
 			rewriteConvert("data/convertOriginal.csv", random, "data/capture/convert/move/"+args[0]+"/convert"+i+".csv");
-			/*
 			rewriteAddressList(addressList, random, "data/address/delay/addressList/addressList"+i+".csv");
 			for (String[] address : addressList) {
 				if (address != addressList.get(0)) {
@@ -48,7 +48,7 @@ public class RandomDelay {
 					rewriteAddress("data/address/original/lAddress/" + address[1] +".csv", random,
 							"data/address/delay/lAddress/" + address[1] + "_"+i+".csv");
 				}
-			}*/
+			}
 		}
 
 	}

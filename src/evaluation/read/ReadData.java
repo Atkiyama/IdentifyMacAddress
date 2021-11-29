@@ -30,8 +30,8 @@ public class ReadData {
 		this.fileName = fileName;
 	}
 
-	public ReadData(int R, int T, int numOfData, int i, String move) {
-		fileName = "data/result/multi/move/100/old/"+numOfData+"/"+R+","+T+","+i+".txt";
+	public ReadData(int R, int T, int numOfData, int n) {
+		fileName = "data/result/multi/move/old/"+n+".txt";
 	}
 
 /**
@@ -53,6 +53,20 @@ public class ReadData {
 				data.add(mAddress.group(1));
 			else
 				data.add("brank");
+			str = in.readLine();
+		}
+		in.close();
+		return data;
+
+	}
+	public ArrayList<String[]> readOld() throws IOException{
+		File file = new File(fileName);
+		FileReader fileReader = new FileReader(file);
+		BufferedReader in = new BufferedReader(fileReader);;
+		String str = in.readLine();
+		ArrayList<String[]> data = new ArrayList<>();
+		while(str != null) {
+			data.add(str.split(","));
 			str = in.readLine();
 		}
 		in.close();

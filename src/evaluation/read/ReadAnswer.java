@@ -36,4 +36,22 @@ public class ReadAnswer {
 		return read("data/result/moveResult.csv");
 
 	}
+	public ArrayList<String[]> readOld(String fileName) throws IOException {
+		File file = new File(fileName);
+		FileReader fileReader = new FileReader(file);
+		BufferedReader in = new BufferedReader(fileReader);;
+		String str = in.readLine();
+		ArrayList<String[]> data = new ArrayList<>();
+		while(str != null) {
+			//配列で取得してリストにする
+			data.add(str.split(","));
+			str = in.readLine();
+		}
+		in.close();
+		return data;
+	}
+	public ArrayList<String[]> readOld() throws IOException{
+		return readOld("data/result/moveResult.csv");
+
+	}
 }

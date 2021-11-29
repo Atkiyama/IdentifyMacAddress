@@ -25,9 +25,9 @@ public class Evaluation100Old {
 		// TODO 自動生成されたメソッド・スタブ
 		ArrayList<EvaluationOld> evals = new ArrayList<>();
 		for (int i = 1; i <= 100; i++) {
-			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]), i,args[3]);
+			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]), i);
 
-			EvaluationOld eval = new EvaluationOld(readData.read(), readAnswer.read(), Integer.parseInt(args[0]),
+			EvaluationOld eval = new EvaluationOld(readData.readOld(), readAnswer.readOld(), Integer.parseInt(args[0]),
 					Integer.parseInt(args[1]));
 			eval.evaluation();
 			evals.add(eval);
