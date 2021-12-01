@@ -7,7 +7,7 @@ do
   python linerRegression.py
   python svr.py
   python bagging.py
-  for method in $1 #linerRegression svr bagging old
+  for method in linerRegression svr bagging old
   do
     for R in 10
     do
@@ -28,12 +28,14 @@ do
               java evaluation/evaluation/Evaluation100Old $R $T $numOfData > data/result/evaluation/move/$numOfTime/$method.txt
             else
               java evaluation/evaluation/EvaluationForM $numOfData $method > data/result/evaluation/move/$numOfTime/$method.txt
+            fi
           else
             if [ $method = "old" ]; then
               java evaluation/evaluation/Evaluation100Old $R $T $numOfData >> data/result/evaluation/move/$numOfTime/$method.txt
             else
                 java evaluation/evaluation/EvaluationForM $numOfData $method >> data/result/evaluation/move/$numOfTime/$method.txt
             fi
+          fi
         done
       done
     done
