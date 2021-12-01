@@ -35,7 +35,6 @@ public class RandomDelay {
 			}
 			addressList=replace;
 		}
-			addressList=replace;
 		for(int i=1;i<=100;i++) {
 			//double random = randomInstance.nextInt(599) + randomInstance.nextDouble();
 			double random = randomInstance.nextInt(600);

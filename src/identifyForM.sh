@@ -1,32 +1,39 @@
 #bin/bash
 
-
-for method in linerRegression bagging svr old
+#コマンドライン引数 1に回帰手法(旧手法の場合はold)
+for numOfData in {1..20}
 do
-  for numOfData in {1..20}
+  java RandomDelay $numOfData
+  python linerRegression.py
+  python svr.py
+  python bagging.py
+  for method in $1 #linerRegression svr bagging old
   do
-    for R in {1..20}
+    for R in 10
     do
       for T in 6
       do
-        for I in {1..20}
+        for I in 10
         do
           for n in {1..100}
           do
             if [ $method = "old" ]; then
-              java identifyMacAddress/identify/IdentifyMove>data/result/multi/move/$method/$n.txt
+              java identifyMacAddress/identify/IdentifyMove > data/result/multi/move/$method/$n.txt
             else
-              ./identify $R $T $I $numOfData $n $method >data/result/multi/move/$method/$n.txt
+              ./identify $R $T $I $numOfData $n $method > data/result/multi/move/$method/$n.txt
             fi
           done
           if [ "$R" -eq "1" -a "$I" -eq "1" ]; then
-            echo "R,T,I,score" > data/result/evaluation/move/$numOfTime/$method,$numOfData.csv
-          fi
-          if [ $method = "old" ]; then
-            java evaluation/evaluation/Evaluation100Old $R $T $numOfData >> data/result/evaluation/move/$numOfTime/$method,$numOfData.csv
+            if [ $method = "old" ]; then
+              java evaluation/evaluation/Evaluation100Old $R $T $numOfData > data/result/evaluation/move/$numOfTime/$method.txt
+            else
+              java evaluation/evaluation/EvaluationForM $numOfData $method > data/result/evaluation/move/$numOfTime/$method.txt
           else
-              java evaluation/evaluation/Evaluation $R $T $I $method >> data/result/evaluation/move/$numOfTime/$method,$numOfData.csv
-          fi
+            if [ $method = "old" ]; then
+              java evaluation/evaluation/Evaluation100Old $R $T $numOfData >> data/result/evaluation/move/$numOfTime/$method.txt
+            else
+                java evaluation/evaluation/EvaluationForM $numOfData $method >> data/result/evaluation/move/$numOfTime/$method.txt
+            fi
         done
       done
     done

@@ -24,8 +24,9 @@ public class Evaluation100Old {
 		double sum =0;
 		// TODO 自動生成されたメソッド・スタブ
 		ArrayList<EvaluationOld> evals = new ArrayList<>();
+		int M =Integer.parseInt(args[2]);
 		for (int i = 1; i <= 100; i++) {
-			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]), i);
+			ReadData readData = new ReadData(Integer.parseInt(args[0]), Integer.parseInt(args[1]),M, i);
 
 			EvaluationOld eval = new EvaluationOld(readData.readOld(), readAnswer.readOld(), Integer.parseInt(args[0]),
 					Integer.parseInt(args[1]));
@@ -41,7 +42,7 @@ public class Evaluation100Old {
 			}
 			sum = sumlong/100;
 		}
-		System.out.println("R="+args[0]+"T="+args[1]+",score is "+sum+"%");
+		 System.out.println(M+"," +sum+"%");
 		if(args.length==3)
 			outputDetails(evals);
 	}
