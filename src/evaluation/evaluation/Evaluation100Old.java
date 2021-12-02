@@ -43,8 +43,6 @@ public class Evaluation100Old {
 			sum = sumlong/100;
 		}
 		 System.out.println(M+"," +sum+"%");
-		if(args.length==3)
-			outputDetails(evals);
 	}
 
 

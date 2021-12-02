@@ -16,36 +16,38 @@ public class RandomDelay {
 		// TODO 自動生成されたメソッド・スタブ
 		Random randomInstance = new Random();
 		ArrayList<String[]> addressList = read("data/address/original/addressList.csv");
-		ArrayList<Integer> useData = new ArrayList<>();
-		ArrayList<String[]> replace = new ArrayList<>();
-		while(true) {
-			if(useData.size()>=Integer.parseInt(args[0])||Integer.parseInt(args[0])==20)
-				break;
-			int numOfData = randomInstance.nextInt(19)+1;
-			if(!useData.contains(numOfData)) {
-				useData.add(numOfData);
-			}
-		}
-		if(!args[0].equals("20")) {
-			for(String[] address:addressList) {
-				for(Integer in :useData) {
-					if(address[0].contains(String.valueOf(in)))
-						replace.add(address);
+		for (int i = 1; i <= 100; i++) {
+			ArrayList<String> useData = new ArrayList<>();
+			ArrayList<String[]> replace = new ArrayList<>();
+			while (true) {
+				if (useData.size() >= Integer.parseInt(args[0]) || Integer.parseInt(args[0]) == 20)
+					break;
+				int r = randomInstance.nextInt(20)+1;
+				String fileName = "move" + r;
+				if (!useData.contains(fileName)) {
+					useData.add(fileName);
 				}
 			}
-			addressList=replace;
-		}
-		for(int i=1;i<=100;i++) {
+			if (!args[0].equals("20")) {
+				for (String[] address : addressList) {
+					for (String fileName : useData) {
+						if (address[0].equals(fileName))
+							replace.add(address);
+					}
+				}
+				addressList = replace;
+			}
 			//double random = randomInstance.nextInt(599) + randomInstance.nextDouble();
 			double random = randomInstance.nextInt(600);
-			rewriteConvert("data/convertOriginal.csv", random, "data/capture/convert/move/"+args[0]+"/convert"+i+".csv");
-			rewriteAddressList(addressList, random, "data/address/delay/addressList/addressList"+i+".csv");
+			rewriteConvert("data/convertOriginal.csv", random,
+					"data/capture/convert/move/convert" + i + ".csv");
+			rewriteAddressList(addressList, random, "data/address/delay/addressList/addressList" + i + ".csv");
 			for (String[] address : addressList) {
 				if (address != addressList.get(0)) {
-					rewriteAddress("data/address/original/fAddress/" + address[1] +".csv", random,
-							"data/address/delay/fAddress/" + address[1] +"_"+i+ ".csv");
-					rewriteAddress("data/address/original/lAddress/" + address[1] +".csv", random,
-							"data/address/delay/lAddress/" + address[1] + "_"+i+".csv");
+					rewriteAddress("data/address/original/fAddress/" + address[1] + ".csv", random,
+							"data/address/delay/fAddress/" + address[1] + "_" + i + ".csv");
+					rewriteAddress("data/address/original/lAddress/" + address[1] + ".csv", random,
+							"data/address/delay/lAddress/" + address[1] + "_" + i + ".csv");
 				}
 			}
 		}
@@ -80,22 +82,26 @@ public class RandomDelay {
 	public static void rewriteAddressList(ArrayList<String[]> addressList, double random, String outputFileName)
 			throws IOException {
 		FileWriter fileWriter = new FileWriter(outputFileName);
+		fileWriter.append("fileName");
+		fileWriter.append(",");
+		fileWriter.append("address");
+		fileWriter.append(",");
+		fileWriter.append("fTime");
+		fileWriter.append(",");
+		fileWriter.append("lTime");
+		fileWriter.append("\r\n");
 		for (String[] address : addressList) {
-			fileWriter.append(address[0]);
-			fileWriter.append(",");
-			fileWriter.append(address[1]);
-			fileWriter.append(",");
-			if (address == addressList.get(0)) {
-				fileWriter.append(address[2]);
+			if (address != addressList.get(0)) {
+				fileWriter.append(address[0]);
 				fileWriter.append(",");
-				fileWriter.append(address[3]);
-				fileWriter.append("\r\n");
-			} else {
+				fileWriter.append(address[1]);
+				fileWriter.append(",");
 				fileWriter.append(String.valueOf(Double.parseDouble(address[2]) + random));
 				fileWriter.append(",");
 				fileWriter.append(String.valueOf(Double.parseDouble(address[3]) + random));
 				fileWriter.append("\r\n");
 			}
+
 		}
 		fileWriter.close();
 	}
