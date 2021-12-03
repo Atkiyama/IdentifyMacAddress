@@ -3,9 +3,9 @@
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
 for numOfData in {1..20}
 do
-  java RandomDelay $numOfData
+  java delay/DelayForM $numOfData
   python regression.py
-  for method in linerRegression svr bagging old
+  for method in $1
   do
     for R in 10
     do

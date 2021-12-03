@@ -1,10 +1,12 @@
 #bin/bash
 
 
-for method in linerRegression svr bagging
+for numOfData in 20 5 10 15
 do
-  for numOfData in 5 10 15
+  java delay/DelayForRegression $numOfData
+  for method in $1
   do
+    python $method.py
     for R in {1..20}
     do
       for T in 6
