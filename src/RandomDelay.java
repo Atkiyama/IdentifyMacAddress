@@ -109,10 +109,6 @@ public class RandomDelay {
 	public static void rewriteAddress(String inputFileName, double random, String outputFileName) throws IOException {
 		FileWriter fileWriter = new FileWriter(outputFileName);
 		ArrayList<String[]> input = read(inputFileName);
-		fileWriter.append("time");
-		fileWriter.append(",");
-		fileWriter.append("rssi");
-		fileWriter.append("\r\n");
 		for (String[] line : input) {
 			if(line==input.get(0)) {
 				fileWriter.append("time");

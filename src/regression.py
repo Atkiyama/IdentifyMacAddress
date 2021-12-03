@@ -35,7 +35,7 @@ def regression(addressList,address,lTime,I,clf,regression,i):
     lAddress = pd.read_csv("data/address/delay/lAddress/"+address+"_"+str(i)+".csv", sep=",")
     for line in range(len(lAddress)):
         time = lAddress.time[line]
-        if(lTime-time <= I):
+        if(lTime-float(time) <= I):
             x_train.append(time)
             y_train.append(lAddress.rssi[line])
     clf.fit(pd.DataFrame(x_train),y_train)
