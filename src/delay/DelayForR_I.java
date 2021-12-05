@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DelayForRegression extends Delay {
+public class DelayForR_I extends Delay {
 	/**
 	 *
 	 * @param args 0に使用データ数を入れる
