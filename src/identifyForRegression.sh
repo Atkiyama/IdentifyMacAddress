@@ -1,10 +1,9 @@
 #bin/bash
 
 
-for numOfData in 20 5 10 15
+for numOfData in $1
 do
-  java delay/DelayForRegression $numOfData
-  for method in $1
+  for method in $2
   do
     python $method.py
     for R in {1..20}

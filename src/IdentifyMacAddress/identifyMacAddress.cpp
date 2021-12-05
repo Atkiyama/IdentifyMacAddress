@@ -45,6 +45,7 @@ inline void identify(int R, int T, int I, int numOfData, int numOfTimes,std::vec
       addressList = selectData(originalAddressList, numOfData);
    else
       addressList = originalAddressList;
+   */
 
    //遅延設定とfPacketを設定
    for (int i = 0; i < addressList.size(); i++)
@@ -52,7 +53,7 @@ inline void identify(int R, int T, int I, int numOfData, int numOfTimes,std::vec
       //addressList[i].setDelay(numOfTimes);
       addressList[i].setFPackets(I,numOfTimes);
    }
-   
+   /*
     //アドレスリストのソート
    for(int i=0;i<addressList.size()-1;i++){
       for(int j = addressList.size()-1 ;j>i;j--){
