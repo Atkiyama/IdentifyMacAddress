@@ -54,7 +54,8 @@ public class Evaluation {
                 for(int j=0;j<capture.getAddress().size();j++){
                     //評価すべきかを判断する
                     if(capture.getAddress().get(j).equals(datas.get(i))
-                    		&&i+1<=datas.size()
+                    		//ここの条件要検討?
+                    		&&i+1<datas.size()
                     		&&!datas.get(i+1).equals("brank"))
                         score.add(judge(capture,i,j));
                 }

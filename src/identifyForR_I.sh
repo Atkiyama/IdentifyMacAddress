@@ -6,6 +6,6 @@ do
   for method in bagging svr linerRegression
   do
     python $method.py
-    ./idenfityForR_I_sub.sh $numOfData $method &
+    ./identifyForR_I_sub.sh $numOfData $method &
   done
 done
