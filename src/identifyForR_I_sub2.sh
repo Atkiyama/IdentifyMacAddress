@@ -3,6 +3,7 @@
 
 numOfData=$1
 method=$2
+python $method.py
 for R in {1..20}
 do
   for T in 6
