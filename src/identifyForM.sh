@@ -31,7 +31,7 @@ do
             if [ $method = "old" ]; then
               java evaluation/evaluation/Evaluation100Old $R $T $numOfData >> data/result/evaluation/move/$method.txt
             else
-                java evaluation/evaluation/EvaluationForM $numOfData $method >> data/result/evaluation/move/$method.txt
+              java evaluation/evaluation/EvaluationForM $numOfData $method >> data/result/evaluation/move/$method.txt
             fi
           fi
         done
