@@ -5,9 +5,9 @@ for numOfData in {1..20}
 do
   java delay/DelayForM $numOfData
   python regression.py
-  for method in $1
+  for method in old svr bagging linerRegression
   do
-    for R in 10
+    for R in
     do
       for T in 6
       do

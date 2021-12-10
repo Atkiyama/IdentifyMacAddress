@@ -90,35 +90,6 @@ public class Delay {
 
 	}
 
-	private static void rewriteConvert(String inputFileName, double random, String outputFileName,
-			ArrayList<String[]> addressList) throws IOException {
-		// TODO 自動生成されたメソッド・スタブ
-		ArrayList<String[]> convertOriginal = read(inputFileName);
-		FileWriter fileWriter = new FileWriter(outputFileName);
-		for (String[] address : convertOriginal) {
-			if (address == convertOriginal.get(0)) {
-				fileWriter.append("address");
-				fileWriter.append(",");
-				fileWriter.append("time");
-				fileWriter.append(",");
-				fileWriter.append("rssi");
-				fileWriter.append("\r\n");
-			} else {
-				for (String[] line : addressList) {
-					if (line[1].equals(address[0])) {
-						fileWriter.append(address[0]);
-						fileWriter.append(",");
-						fileWriter.append(String.valueOf(Double.parseDouble(address[1]) + random));
-						fileWriter.append(",");
-						fileWriter.append(address[2]);
-						fileWriter.append("\r\n");
-					}
-				}
-			}
-		}
-		fileWriter.close();
-
-	}
 
 	public static void rewriteAddressList(ArrayList<String[]> addressList, String outputFileName)
 			throws IOException {

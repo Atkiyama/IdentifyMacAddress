@@ -35,6 +35,10 @@ public class Packet {
 	public void setRssi(int rssi) {
 		this.rssi = rssi;
 	}
+
+	public void setDelay(double delay) {
+		time+=delay;
+	}
 	public void formatTime(double fTime) {
 		 BigDecimal bTime = new BigDecimal(time);
 		 BigDecimal bFTime = new BigDecimal(fTime);
