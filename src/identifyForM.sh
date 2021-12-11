@@ -7,7 +7,7 @@ do
   python regression.py
   for method in old svr bagging linerRegression
   do
-    for R in
+    for R in 5
     do
       for T in 6
       do
@@ -21,7 +21,7 @@ do
               ./identify $R $T $I $numOfData $n $method > data/result/multi/move/$method/$n.txt
             fi
           done
-          if [ "$numOfData" -eq "1" ]; then
+          if [ $numOfData -eq "1" ]; then
             if [ $method = "old" ]; then
               java evaluation/evaluation/Evaluation100Old $R $T $numOfData > data/result/evaluation/move/$method.txt
             else

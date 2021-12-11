@@ -10,14 +10,14 @@ set datafile separator ","
 
 set key right bottom
 
-set output data/result/graph/graph/M.pdf
+set output "data/result/graph/graph/move/m.pdf"
 
 plot \
-"data/result/evaluation/move/linerRegression.txt" using 1:2 lw 6   title "linerRegression"\
+"data/result/evaluation/move/linerRegression.txt" using 1:2 lw 6   title "LinerRegression"\
 with lines,\
-"data/result/evaluation/move/svr.txt" using 1:2 lw 6   title "svr"\
-with lines,\
-"data/result/evaluation/move/bagging.txt" using 1:2 lw 6   title "bagging"\
-with lines,\
-"data/result/evaluation/move/old.txt" using 1:2 lw 6   title "old"\
+"data/result/evaluation/move/svr.txt" using 1:2 lw 6   title "SVR"\
+with linespoints,\
+"data/result/evaluation/move/bagging.txt" using 1:2 lw 6   title "Bagging"\
+with points,\
+"data/result/evaluation/move/old.txt" using 1:2 lw 6   title "Traditional"\
 with lines

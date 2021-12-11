@@ -12,7 +12,7 @@ public class EvaluationForM {
 	 public static void main(String[] args) throws IOException{
 	        //出力パス data/result/evalation/move/
 	        int M = Integer.parseInt(args[0]);
-	        ArrayList<Evaluation> evals = new ArrayList<>();;
+	        ArrayList<Evaluation> evals = new ArrayList<>();
 	        //評価用のインスタンスを作成
 
 	        for(int n=1;n<=100;n++){
@@ -23,7 +23,7 @@ public class EvaluationForM {
 	            eval.evaluation();
 	            sumScore +=eval.getScore();
 	        }
-	        System.out.println(M+"," +sumScore/evals.size()+"%");
+	        System.out.println(M+"," +sumScore/evals.size());
 
 	    }
 
