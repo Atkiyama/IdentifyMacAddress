@@ -7,7 +7,7 @@ do
   python regression.py
   for method in old svr bagging linerRegression
   do
-    for R in 5
+    for R in 3
     do
       for T in 6
       do
