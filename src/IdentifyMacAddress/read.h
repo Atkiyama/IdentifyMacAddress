@@ -40,7 +40,7 @@ inline Address makeAddress(std::string buf)
 inline std::vector<Address> readAddressList(int numOfTimes)
 {
 
-    std::string inputName = "./data/address/delay/addressList/addressList";
+    std::string inputName = "./data/address/processed/addressList/addressList";
     std::ostringstream oss;
     oss << numOfTimes;
     inputName += oss.str();
@@ -74,7 +74,7 @@ inline std::vector<Address> readAddressList(int numOfTimes)
  */
 inline std::vector<std::vector<double> > readFPackets(std::string address, double fTime, int I,int numOfTimes)
 {
-    std::string inputName = "./data/address/delay/fAddress/";
+    std::string inputName = "./data/address/processed/fAddress/";
     inputName += address;
     inputName += "_";
     std::ostringstream oss;
@@ -120,7 +120,7 @@ inline std::vector<std::vector<double> > readFPackets(std::string address, doubl
 
 inline std::vector<std::vector<double> > readRegression(std::string address, std::string method,int I,int numOfTimes)
 {
-    std::string inputName = "./data/address/delay/regression/";
+    std::string inputName = "./data/address/processed/regression/";
     inputName += method;
     inputName += "/";
     inputName += address;
