@@ -1,13 +1,12 @@
 package processed.delay;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
+import processed.ReadCSV;
 
 public class Delay {
 	/**
@@ -136,20 +135,7 @@ public class Delay {
 	}
 
 	public static ArrayList<String[]> read(String fileName) throws IOException {
-		File file;
-		FileReader fileReader;
-		BufferedReader in;
-		file = new File(fileName);
-		fileReader = new FileReader(file);
-		in = new BufferedReader(fileReader);
-		String str = in.readLine();
-		ArrayList<String[]> data = new ArrayList<>();
-		while (str != null) {
-			data.add(str.split(","));
-			str = in.readLine();
-		}
-		in.close();
-		return data;
+		return ReadCSV.read(fileName);
 	}
 
 	public static HashMap<String,Double> makeDelayMap(ArrayList<String[]> addressList,ArrayList<Double> delayList) {

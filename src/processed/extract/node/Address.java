@@ -10,6 +10,17 @@ public class Address {
 	private ArrayList<Packet> fPackets;
 	private ArrayList<Packet> lPackets;
 	private String fileName;
+	public Address(String[] address) {
+		name = address[1];
+		fTime = Double.parseDouble(address[2]);
+		lTime = Double.parseDouble(address[3]);
+	}
+	public void setfTime(double fTime) {
+		this.fTime = fTime;
+	}
+	public void setlTime(double lTime) {
+		this.lTime = lTime;
+	}
 	public Address(Packet packet) {
 		packets = new ArrayList<>();
 		fPackets = new ArrayList<>();
