@@ -4,29 +4,27 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn import svm
 from sklearn import ensemble, tree
-def main():
+import sys
+def main(I):
     for i in range (1,101):
         addressList = pd.read_csv("data/address/delay/addressList/addressList"+str(i)+".csv", sep=",",usecols=[1,2,3])
-        linerRegression(addressList,i)
-        svr(addressList,i)
-        bagging(addressList,i)
+        linerRegression(addressList,i,I)
+        svr(addressList,i,I)
+        bagging(addressList,i,I)
 #線形回帰
-def linerRegression(addressList,i):
+def linerRegression(addressList,i,I):
     clf = LinearRegression(fit_intercept = True, copy_X = True, n_jobs = -1)
-    I=10
     for line in range(len(addressList)):
         regression(addressList,addressList.address[line],addressList.lTime[line],I,clf,"linerRegression/",i)
 #SVR(SVMを回帰に利用したもの)
-def svr(addressList,i):
+def svr(addressList,i,I):
     clf = svm.SVR(kernel='rbf')
-    I=10
     for line in range(len(addressList)):
         regression(addressList,addressList.address[line],addressList.lTime[line],I,clf,"svr/",i)
 #バギング ランダムフォレスト使うやつ　アンサンブル学習
-def bagging(addressList,i):
+def bagging(addressList,i,I):
     clf = ensemble.BaggingRegressor(tree.DecisionTreeRegressor(),n_jobs = -1)
     #clf = ensemble.BaggingRegressor(tree.DecisionTreeRegressor(), n_estimators=100, max_samples=0.3)
-    I=10
     for line in range(len(addressList)):
         regression(addressList,addressList.address[line],addressList.lTime[line],I,clf,"bagging/",i)
 def regression(addressList,address,lTime,I,clf,regression,i):
@@ -62,4 +60,5 @@ def write(address,I,data,predict,regression,i):
             f.write("\r\n")
         f.write(str(data[line])+","+str(predict[line]))
     f.close()
-main()
+I=15
+main(I)
