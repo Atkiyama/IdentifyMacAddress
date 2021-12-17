@@ -1,13 +1,15 @@
 set term pdfcairo enhanced color font ",16"
 #set size 0.9,1
 
-set xlabel "Time"
-set ylabel "RSSI"
+set xlabel font ",24" "Time"
+set ylabel font ",24" "RSSI"
 set yrange [-60:-100]
+set xtics font ",20"
+set ytics font ",20"
 set xrange [890:920]
 set datafile separator ","
 
-set key right bottom
+set key right bottom font ",24"
 
 set output file
 

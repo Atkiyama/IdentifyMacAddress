@@ -78,5 +78,12 @@ public class Address {
 				lPackets.add(packet);
 		}
 	}
+	public void addFPacket(Packet packet) {
+		fPackets.add(packet);
+	}
+
+	public void addLPacket(Packet packet) {
+		lPackets.add(packet);
+	}
 
 }

@@ -26,8 +26,8 @@ public class Packet {
 	public double getTime() {
 		return time;
 	}
-	public void setTime(int time) {
-		this.time = time;
+	public void setTime(double d) {
+		this.time = d;
 	}
 	public int getRssi() {
 		return rssi;

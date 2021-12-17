@@ -2,28 +2,112 @@ package processed.lineUp;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import processed.ReadCSV;
 import processed.extract.node.Address;
+import processed.extract.node.Packet;
 
 public class LineUp {
 	ArrayList<String[]> originalAddressList;
 	ArrayList<Pair> pairs;
-	ArrayList<Double> substract;
+	HashMap<String,Double> substract;
 
 	public LineUp(ArrayList<String[]> originalAddressList) {
 		this.originalAddressList = originalAddressList;
 		pairs = new ArrayList<>();
-		substract = new ArrayList<>();
+		substract = new HashMap<>();
 	}
 
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
 		lineUp.setPairs();
+		lineUp.readfPackets();
+		lineUp.readlPackets();
 		lineUp.formatPairs();
+		lineUp.formatfPackets();
+		lineUp.formatlPackets();
 		//ここまでアドレスリストの処理
+		ArrayList<Address> addressList = new ArrayList<>();
+		for(Pair pair:lineUp.getPairs()) {
+			addressList.add(pair.getFrontAddress());
+			addressList.add(pair.getBackAddress());
+		}
+		Write.writeAllAddress(addressList);
+		for(Address address:addressList) {
+			Write.writeFAddress(address);
+			Write.writeLAddress(address);
+		}
 
+	}
+
+	public ArrayList<Pair> getPairs() {
+		return pairs;
+	}
+
+	private void formatlPackets() {
+		// TODO 自動生成されたメソッド・スタブ
+		for(Pair pair:pairs) {
+			for(Packet packet:pair.getFrontAddress().getlPackets()) {
+				packet.setTime(packet.getTime()-substract.get(pair.getFrontAddress().getName()));
+			}
+			for(Packet packet:pair.getBackAddress().getlPackets()) {
+				packet.setTime(packet.getTime()-substract.get(pair.getBackAddress().getName()));
+			}
+		}
+
+	}
+
+	private void formatfPackets() {
+		// TODO 自動生成されたメソッド・スタブ
+		for(Pair pair:pairs) {
+			for(Packet packet:pair.getFrontAddress().getfPackets()) {
+				packet.setTime(packet.getTime()-substract.get(pair.getFrontAddress().getName()));
+			}
+			for(Packet packet:pair.getBackAddress().getfPackets()) {
+				packet.setTime(packet.getTime()-substract.get(pair.getBackAddress().getName()));
+			}
+		}
+
+	}
+
+	private void readfPackets() throws IOException {
+		// TODO 自動生成されたメソッド・スタブ
+		ArrayList<String[]> fPackets;
+		for(Pair pair:pairs) {
+			fPackets = ReadCSV.read("data/address/original/fAddress/"+pair.getFrontAddress().getName()+".csv");
+			for(String[] line:fPackets) {
+				if(line!=fPackets.get(0)) {
+					pair.getFrontAddress().addFPacket(new Packet(pair.getFrontAddress().getName(),Double.parseDouble(line[1]),Integer.parseInt(line[2]),pair.getFrontAddress().getFileName()));
+				}
+			}
+			fPackets = ReadCSV.read("data/address/original/fAddress/"+pair.getBackAddress().getName()+".csv");
+			for(String[] line:fPackets) {
+				if(line!=fPackets.get(0)) {
+					pair.getBackAddress().addFPacket(new Packet(pair.getBackAddress().getName(),Double.parseDouble(line[1]),Integer.parseInt(line[2]),pair.getBackAddress().getFileName()));
+				}
+			}
+		}
+	}
+
+	private void readlPackets() throws IOException {
+		// TODO 自動生成されたメソッド・スタブ
+		ArrayList<String[]> lPackets;
+		for(Pair pair:pairs) {
+			lPackets = ReadCSV.read("data/address/original/lAddress/"+pair.getFrontAddress().getName()+".csv");
+			for(String[] line:lPackets) {
+				if(line!=lPackets.get(0)) {
+					pair.getFrontAddress().addLPacket(new Packet(pair.getFrontAddress().getName(),Double.parseDouble(line[1]),Integer.parseInt(line[2]),pair.getFrontAddress().getFileName()));
+				}
+			}
+			lPackets = ReadCSV.read("data/address/original/fAddress/"+pair.getBackAddress().getName()+".csv");
+			for(String[] line:lPackets) {
+				if(line!=lPackets.get(0)) {
+					pair.getBackAddress().addLPacket(new Packet(pair.getBackAddress().getName(),Double.parseDouble(line[1]),Integer.parseInt(line[2]),pair.getBackAddress().getFileName()));
+				}
+			}
+		}
 	}
 
 	private void formatPairs() {
@@ -34,8 +118,9 @@ public class LineUp {
 			pair.getFrontAddress().setlTime(0);
 			pair.getBackAddress().setfTime(pair.getBackAddress().getfTime()-ltime);
 			pair.getBackAddress().setlTime(pair.getBackAddress().getlTime()-ltime);
-			pair.getBackAddress().setName(pair.getBackAddress()+"_2");
-			substract.add(ltime);
+			pair.getBackAddress().setName(pair.getBackAddress().getName()+"_2");
+			substract.put(pair.getFrontAddress().getName(),ltime);
+			substract.put(pair.getBackAddress().getName(),ltime);
 		}
 	}
 
