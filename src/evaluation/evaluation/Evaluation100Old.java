@@ -42,7 +42,7 @@ public class Evaluation100Old {
 			}
 			sum = sumlong/100;
 		}
-		 System.out.println(args[0]+"," + sum);
+		 System.out.println(args[2]+"," + sum);
 	}
 
 
