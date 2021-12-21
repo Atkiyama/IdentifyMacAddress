@@ -4,10 +4,10 @@
 for numOfData in {1..20}
 do
   java processed/delay/DelayForM $numOfData
-  R=5
+  R=10
   T=6
   I=15
-  python regression.py 10
+  python regression.py
   for method in old svr bagging linerRegression
   do
 
