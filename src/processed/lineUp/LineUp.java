@@ -79,13 +79,13 @@ public class LineUp {
 			fPackets = ReadCSV.read("data/address/original/fAddress/"+pair.getFrontAddress().getName()+".csv");
 			for(String[] line:fPackets) {
 				if(line!=fPackets.get(0)) {
-					pair.getFrontAddress().addFPacket(new Packet(pair.getFrontAddress().getName(),Double.parseDouble(line[1]),Integer.parseInt(line[2]),pair.getFrontAddress().getFileName()));
+					pair.getFrontAddress().addFPacket(new Packet(pair.getFrontAddress().getName(),Double.parseDouble(line[0]),Integer.parseInt(line[1]),pair.getFrontAddress().getFileName()));
 				}
 			}
 			fPackets = ReadCSV.read("data/address/original/fAddress/"+pair.getBackAddress().getName()+".csv");
 			for(String[] line:fPackets) {
 				if(line!=fPackets.get(0)) {
-					pair.getBackAddress().addFPacket(new Packet(pair.getBackAddress().getName(),Double.parseDouble(line[1]),Integer.parseInt(line[2]),pair.getBackAddress().getFileName()));
+					pair.getBackAddress().addFPacket(new Packet(pair.getBackAddress().getName(),Double.parseDouble(line[0]),Integer.parseInt(line[1]),pair.getBackAddress().getFileName()));
 				}
 			}
 		}
@@ -98,13 +98,13 @@ public class LineUp {
 			lPackets = ReadCSV.read("data/address/original/lAddress/"+pair.getFrontAddress().getName()+".csv");
 			for(String[] line:lPackets) {
 				if(line!=lPackets.get(0)) {
-					pair.getFrontAddress().addLPacket(new Packet(pair.getFrontAddress().getName(),Double.parseDouble(line[1]),Integer.parseInt(line[2]),pair.getFrontAddress().getFileName()));
+					pair.getFrontAddress().addLPacket(new Packet(pair.getFrontAddress().getName(),Double.parseDouble(line[0]),Integer.parseInt(line[1]),pair.getFrontAddress().getFileName()));
 				}
 			}
 			lPackets = ReadCSV.read("data/address/original/fAddress/"+pair.getBackAddress().getName()+".csv");
 			for(String[] line:lPackets) {
 				if(line!=lPackets.get(0)) {
-					pair.getBackAddress().addLPacket(new Packet(pair.getBackAddress().getName(),Double.parseDouble(line[1]),Integer.parseInt(line[2]),pair.getBackAddress().getFileName()));
+					pair.getBackAddress().addLPacket(new Packet(pair.getBackAddress().getName(),Double.parseDouble(line[0]),Integer.parseInt(line[1]),pair.getBackAddress().getFileName()));
 				}
 			}
 		}

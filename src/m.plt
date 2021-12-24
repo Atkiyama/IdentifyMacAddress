@@ -2,11 +2,13 @@ set term pdfcairo enhanced color font ",16"
 #set size 0.9,1
 
 set colorsequence default
-set xlabel "M"
-set ylabel "accuracy"
+set xlabel font ",24" "M"
+set ylabel font ",24" "accuracy"
 set yrange [0:100]
 set xrange [0:20]
 set datafile separator ","
+set xtics font ",20"
+set ytics font ",20"
 
 set key right bottom
 

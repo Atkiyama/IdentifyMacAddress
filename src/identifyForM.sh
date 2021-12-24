@@ -4,7 +4,7 @@
 for numOfData in {1..20}
 do
   java processed/delay/DelayForM $numOfData
-  R=10
+  R=15
   T=6
   I=15
   python regression.py
