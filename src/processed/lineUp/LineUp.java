@@ -22,7 +22,7 @@ public class LineUp {
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
-		lineUp.setPairs();
+		lineUp.setPairs();//
 		lineUp.readfPackets();
 		lineUp.readlPackets();
 		lineUp.formatPairs();
@@ -132,6 +132,8 @@ public class LineUp {
 				pairs.add(new Pair(new Address(beforeAddress),new Address(address)));
 			beforeAddress=address;
 		}
+		
+		
 	}
 
 }

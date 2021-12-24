@@ -11,9 +11,13 @@ public class Address {
 	private ArrayList<Packet> lPackets;
 	private String fileName;
 	public Address(String[] address) {
+		fileName = address[0];
 		name = address[1];
 		fTime = Double.parseDouble(address[2]);
 		lTime = Double.parseDouble(address[3]);
+		packets = new ArrayList<>();
+		fPackets = new ArrayList<>();
+		lPackets = new ArrayList<>();
 	}
 	public void setfTime(double fTime) {
 		this.fTime = fTime;
