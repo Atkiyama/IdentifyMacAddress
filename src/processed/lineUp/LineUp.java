@@ -101,7 +101,7 @@ public class LineUp {
 					pair.getFrontAddress().addLPacket(new Packet(pair.getFrontAddress().getName(),Double.parseDouble(line[0]),Integer.parseInt(line[1]),pair.getFrontAddress().getFileName()));
 				}
 			}
-			lPackets = ReadCSV.read("data/address/original/fAddress/"+pair.getBackAddress().getName()+".csv");
+			lPackets = ReadCSV.read("data/address/original/lAddress/"+pair.getBackAddress().getName()+".csv");
 			for(String[] line:lPackets) {
 				if(line!=lPackets.get(0)) {
 					pair.getBackAddress().addLPacket(new Packet(pair.getBackAddress().getName(),Double.parseDouble(line[0]),Integer.parseInt(line[1]),pair.getBackAddress().getFileName()));

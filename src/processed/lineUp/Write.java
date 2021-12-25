@@ -20,7 +20,7 @@ public class Write {
 	}
 	public static void writeFAddress(Address address) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		FileWriter fileWriter = new FileWriter("data/address/processed/fAddress/"+address.getName()+".csv");
+		FileWriter fileWriter = new FileWriter("data/address/processed/fAddress/"+address.getName()+"_0.csv");
 		fileWriter.append("time,rssi");
 		fileWriter.append("\r\n");
 		for(Packet packet:address.getfPackets()) {
@@ -31,7 +31,7 @@ public class Write {
 	}
 	public static void writeLAddress(Address address) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		FileWriter fileWriter = new FileWriter("data/address/processed/lAddress/"+address.getName()+".csv");
+		FileWriter fileWriter = new FileWriter("data/address/processed/lAddress/"+address.getName()+"_0.csv");
 		fileWriter.append("time,rssi");
 		fileWriter.append("\r\n");
 		for(Packet packet:address.getlPackets()) {
