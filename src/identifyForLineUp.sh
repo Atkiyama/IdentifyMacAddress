@@ -15,7 +15,7 @@ do
         if [ "$R" -eq "1" -a "$I" -eq "1" ]; then
           echo "R,T,I,score" > data/result/evaluation/move/$numOfTime/$method,LineUp.csv
         fi
-        java evaluation/evaluation/Evaluation $R $T $I $method >> data/result/evaluation/move/$numOfTime/$method,LineUP.csv
+        java evaluation/evaluation/EvaluationForLineUp $R $T $I $method >> data/result/evaluation/move/$numOfTime/$method,LineUP.csv
       done
     done
   done

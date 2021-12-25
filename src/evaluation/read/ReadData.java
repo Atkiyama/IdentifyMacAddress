@@ -41,7 +41,9 @@ public class ReadData {
  */
 	public ArrayList<String> read() throws IOException{
 		final Pattern pAddress = Pattern.compile("(..:..:..:..:..:..)");
+		final Pattern pAddress2 = Pattern.compile("(..:..:..:..:..:.._2)");
 		Matcher mAddress;
+		Matcher mAddress2;
 		File file = new File(fileName);
 		FileReader fileReader = new FileReader(file);
 		BufferedReader in = new BufferedReader(fileReader);;
@@ -49,8 +51,11 @@ public class ReadData {
 		ArrayList<String> data = new ArrayList<>();
 		while(str != null) {
 			mAddress = pAddress.matcher(str);
+			mAddress2 = pAddress2.matcher(str);
 			if(mAddress.find())
 				data.add(mAddress.group(1));
+			else if(mAddress2.find())
+				data.add(mAddress2.group(1));
 			else
 				data.add("brank");
 			str = in.readLine();
