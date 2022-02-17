@@ -1,6 +1,7 @@
 #bin/bash
 
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
+./identifyForM_sub.sh $numOfData &
 for numOfData in {1..20}
 do
   java processed/delay/DelayForM $numOfData
@@ -8,31 +9,13 @@ do
   T=6
   I=15
   python regression.py
-  for method in old svr bagging linerRegression
+  for method in svr bagging linerRegression
   do
-
-    python regression.py
-    for n in {1..100}
-    do
-      if [ $method = "old" ]; then
-        java identifyMacAddress/identify/IdentifyStay data/capture/convert/move/convert$n.csv $R $T > data/result/multi/move/$method/$n.txt
-      else
-        ./identify $R $T $I $numOfData $n $method > data/result/multi/move/$method/$n.txt
-      fi
-    done
+    ./identify 2 $method
     if [ $numOfData -eq "1" ]; then
-      if [ $method = "old" ]; then
-        java evaluation/evaluation/Evaluation100Old $R $T $numOfData > data/result/evaluation/move/$method.txt
-      else
-        java evaluation/evaluation/EvaluationForM $numOfData $method > data/result/evaluation/move/$method.txt
-      fi
+        java evaluation/evaluation/EvaluationForM $numOfData $method $R $T $I> data/result/evaluation/move/$method.txt
     else
-      if [ $method = "old" ]; then
-        java evaluation/evaluation/Evaluation100Old $R $T $numOfData >> data/result/evaluation/move/$method.txt
-      else
-        java evaluation/evaluation/EvaluationForM $numOfData $method >> data/result/evaluation/move/$method.txt
-      fi
+        java evaluation/evaluation/EvaluationForM $numOfData $method $R $T $I>> data/result/evaluation/move/$method.txt
     fi
-
   done
 done
