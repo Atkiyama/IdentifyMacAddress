@@ -6,6 +6,7 @@
 #include <vector>
 #pragma once
 #include "address.h"
+using namespace std;//stdを省略
 
 class Address;
 
