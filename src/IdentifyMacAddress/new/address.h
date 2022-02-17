@@ -134,7 +134,7 @@ public:
         ossFTime << fTime;
         ostringstream ossLTime;
         ossLTime << lTime;
-        return "fileName>" + fileName + ",address>" + address + ",fTime>" + ossFTime.str() +",lTime>" + ossLTime.str() + "\n";
+        return "fileName>" + fileName + ",address>" + address + ",fTime>" + ossFTime.str() +",lTime>" + ossLTime.str();
     }
 
     inline string getNextAddressString(){
@@ -143,7 +143,7 @@ public:
             ossFTime << nextAddressList[0].getFTime();
             ostringstream ossLTime;
             ossLTime << nextAddressList[0].getLTime();
-            return "fileName>" + nextAddressList[0].getFileName() + ",address>" + nextAddressList[0].getAddress() + ",fTime>" + ossFTime.str() + ",lTime>" + ossLTime.str() + "\n";
+            return "fileName>" + nextAddressList[0].getFileName() + ",address>" + nextAddressList[0].getAddress() + ",fTime>" + ossFTime.str() + ",lTime>" + ossLTime.str();
         }else{
             return "";
         }

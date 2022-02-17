@@ -156,7 +156,7 @@ inline void write(vector<string> output,int R,int T,int I,string method,int data
    ostringstream ossDataNumber;
    ossDataNumber << dataNumber;
    std::string filename = "data/result/multi/move/"+method +"/"+ossDataNumber.str()+"/"+ossR.str()+","+ossT.str()+","+ossI.str()+".txt";
-   writing_file.open(filename, std::ios::app);
+   writing_file.open(filename, std::ios::out);
    for(int i=0;i<output.size();i++){
       writing_file << output[i] << std::endl;
    }
@@ -187,6 +187,18 @@ int main(int argc, char *argv[])
                identify(R,T,I,data,method,dataNumber);
             }
          }
+      }
+   }else if(stoi(argv[1])==2){
+      int R=15;
+      int I=15;
+      for(int dataNumber=1;dataNumber<=100;dataNumber++){
+         Data data;
+         ostringstream ossDataNumber;
+         ossDataNumber << dataNumber;
+         data.readAddressList("./data/address/processed/addressList/addressList"+ossDataNumber.str()+".csv");
+         data.readFAddress(dataNumber);
+         data.readRegression(dataNumber,method);
+         identify(R,T,I,data,method,dataNumber);
       }
    }else if(stoi(argv[1])==3){
 
