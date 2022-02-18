@@ -1,7 +1,6 @@
 #bin/bash
 
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
-./identifyForM_sub.sh $numOfData &
 for numOfData in {1..20}
 do
   java processed/delay/DelayForM $numOfData
@@ -18,4 +17,13 @@ do
         java evaluation/evaluation/EvaluationForM $numOfData $method $R $T $I>> data/result/evaluation/move/$method.txt
     fi
   done
+  for n in {1..100}
+    do
+        java identifyMacAddress/identify/IdentifyStay data/capture/convert/move/convert$n.csv $R $T > data/result/multi/move/$method/$n.txt
+    done
+    if [ $numOfData -eq "1" ]; then
+        java evaluation/evaluation/Evaluation100Old $R $T $numOfData > data/result/evaluation/move/$method.txt
+    else
+        java evaluation/evaluation/Evaluation100Old $R $T $numOfData >> data/result/evaluation/move/$method.txt
+    fi
 done

@@ -10,7 +10,7 @@ public class EvaluationForLineUP {
     int I = Integer.parseInt(args[2]);
     //評価用のインスタンスを作成
 
-    Evaluation eval = new Evaluation("data/result/multi/move/"+args[3]+"/"+0+".txt");
+    Evaluation eval = new Evaluation("data/result/multi/move/"+args[3]+"/"+0+"/"+R+","+T+","+I+".txt");
     eval.evaluation();
     System.out.println(R+","+T+","+I+"," +eval.getScore()+"%");
 
