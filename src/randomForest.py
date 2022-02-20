@@ -1,7 +1,7 @@
 #諸々のインポート
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestRegressor
 
 def main():
     for i in range (1,101):
@@ -10,7 +10,7 @@ def main():
 
 #ランダムフォレスト
 def randomForest(addressList,i):
-    clf = RandomForestClassifier(n_jobs = -1)
+    clf = RandomForestRegressor(n_jobs = -1)
     for I in range(1,21):
         for line in range(len(addressList)):
             regression(addressList,addressList.address[line],addressList.lTime[line],I,clf,"randomForest/",i)
