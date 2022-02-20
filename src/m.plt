@@ -21,5 +21,7 @@ with lines,\
 with linespoints,\
 "data/result/evaluation/move/bagging.txt" using 1:2 lw 6   title "Bagging"\
 with points,\
+"data/result/evaluation/move/bagging.txt" using 1:2 lw 6   title "RandomForest"\
+with dt(5,5),\
 "data/result/evaluation/move/old.txt" using 1:2 lw 6   title "Traditional"\
 with lines
