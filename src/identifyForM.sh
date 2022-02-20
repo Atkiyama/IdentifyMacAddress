@@ -8,7 +8,7 @@ do
   T=6
   I=15
   python regression.py
-  for method in svr bagging linerRegression
+  for method in randomForest svr bagging linerRegression
   do
     ./identify 2 $method
     if [ $numOfData -eq "1" ]; then

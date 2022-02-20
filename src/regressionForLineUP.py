@@ -12,6 +12,7 @@ def main(I):
     linerRegression(addressList,i,I)
     svr(addressList,i,I)
     bagging(addressList,i,I)
+    randomForest(addressList,i,I)
 #線形回帰
 def linerRegression(addressList,i,I):
     clf = LinearRegression(fit_intercept = True, copy_X = True, n_jobs = -1)
