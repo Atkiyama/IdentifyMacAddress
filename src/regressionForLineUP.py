@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn import svm
 from sklearn import ensemble, tree
+from sklearn.ensemble import RandomForestRegressor
 import sys
 def main(I):
     i=0
@@ -27,6 +28,11 @@ def bagging(addressList,i,I):
     #clf = ensemble.BaggingRegressor(tree.DecisionTreeRegressor(), n_estimators=100, max_samples=0.3)
     for line in range(len(addressList)):
         regression(addressList,addressList.address[line],addressList.lTime[line],I,clf,"bagging/",i)
+#ランダムフォレスト
+def randomForest(addressList,i,I):
+    clf =  RandomForestRegressor(n_jobs = -1)
+    for line in range(len(addressList)):
+        regression(addressList,addressList.address[line],addressList.lTime[line],I,clf,"randomForest/",i)
 def regression(addressList,address,lTime,I,clf,regression,i):
     x_train = []
     y_train = []
