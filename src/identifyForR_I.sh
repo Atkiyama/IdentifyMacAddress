@@ -2,7 +2,7 @@
 #バックグラウンド側で実行しないこと
 numOfData=$1
 java processed/delay/DelayForR_I $numOfData
-for method in bagging svr linerRegression
+for method in randomForest bagging svr linerRegression
 do
   ./identifyForR_I_sub.sh $numOfData $method &
 done
