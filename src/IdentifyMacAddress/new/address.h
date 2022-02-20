@@ -56,7 +56,6 @@ public:
         ostringstream ossI;
         ossI << I;
         vector<Packet> packetData = fAddress[address];
-        vector<Packet> fPackets;
         for(int i=0;i<packetData.size();i++){
             if (packetData[i].getTime() - fTime <= I)
                 fPackets.push_back(packetData[i]);            
@@ -82,7 +81,7 @@ public:
     {
         ostringstream ossI;
         ossI << I;
-        regression = regMap[address + ossI.str()];
+        regression = regMap[address +"_"+ossI.str()];
     }
 
     inline vector<Address>  getNextAddressList(){

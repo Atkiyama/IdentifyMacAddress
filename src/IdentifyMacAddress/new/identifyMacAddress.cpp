@@ -41,14 +41,14 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
             addressList[i].addNextAddressList(addressList[j]);
       }
    }
-
+   
     //回帰値をセット
    for (int i = 0; i < addressList.size(); i++)
    {
       addressList[i].setRegression(data.getRegression(),I);
    }
 
-   //Rで絞り込み
+   //Rで絞り込み ここで候補が消えてる
    for (int i = 0; i < addressList.size(); i++)
    {
       std::vector<Address> replace;
@@ -62,13 +62,14 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
 
       addressList[i].setNextAddressList(replace);
    }
-
+   
    //正規化
    for (int i = 0; i < addressList.size(); i++)
    {
       if (addressList[i].getNextAddressList().size() >= 2)
          addressList[i].setNextAddressList(normalize(addressList[i], R, T));
    }
+   
 
    //結合分の処理
    
@@ -106,7 +107,7 @@ inline double getR(Address address, Address nextAddress)
          if (address.getRegression()[j].getTime() == nextAddress.getFPackets()[i].getTime())
          {
             sum += std::abs(address.getRegression()[j].getRssi() - nextAddress.getFPackets()[i].getRssi());
-            //std::cout <<"00>"<<address.getRegression()[j][1]<<","<<nextAddress.getFPackets()[i][1]<<std::endl;
+           // std::cout <<"00>"<<address.getRegression()[j].getRssi()<<","<<nextAddress.getFPackets()[i].getRssi()<<std::endl;
             count++;
             break;
          }
@@ -216,8 +217,8 @@ int main(int argc, char *argv[])
    }else{
       //動作確認用
       Data data;
-      data.readAddressList("./data/address/processed/addressList/addressList0.csv");
-      int dataNumber = 0;
+      data.readAddressList("./data/address/processed/addressList/addressList1.csv");
+      int dataNumber = 1;
       data.readFAddress(dataNumber);
       data.readRegression(dataNumber,method);
       //データのリストを作成してから同定へ
