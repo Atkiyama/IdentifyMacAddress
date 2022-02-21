@@ -164,8 +164,46 @@ class Data{
             }
 
             regression[addressList[i].getAddress() +"_" + ossI.str()] = fPacket;
-            }
+           }
        }
+
+    }
+
+    inline void readRegression(int dataNumber,string method,int I){
+        for(int i=0;i<addressList.size();i++){
+            ostringstream oss;
+            ostringstream ossDataNumber;
+            ostringstream ossI;
+            ossDataNumber << dataNumber;
+            ossI << I;
+            string fileName =  addressList[i].getAddress() +"_" + ossI.str() + "_" + ossDataNumber.str();
+            string filePath = "data/address/processed/regression/" + method +"/"+ fileName + ".csv";
+            oss << filePath;
+            ifstream ifs(oss.str());
+            string data;
+            string buf;
+            if (!ifs)
+            {
+                cout << "ファイルが開けませんでした。" << endl;
+                cout << oss.str() << endl;
+                cin.get();
+            }
+
+            //ヘッダを読み飛ばす
+            getline(ifs, buf);
+            vector<Packet> fPacket;
+
+            while (!ifs.eof())
+            {
+                getline(ifs, buf);
+                if (buf.size() != 0)
+                   fPacket.push_back(makePacket(buf));
+            }
+
+            regression[addressList[i].getAddress() +"_" + ossI.str()] = fPacket;
+            
+       }
+
 
     }
 

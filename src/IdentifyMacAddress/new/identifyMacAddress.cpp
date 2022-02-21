@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
          ossDataNumber << dataNumber;
          data.readAddressList("./data/address/processed/addressList/addressList"+ossDataNumber.str()+".csv");
          data.readFAddress(dataNumber);
-         data.readRegression(dataNumber,method);
+         data.readRegression(dataNumber,method,I);
          identify(R,T,I,data,method,dataNumber);
       }
    }else if(stoi(argv[1])==3){
