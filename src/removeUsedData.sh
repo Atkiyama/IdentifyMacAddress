@@ -16,7 +16,7 @@ mkdir /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/capture/convert/mov
 rm -rf /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/result/multi/move
 mkdir  /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/result/multi/move
 mkdir  /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/result/multi/move/svr/
-mkdir  /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/result/multi/move/svr/{0...100}
+mkdir  /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/result/multi/move/svr/{0..100}
 mkdir  /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/result/multi/move/bagging
 mkdir  /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/result/multi/move/linerRegression
 mkdir  /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/result/multi/move/randomForest
