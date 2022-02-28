@@ -35,6 +35,14 @@ public class Evaluation {
         score = new ArrayList<>();
 
     }
+    
+    public Evaluation(String answer,String data) throws IOException{
+        captures = ReadAnswer.read(answer);
+    	ReadData read = new ReadData(data);
+    	datas = read.read();
+        score = new ArrayList<>();
+
+    }
 
     public void output() {
     	for(String data:datas) {

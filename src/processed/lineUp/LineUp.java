@@ -3,15 +3,16 @@ package processed.lineUp;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import processed.ReadCSV;
 import processed.extract.node.Address;
 import processed.extract.node.Packet;
 
 public class LineUp {
-	ArrayList<String[]> originalAddressList;
-	ArrayList<Pair> pairs;
-	HashMap<String,Double> substract;
+	private ArrayList<String[]> originalAddressList;
+	private ArrayList<Pair> pairs;
+	private HashMap<String,Double> substract;
 
 	public LineUp(ArrayList<String[]> originalAddressList) {
 		this.originalAddressList = originalAddressList;
@@ -19,31 +20,64 @@ public class LineUp {
 		substract = new HashMap<>();
 	}
 
+	/**
+	 * 
+	 * @param args 0に抽出するペア数
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
-		lineUp.setPairs();//
+		if(args.length==0) {
+			LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
+			lineUp.setPairs();//
+			lineUp = LineUp.format(lineUp);
+			LineUp.toWrite(lineUp,0);
+		}else{
+			int numOfPair = Integer.parseInt(args[0]);
+			for(int i=1;i<=100;i++) {
+				LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
+				lineUp.setPairs();
+				lineUp.extractPair(numOfPair);
+				lineUp = LineUp.format(lineUp);
+				LineUp.toWrite(lineUp,i);
+			}
+		}
+
+	}
+	public static LineUp format(LineUp lineUp) throws IOException {
 		lineUp.readfPackets();
 		lineUp.readlPackets();
 		lineUp.formatPairs();
 		lineUp.formatfPackets();
 		lineUp.formatlPackets();
+		return lineUp;
+	}
+	
+	public static void toWrite(LineUp lineUp,int i) throws IOException {
 		//ここまでアドレスリストの処理
 		ArrayList<Address> addressList = new ArrayList<>();
 		for(Pair pair:lineUp.getPairs()) {
 			addressList.add(pair.getFrontAddress());
 			addressList.add(pair.getBackAddress());
 		}
-		Write.writeAllAddress(addressList);
+		Write.writeAllAddress(addressList,i);
 		for(Address address:addressList) {
-			Write.writeFAddress(address);
-			Write.writeLAddress(address);
+			Write.writeFAddress(address,i);
+			Write.writeLAddress(address,i);
 		}
-
 	}
 
 	public ArrayList<Pair> getPairs() {
 		return pairs;
+	}
+	
+	public void extractPair(int numOfPair) {
+		Random random = new Random();
+		while(pairs.size()!=numOfPair) {
+			int randomInt = random.nextInt(pairs.size());
+			pairs.remove(randomInt);
+		}
+		
 	}
 
 	private void formatlPackets() {

@@ -8,8 +8,8 @@ import processed.extract.node.Address;
 import processed.extract.node.Packet;
 
 public class Write {
-	public static void writeAllAddress(ArrayList<Address> addressList) throws IOException {
-		FileWriter fileWriter = new FileWriter("data/address/processed/addressList/addressList0.csv");
+	public static void writeAllAddress(ArrayList<Address> addressList,int i) throws IOException {
+		FileWriter fileWriter = new FileWriter("data/address/processed/addressList/addressList"+i+".csv");
 		fileWriter.append("fileName,address,fTime,lTime");
 		fileWriter.append("\r\n");
 		for(Address address:addressList) {
@@ -18,9 +18,9 @@ public class Write {
 		}
 		fileWriter.close();
 	}
-	public static void writeFAddress(Address address) throws IOException {
+	public static void writeFAddress(Address address,int i) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		FileWriter fileWriter = new FileWriter("data/address/processed/fAddress/"+address.getName()+"_0.csv");
+		FileWriter fileWriter = new FileWriter("data/address/processed/fAddress/"+address.getName()+"_"+i+".csv");
 		fileWriter.append("time,rssi");
 		fileWriter.append("\r\n");
 		for(Packet packet:address.getfPackets()) {
@@ -29,9 +29,9 @@ public class Write {
 		}
 		fileWriter.close();
 	}
-	public static void writeLAddress(Address address) throws IOException {
+	public static void writeLAddress(Address address,int i) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		FileWriter fileWriter = new FileWriter("data/address/processed/lAddress/"+address.getName()+"_0.csv");
+		FileWriter fileWriter = new FileWriter("data/address/processed/lAddress/"+address.getName()+"_"+i+".csv");
 		fileWriter.append("time,rssi");
 		fileWriter.append("\r\n");
 		for(Packet packet:address.getlPackets()) {
