@@ -7,11 +7,26 @@ import evaluation.CaptureFile;
 import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
 
+/**
+ * 同定結果を評価するクラス
+ * 
+ * @author akiyamashuuhei
+ *
+ */
 public class Evaluation {
     ArrayList<ArrayList<String>> answers;
+    /**
+     * 同定結果のスコア
+     */
     ArrayList<Boolean> score;
-    int n;
+    /**
+     * キャプチャファイルのリスト
+     */
     ArrayList<CaptureFile> captures;
+    
+    /**
+     * データのリスト
+     */
     ArrayList<String> datas;
     public Evaluation(int n) throws IOException{
 
@@ -20,6 +35,8 @@ public class Evaluation {
     	datas = read.read();
         score = new ArrayList<>();
     }
+    
+   
 
     public Evaluation(int R,int T,int I,int numOfTime,int n ,String method,String numOfData) throws IOException{
         captures = ReadAnswer.read();
@@ -37,7 +54,7 @@ public class Evaluation {
     }
     
     public Evaluation(String answer,String data) throws IOException{
-        captures = ReadAnswer.read(answer);
+        captures = ReadAnswer.readLineUp(answer);
     	ReadData read = new ReadData(data);
     	datas = read.read();
         score = new ArrayList<>();
