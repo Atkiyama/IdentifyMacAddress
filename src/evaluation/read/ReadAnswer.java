@@ -37,7 +37,12 @@ public class ReadAnswer {
 		in.close();
 		for(int i=0;i<addressList.size();i+=2) {
 			String[] pair = {String.valueOf(i),addressList.get(i),addressList.get(i+1)};
-			captures.add(new CaptureFile(pair));		}
+			captures.add(new CaptureFile(pair));		
+		}
+		/*
+		for(CaptureFile capture:captures) {
+			System.out.println(capture.getAddress());
+		}*/
 		return captures;
 	}
 	
