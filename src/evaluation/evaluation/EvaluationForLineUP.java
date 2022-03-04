@@ -12,7 +12,6 @@ public class EvaluationForLineUP {
 
     Evaluation eval = new Evaluation("data/address/processed/addressList/addressList0.csv","data/result/multi/move/"+args[3]+"/"+0+"/"+R+","+T+","+I+".txt");
     eval.evaluation();
-    eval.output();
     System.out.println(R+","+T+","+I+"," +eval.getScore()+"%");
 
 	}

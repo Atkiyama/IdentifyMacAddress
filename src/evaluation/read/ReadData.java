@@ -52,10 +52,10 @@ public class ReadData {
 		while(str != null) {
 			mAddress = pAddress.matcher(str);
 			mAddress2 = pAddress2.matcher(str);
-			if(mAddress.find())
-				data.add(mAddress.group(1));
-			else if(mAddress2.find())
+			if(mAddress2.find())
 				data.add(mAddress2.group(1));
+			else if(mAddress.find())
+				data.add(mAddress.group(1));
 			else
 				data.add("brank");
 			str = in.readLine();
