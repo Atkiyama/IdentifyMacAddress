@@ -32,13 +32,22 @@ public class LineUp {
 			lineUp.setPairs();//
 			lineUp = LineUp.format(lineUp);
 			LineUp.toWrite(lineUp,0);
-		}else{
+		}else if(args.length==1){
 			int numOfPair = Integer.parseInt(args[0]);
 			for(int i=1;i<=100;i++) {
 				LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
 				lineUp.setPairs();
 				lineUp.extractPair(numOfPair);
 				lineUp = LineUp.format(lineUp);
+				LineUp.toWrite(lineUp,i);
+			}
+		}else {
+			int numOfPair = Integer.parseInt(args[0]);
+			for(int i=1;i<=100;i++) {
+				LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
+				lineUp.setPairs();
+				lineUp.extractPair(numOfPair);
+				lineUp = LineUp.format(lineUp,Integer.parseInt(args[2]));
 				LineUp.toWrite(lineUp,i);
 			}
 		}
@@ -51,6 +60,31 @@ public class LineUp {
 		lineUp.formatfPackets();
 		lineUp.formatlPackets();
 		return lineUp;
+	}
+	
+	/**
+	 * 遅延処理を加える用
+	 * @param lineUp
+	 * @return
+	 * @throws IOException
+	 */
+	public static LineUp format(LineUp lineUp,int delay) throws IOException {
+		lineUp.readfPackets();
+		lineUp.readlPackets();
+		lineUp.formatPairs();
+		lineUp.addDelay(delay);
+		lineUp.formatfPackets();
+		lineUp.formatlPackets();
+		return lineUp;
+	}
+	
+	public void addDelay(int delayRange) {
+		Random random = new Random();
+		for(Pair pair:pairs) {
+			int delay = random.nextInt(delayRange*2)-delayRange;
+			substract.put(pair.getFrontAddress().getName(),pair.getFrontAddress().getlTime()+delay);
+			substract.put(pair.getBackAddress().getName(),pair.getFrontAddress().getlTime()+delay);
+		}
 	}
 	
 	public static void toWrite(LineUp lineUp,int i) throws IOException {
