@@ -13,9 +13,10 @@ public class EvaluationForLIneUp2 {
         int I = Integer.parseInt(args[2]);
         ArrayList<Evaluation> evals = new ArrayList<>();;
         //評価用のインスタンスを作成
-
+        String[] empty = {};
+        processed.lineUp.LineUp.main(empty);;
         for(int n=1;n<=100;n++){
-            evals.add(new Evaluation("data/address/processed/addressList/addressList"+n+".csv","data/result/multi/move/"+args[3]+"/"+n+"/"+R+","+ T +","+I+".txt"));
+            evals.add(new Evaluation("data/address/processed/addressList/addressList0.csv","data/result/multi/move/"+args[3]+"/"+n+"/"+R+","+ T +","+I+".txt"));
         }
         double sumScore = 0;
         for(Evaluation eval:evals){
