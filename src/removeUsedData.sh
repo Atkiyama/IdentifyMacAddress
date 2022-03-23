@@ -1,11 +1,9 @@
 #bin/bash
-
-rm /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/addressList/*
-rm -rf /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/fAddress
-rm -rf /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/lAddress
+rm -rf /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/
+mkdir /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed
+mkdir /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/addressList
 mkdir /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/fAddress
 mkdir /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/lAddress
-rm -rf /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/regression
 mkdir  /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/regression
 mkdir  /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/regression/svr
 mkdir  /Users/akiyamashuuhei/data/IdentifyMacAddress/src/data/address/processed/regression/bagging

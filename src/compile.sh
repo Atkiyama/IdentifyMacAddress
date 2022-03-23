@@ -2,12 +2,13 @@
 
 #ディレクトリ内の全てのクラスファイルを削除後、再コンパイルします
 find ./ -name "*.class" -delete
-javac dataAnalyze/DataAnalyze.java -encoding UTF-8
-javac evaluation/evaluation/*.java -encoding UTF-8
-javac evaluation/table/move/*.java -encoding UTF-8
-javac evaluation/table/stay/*.java -encoding UTF-8
-javac graph/makeCDF/MakeCDF.java -encoding UTF-8
-javac identifyMacAddress/identify/*.java -encoding UTF-8
-javac processed/lineUp/*.java -encoding UTF-8
-javac processed/extract/*.java -encoding UTF-8
-javac processed/delay/*.java -encoding UTF-8
+javac dataAnalyze/DataAnalyze.java
+javac evaluation/evaluation/*.java
+javac evaluation/table/move/*.java
+javac evaluation/table/stay/*.java
+javac graph/Graph.java
+javac graph/makeCDF/MakeCDF.java
+javac identifyMacAddress/identify/*.java
+javac processed/lineUp/*.java
+javac processed/extract/*.java
+javac processed/delay/*.java
