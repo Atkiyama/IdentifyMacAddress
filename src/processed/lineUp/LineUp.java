@@ -27,24 +27,24 @@ public class LineUp {
 	 */
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		if(args.length==0) {
 			LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
 			lineUp.setPairs();//
 			lineUp = LineUp.format(lineUp);
 			LineUp.toWrite(lineUp,0);
-		}else if(args.length==1){
+		if(args.length==1){
+			
 			int numOfPair = Integer.parseInt(args[0]);
 			for(int i=1;i<=100;i++) {
-				LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
+				lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
 				lineUp.setPairs();
 				lineUp.extractPair(numOfPair);
 				lineUp = LineUp.format(lineUp);
 				LineUp.toWrite(lineUp,i);
 			}
-		}else {
+		}else if(args.length!=0){
 			int numOfPair = Integer.parseInt(args[0]);
 			for(int i=1;i<=100;i++) {
-				LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
+				lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
 				lineUp.setPairs();
 				lineUp.extractPair(numOfPair);
 				lineUp = LineUp.format(lineUp,Integer.parseInt(args[2]));

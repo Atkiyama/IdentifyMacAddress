@@ -3,7 +3,7 @@ package evaluation.evaluation;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class EvaluationForLIneUp2 {
+public class EvaluationForLineUp2 {
 
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
@@ -14,7 +14,7 @@ public class EvaluationForLIneUp2 {
         ArrayList<Evaluation> evals = new ArrayList<>();;
         //評価用のインスタンスを作成
         String[] empty = {};
-        processed.lineUp.LineUp.main(empty);;
+        processed.lineUp.LineUp.main(empty);
         for(int n=1;n<=100;n++){
             evals.add(new Evaluation("data/address/processed/addressList/addressList0.csv","data/result/multi/move/"+args[3]+"/"+n+"/"+R+","+ T +","+I+".txt"));
         }
