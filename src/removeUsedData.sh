@@ -12,6 +12,8 @@ mkdir  data/address/processed/regression/randomForest
 rm -rf data/capture/convert/move/
 mkdir data/capture/convert/move
 rm -rf data/result/multi/move
+#windows用なのでMACではエラー出るけど気にしないこと
+mkdir  data/result/multi
 mkdir  data/result/multi/move
 mkdir  data/result/multi/move/svr/
 mkdir  data/result/multi/move/svr/{0..100}
