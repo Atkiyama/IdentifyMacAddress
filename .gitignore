@@ -11,3 +11,5 @@ bin/
 *.csv
 
 src/data
+
+*.class
