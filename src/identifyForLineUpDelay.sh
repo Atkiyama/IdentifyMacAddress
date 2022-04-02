@@ -6,5 +6,5 @@ delay=$2
 java processed/lineUp/LineUp $numOfData $delay
 for method in randomForest bagging svr linerRegression
 do
-  ./identifyForLineUp2_sub.sh $numOfData $method $delay &
+  ./identifyForLineUpDelay_sub.sh $numOfData $method $delay &
 done

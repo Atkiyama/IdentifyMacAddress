@@ -47,8 +47,8 @@ public class LineUp {
 				lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
 				lineUp.setPairs();
 				lineUp.extractPair(numOfPair);
-				lineUp = LineUp.format(lineUp,Integer.parseInt(args[2]));
-				LineUp.toWrite(lineUp,i);
+				LineUp lineUp2 = LineUp.format(lineUp,Integer.parseInt(args[1]));
+				LineUp.toWrite(lineUp2,i);
 			}
 		}
 
@@ -82,9 +82,15 @@ public class LineUp {
 		Random random = new Random();
 		for(Pair pair:pairs) {
 			int delay = random.nextInt(delayRange*2)-delayRange;
+			pair.getFrontAddress().setfTime(pair.getFrontAddress().getfTime()+delay);
+			pair.getFrontAddress().setlTime(pair.getFrontAddress().getlTime()+delay);		
+			pair.getBackAddress().setfTime(pair.getBackAddress().getfTime()+delay);
+			pair.getBackAddress().setlTime(pair.getBackAddress().getlTime()+delay);
 			substract.put(pair.getFrontAddress().getName(),pair.getFrontAddress().getlTime()+delay);
-			substract.put(pair.getBackAddress().getName(),pair.getFrontAddress().getlTime()+delay);
+			substract.put(pair.getBackAddress().getName(),pair.getBackAddress().getlTime()+delay);
 		}
+		
+		
 	}
 	
 	public static void toWrite(LineUp lineUp,int i) throws IOException {
@@ -126,6 +132,7 @@ public class LineUp {
 		}
 
 	}
+	
 
 	private void formatfPackets() {
 		// TODO 自動生成されたメソッド・スタブ
@@ -191,7 +198,7 @@ public class LineUp {
 			substract.put(pair.getBackAddress().getName(),ltime);
 		}
 	}
-
+	
 	public void setPairs() {
 		// TODO 自動生成されたメソッド・スタブ
 		String[] beforeAddress = {""};
