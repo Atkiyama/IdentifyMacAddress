@@ -82,12 +82,12 @@ public class LineUp {
 		Random random = new Random();
 		for(Pair pair:pairs) {
 			int delay = random.nextInt(delayRange*2)-delayRange;
-			pair.getFrontAddress().setfTime(pair.getFrontAddress().getfTime()+delay);
-			pair.getFrontAddress().setlTime(pair.getFrontAddress().getlTime()+delay);		
-			pair.getBackAddress().setfTime(pair.getBackAddress().getfTime()+delay);
-			pair.getBackAddress().setlTime(pair.getBackAddress().getlTime()+delay);
-			substract.put(pair.getFrontAddress().getName(),pair.getFrontAddress().getlTime()+delay);
-			substract.put(pair.getBackAddress().getName(),pair.getBackAddress().getlTime()+delay);
+			pair.getFrontAddress().setfTime(pair.getFrontAddress().getfTime()-delay);
+			pair.getFrontAddress().setlTime(pair.getFrontAddress().getlTime()-delay);		
+			pair.getBackAddress().setfTime(pair.getBackAddress().getfTime()-delay);
+			pair.getBackAddress().setlTime(pair.getBackAddress().getlTime()-delay);
+			substract.put(pair.getFrontAddress().getName(),substract.get(pair.getFrontAddress().getName())+delay);
+			substract.put(pair.getBackAddress().getName(),substract.get(pair.getBackAddress().getName())+delay);
 		}
 		
 		
