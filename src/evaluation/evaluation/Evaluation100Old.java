@@ -2,8 +2,6 @@ package evaluation.evaluation;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
 
 import evaluation.read.ReadAnswer;
 import evaluation.read.ReadData;
@@ -51,6 +49,8 @@ public class Evaluation100Old {
 	 * @param evals 評価のリスト
 	 * @throws IOException
 	 */
+	
+	/*
 	private static void outputDetails(ArrayList<EvaluationOld> evals) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		HashMap<String,Boolean> score = calcScore(evals);
@@ -62,13 +62,15 @@ public class Evaluation100Old {
 				System.out.println("×");
 			}
 		}
-	}
+	}*/
 
 	/**
 	 * スコアを計算するメソッド
 	 * @param evals 評価のリスト
 	 * @return スコアのリスト
 	 */
+	
+	/*
 	private static HashMap<String,Boolean> calcScore(ArrayList<EvaluationOld> evals) {
 		HashMap<String,Boolean> score = new HashMap<>();
 		// TODO 自動生成されたメソッド・スタブ
@@ -86,6 +88,6 @@ public class Evaluation100Old {
 			}
 		}
 		return score;
-	}
+	}*/
 
 }

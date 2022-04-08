@@ -12,4 +12,6 @@ bin/
 
 src/data
 
+src/identify
+
 *.class

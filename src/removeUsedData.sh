@@ -25,3 +25,4 @@ mkdir  data/result/multi/move/bagging/{0..100}
 mkdir  data/result/multi/move/linerRegression/{0..100}
 mkdir  data/result/multi/move/randomForest/{0..100}
 mkdir  data/result/multi/move/old/{0..100}
+g++ -O3 identifyMacAddress/new/identifyMacAddress.cpp -o identify
