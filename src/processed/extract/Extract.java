@@ -8,6 +8,11 @@ import processed.extract.io.Write;
 import processed.extract.node.Address;
 import processed.extract.node.Packet;
 
+/**
+ * キャプチャしたパケット情報から改良手法に必要なデータを抽出するクラス
+ * @author akiyamashuuhei
+ *
+ */
 public class Extract {
 	public ArrayList<Packet> packets;
 	public ArrayList<Address>  addressList;

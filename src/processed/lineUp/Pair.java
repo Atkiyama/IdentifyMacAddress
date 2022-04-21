@@ -2,8 +2,19 @@ package processed.lineUp;
 
 import processed.extract.node.Address;
 
+/**
+ * アドレス変化前、変化後のペアを示すクラス
+ * @author akiyamashuuhei
+ *
+ */
 public class Pair {
+	/**
+	 * 変化前のアドレス
+	 */
 	public Address frontAddress;
+	/**
+	 * 変化後のアドレス
+	 */
 	public Address backAddress;
 	public Pair(Address frontAddress, Address backAddress) {
 		this.frontAddress = frontAddress;

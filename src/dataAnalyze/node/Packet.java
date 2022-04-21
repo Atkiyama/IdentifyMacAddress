@@ -44,7 +44,12 @@ public class Packet {
 	public int getRssi() {
 		return rssi;
 	}
+	
+	
 
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	/**
 	 * timeを初期受診時刻をベースにしてフォーマットします
 	 * @param fTime 初期受診時刻

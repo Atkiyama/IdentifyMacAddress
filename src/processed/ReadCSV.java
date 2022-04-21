@@ -5,7 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * CSVを読み込むクラス
+ * 複数パッケージから使用するので変更には注意
+ * @author akiyamashuuhei
+ *
+ */
 public class ReadCSV {
 	public static ArrayList<String[]> read(String fileName) throws IOException {
 		File file;

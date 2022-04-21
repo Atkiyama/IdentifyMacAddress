@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import dataAnalyze.node.Packet;
 /**
  * テキストファイルからパケット情報を読み取るクラス
+ * メインメソッドではtxtをcsvに変換する(convertCSV.shを使用)
  * @author akiyama
  *
  */
@@ -119,6 +120,7 @@ public class ReadTXT extends Read {
 			data.add(Double.parseDouble(str));
 			str = in.readLine();
 		}
+		in.close();
 		return data;
 
 	}

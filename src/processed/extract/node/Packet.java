@@ -8,6 +8,11 @@ public class Packet {
 	private double time;
 	private int rssi;
 	private String fileName;
+	public Packet(String address, double time, int rssi) {
+		this.address = address;
+		this.time = time;
+		this.rssi = rssi;
+	}
 	public Packet(String address, double time, int rssi,String fileName) {
 		this.address = address;
 		this.time = time;
