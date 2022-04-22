@@ -72,7 +72,7 @@ public class LineUp {
 			}
 		} else if (args.length != 0) {
 			int numOfPair = Integer.parseInt(args[0]);
-			for (int i = 1; i <= 1; i++) {
+			for (int i = 1; i <= 100; i++) {
 				lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
 				lineUp.setPairs();
 				lineUp.extractPair(numOfPair);
