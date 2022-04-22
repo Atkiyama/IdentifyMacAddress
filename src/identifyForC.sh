@@ -19,7 +19,7 @@ do
       java evaluation/evaluation/EvaluationForM $numOfData $method $R $T $I> data/result/evaluation/move/C,$method.txt
     elif [ "$numOfData" -eq "$79" ]
       then
-      java evaluation/evaluation/EvaluationForMSingle $numOfData $method $R $T $I> data/result/evaluation/move/C,$method.txt
+      java evaluation/evaluation/EvaluationForMSingle $numOfData $method $R $T $I>> data/result/evaluation/move/C,$method.txt
     else
       java evaluation/evaluation/EvaluationForM $numOfData $method $R $T $I>> data/result/evaluation/move/C,$method.txt
     fi
@@ -33,11 +33,11 @@ do
     fi
   done
   if [ $numOfData -eq "1" ]; then
-    java evaluation/evaluation/Evaluation100Old $R $T $numOfData > data/result/evaluation/move/C,old.txt
+    java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I> data/result/evaluation/move/C,old.txt
   elif [ "$numOfData" -eq "$79" ]
     then
-    java evaluation/evaluation/EvaluationOld $numOfData $method $R $T $I> data/result/evaluation/move/C,$method.txt
+    java evaluation/evaluation/EvaluationForMSingle $numOfData old $R $T $I>> data/result/evaluation/move/C,old.txt
   else
-    java evaluation/evaluation/Evaluation100Old $R $T $numOfData >> data/result/evaluation/move/C,old.txt
+    java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I>> data/result/evaluation/move/C,old.txt
   fi
 done

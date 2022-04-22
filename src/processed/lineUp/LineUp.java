@@ -134,6 +134,8 @@ public class LineUp {
 	 */
 	public void addDelay(int delayRange) {
 		Random random = new Random();
+		if(delayRange==0)
+			return;
 		for (Pair pair : pairs) {
 			int delay = random.nextInt(delayRange * 2) - delayRange;
 			pair.getFrontAddress().setfTime(pair.getFrontAddress().getfTime() - delay);
