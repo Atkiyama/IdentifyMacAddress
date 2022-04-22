@@ -9,8 +9,6 @@ import processed.ReadCSV;
 import processed.extract.node.Address;
 import processed.extract.node.Packet;
 
-
-
 public class LineUp {
 	/**
 	 * ファイルから読み取ったままのアドレスリスト
@@ -46,17 +44,20 @@ public class LineUp {
 		// パケットのリストを作成
 		ArrayList<String[]> originalPacketList = new ArrayList<>();
 		ArrayList<Packet> fullPacketList = new ArrayList<>();
+		//全てのキャプチャファイル(CSVから読み込む)
 		for (int i = 1; i <= 20; i++) {
 			originalPacketList = ReadCSV.read("data/capture/single/move/csv/move" + i + ".csv");
-		}
-		for(String[] originalPacket:originalPacketList) {
-			if(!originalPacket[1].equals("time"))
-				fullPacketList.add(new Packet(originalPacket[0],Double.parseDouble(originalPacket[1]),Integer.parseInt(originalPacket[2])));
+
+			for (String[] originalPacket : originalPacketList) {
+				if (!originalPacket[1].equals("time"))
+					fullPacketList.add(new Packet(originalPacket[0], Double.parseDouble(originalPacket[1]),
+							Integer.parseInt(originalPacket[2])));
+			}
 		}
 		LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
 		lineUp.setPairs();//
 		lineUp = LineUp.format(lineUp);
-		LineUp.toWrite(lineUp, 0,fullPacketList);
+		LineUp.toWrite(lineUp, 0, fullPacketList);
 		if (args.length == 1) {
 
 			int numOfPair = Integer.parseInt(args[0]);
@@ -67,18 +68,18 @@ public class LineUp {
 				lineUp = LineUp.format(lineUp);
 				ArrayList<Packet> packetList = lineUp.extractPacket(fullPacketList);
 				packetList = lineUp.formatPacketList(packetList);
-				LineUp.toWrite(lineUp, i,packetList);
+				LineUp.toWrite(lineUp, i, packetList);
 			}
 		} else if (args.length != 0) {
 			int numOfPair = Integer.parseInt(args[0]);
-			for (int i = 1; i <= 100; i++) {
+			for (int i = 1; i <= 1; i++) {
 				lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
 				lineUp.setPairs();
 				lineUp.extractPair(numOfPair);
 				LineUp lineUp2 = LineUp.format(lineUp, Integer.parseInt(args[1]));
 				ArrayList<Packet> packetList = lineUp.extractPacket(fullPacketList);
 				packetList = lineUp.formatPacketList(packetList);
-				LineUp.toWrite(lineUp2, i,packetList);
+				LineUp.toWrite(lineUp2, i, packetList);
 			}
 		}
 
@@ -86,8 +87,8 @@ public class LineUp {
 
 	private ArrayList<Packet> formatPacketList(ArrayList<Packet> packetList) {
 		// TODO 自動生成されたメソッド・スタブ
-		for(Packet packet:packetList) {
-			packet.setTime(packet.getTime()-substract.get(packet.getAddress()));
+		for (Packet packet : packetList) {
+			packet.setTime(packet.getTime() - substract.get(packet.getAddress()));
 		}
 		return packetList;
 	}
@@ -152,7 +153,7 @@ public class LineUp {
 	 * @param i
 	 * @throws IOException
 	 */
-	public static void toWrite(LineUp lineUp, int i,ArrayList<Packet> packetList) throws IOException {
+	public static void toWrite(LineUp lineUp, int i, ArrayList<Packet> packetList) throws IOException {
 		// ここまでアドレスリストの処理
 		ArrayList<Address> addressList = new ArrayList<>();
 		for (Pair pair : lineUp.getPairs()) {
@@ -164,7 +165,7 @@ public class LineUp {
 			Write.writeFAddress(address, i);
 			Write.writeLAddress(address, i);
 		}
-		Write.writeConvert(packetList,i);
+		Write.writeConvert(packetList, i);
 	}
 
 	public ArrayList<Pair> getPairs() {
@@ -303,20 +304,44 @@ public class LineUp {
 		}
 
 	}
-	
+
+	/**
+	 * 抽出されたペアを元にパケットを抽出する
+	 * 
+	 * @param fullPacketList 全てのパケットのリスト
+	 * @return 抽出したパケットのリスト
+	 */
 	public ArrayList<Packet> extractPacket(ArrayList<Packet> fullPacketList) {
-		//抽出されたペアを元にパケットも整理
+		// 抽出されたペアを元にパケットも整理
 		ArrayList<Packet> packetList = new ArrayList<>();
-		for(Packet packet:fullPacketList) {
-			if(substract.containsKey(packet.getAddress())) {
+		int flag = 0;
+		int flag2 = 0;
+		for (Packet packet : fullPacketList) {
+			if (substract.containsKey(packet.getAddress())) {
 				packetList.add(packet);
-				
+				flag=1;
 			}
-			if(substract.containsKey(packet.getAddress()+"_2")) {
-				packet.setAddress(packet.getAddress()+"_2");
-				packetList.add(packet);
+			if (substract.containsKey(packet.getAddress() + "_2")) {
+				Packet packet2 = new Packet(packet.getAddress()+"_2",packet.getTime(),packet.getRssi());
+				packetList.add(packet2);
+				flag2=1;
 			}
-				
+
+		}
+		
+//エラーチェック
+		if(flag*flag2==0) {
+			System.out.println(flag+","+flag2);
+//			for(Packet packet:fullPacketList)
+//				System.out.println(packet.getAddress());
+//			System.out.println();
+//			for(String key:substract.keySet())
+//				System.out.println(key);
+//			
+//			System.out.println();
+			for(Packet packet:packetList)
+				System.out.println(packet.getAddress());
+			System.exit(0);
 		}
 		return packetList;
 	}

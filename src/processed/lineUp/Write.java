@@ -73,6 +73,12 @@ public class Write {
 
 	}
 
+	/**
+	 * convertしたキャプチャデータを書き込むメソッド
+	 * @param packetList
+	 * @param i
+	 * @throws IOException
+	 */
 	public static void writeConvert(ArrayList<Packet> packetList,int i) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		FileWriter fileWriter = new FileWriter("data/capture/convert/move/"+i+",convertData.csv");

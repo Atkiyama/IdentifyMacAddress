@@ -3,7 +3,7 @@ package processed.extract.node;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Packet {
+public class Packet implements Cloneable{
 	private String address;
 	private double time;
 	private int rssi;
@@ -44,6 +44,11 @@ public class Packet {
 	public void setDelay(double delay) {
 		time+=delay;
 	}
+	
+	/**
+	 * 時間を最初のパケットの受信時刻を0として合わせる
+	 * @param fTime
+	 */
 	public void formatTime(double fTime) {
 		 BigDecimal bTime = new BigDecimal(time);
 		 BigDecimal bFTime = new BigDecimal(fTime);

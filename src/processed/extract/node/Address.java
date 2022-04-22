@@ -2,6 +2,12 @@ package processed.extract.node;
 
 import java.util.ArrayList;
 
+/**
+ * アドレスを示すクラス
+ * lineUPでも使用している
+ * @author akiyamashuuhei
+ *
+ */
 public class Address {
 	private String name;
 	private ArrayList<Packet> packets;
@@ -44,6 +50,9 @@ public class Address {
 	public void setName(String name) {
 		this.name = name;
 	}
+	/**
+	 * パケットデータを元にlTimeを決める
+	 */
 	public void setlTime() {
 		for(Packet packet:packets) {
 			double time = packet.getTime();
@@ -54,6 +63,7 @@ public class Address {
 	public void addPacket(Packet packet) {
 		packets.add(packet);
 	}
+	
 	public void setFPackets(int T) {
 		for(Packet packet:packets) {
 			if(packet.getTime()-fTime<=T)

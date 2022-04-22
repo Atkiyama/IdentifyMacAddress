@@ -22,6 +22,9 @@ public class Extract {
 		this.packets = packets;
 		addressList = new ArrayList<>();
 	}
+	/**
+	 * アドレスリストを生成する
+	 */
 	public void makeAddressList() {
 		//既知のアドレスかどうかのフラグ
 		boolean ad_known = false;
@@ -51,11 +54,19 @@ public class Extract {
 		ex.writeAddress();
 		ex.writeAllAddress();
 	}
+	
+	/*
+	 * Writeクラスにアドレスリストの書き込みを投げる
+	 */
 	private void writeAllAddress() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		Write.writeAllAddress(addressList);
 
 	}
+	/**
+	 * WriteクラスにfAddressとlAddressの書き込みを投げる
+	 * @throws IOException
+	 */
 	private void writeAddress() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		for(Address address:addressList) {
@@ -64,6 +75,11 @@ public class Extract {
 		}
 
 	}
+	
+	/**
+	 * ftimeとfPacketとlPacketをセットする
+	 * @param T 抽出する秒数
+	 */
 	private void extract(int T) {
 		// TODO 自動生成されたメソッド・スタブ
 		for(Address address:addressList) {
