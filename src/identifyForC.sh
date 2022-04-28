@@ -7,7 +7,11 @@ do
   R=15
   T=6
   I=15
-  python regression.py
+  if [ $numOfData -eq "79" ]; then
+    python regressionForLineUp.py
+  else
+    python regression.py
+  fi
   for method in svr bagging linerRegression randomForest
   do
     if [ $numOfData -eq "79" ]; then
@@ -27,9 +31,9 @@ do
   for n in {1..100}
   do
     if [ $numOfData -eq "79" ]; then
-      java identifyMacAddress/identify/IdentifyStay data/capture/convert/move/0,convertData.csv $R $T > data/result/multi/move/old/0.txt
+      java identifyMacAddress/identify/IdentifyStay data/capture/convert/move/0,convertData.csv $R $T > data/result/multi/move/old/$n/$R,$T,$I.txt
     else
-      java identifyMacAddress/identify/IdentifyStay data/capture/convert/move/$n,convertData.csv $R $T > data/result/multi/move/old/$n.txt
+      java identifyMacAddress/identify/IdentifyStay data/capture/convert/move/$n,convertData.csv $R $T > data/result/multi/move/old/$n/$R,$T,$I.txt
     fi
   done
   if [ $numOfData -eq "1" ]; then
