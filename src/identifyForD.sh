@@ -2,7 +2,7 @@
 
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
 numOfData=79
-for delay in {0..30}
+for delay in {31..60}
 do
   java processed/lineUp/LineUp $numOfData $delay
   R=15
