@@ -1,31 +1,19 @@
 #bin/bash
 
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
+numOfData=79
 for numOfData in {1..79}
 do
   java processed/lineUp/LineUp $numOfData
   R=15
   T=6
   I=15
-  if [ $numOfData -eq "79" ]; then
-    python regressionForLineUp.py
-  else
-    python regression.py
-  fi
-  for method in svr bagging linerRegression randomForest
+  for method in bagging svr linerRegression randomForest
   do
-    if [ $numOfData -eq "79" ]; then
-      ./identify 4 $method
+    if [ $method = "randomForest" ]; then
+      ./identifyForD_sub.sh $method $numOfData $R $T $I
     else
-      ./identify 2 $method
-    fi
-    if [ $numOfData -eq "1" ]; then
-      java evaluation/evaluation/EvaluationForM $numOfData $method $R $T $I> data/result/evaluation/move/C,$method.txt
-    elif [ "$numOfData" -eq "$79" ]
-      then
-      java evaluation/evaluation/EvaluationForMSingle $numOfData $method $R $T $I>> data/result/evaluation/move/C,$method.txt
-    else
-      java evaluation/evaluation/EvaluationForM $numOfData $method $R $T $I>> data/result/evaluation/move/C,$method.txt
+      ./identifyForD_sub.sh $method $numOfData $R $T $I &
     fi
   done
   for n in {1..100}
@@ -44,4 +32,5 @@ do
   else
     java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I>> data/result/evaluation/move/C,old.txt
   fi
+./removeUsedData.sh
 done

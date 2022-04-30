@@ -8,14 +8,12 @@ do
   R=15
   T=6
   I=15
-  python regression.py
-  for method in svr bagging linerRegression randomForest
+  for method in bagging svr linerRegression randomForest
   do
-    ./identify 2 $method
-    if [ $delay -eq "0" ]; then
-      java evaluation/evaluation/EvaluationForM $delay $method $R $T $I> data/result/evaluation/move/D,$method.txt
+    if [ $method = "randomForest" ]; then
+      ./identifyForD_sub.sh $method $numOfData $delay $R $T $I
     else
-      java evaluation/evaluation/EvaluationForM $delay $method $R $T $I>> data/result/evaluation/move/D,$method.txt
+      ./identifyForD_sub.sh $method $numOfData $delay $R $T $I &
     fi
   done
   for n in {1..100}
@@ -27,4 +25,5 @@ do
   else
     java evaluation/evaluation/EvaluationForM $delay old $R $T $I>> data/result/evaluation/move/D,old.txt
   fi
+  ./removeUsedData.sh
 done
