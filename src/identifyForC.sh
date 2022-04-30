@@ -1,7 +1,6 @@
 #bin/bash
 
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
-numOfData=79
 for numOfData in {1..79}
 do
   java processed/lineUp/LineUp $numOfData
@@ -11,9 +10,9 @@ do
   for method in bagging svr linerRegression randomForest
   do
     if [ $method = "randomForest" ]; then
-      ./identifyForD_sub.sh $method $numOfData $R $T $I
+      ./identifyForC_sub.sh $method $numOfData $R $T $I
     else
-      ./identifyForD_sub.sh $method $numOfData $R $T $I &
+      ./identifyForC_sub.sh $method $numOfData $R $T $I &
     fi
   done
   for n in {1..100}
