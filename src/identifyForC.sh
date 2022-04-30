@@ -25,7 +25,7 @@ do
   done
   if [ $numOfData -eq "1" ]; then
     java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I> data/result/evaluation/move/C,old.txt
-  elif [ "$numOfData" -eq "$79" ]
+  elif [ "$numOfData" -eq "79" ]
     then
     java evaluation/evaluation/EvaluationForMSingle $numOfData old $R $T $I>> data/result/evaluation/move/C,old.txt
   else

@@ -12,7 +12,7 @@ set ytics font ",20"
 
 set key right bottom
 
-set output "data/result/graph/graph/move/c.pdf"
+set output "data/result/graph/graph/move/d.pdf"
 
 plot \
 "data/result/evaluation/move/D,linerRegression.txt" using 1:2 lw 6   title "LinerRegression"\
