@@ -5,7 +5,7 @@ set colorsequence default
 set xlabel font ",24" "D"
 set ylabel font ",24" "accuracy"
 set yrange [0:100]
-set xrange [0:30]
+set xrange [0:60]
 set datafile separator ","
 set xtics font ",20"
 set ytics font ",20"
