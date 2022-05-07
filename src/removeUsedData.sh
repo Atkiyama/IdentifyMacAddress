@@ -13,7 +13,7 @@ rm -rf data/capture/convert/move/
 mkdir data/capture/convert/move
 rm -rf data/result/multi/move
 #windows用なのでMACではエラー出るけど気にしないこと
-mkdir  data/result/multi
+#mkdir  data/result/multi
 mkdir  data/result/multi/move
 mkdir  data/result/multi/move/svr/
 mkdir  data/result/multi/move/svr/{0..100}
@@ -25,4 +25,4 @@ mkdir  data/result/multi/move/bagging/{0..100}
 mkdir  data/result/multi/move/linerRegression/{0..100}
 mkdir  data/result/multi/move/randomForest/{0..100}
 mkdir  data/result/multi/move/old/{0..100}
-g++ -O3 identifyMacAddress/new/identifyMacAddress.cpp -o identify
+#g++ -O3 identifyMacAddress/new/identifyMacAddress.cpp -o identify

@@ -76,10 +76,10 @@ public class LineUp {
 				lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
 				lineUp.setPairs();
 				lineUp.extractPair(numOfPair);
-				LineUp lineUp2 = LineUp.format(lineUp, Integer.parseInt(args[1]));
+				lineUp = LineUp.format(lineUp, Integer.parseInt(args[1]));
 				ArrayList<Packet> packetList = lineUp.extractPacket(fullPacketList);
 				packetList = lineUp.formatPacketList(packetList);
-				LineUp.toWrite(lineUp2, i, packetList);
+				LineUp.toWrite(lineUp, i, packetList);
 			}
 		}
 
