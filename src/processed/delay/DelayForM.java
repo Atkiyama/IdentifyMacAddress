@@ -46,12 +46,7 @@ public class DelayForM extends Delay {
 
 	private static void makeConvert(ArrayList<String[]> addressList,HashMap<String, Double> delayMap,int i) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		ArrayList<String> fileList = new ArrayList<>();
-		for (String[] file : addressList) {
-			if (!fileList.contains(file[0]))
-				fileList.add(file[0]);
-		}
-		ArrayList<Packet> packets = readCaptureFile(fileList,delayMap);
+		ArrayList<Packet> packets = readCaptureFile(addressList);
 		for(Packet packet:packets) {
 			packet.setDelay(delayMap.get(packet.getAddress()));
 		}
@@ -80,7 +75,7 @@ public class DelayForM extends Delay {
 
 	}
 
-	private static ArrayList<Packet> readCaptureFile(ArrayList<String> fileList,HashMap<String,Double> delayMap) throws IOException {
+	private static ArrayList<Packet> readCaptureFile(ArrayList<String[]> addressList) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 
 
@@ -97,7 +92,8 @@ public class DelayForM extends Delay {
 	Matcher mTime;
 	Matcher mAddress;
 	Matcher mRssi;
-	for(String fileName:fileList){
+	for(String[] address:addressList){
+		String fileName = address[0];
 		file = new File("data/capture/single/move/txt/" + fileName + ".txt");
 		fileReader = new FileReader(file);
 		in = new BufferedReader(fileReader);
@@ -109,7 +105,7 @@ public class DelayForM extends Delay {
 			mAddress = pAddress.matcher(str);
 			mRssi = pRssi.matcher(str);
 			if (mTime.find() && mAddress.find() && mRssi.find()
-					&& delayMap.containsKey(mAddress.group(1))) {
+					&& isExist(fileName,mAddress.group(1),addressList)) {
 				capturePackets.add(makePackets(mTime, mAddress, mRssi, fileName));
 			}
 			str = in.readLine();
@@ -129,6 +125,15 @@ public class DelayForM extends Delay {
 
 }
 
+
+	private static boolean isExist(String fileName, String searchedAddress,ArrayList<String[]> addressList) {
+		// TODO 自動生成されたメソッド・スタブ
+		for(String[] address:addressList) {
+			if(address[0].equals(fileName)&&searchedAddress.equals(address[1]))
+				return true;
+		}
+		return false;
+	}
 
 	/**
 	 * パケットのインスタンスを作るメソッド
