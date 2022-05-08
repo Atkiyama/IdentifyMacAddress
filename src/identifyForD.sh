@@ -1,8 +1,8 @@
 #bin/bash
 
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
-numOfData=20
-for delay in {245..250}
+numOfData=79
+for delay in {0..250}
 do
   java processed/lineUp/LineUp $numOfData $delay
   R=15
@@ -20,7 +20,7 @@ do
   do
     java identifyMacAddress/identify/IdentifyStay data/capture/convert/move/$n,convertData.csv $R $T > data/result/multi/move/old/$n/$R,$T,$I.txt
   done
-  if [ $delay -eq "245" ]; then
+  if [ $delay -eq "0" ]; then
     java evaluation/evaluation/EvaluationForM $delay old $R $T $I> data/result/evaluation/move/D,old.txt
   else
     java evaluation/evaluation/EvaluationForM $delay old $R $T $I>> data/result/evaluation/move/D,old.txt

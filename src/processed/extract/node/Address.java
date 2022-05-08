@@ -99,5 +99,14 @@ public class Address {
 	public void addLPacket(Packet packet) {
 		lPackets.add(packet);
 	}
+	
+	public double getAverageRssi() {
+		double sum = 0;
+		for(Packet packet:packets) {
+			double rssi = packet.getRssi();
+			sum += rssi;
+		}
+		return sum/packets.size();
+	}
 
 }
