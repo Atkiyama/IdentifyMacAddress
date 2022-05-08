@@ -1,7 +1,7 @@
 #bin/bash
 
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
-for numOfData in {1..79}
+for numOfData in 10 20 30 40 50 60 70 79
 do
   java processed/lineUp/LineUp $numOfData
   R=15
@@ -25,5 +25,5 @@ do
     java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I>> data/result/evaluation/move/C,old.txt
   fi
 ./removeUsedData.sh
-echo "numOfData is done"
+echo "$numOfData is done"
 done

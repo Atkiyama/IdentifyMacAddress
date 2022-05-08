@@ -19,8 +19,8 @@ plot \
 with lines,\
 "data/result/evaluation/move/C,svr.txt" using 1:2 lw 6   title "SVR"\
 with linespoints,\
-"data/result/evaluation/move/C,bagging.txt" using 1:2 lw 6   title "Bagging"\
-with points,\
+#"data/result/evaluation/move/C,bagging.txt" using 1:2 lw 6   title "Bagging"\
+#with points,\
 "data/result/evaluation/move/C,randomForest.txt" using 1:2 lw 6   title "RandomForest"\
 with linespoints,\
 "data/result/evaluation/move/C,old.txt" using 1:2 lw 6   title "Traditional"\

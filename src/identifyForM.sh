@@ -7,23 +7,23 @@ do
   R=15
   T=6
   I=15
-  python regression.py
-  for method in svr bagging linerRegression randomForest
+  for method in bagging svr linerRegression randomForest
   do
-    ./identify 2 $method
-    if [ $numOfData -eq "1" ]; then
-      java evaluation/evaluation/EvaluationForM $numOfData $method $R $T $I> data/result/evaluation/move/$method.txt
+    if [ $method = "randomForest" ]; then
+      ./identifyForM_sub.sh $method $numOfData $R $T $I
     else
-      java evaluation/evaluation/EvaluationForM $numOfData $method $R $T $I>> data/result/evaluation/move/$method.txt
+      ./identifyForM_sub.sh $method $numOfData $R $T $I &
     fi
   done
   for n in {1..100}
   do
-    java identifyMacAddress/identify/IdentifyStay data/capture/convert/move/convert$n.csv $R $T > data/result/multi/move/old/$n.txt
+    java identifyMacAddress/identify/IdentifyStay data/capture/convert/move/$n,convertData.csv $R $T > data/result/multi/move/old/$n/$R,$T,$I.txt
   done
   if [ $numOfData -eq "1" ]; then
-    java evaluation/evaluation/Evaluation100Old $R $T $numOfData > data/result/evaluation/move/old.txt
+    java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I> data/result/evaluation/move/M,old.txt
   else
-    java evaluation/evaluation/Evaluation100Old $R $T $numOfData >> data/result/evaluation/move/old.txt
+    java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I>> data/result/evaluation/move/M,old.txt
   fi
+./removeUsedData.sh
+echo "$numOfData is done"
 done
