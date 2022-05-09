@@ -7,7 +7,7 @@ do
   R=15
   T=6
   I=15
-  for method in bagging svr linerRegression randomForest
+  for method in svr linerRegression randomForest
   do
     if [ $method = "randomForest" ]; then
       ./identifyForC_sub.sh $method $numOfData $R $T $I
