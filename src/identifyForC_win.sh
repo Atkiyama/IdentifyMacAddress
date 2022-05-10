@@ -1,0 +1,29 @@
+#bin/bash
+
+#コマンドライン引数 1に回帰手法(旧手法の場合はold)
+for numOfData in {1..79}
+do
+  java processed/lineUp/LineUp $numOfData
+  R=15
+  T=6
+  I=15
+  for method in svr linerRegression randomForest
+  do
+    if [ $method = "randomForest" ]; then
+      ./identifyForC_sub.sh $method $numOfData $R $T $I
+    else
+      ./identifyForC_sub.sh $method $numOfData $R $T $I &
+    fi
+  done
+  for n in {1..100}
+  do
+    java IdentifyMacAddress/identify/IdentifyStay data/capture/convert/move/$n,convertData.csv $R $T > data/result/multi/move/old/$n/$R,$T,$I.txt
+  done
+  if [ $numOfData -eq "1" ]; then
+    java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I> data/result/evaluation/move/C,old.txt
+  else
+    java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I>> data/result/evaluation/move/C,old.txt
+  fi
+./removeUsedData.sh
+echo "$numOfData is done"
+done
