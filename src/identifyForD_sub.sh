@@ -9,7 +9,7 @@ T=$5
 I=$6
 python $method,2.py
 ./identify 2 $method
-if [ $delay -eq "10" ]; then
+if [ $delay -eq "0" ]; then
   java evaluation/evaluation/EvaluationForM $delay $method $R $T $I> data/result/evaluation/move/D,$method.txt
 else
   java evaluation/evaluation/EvaluationForM $delay $method $R $T $I>> data/result/evaluation/move/D,$method.txt
