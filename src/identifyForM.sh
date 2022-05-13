@@ -4,9 +4,9 @@
 for numOfData in 1 5 10 15 20
 do
   java processed/delay/DelayForM $numOfData
-  R=5
+  R=10
   T=6
-  I=5
+  I=10
   ./identifyAverage $R $T $I
 
   for method in svr linerRegression randomForest
