@@ -42,7 +42,11 @@ public class Packet implements Cloneable{
 	}
 
 	public void setDelay(double delay) {
-		time+=delay;
+		 BigDecimal bTime = new BigDecimal(time);
+		 BigDecimal bDelay = new BigDecimal(delay);
+		 bTime =bTime.add(bDelay);
+		 time = bTime.doubleValue();
+		
 	}
 	
 	/**

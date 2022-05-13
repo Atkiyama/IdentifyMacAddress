@@ -19,7 +19,7 @@ public class EvaluationForM {
 	        //評価用のインスタンスを作成
 
 	        for(int n=1;n<=100;n++){
-	            evals.add(new Evaluation("data/address/processed/addressList/addressList"+n+".csv","data/result/multi/move/"+args[1]+"/"+n+"/"+R+","+ T +","+I+".txt"));
+	            evals.add(new Evaluation("data/result/multi/move/"+args[1]+"/"+n+"/"+R+","+ T +","+I+".txt"));
 	        }
 	        double sumScore = 0;
 	        for(Evaluation eval:evals){

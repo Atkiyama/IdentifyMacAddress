@@ -19,6 +19,12 @@ public class ReadAnswer {
 	 * @throws IOException
 	 */
 	
+	/**
+	 * 整列されたアドレスリストを回答とする場合のメソッド
+	 * @param fileName
+	 * @return
+	 * @throws IOException
+	 */
 	public static ArrayList<CaptureFile> readLineUp(String fileName) throws IOException {
 		File file = new File(fileName);
 		FileReader fileReader = new FileReader(file);
@@ -46,6 +52,12 @@ public class ReadAnswer {
 		return captures;
 	}
 	
+	/**
+	 * キャプチャファイルにおけるアドレスの変化を記録したmoveresult.csvを回答とする場合のメソッド
+	 * @param fileName
+	 * @return
+	 * @throws IOException
+	 */
 	public static ArrayList<CaptureFile> read(String fileName) throws IOException {
 		File file = new File(fileName);
 		FileReader fileReader = new FileReader(file);
@@ -60,6 +72,7 @@ public class ReadAnswer {
 		in.close();
 		return captures;
 	}
+	
 	public static ArrayList<CaptureFile> read() throws IOException{
 		return read("data/result/moveResult.csv");
 

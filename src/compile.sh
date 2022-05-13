@@ -3,6 +3,7 @@
 #ディレクトリ内の全てのクラスファイルを削除後、再コンパイルします
 find ./ -name "*.class" -delete
 g++ -O3 identifyMacAddress/new/identifyMacAddress.cpp -o identify
+g++ -O3 identifyMacAddress/avarage/identifyAverage.cpp -o identifyAverage
 javac dataAnalyze/DataAnalyze.java
 javac evaluation/evaluation/*.java
 javac evaluation/table/move/*.java

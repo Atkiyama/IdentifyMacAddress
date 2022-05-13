@@ -7,6 +7,7 @@ do
   R=15
   T=6
   I=15
+  ./identifyAverage $R $T $I &
   for method in svr linerRegression randomForest
   do
     if [ $method = "randomForest" ]; then
@@ -14,10 +15,6 @@ do
     else
       ./identifyForC_sub.sh $method $numOfData $R $T $I &
     fi
-  done
-  for n in {1..100}
-  do
-    java Identify_win/identify/IdentifyStay data/capture/convert/move/$n,convertData.csv $R $T > data/result/multi/move/old/$n/$R,$T,$I.txt
   done
   if [ $numOfData -eq "1" ]; then
     java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I> data/result/evaluation/move/C,old.txt

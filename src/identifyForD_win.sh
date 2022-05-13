@@ -9,6 +9,7 @@ do
   T=6
   I=15
   #bagginを一旦カット
+  ./identifyAverage $R $T $I &
   for method in svr linerRegression randomForest
   do
     if [ $method = "randomForest" ]; then
@@ -17,14 +18,11 @@ do
       ./identifyForD_sub.sh $method $numOfData $delay $R $T $I &
     fi
   done
-  for n in {1..100}
-  do
-    java Identify_win/identify/IdentifyStay data/capture/convert/move/$n,convertData.csv $R $T > data/result/multi/move/old/$n/$R,$T,$I.txt
-  done
+
   if [ $delay -eq "0" ]; then
-    java evaluation/evaluation/EvaluationForM $delay old $R $T $I> data/result/evaluation/move/D,old.txt
+    java evaluation/evaluation/EvaluationForLineUp2 $delay old $R $T $I> data/result/evaluation/move/D,old.txt
   else
-    java evaluation/evaluation/EvaluationForM $delay old $R $T $I>> data/result/evaluation/move/D,old.txt
+    java evaluation/evaluation/EvaluationForLineUp2 $delay old $R $T $I>> data/result/evaluation/move/D,old.txt
   fi
   ./removeUsedData.sh
   echo "$delay is done"

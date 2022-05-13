@@ -13,9 +13,17 @@ import java.util.regex.Pattern;
 
 import processed.extract.node.Packet;
 import processed.extract.node.PacketComparator;
-
+/**
+ * 意図的に遅延を発生させるクラス。(データ数Mをいじる時用)
+ * @author akiyamashuuhei
+ *
+ */
 public class DelayForM extends Delay {
-
+/**
+ * 
+ * @param args 0に使用データ数を入れる
+ * @throws IOException
+ */
 	public static void main(String[] args) throws IOException {
 		int numOfData = Integer.parseInt(args[0]);
 		ArrayList<String[]> addressList;
@@ -44,20 +52,33 @@ public class DelayForM extends Delay {
 
 	}
 
+	/**
+	 * 旧手法に使う結合キャプチャデータを作成する
+	 * @param addressList 
+	 * @param delayMap遅延させた秒数とファイルのmap
+	 * @param i 通し番号
+	 * @throws IOException
+	 */
 	private static void makeConvert(ArrayList<String[]> addressList,HashMap<String, Double> delayMap,int i) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		ArrayList<Packet> packets = readCaptureFile(addressList);
 		for(Packet packet:packets) {
 			packet.setDelay(delayMap.get(packet.getAddress()));
+			//System.out.println(packet.getTime());
 		}
 		Collections.sort(packets,new PacketComparator());
 		writeConvert(packets,i);
 
 	}
-
+/**
+ * 旧手法に使う結合キャプチャデータを書き出す
+ * @param packets
+ * @param i
+ * @throws IOException
+ */
 	private static void writeConvert(ArrayList<Packet> packets,int i) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		FileWriter fileWriter = new FileWriter("data/capture/convert/move/convert"+i+".csv");
+		FileWriter fileWriter = new FileWriter("data/capture/convert/move/"+i+",convertData.csv");
 		fileWriter.append("address");
 		fileWriter.append(",");
 		fileWriter.append("time");
