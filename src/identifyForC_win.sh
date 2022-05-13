@@ -4,9 +4,9 @@
 for numOfData in {1..79}
 do
   java processed/lineUp/LineUp $numOfData
-  R=15
+  R=5
   T=6
-  I=15
+  I=10
   ./identifyAverage $R $T $I &
   for method in svr linerRegression randomForest
   do

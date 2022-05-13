@@ -4,11 +4,11 @@
 for numOfData in 1 5 10 15 20
 do
   java processed/delay/DelayForM $numOfData
-  R=15
+  R=5
   T=6
-  I=15
-  ./identifyAverage $R $T $I &
-  
+  I=5
+  ./identifyAverage $R $T $I
+
   for method in svr linerRegression randomForest
   do
     if [ $method = "randomForest" ]; then
