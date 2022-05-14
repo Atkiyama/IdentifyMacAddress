@@ -1,20 +1,20 @@
 #bin/bash
 
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
-for numOfData in 1 5 10 15 20
+for numOfData in 20
 do
   java processed/delay/DelayForM $numOfData
   R=10
   T=6
   I=10
-  ./identifyAverage $R $T $I
+  ./identifyAverage $R $T $I > data/others/old.txt
 
   for method in svr linerRegression randomForest
   do
     if [ $method = "randomForest" ]; then
       ./identifyForM_sub.sh $method $numOfData $R $T $I
     else
-      ./identifyForM_sub.sh $method $numOfData $R $T $I &
+      ./identifyForM_sub.sh $method $numOfData $R $T $I & 
     fi
   done
   if [ $numOfData -eq "1" ]; then

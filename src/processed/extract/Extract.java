@@ -58,7 +58,7 @@ public class Extract {
 	/*
 	 * Writeクラスにアドレスリストの書き込みを投げる
 	 */
-	private void writeAllAddress() throws IOException {
+	void writeAllAddress() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		Write.writeAllAddress(addressList);
 
@@ -67,7 +67,7 @@ public class Extract {
 	 * WriteクラスにfAddressとlAddressの書き込みを投げる
 	 * @throws IOException
 	 */
-	private void writeAddress() throws IOException {
+	void writeAddress() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		for(Address address:addressList) {
 			Write.writeFAddress(address);
@@ -80,7 +80,7 @@ public class Extract {
 	 * ftimeとfPacketとlPacketをセットする
 	 * @param T 抽出する秒数
 	 */
-	private void extract(int T) {
+	void extract(int T) {
 		// TODO 自動生成されたメソッド・スタブ
 		for(Address address:addressList) {
 			address.setlTime();
@@ -88,6 +88,28 @@ public class Extract {
 			address.setLPackets(T);
 		}
 
+	}
+	public void extractEnoughAddress(int I) {
+		// TODO 自動生成されたメソッド・スタブ
+		ArrayList<Address> replace = new ArrayList<>();
+		for(int i=0;i<addressList.size()-1;i++) {
+			if(addressList.get(i).getlPackets().size()>=I&&addressList.get(i+1).getfPackets().size()>I) {
+				replace.add(addressList.get(i));
+				replace.add(addressList.get(i+1));
+			}
+			
+		}
+		addressList = replace;
+		
+	}
+	private boolean existAddresss(ArrayList<Address> replace, Address address) {
+		// TODO 自動生成されたメソッド・スタブ
+		for(Address rAddress:replace) {
+			if(rAddress==address)
+				return true;
+			
+		}
+		return false;
 	}
 
 }

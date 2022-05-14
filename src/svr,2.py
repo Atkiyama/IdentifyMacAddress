@@ -49,5 +49,5 @@ def write(address,I,data,predict,regression,i):
             f.write("\r\n")
         f.write(str(data[line])+","+str(predict[line]))
     f.close()
-I=10
+I=15
 main(I)
