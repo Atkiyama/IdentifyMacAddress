@@ -14,7 +14,7 @@ do
     if [ $method = "randomForest" ]; then
       ./identifyForC_lineUp_sub.sh $method $numOfData $R $T $I
     else
-      ./identifyForC_lineUP_sub.sh $method $numOfData $R $T $I &
+      ./identifyForC_lineUp_sub.sh $method $numOfData $R $T $I &
     fi
   done
   if [ $numOfData -eq "1" ]; then
