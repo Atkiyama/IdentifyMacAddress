@@ -145,6 +145,7 @@ public class Delay {
 		for(String[] address:addressList) {
 			if(!fileName.equals(address[0])) {
 				i++;
+				//System.out.println(i+","+fileName+","+address[0]);
 				fileName = address[0];
 			}
 			delayMap.put(address[1],delayList.get(i));

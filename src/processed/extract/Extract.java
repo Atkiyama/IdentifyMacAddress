@@ -93,7 +93,7 @@ public class Extract {
 		// TODO 自動生成されたメソッド・スタブ
 		ArrayList<Address> replace = new ArrayList<>();
 		for(int i=0;i<addressList.size()-1;i++) {
-			if(addressList.get(i).getlPackets().size()>=I&&addressList.get(i+1).getfPackets().size()>I) {
+		if(addressList.get(i).getlPackets().size()>=I&&addressList.get(i+1).getfPackets().size()>I)  {
 				replace.add(addressList.get(i));
 				replace.add(addressList.get(i+1));
 			}

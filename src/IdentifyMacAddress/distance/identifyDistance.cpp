@@ -1,5 +1,5 @@
-#ifndef INCLUDED_identifyAverage_cpp_
-#define INCLUDED_identifyAverage_cpp_
+#ifndef INCLUDED_identifyDistance_cpp_
+#define INCLUDED_identifyDistance_cpp_
 #include <string>
 #include <iostream>
 #include "packet.h"
@@ -14,6 +14,7 @@ vector<Address> normalize(Address, int, int);
 inline double getR(Address, Address);
 inline bool checkR(Address,Address,int);
 inline void write(vector<string> ,int,int,int,string,int);
+inline double getDistance(double,double);
 /**
 * @brief
 * 引数によって処理の仕方を変更する
@@ -31,43 +32,28 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
   {
     addressList[i].setFPackets(I,data.getFAddress());
     addressList[i].setLPackets(I,data.getLAddress());
-    addressList[i].setFAverage();
-    addressList[i].setLAverage();
-
   }
+  
 
-  //Tで絞り込み
+//距離で同定
   for (int i = 0; i < addressList.size(); i++)
   {
+    Address nextAddress = addressList[0];
+    double subTime = addressList[0].getFTime() - addressList[i].getLTime();
+    double subRssi = addressList[0].getLPacket()- addressList[i].getFPacket();
+    double nextDistance = getDistance(subTime,subRssi);
     for (int j = 0; j < addressList.size(); j++)
     {
-      double sub = addressList[j].getFTime() - addressList[i].getLTime();
-      if (0 < sub && sub < T && i != j)
-      addressList[i].addNextAddressList(addressList[j]);
+      subTime = addressList[j].getFTime() - addressList[i].getLTime();
+      subRssi = addressList[j].getLPacket()- addressList[i].getFPacket();
+      double distance = getDistance(subTime,subRssi);
+      if(nextDistance>distance){
+        nextDistance = distance;
+        nextAddress = addressList[j]; 
+      }
     }
+     addressList[i].addNextAddressList(nextAddress);
   }  
-
-  //Rで絞り込み ここで候補が消えてる
-  for (int i = 0; i < addressList.size(); i++)
-  {
-    std::vector<Address> replace;
-    int times = addressList[i].getNextAddressList().size();
-    for (int j = 0; j < times; j++)
-    {
-      //addressList[i].extract(j, I);
-      if (checkR(addressList[i], addressList[i].getNextAddressList()[j], R))
-        replace.push_back(addressList[i].getNextAddressList()[j]);
-    }
-
-    addressList[i].setNextAddressList(replace);
-  }
-
-  //正規化
-  for (int i = 0; i < addressList.size(); i++)
-  {
-    if (addressList[i].getNextAddressList().size() >= 2)
-    addressList[i].setNextAddressList(normalize(addressList[i], R, T));
-  }
 
 
   //結合分の処理
@@ -81,9 +67,11 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
     output.push_back(addressList[i].getNextAddressString());
     output.push_back("\n");
   }
-
+  
   write(output,R,T,I,method,dataNumber);
 }
+
+
 
 //閾値Rの条件を満たしているかチェックするメソッド
 inline bool checkR(Address address, Address nextAddress, int R)
@@ -99,6 +87,10 @@ inline bool checkR(Address address, Address nextAddress, int R)
 inline double getR(Address address, Address nextAddress)
 {
   return fabs(nextAddress.getFAverage()-address.getLAverage());
+}
+
+inline double getDistance(double subTime,double subRssi){
+  return pow(subTime,2) + pow(subRssi,2);
 }
 
 //正規化した後にnextAddressListから厳選するためのメソッド
@@ -157,9 +149,9 @@ int main(int argc, char *argv[])
   int R=stoi(argv[1]);
   int T=stoi(argv[2]);
   int I=stoi(argv[3]);
-  
+ 
 
-  string method = "old";
+  string method = "distance";
     for(int dataNumber=1;dataNumber<=100;dataNumber++){
       Data data;
       ostringstream ossDataNumber;

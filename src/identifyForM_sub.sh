@@ -5,8 +5,8 @@ numOfData=$2
 R=$3
 T=$4
 I=$5
-python $method,2.py
-./identify 2 $method $R $T $I > data/others/$method.txt
+python $method,2.py $I
+./identify 2 $method $R $T $I
 if [ $numOfData -eq "1" ]; then
   java evaluation/evaluation/EvaluationForM $numOfData $method $R $T $I> data/result/evaluation/move/M,$method.txt
 else

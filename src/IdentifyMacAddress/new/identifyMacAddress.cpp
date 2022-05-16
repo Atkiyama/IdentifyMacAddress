@@ -89,8 +89,9 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
 //閾値Rの条件を満たしているかチェックするメソッド
 inline bool checkR(Address address, Address nextAddress, int R)
 {
+  //cout << getR(address, nextAddress) << endl;
   if (getR(address, nextAddress) <= R)
-  return true;
+    return true;
   return false;
 }
 
@@ -190,8 +191,9 @@ int main(int argc, char *argv[])
       }
     }
   }else if(stoi(argv[1])==2){
-    int R=15;
-    int I=15;
+    int R=stoi(argv[3]);
+    T=stoi(argv[4]);
+    int I=stoi(argv[5]);
     for(int dataNumber=1;dataNumber<=100;dataNumber++){
       Data data;
       ostringstream ossDataNumber;

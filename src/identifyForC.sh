@@ -1,14 +1,13 @@
 #bin/bash
 
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
-for numOfData in 10 20 30 40 42
+R=5
+T=6
+I=5
+for numOfData in 1 10 20 30 40
 do
   java processed/delay/DelayForC $numOfData
-  R=15
-  T=6
-  I=15
-  ./identifyAverage $R $T $I
-
+  ./identifyAverage $R $T $I &
   for method in svr linerRegression randomForest
   do
     if [ $method = "randomForest" ]; then
@@ -22,6 +21,6 @@ do
   else
     java evaluation/evaluation/EvaluationForLineUp2 $numOfData old $R $T $I>> data/result/evaluation/move/M,old.txt
   fi
-./removeUsedData.sh
+#./removeUsedData.sh
 echo "$numOfData is done"
 done

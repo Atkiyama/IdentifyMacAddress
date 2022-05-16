@@ -17,6 +17,8 @@ rm -rf data/result/multi/move
 mkdir  data/result/multi/move
 mkdir  data/result/multi/move/svr/
 mkdir  data/result/multi/move/svr/{0..100}
+mkdir  data/result/multi/move/distance/
+mkdir  data/result/multi/move/distance/{0..100}
 mkdir  data/result/multi/move/bagging
 mkdir  data/result/multi/move/linerRegression
 mkdir  data/result/multi/move/randomForest

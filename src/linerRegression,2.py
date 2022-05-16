@@ -2,9 +2,8 @@
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
-
-
 import sys
+
 def main(I):
     for i in range (1,101):
         addressList = pd.read_csv("data/address/processed/addressList/addressList"+str(i)+".csv", sep=",",usecols=[1,2,3])
@@ -49,5 +48,6 @@ def write(address,I,data,predict,regression,i):
             f.write("\r\n")
         f.write(str(data[line])+","+str(predict[line]))
     f.close()
-I=15
+args = sys.argv
+I=int(args[1])
 main(I)

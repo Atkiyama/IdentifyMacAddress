@@ -172,6 +172,13 @@ public:
         return lAverage;
     }
 
+    inline double getFPacket(){
+        return fPackets[fPackets.size()-1].getRssi();
+    }
+    inline int getLPacket(){
+        return lPackets[lPackets.size()-1].getRssi();
+    }
+
     
 };
 #endif

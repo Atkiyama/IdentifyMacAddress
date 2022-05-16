@@ -2,7 +2,7 @@ set term pdfcairo enhanced color font ",16"
 #set size 0.9,1
 
 set colorsequence default
-set xlabel font ",24" "M"
+set xlabel font ",24" "C"
 set ylabel font ",24" "accuracy"
 set yrange [0:100]
 set xrange [0:42]
