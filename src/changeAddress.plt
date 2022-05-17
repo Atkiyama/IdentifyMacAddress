@@ -11,10 +11,10 @@ set datafile separator ","
 
 set key right bottom font ",24"
 
-set output file
+set output "data/result/graph/graph/changeAddress.pdf"
 
 plot \
 "data/result/graph/data/65:72:c4:8d:8f:64.csv" using 1:2 lw 6 lc rgb "red" title "変化前のMACアドレス"\
- with lines,\
+ with linespoints,\
 "data/result/graph/data/79:7e:38:89:ab:4f.csv" using 1:2 lw 1  lc rgb "green" title "変化後のMACアドレス"\
-with lines
+with linespoints

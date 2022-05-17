@@ -33,11 +33,13 @@ public class LineUp {
 	 * fullPacketList生成用
 	 * @param originalAddressList
 	 */
+	Random random;
 	public LineUp(ArrayList<String[]> originalAddressList,ArrayList<Packet> packetList) {
 		this.originalAddressList = originalAddressList;
 		pairs = new ArrayList<>();
 		substract = new HashMap<>();
 		this.packetList = packetList;
+		random = new Random();
 	}
 
 	/**
@@ -167,11 +169,10 @@ public class LineUp {
 	 * @param delayRange 遅延の範囲
 	 */
 	public void addDelay(int delayRange) {
-		Random random = new Random();
 		if(delayRange==0)
 			return;
 		for (Pair pair : pairs) {
-			double delay = (double)(random.nextInt(delayRange+delayRange) - delayRange);
+			double delay = Math.random()* 2 * delayRange - delayRange;
 			pair.getFrontAddress().setfTime(pair.getFrontAddress().getfTime() - delay);
 			pair.getFrontAddress().setlTime(pair.getFrontAddress().getlTime() - delay);
 			pair.getBackAddress().setfTime(pair.getBackAddress().getfTime() - delay);
@@ -218,7 +219,6 @@ public class LineUp {
 	 * @param numOfPair
 	 */
 	public void extractPair(int numOfPair) {
-		Random random = new Random();
 		while (pairs.size() != numOfPair) {
 			int randomInt = random.nextInt(pairs.size());
 			pairs.remove(randomInt);

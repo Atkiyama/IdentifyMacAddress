@@ -7,8 +7,8 @@ delay=$3
 R=$4
 T=$5
 I=$6
-python $method,2.py
-./identify 2 $method
+python $method,2.py $I
+./identify 2 $method $R $T $I
 if [ $delay -eq "0" ]; then
   java evaluation/evaluation/EvaluationForLineUp2 $delay $method $R $T $I> data/result/evaluation/move/D,$method.txt
 else

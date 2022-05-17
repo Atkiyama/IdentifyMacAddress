@@ -15,13 +15,15 @@ set key right bottom
 set output "data/result/graph/graph/move/c_lineUp.pdf"
 
 plot \
-"data/result/evaluation/move/C,linerRegression.txt" using 1:2 lw 6   title "LinerRegression"\
+"data/result/evaluation/move/C,distance.txt" using 1:2 lw 6   title "Compared Method"\
+with linespoints,\
+"data/result/evaluation/move/C,old.txt" using 1:2 lw 6   title "Average"\
 with lines,\
-"data/result/evaluation/move/C,svr.txt" using 1:2 lw 6   title "SVR"\
+"data/result/evaluation/move/C,linerRegression.txt" using 1:2 lw 6   title "Liner Regression"\
+with lines,\
+"data/result/evaluation/move/C,svr.txt" using 1:2 lw 6   title "Support Vector Regression"\
 with linespoints,\
-"data/result/evaluation/move/C,randomForest.txt" using 1:2 lw 6   title "RandomForest"\
-with linespoints,\
-"data/result/evaluation/move/C,old.txt" using 1:2 lw 6   title "Traditional"\
-with lines
+"data/result/evaluation/move/C,randomForest.txt" using 1:2 lw 6   title "Random Forest"\
+with linespoints
 #"data/result/evaluation/move/C,bagging.txt" using 1:2 lw 6   title "Bagging"\
 #with points,\
