@@ -22,7 +22,7 @@ do
     java evaluation/evaluation/EvaluationForLineUp2 $numOfData distance $R $T $I> data/result/evaluation/move/C,dsitance.txt
   else
     java evaluation/evaluation/EvaluationForLineUp2 $numOfData distance $R $T $I>> data/result/evaluation/move/C,dsitance.txt
-    java evaluation/evaluation/EvaluationForLIneUp2 $numOfData old $R $T $I>> data/result/evaluation/move/C,old.txt
+    java evaluation/evaluation/EvaluationForLineUp2 $numOfData old $R $T $I>> data/result/evaluation/move/C,old.txt
   fi
 ./removeUsedData.sh
 echo "$numOfData is done"
