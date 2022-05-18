@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,10 +27,11 @@ public class DelayForM extends Delay {
  */
 	public static void main(String[] args) throws IOException {
 		int numOfData = Integer.parseInt(args[0]);
+		Random random = new Random();
 		ArrayList<String[]> addressList;
 		for (int i = 1; i <= 100; i++) {
 			if (numOfData != 20)
-				addressList = extractAddressList(numOfData);
+				addressList = extractAddressList(numOfData,random);
 			else {
 				addressList = read("data/address/original/addressList.csv");
 				addressList.remove(0);

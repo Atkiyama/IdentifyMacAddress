@@ -14,55 +14,10 @@ public class Delay {
 	 * @param args 0使用データ数
 	 * @throws IOException
 	 */
-	/*
-	public static void main(String[] args) throws IOException {
-		// TODO 自動生成されたメソッド・スタブ
-		Random randomInstance = new Random();
-		for (int i = 1; i <= 100; i++) {
-			ArrayList<String[]> addressList = read("data/address/original/addressList.csv");
-			ArrayList<String> useData = new ArrayList<>();
-			ArrayList<String[]> replace = new ArrayList<>();
-			while (true) {
-				if (useData.size() == Integer.parseInt(args[0]) || Integer.parseInt(args[0]) == 20) {
-					break;
-				}
-				int r = randomInstance.nextInt(20) + 1;
-				String fileName = "move" + r;
-				if (!useData.contains(fileName)) {
-					useData.add(fileName);
-				}
-			}
-			if (!args[0].equals("20")) {
-				for (String[] address : addressList) {
-					for (String fileName : useData) {
-						if (address[0].equals(fileName))
-							replace.add(address);
-					}
-				}
-				addressList = replace;
-			} else {
-				addressList.remove(0);
-			}
-			//double random = randomInstance.nextInt(599) + randomInstance.nextDouble();
-			//初期化タイミング
-			double random1 = randomInstance.nextInt(600);
-			rewriteConvert("data/convertOriginal.csv", random1,
-					"data/capture/convert/move/convert" + i + ".csv", addressList);
-			rewriteAddressList(addressList, random1, "data/address/delay/addressList/addressList" + i + ".csv");
-			for (String[] address : addressList) {
-				random1 = randomInstance.nextInt(600);
-				rewriteAddress("data/address/original/fAddress/" + address[1] + ".csv", random1,
-						"data/address/delay/fAddress/" + address[1] + "_" + i + ".csv");
-				rewriteAddress("data/address/original/lAddress/" + address[1] + ".csv", random1,
-						"data/address/delay/lAddress/" + address[1] + "_" + i + ".csv");
+	
+	
 
-			}
-		}
-
-	}*/
-
-	protected static ArrayList<String[]> extractAddressList(int numOfData) throws IOException {
-		Random randomInstance = new Random();
+	protected static ArrayList<String[]> extractAddressList(int numOfData,Random randomInstance) throws IOException {
 		ArrayList<String[]> addressList = read("data/address/original/addressList.csv");
 		ArrayList<String> useData = new ArrayList<>();
 		ArrayList<String[]> replace = new ArrayList<>();
@@ -164,10 +119,9 @@ public class Delay {
 	}
 
 	public static ArrayList<Double> makeDelayList(int numOfData) {
-		Random randomInstance = new Random();
 		ArrayList<Double> delayList = new ArrayList<>();
 		for(int i=0;i<numOfData;i++)
-			delayList.add(randomInstance.nextInt(600) + randomInstance.nextDouble());
+			delayList.add(600*Math.random());
 		return delayList;
 	}
 

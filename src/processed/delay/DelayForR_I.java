@@ -3,6 +3,7 @@ package processed.delay;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class DelayForR_I extends Delay {
 	/**
@@ -14,9 +15,10 @@ public class DelayForR_I extends Delay {
 		// TODO 自動生成されたメソッド・スタブ
 		int numOfData = Integer.parseInt(args[0]);
 		ArrayList<String[]> addressList;
+		Random random = new Random();
 		for (int i = 1; i <= 100; i++) {
 			if (numOfData != 20)
-				addressList = extractAddressList(numOfData);
+				addressList = extractAddressList(numOfData,random);
 			else {
 				addressList = read("data/address/original/addressList.csv");
 				addressList.remove(0);

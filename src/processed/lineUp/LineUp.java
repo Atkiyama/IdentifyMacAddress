@@ -34,6 +34,8 @@ public class LineUp {
 	 * @param originalAddressList
 	 */
 	Random random;
+	
+
 	public LineUp(ArrayList<String[]> originalAddressList,ArrayList<Packet> packetList) {
 		this.originalAddressList = originalAddressList;
 		pairs = new ArrayList<>();
@@ -52,6 +54,7 @@ public class LineUp {
 		pairs = new ArrayList<>();
 		substract = new HashMap<>();
 		packetList = new ArrayList<>();
+		random = new Random();
 	}
 
 	/**

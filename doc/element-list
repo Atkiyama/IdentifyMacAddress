@@ -13,6 +13,7 @@ graph.makeCDF.io
 graph.makeCDF.node
 graph.makeCDF.time
 graph.type
+Identify_win.identify
 identifyMacAddress.identify
 processed
 processed.delay
