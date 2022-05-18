@@ -18,9 +18,9 @@ plot \
 "data/result/evaluation/move/M,distance.txt" using 1:2 lw 6   title "Compared Method"\
 with linespoints,\
 "data/result/evaluation/move/M,old.txt" using 1:2 lw 6   title "Average"\
-with lines,\
+with linespoints,\
 "data/result/evaluation/move/M,linerRegression.txt" using 1:2 lw 6   title "Liner Regression"\
-with lines,\
+with linespoints,\
 "data/result/evaluation/move/M,svr.txt" using 1:2 lw 6   title "Support Vector Regression"\
 with linespoints,\
 "data/result/evaluation/move/M,randomForest.txt" using 1:2 lw 6   title "Random Forest"\

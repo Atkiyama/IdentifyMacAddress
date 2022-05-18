@@ -36,12 +36,12 @@ public class LineUp {
 	Random random;
 	
 
-	public LineUp(ArrayList<String[]> originalAddressList,ArrayList<Packet> packetList) {
+	public LineUp(ArrayList<String[]> originalAddressList,ArrayList<Packet> packetList,Random random) {
 		this.originalAddressList = originalAddressList;
 		pairs = new ArrayList<>();
 		substract = new HashMap<>();
 		this.packetList = packetList;
-		random = new Random();
+		this.random = random;
 	}
 
 	/**
@@ -49,12 +49,12 @@ public class LineUp {
 	 * 通常用
 	 * @param originalAddressList
 	 */
-	public LineUp(ArrayList<String[]> originalAddressList) {
+	public LineUp(ArrayList<String[]> originalAddressList,Random random) {
 		this.originalAddressList = originalAddressList;
 		pairs = new ArrayList<>();
 		substract = new HashMap<>();
 		packetList = new ArrayList<>();
-		random = new Random();
+		this.random = random;
 	}
 
 	/**
@@ -67,6 +67,7 @@ public class LineUp {
 		// パケットのリストを作成
 		ArrayList<String[]> originalPacketList = new ArrayList<>();
 		ArrayList<Packet> fullPacketList = new ArrayList<>();
+		Random random = new Random();
 		//全てのキャプチャファイル(CSVから読み込む)
 		for (int i = 1; i <= 20; i++) {
 			originalPacketList = ReadCSV.read("data/capture/single/move/csv/move" + i + ".csv");
@@ -76,7 +77,7 @@ public class LineUp {
 							Integer.parseInt(originalPacket[2])));
 			}
 		}
-		LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"),fullPacketList);
+		LineUp lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"),fullPacketList,random);
 		lineUp.setPairs();
 		lineUp.format();
 		lineUp.toWrite(0);
@@ -84,7 +85,7 @@ public class LineUp {
 
 			int numOfPair = Integer.parseInt(args[0]);
 			for (int i = 1; i <= 100; i++) {
-				lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
+				lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"),random);
 				lineUp.setPairs();
 				lineUp.extractPair(numOfPair);
 				lineUp.format();
@@ -95,7 +96,7 @@ public class LineUp {
 		} else if (args.length != 0) {
 			int numOfPair = Integer.parseInt(args[0]);
 			for (int i = 1; i <= 100; i++) {
-				lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"));
+				lineUp = new LineUp(ReadCSV.read("data/address/original/addressList.csv"),random);
 				lineUp.setPairs();
 				lineUp.extractPair(numOfPair);
 				lineUp.format(Integer.parseInt(args[1]));
