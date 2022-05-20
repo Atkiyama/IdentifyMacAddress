@@ -10,7 +10,7 @@ set datafile separator ","
 set xtics font ",20"
 set ytics font ",20"
 
-set key right bottom
+set key below right
 
 set output "data/result/graph/graph/move/d.pdf"
 
@@ -23,8 +23,8 @@ with lines,\
 "data/result/evaluation/move/D,linerRegression.txt" using 1:2 lw 6   title "Liner Regression"\
 with lines,\
 "data/result/evaluation/move/D,svr.txt" using 1:2 lw 6   title "Support Vector Regression"\
-with linespoints,\
+with lines,\
 "data/result/evaluation/move/D,randomForest.txt" using 1:2 lw 6   title "Random Forest"\
-with linespoints
+with lines
 #"data/result/evaluation/move/D,bagging.txt" using 1:2 lw 6   title "Bagging"\
 #with points,\

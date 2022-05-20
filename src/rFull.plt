@@ -8,7 +8,7 @@ set yrange [0:100]
 set xrange [0:20]
 set datafile separator ","
 
-set key outside bottom
+set key below
 
 set output file
 

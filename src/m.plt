@@ -10,20 +10,20 @@ set datafile separator ","
 set xtics font ",20"
 set ytics font ",20"
 
-set key right bottom
+set key right
 
-set output "data/result/graph/graph/move/m.pdf"
+set output "data/result/graph/graph/move/d.pdf"
 
 plot \
 "data/result/evaluation/move/M,distance.txt" using 1:2 lw 6   title "Compared Method"\
 with linespoints,\
 "data/result/evaluation/move/M,old.txt" using 1:2 lw 6   title "Average"\
-with linespoints,\
+with lines,\
 "data/result/evaluation/move/M,linerRegression.txt" using 1:2 lw 6   title "Liner Regression"\
-with linespoints,\
+with lines,\
 "data/result/evaluation/move/M,svr.txt" using 1:2 lw 6   title "Support Vector Regression"\
-with linespoints,\
+with lines,\
 "data/result/evaluation/move/M,randomForest.txt" using 1:2 lw 6   title "Random Forest"\
-with linespoints
+with lines
 #"data/result/evaluation/move/M,bagging.txt" using 1:2 lw 6   title "Bagging"\
 #with points,\
