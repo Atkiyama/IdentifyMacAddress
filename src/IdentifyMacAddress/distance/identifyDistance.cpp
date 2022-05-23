@@ -38,18 +38,20 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
 //距離で同定
   for (int i = 0; i < addressList.size(); i++)
   {
-    Address nextAddress = addressList[0];
+    Address nextAddress =Address("brank", "brank", 0, 0);
     double subTime = addressList[0].getFTime() - addressList[i].getLTime();
     double subRssi = addressList[0].getLPacket()- addressList[i].getFPacket();
     double nextDistance = getDistance(subTime,subRssi);
     for (int j = 0; j < addressList.size(); j++)
     {
       subTime = addressList[j].getFTime() - addressList[i].getLTime();
-      subRssi = addressList[j].getLPacket()- addressList[i].getFPacket();
-      double distance = getDistance(subTime,subRssi);
-      if(nextDistance>distance){
-        nextDistance = distance;
-        nextAddress = addressList[j]; 
+      if(i!=j&&subTime>=0){
+        subRssi = addressList[j].getLPacket()- addressList[i].getFPacket();
+        double distance = getDistance(subTime,subRssi);
+        if(nextDistance>distance){
+          nextDistance = distance;
+          nextAddress = addressList[j]; 
+        }
       }
     }
      addressList[i].addNextAddressList(nextAddress);
@@ -67,7 +69,7 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
     output.push_back(addressList[i].getNextAddressString());
     output.push_back("\n");
   }
-  
+
   write(output,R,T,I,method,dataNumber);
 }
 
