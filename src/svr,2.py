@@ -51,4 +51,9 @@ def write(address,I,data,predict,regression,i):
     f.close()
 args = sys.argv
 I=int(args[1])
-main(I)
+if(len(sys.argv)==3):
+    i=0
+    addressList = pd.read_csv("data/address/processed/addressList/addressList"+str(i)+".csv", sep=",",usecols=[1,2,3])
+    svr(addressList,i,I)
+else:
+    main(I)

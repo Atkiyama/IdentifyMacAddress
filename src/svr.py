@@ -51,4 +51,11 @@ def write(address,I,data,predict,regression,i):
             f.write("\r\n")
         f.write(str(data[line])+","+str(predict[line]))
     f.close()
-main()
+args = sys.argv
+I=int(args[1])
+if(sys.argv==3):
+    i=0
+    addressList = pd.read_csv("data/address/processed/addressList/addressList"+str(i)+".csv", sep=",",usecols=[1,2,3])
+    randomForest(addressList,i,I)
+else:
+    main(I)
