@@ -8,7 +8,7 @@ import processed.extract.node.Address;
 import processed.extract.node.Packet;
 /**
  * ファイルに書き込むためのクラス
- * @author akiyamashuuhei
+ * @author akiyama
  *
  */
 public class Write {
@@ -28,14 +28,14 @@ public class Write {
 		}
 		fileWriter.close();
 	}
-	
+
 	/**
 	 * fAddressを書き込むメソッド
 	 * @param address
 	 * @param i
 	 * @throws IOException
 	 */
-	
+
 	/**
 	 * lAddressを書き込むメソッド
 	 * @param address
@@ -53,7 +53,7 @@ public class Write {
 		}
 		fileWriter.close();
 	}
-	
+
 	/**
 	 * lAddressを書き込むメソッド
 	 * @param address
@@ -87,7 +87,7 @@ public class Write {
 			fileWriter.append("\r\n");
 		}
 		fileWriter.close();
-		
+
 	}
 
 }

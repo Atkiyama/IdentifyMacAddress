@@ -16,12 +16,12 @@ import processed.extract.node.Packet;
 import processed.extract.node.PacketComparator;
 /**
  * 意図的に遅延を発生させるクラス。(データ数Mをいじる時用)
- * @author akiyamashuuhei
+ * @author akiyama
  *
  */
 public class DelayForM extends Delay {
 /**
- * 
+ *
  * @param args 0に使用データ数を入れる
  * @throws IOException
  */
@@ -56,12 +56,12 @@ public class DelayForM extends Delay {
 
 	/**
 	 * 旧手法に使う結合キャプチャデータを作成する
-	 * @param addressList 
+	 * @param addressList
 	 * @param delayMap遅延させた秒数とファイルのmap
 	 * @param i 通し番号
 	 * @throws IOException
 	 */
-	private static void makeConvert(ArrayList<String[]> addressList,HashMap<String, Double> delayMap,int i) throws IOException {
+	protected static void makeConvert(ArrayList<String[]> addressList,HashMap<String, Double> delayMap,int i) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		ArrayList<Packet> packets = readCaptureFile(addressList);
 		for(Packet packet:packets) {

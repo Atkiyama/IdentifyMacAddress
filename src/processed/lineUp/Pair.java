@@ -4,8 +4,7 @@ import processed.extract.node.Address;
 
 /**
  * アドレス変化前、変化後のペアを示すクラス
- * @author akiyamashuuhei
- *
+ * @author akiyama
  */
 public class Pair {
 	/**

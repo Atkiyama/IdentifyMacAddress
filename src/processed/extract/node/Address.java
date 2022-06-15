@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * アドレスを示すクラス
  * lineUPでも使用している
- * @author akiyamashuuhei
+ * @author akiyama
  *
  */
 public class Address {
@@ -63,7 +63,7 @@ public class Address {
 	public void addPacket(Packet packet) {
 		packets.add(packet);
 	}
-	
+
 	public void setFPackets(int T) {
 		for(Packet packet:packets) {
 			if(packet.getTime()-fTime<=T)
@@ -99,7 +99,7 @@ public class Address {
 	public void addLPacket(Packet packet) {
 		lPackets.add(packet);
 	}
-	
+
 	public double getAverageRssi() {
 		double sum = 0;
 		for(Packet packet:packets) {

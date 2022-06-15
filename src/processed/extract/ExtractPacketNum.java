@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import processed.extract.io.ReadTXT;
+import processed.extract.io.ReadCSV;
 import processed.extract.node.Address;
 import processed.extract.node.Packet;
 
@@ -31,7 +31,7 @@ public class ExtractPacketNum extends Extract{
 
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		Extract ex = new ExtractPacketNum(ReadTXT.read());
+		Extract ex = new ExtractPacketNum(ReadCSV.read());
 		ex.makeAddressList();
 		ex.extract(Integer.parseInt(args[0]));
 		((ExtractPacketNum) ex).extractPacketNum();

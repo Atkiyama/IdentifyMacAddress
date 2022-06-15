@@ -9,8 +9,8 @@ import evaluation.read.ReadData;
 
 /**
  * 同定結果を評価するクラス
- * 
- * @author akiyamashuuhei
+ *
+ * @author akiyama
  *
  */
 public class Evaluation {
@@ -23,7 +23,7 @@ public class Evaluation {
      * キャプチャファイルのリスト
      */
     ArrayList<CaptureFile> captures;
-    
+
     /**
      * データのリスト
      */
@@ -35,8 +35,8 @@ public class Evaluation {
     	datas = read.read();
         score = new ArrayList<>();
     }
-    
-   
+
+
 
     public Evaluation(int R,int T,int I,int numOfTime,int n ,String method,String numOfData) throws IOException{
         captures = ReadAnswer.read();
@@ -52,7 +52,7 @@ public class Evaluation {
         score = new ArrayList<>();
 
     }
-    
+
     public Evaluation(String answer,String data) throws IOException{
         captures = ReadAnswer.readLineUp(answer);
     	ReadData read = new ReadData(data);

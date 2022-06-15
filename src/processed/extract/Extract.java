@@ -10,7 +10,7 @@ import processed.extract.node.Packet;
 
 /**
  * キャプチャしたパケット情報から改良手法に必要なデータを抽出するクラス
- * @author akiyamashuuhei
+ * @author akiyama
  *
  */
 public class Extract {
@@ -49,12 +49,14 @@ public class Extract {
 	 */
 	public static void main(String[] args) throws IOException {
 		Extract ex = new Extract(ReadTXT.read());
+		if(args.length>1)
+			ex.smoothing(Integer.parseInt(args[1]));
 		ex.makeAddressList();
 		ex.extract(Integer.parseInt(args[0]));
 		ex.writeAddress();
 		ex.writeAllAddress();
 	}
-	
+
 	/*
 	 * Writeクラスにアドレスリストの書き込みを投げる
 	 */
@@ -75,7 +77,7 @@ public class Extract {
 		}
 
 	}
-	
+
 	/**
 	 * ftimeとfPacketとlPacketをセットする
 	 * @param T 抽出する秒数
@@ -97,19 +99,39 @@ public class Extract {
 				replace.add(addressList.get(i));
 				replace.add(addressList.get(i+1));
 			}
-			
+
 		}
 		addressList = replace;
-		
+
 	}
 	private boolean existAddresss(ArrayList<Address> replace, Address address) {
 		// TODO 自動生成されたメソッド・スタブ
 		for(Address rAddress:replace) {
 			if(rAddress==address)
 				return true;
-			
+
 		}
 		return false;
+	}
+
+	public void smoothing(int range) {
+		for(int i=0;i<packets.size();i++) {
+			double smoothing =0;
+			int numOfRange =0;
+			for(int j=0;j<range*2+1;j++) {
+				int argument = i-range+j;
+				if(0<=argument&&argument<packets.size()) {
+					smoothing+=packets.get(argument).getRssi();
+					numOfRange++;
+				}
+
+			}
+			smoothing/=numOfRange;
+			packets.get(i).setRssi((int) smoothing);
+
+
+		}
+
 	}
 
 }
