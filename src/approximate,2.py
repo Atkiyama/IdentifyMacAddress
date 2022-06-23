@@ -1,22 +1,21 @@
 #諸々のインポート
 import pandas as pd
 import numpy as np
-from sklearn import svm
 import sys
+from scipy import interpolate
 
 def main(I):
     for i in range (1,101):
         addressList = pd.read_csv("data/address/processed/addressList/addressList"+str(i)+".csv", sep=",",usecols=[1,2,3])
-        svr(addressList,i,I)
+        approximates(addressList,i,I)
 
 
 #SVR(SVMを回帰に利用したもの)
-def svr(addressList,i,I):
-    clf = svm.SVR(kernel='rbf')
+def approximates(addressList,i,I):
     for line in range(len(addressList)):
-        regression(addressList,addressList.address[line],addressList.lTime[line],I,clf,"svr/",i)
+        approximate(addressList,addressList.address[line],addressList.lTime[line],I,"approximate/",i)
 
-def regression(addressList,address,lTime,I,clf,regression,i):
+def approximate(addressList,address,lTime,I,regression,i):
     x_train = []
     y_train = []
     lAddress = pd.read_csv("data/address/processed/lAddress/"+address+"_"+str(i)+".csv", sep=",")
@@ -25,10 +24,16 @@ def regression(addressList,address,lTime,I,clf,regression,i):
         if(0<= lTime -float(time) and lTime-float(time) <= I):
             x_train.append(time)
             y_train.append(lAddress.rssi[line])
-    
+    #補完
+    fitted = interpolate.Akima1DInterpolator(x_train,y_train)
+    last = x_train[len(x_train)-1]
+    first = x_train[0]
+    j = 1
+    while first+i<last:
+         x_train.append(first+i)
+         j+=1
     x_train.sort()
-    clf.fit(pd.DataFrame(x_train),y_train)
-    #print(len(x_train))
+    y_train = fitted(x_train)
     x_test = []
     for  tmp_address in range(len(addressList)):
         #print(addressList.address[tmp_address])
@@ -43,7 +48,8 @@ def regression(addressList,address,lTime,I,clf,regression,i):
         x_test.sort()
     else:
         x_test.append(9999)
-    predict = clf.predict(pd.DataFrame(x_test))
+    
+    predict = np.poly1d(np.polyfit(x_train, y_train, 5))(x_test)
     write(address,I,x_test,predict,regression,i)
 def write(address,I,data,predict,regression,i):
     f = open("data/address/processed/regression/"+regression+address+"_"+str(I)+"_"+str(i)+".csv", 'w')
@@ -57,6 +63,6 @@ I=int(args[1])
 if(len(sys.argv)>=3):
     i=0
     addressList = pd.read_csv("data/address/processed/addressList/addressList"+str(i)+".csv", sep=",",usecols=[1,2,3])
-    svr(addressList,i,I)
+    approximates(addressList,i,I)
 else:
     main(I)

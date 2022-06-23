@@ -95,8 +95,10 @@ public class Evaluation {
         if(j+1>=capture.getAddress().size())
             return false;
         //次アドレスを比較
-        else if(!datas.get(i+1).equals(capture.getAddress().get(j+1)))
+        else if(!datas.get(i+1).equals(capture.getAddress().get(j+1))) {
+        	//System.out.println(datas.get(i)+","+datas.get(i+1));
             return false;
+        }
         else
             return true;
 

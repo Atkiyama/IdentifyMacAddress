@@ -19,14 +19,17 @@ do
       ./identifyForD_sub.sh $method $numOfData $delay $R $T $I &
     fi
   done
+  ./identifyFalse $R $T $I
   if [ $delay -eq "0" ]; then
     java evaluation/evaluation/EvaluationForLineUp2 $delay old $R $T $I> data/result/evaluation/move/D,old.txt
     java evaluation/evaluation/EvaluationForLineUp2 $delay distance $R $T $I> data/result/evaluation/move/D,distance.txt
+    java evaluation/evaluation/EvaluationForLineUp2 $delay false $R $T $I> data/result/evaluation/move/D,false.txt
   else
     java evaluation/evaluation/EvaluationForLineUp2 $delay distance $R $T $I>> data/result/evaluation/move/D,distance.txt
     java evaluation/evaluation/EvaluationForLineUp2 $delay old $R $T $I>> data/result/evaluation/move/D,old.txt
+    java evaluation/evaluation/EvaluationForLineUp2 $delay false $R $T $I>> data/result/evaluation/move/D,false.txt
 
   fi
-  ./removeUsedData.sh
+  #./removeUsedData.sh
   echo "$delay is done"
 done

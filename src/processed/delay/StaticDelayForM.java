@@ -8,7 +8,8 @@ public class StaticDelayForM extends DelayForM {
 	public static ArrayList<Double> makeDelayList(int numOfData) {
 		ArrayList<Double> delayList = new ArrayList<>();
 		for(int i=0;i<numOfData;i++) {
-			delayList.add((double)i*30);
+			double a = i*30;
+			delayList.add(a);
 		}
 		return delayList;
 		

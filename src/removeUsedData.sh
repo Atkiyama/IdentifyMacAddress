@@ -9,6 +9,7 @@ mkdir  data/address/processed/regression/svr
 mkdir  data/address/processed/regression/bagging
 mkdir  data/address/processed/regression/linerRegression
 mkdir  data/address/processed/regression/randomForest
+mkdir  data/address/processed/regression/approximate
 rm -rf data/capture/convert/move/
 mkdir data/capture/convert/move
 rm -rf data/result/multi/move
@@ -17,8 +18,12 @@ rm -rf data/result/multi/move
 mkdir  data/result/multi/move
 mkdir  data/result/multi/move/svr/
 mkdir  data/result/multi/move/svr/{0..100}
+mkdir  data/result/multi/move/approximate/
+mkdir  data/result/multi/move/approximate/{0..100}
 mkdir  data/result/multi/move/distance/
 mkdir  data/result/multi/move/distance/{0..100}
+mkdir  data/result/multi/move/false/
+mkdir  data/result/multi/move/false/{0..100}
 mkdir  data/result/multi/move/bagging
 mkdir  data/result/multi/move/linerRegression
 mkdir  data/result/multi/move/randomForest

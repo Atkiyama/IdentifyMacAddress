@@ -9,7 +9,7 @@ do
   I=15
   ./identifyAverage $R $T $I &
   ./identifyDistance $R $T $I &
-  for method in svr linerRegression randomForest
+  for method in approximate svr linerRegression randomForest
   do
     if [ $method = "randomForest" ]; then
       ./identifyForM_sub.sh $method $numOfData $R $T $I

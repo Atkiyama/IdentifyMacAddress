@@ -16,6 +16,8 @@ set output "data/result/graph/graph/move/d.pdf"
 
 
 plot \
+"data/result/evaluation/move/D,false.txt" using 1:2 lw 6   title "False Method"\
+with linespoints,\
 "data/result/evaluation/move/D,distance.txt" using 1:2 lw 6   title "Compared Method"\
 with linespoints,\
 "data/result/evaluation/move/D,old.txt" using 1:2 lw 6   title "Average"\

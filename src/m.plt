@@ -15,6 +15,8 @@ set key right
 set output "data/result/graph/graph/move/d.pdf"
 
 plot \
+"data/result/evaluation/move/M,distance.txt" using 1:2 lw 6   title "Approximate"\
+with linespoints,\
 "data/result/evaluation/move/M,distance.txt" using 1:2 lw 6   title "Compared Method"\
 with linespoints,\
 "data/result/evaluation/move/M,old.txt" using 1:2 lw 6   title "Average"\

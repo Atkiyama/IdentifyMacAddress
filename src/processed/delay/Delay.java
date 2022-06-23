@@ -120,8 +120,11 @@ public class Delay {
 
 	public static ArrayList<Double> makeDelayList(int numOfData) {
 		ArrayList<Double> delayList = new ArrayList<>();
-		for(int i=0;i<numOfData;i++)
-			delayList.add(600*Math.random());
+		for(int i=0;i<numOfData;i++) {
+			double delay = 600*Math.random();
+			delayList.add(delay);
+			//System.out.println(delay);
+		}
 		return delayList;
 	}
 
