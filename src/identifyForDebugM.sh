@@ -1,15 +1,15 @@
 #bin/bash
-
+R=15
+T=6
+I=5
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
+java processed/extract/Extract $I
 for numOfData in 20
 do
     java processed/delay/StaticDelayForM $numOfData
-    R=15
-    T=6
-    I=5
     #./identifyAverage $R $T $I &
     #./identifyDistance $R $T $I &
-    method="approximate"
+    method="svr"
     #linerRegression randomForest
     python $method,2.py $I 0
     #本来は2だがデバッグ用に2に変更

@@ -20,37 +20,30 @@ def approximate(addressList,address,lTime,I,regression,i):
     y_train = []
     lAddress = pd.read_csv("data/address/processed/lAddress/"+address+"_"+str(i)+".csv", sep=",")
     for line in range(len(lAddress)):
-        time = lAddress.time[line]
-        if(0<= lTime -float(time) and lTime-float(time) <= I):
-            x_train.append(time)
-            y_train.append(lAddress.rssi[line])
-    #補完
-    fitted = interpolate.Akima1DInterpolator(x_train,y_train)
-    last = x_train[len(x_train)-1]
-    first = x_train[0]
-    j = 1
-    while first+i<last:
-         x_train.append(first+i)
-         j+=1
+        x_train.append(lAddress.time[line]-lTime)
+        y_train.append(lAddress.rssi[line])
+    
     x_train.sort()
-    y_train = fitted(x_train)
-    x_test = []
+    #print(len(x_train))
+    x_output = []
     for  tmp_address in range(len(addressList)):
-        #print(addressList.address[tmp_address])
         sub = addressList.fTime[tmp_address] - lTime
         if(0<=sub and sub<=6):
             fAddress = pd.read_csv("data/address/processed/fAddress/"+addressList.address[tmp_address]+"_"+str(i)+".csv", sep=",")
             fTime = addressList.fTime[tmp_address]
             for time in fAddress.time:
                 if(I >=time-fTime and time-fTime>=0):
-                    x_test.append(time)
-    if(len(x_test)>0):
-        x_test.sort()
+                    x_output.append(time)
+    if(len(x_output)>0):
+        x_output.sort()
     else:
-        x_test.append(9999)
-    
-    predict = np.poly1d(np.polyfit(x_train, y_train, 5))(x_test)
-    write(address,I,x_test,predict,regression,i)
+        x_output.append(9999)
+    x_test=[]
+    for j in x_output:
+        x_test.append(j-lTime)
+    appro = np.polyfit(x_train, y_train, 5)
+    predict = np.poly1d(appro)(x_test)
+    write(address,I,x_output,predict,regression,i)
 def write(address,I,data,predict,regression,i):
     f = open("data/address/processed/regression/"+regression+address+"_"+str(I)+"_"+str(i)+".csv", 'w')
     for line in range(len(predict)):
