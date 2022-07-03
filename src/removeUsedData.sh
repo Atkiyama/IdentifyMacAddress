@@ -10,6 +10,12 @@ mkdir  data/address/processed/regression/bagging
 mkdir  data/address/processed/regression/linerRegression
 mkdir  data/address/processed/regression/randomForest
 mkdir  data/address/processed/regression/approximate
+mkdir  data/address/processed/costTable
+mkdir  data/address/processed/costTable/svr
+mkdir  data/address/processed/costTable/bagging
+mkdir  data/address/processed/costTable/linerRegression
+mkdir  data/address/processed/costTable/randomForest
+mkdir  data/address/processed/costTable/approximate
 rm -rf data/capture/convert/move/
 mkdir data/capture/convert/move
 rm -rf data/result/multi/move

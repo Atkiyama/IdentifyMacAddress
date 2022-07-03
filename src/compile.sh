@@ -6,6 +6,7 @@ g++ -O3 identifyMacAddress/new/identifyMacAddress.cpp -o identify
 g++ -O3 identifyMacAddress/avarage/identifyAverage.cpp -o identifyAverage
 g++ -O3 identifyMacAddress/distance/identifyDistance.cpp -o identifyDistance
 g++ -O3 identifyMacAddress/false/identifyMacAddress.cpp -o identifyFalse
+g++ -O3 identifyMacAddress/allocation/identifyMacAddress.cpp -o identifyAllocation
 javac dataAnalyze/DataAnalyze.java
 javac evaluation/evaluation/*.java
 javac evaluation/table/move/*.java

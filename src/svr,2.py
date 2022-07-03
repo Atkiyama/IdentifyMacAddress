@@ -12,7 +12,7 @@ def main(I):
 
 #SVR(SVMを回帰に利用したもの)
 def svr(addressList,i,I):
-    clf = svm.SVR(kernel='poly',C=10000,degree=5)
+    clf = svm.SVR(kernel='rbf')
     for line in range(len(addressList)):
         regression(addressList,addressList.address[line],addressList.lTime[line],I,clf,"svr/",i)
 
