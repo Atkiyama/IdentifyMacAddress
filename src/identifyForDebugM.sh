@@ -4,7 +4,7 @@ T=6
 I=5
 #コマンドライン引数 1に回帰手法(旧手法の場合はold)
 java processed/extract/Extract $I
-for numOfData in 20
+for numOfData in 2
 do
     java processed/delay/StaticDelayForM $numOfData
     #./identifyAverage $R $T $I &

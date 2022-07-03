@@ -14,13 +14,40 @@ public class StaticDelayForM extends DelayForM {
 		return delayList;
 		
 	}
+	
+	protected static ArrayList<String[]> extractAddressList(int numOfData) throws IOException {
+		ArrayList<String[]> addressList = read("data/address/original/addressList.csv");
+		ArrayList<String> useData = new ArrayList<>();
+		ArrayList<String[]> replace = new ArrayList<>();
+		for (int r=20;r>numOfData;r--) {
+			if (useData.size() == numOfData) {
+				break;
+			}
+
+			
+			String fileName = "move" + r;
+			if (!useData.contains(fileName)) {
+				useData.add(fileName);
+			}
+		}
+
+		for (String[] address : addressList) {
+			for (String fileName : useData) {
+				if (address[0].equals(fileName))
+					replace.add(address);
+			}
+		}
+
+		return replace;
+
+	}
 
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		int numOfData = Integer.parseInt(args[0]);
 		ArrayList<String[]> addressList;
 
-		addressList = read("data/address/original/addressList.csv");
+		addressList = extractAddressList(numOfData);
 		addressList.remove(0);
 
 		ArrayList<Double> delayList = makeDelayList(numOfData);
