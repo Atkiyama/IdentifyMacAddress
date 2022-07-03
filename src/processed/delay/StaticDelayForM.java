@@ -19,7 +19,7 @@ public class StaticDelayForM extends DelayForM {
 		ArrayList<String[]> addressList = read("data/address/original/addressList.csv");
 		ArrayList<String> useData = new ArrayList<>();
 		ArrayList<String[]> replace = new ArrayList<>();
-		for (int r=20;r>numOfData;r--) {
+		for (int r=1;r<=numOfData;r++) {
 			if (useData.size() == numOfData) {
 				break;
 			}
