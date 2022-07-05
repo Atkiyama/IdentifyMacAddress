@@ -66,10 +66,16 @@ public class Evaluation {
     		System.out.println(data);
     	}
 
+    	System.out.println("\n");
     	for(CaptureFile capture:captures) {
     		for(String str :capture.getAddress()) {
     			System.out.println(str);
     		}
+    	}
+    	
+    	System.out.println("\n");
+    	for(boolean tr:score) {
+    		System.out.println(tr);
     	}
     }
 
@@ -92,11 +98,14 @@ public class Evaluation {
 
     public boolean judge(CaptureFile capture,int i,int j){
         //次の正解アドレスが存在するか判定
-        if(j+1>=capture.getAddress().size())
+        if(j+1>=capture.getAddress().size()) {
+        	System.out.println(capture.getAddress().size());
             return false;
+        }
         //次アドレスを比較
-        else if(!datas.get(i+1).equals(capture.getAddress().get(j+1))) {
-        	//System.out.println(datas.get(i)+","+datas.get(i+1));
+        else 
+        if(!datas.get(i+1).equals(capture.getAddress().get(j+1))) {
+        	System.out.println(datas.get(i)+","+datas.get(i+1));
             return false;
         }
         else

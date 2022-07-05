@@ -4,20 +4,16 @@ import pandas as pd
 import sys
 
 args = sys.argv
-numOfData=int(args[1])
-R=int(args[2])
-I=int(args[3])
-T=int(args[4])
+method=args[1]
+numOfData=args[2]
+R=args[3]
+T=args[4]
+I=args[5]
 
-costTable = pd.read_csv("data/address/processed/costTable/svr/"+numOfData+"_"+R+","+I+","+T+".csv", sep=",",header=None)
-df= pd.read_csv("data/address/processed/addressList/addressList"+numOfData+".csv", sep=",",usecols=[1])
-row=df.address.to_list()
-column=[]
-#アドレス数/2+1だけnoneを増やす
-for adr in range(int(len(costTable)/2)+1):
-    column.append("none")
-for adr in df.address:
-    column.append(adr)
+costTable = pd.read_csv("data/address/processed/costTable/svr/"+"0_15,6,5"+".csv", sep=",",header=None)
+df= pd.read_csv("data/address/processed/addressList/addressList0.csv", sep=",",usecols=[1])
+column=df.address.to_list()
+row = column
 
 #線形割り当てのライブラリ
 row_ind, col_ind = linear_sum_assignment(costTable)
@@ -25,8 +21,6 @@ row_ind, col_ind = linear_sum_assignment(costTable)
 
 #アドレスのクラスの定義
 class Address:
-
-    
     def __init__(self, row, column):
         self.row = row
         self.column = column
@@ -44,7 +38,7 @@ for assign in col_ind:
     i+=1
 
 #結果書き込み
-f = open("data/result/multi/move/svr/"+numOfData+"/"+R+","+I+","+T+".txt", 'w')
+f = open("data/result/multi/move/svr/"+numOfData+"/"+R+","+T+","+I+".txt", 'w')
 for ans in ansList:
         f.write(row[ans.getRow()])
         f.write("\r\n")
