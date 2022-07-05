@@ -23,32 +23,33 @@ for adr in df.address:
 row_ind, col_ind = linear_sum_assignment(costTable)
 
 
-#アドレスクラスの定義
+#アドレスのクラスの定義
 class Address:
-    def __init__(self, address, nextAddress):
-        self.address = address
-        self.nextAddress = nextAddress
-        
-    def getAddress(self):
-        return self.address
+
     
-    def getNextAddress(self):
-        return self.nextAddress
+    def __init__(self, row, column):
+        self.row = row
+        self.column = column
+        
+    def getRow(self):
+        return self.row
+    
+    def getColumn(self):
+        return self.column
 
 ansList=[]
 i=0
-#解答の生成
 for assign in col_ind:
-    ansList.append(Address(row[i],column[assign]))
-    print(i)
+    ansList.append(Address(i,assign))
     i+=1
 
 #結果書き込み
 f = open("data/result/multi/move/svr/"+numOfData+"/"+R+","+I+","+T+".txt", 'w')
 for ans in ansList:
-        f.write(ans.getAddress())
+        f.write(row[ans.getRow()])
         f.write("\r\n")
-        f.write(ans.getNextAddress())
+        if costTable[ans.getColumn()][ans.getRow()]!=999:
+            f.write(column[ans.getColumn()])
         f.write("\r\n")
         f.write("\r\n")
 f.close()
