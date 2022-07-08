@@ -10,7 +10,7 @@ set datafile separator ","
 set xtics font ",20"
 set ytics font ",20"
 
-set key right bottom
+set key right
 
 set output "data/result/graph/graph/move/c.pdf"
 
