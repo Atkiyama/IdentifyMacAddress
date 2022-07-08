@@ -16,6 +16,7 @@ mkdir  data/address/processed/costTable/bagging
 mkdir  data/address/processed/costTable/linerRegression
 mkdir  data/address/processed/costTable/randomForest
 mkdir  data/address/processed/costTable/approximate
+mkdir  data/address/processed/costTable/timeDifference
 rm -rf data/capture/convert/move/
 mkdir data/capture/convert/move
 rm -rf data/result/multi/move
@@ -30,6 +31,8 @@ mkdir  data/result/multi/move/distance/
 mkdir  data/result/multi/move/distance/{0..100}
 mkdir  data/result/multi/move/false/
 mkdir  data/result/multi/move/false/{0..100}
+mkdir  data/result/multi/move/timeDifference/
+mkdir  data/result/multi/move/timeDifference/{0..100}
 mkdir  data/result/multi/move/bagging
 mkdir  data/result/multi/move/linerRegression
 mkdir  data/result/multi/move/randomForest

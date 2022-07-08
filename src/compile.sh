@@ -17,3 +17,4 @@ g++ -O3 identifyMacAddress/avarage/identifyAverage.cpp -o identifyAverage &
 g++ -O3 identifyMacAddress/distance/identifyDistance.cpp -o identifyDistance
 g++ -O3 identifyMacAddress/false/identifyMacAddress.cpp -o identifyFalse
 g++ -O3 identifyMacAddress/allocation/identifyMacAddress.cpp -o identifyAllocation
+g++ -O3 identifyMacAddress/timeDifference/identifyMacAddress.cpp -o identifyTimeDifference

@@ -13,7 +13,7 @@ public class EvaluationForMSingle {
 	        //評価用のインスタンスを作成
 	        Evaluation eval = new Evaluation("data/result/multi/move/"+args[1]+"/"+n+"/"+R+","+ T +","+I+".txt");
 	        eval.evaluation();
-	        eval.output();
+	        //eval.output();
 	        System.out.println(M+","+eval.getScore());
 
 	    }

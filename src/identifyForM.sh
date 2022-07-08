@@ -6,24 +6,31 @@ do
   java processed/delay/DelayForM $numOfData
   R=15
   T=6
-  I=15
+  I=5
   ./identifyAverage $R $T $I &
-  ./identifyDistance $R $T $I &
-  for method in approximate svr linerRegression randomForest
+  #./identifyDistance $R $T $I &
+  ./identifyForM_sub.sh randomForest $numOfData $R $T $I 
+  ./identifyTimeDifference 2 timeDifference $R $T $I
+  for n in {1..100}
   do
-    if [ $method = "randomForest" ]; then
-      ./identifyForM_sub.sh $method $numOfData $R $T $I
-    else
-      ./identifyForM_sub.sh $method $numOfData $R $T $I &
-    fi
+    python assignment.py timeDifference $n $R $T $I
+  done
+  if [ $numOfData -eq "1" ]; then
+    java evaluation/evaluation/EvaluationForM $numOfData timeDifference $R $T $I> data/result/evaluation/move/M,timeDifference.txt
+  else
+    java evaluation/evaluation/EvaluationForM $numOfData timeDifference $R $T $I>> data/result/evaluation/move/M,timeDifference.txt
+  fi
+  for method in linerRegression svr
+  do
+    ./identifyForM_sub2.sh $method $numOfData $R $T $I 
   done
   if [ $numOfData -eq "1" ]; then
     java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I> data/result/evaluation/move/M,old.txt
-    java evaluation/evaluation/EvaluationForM $numOfData distance $R $T $I> data/result/evaluation/move/M,distance.txt
+    #java evaluation/evaluation/EvaluationForM $numOfData distance $R $T $I> data/result/evaluation/move/M,distance.txt
   else
     java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I>> data/result/evaluation/move/M,old.txt
-    java evaluation/evaluation/EvaluationForM $numOfData distance $R $T $I>> data/result/evaluation/move/M,distance.txt
+    #java evaluation/evaluation/EvaluationForM $numOfData distance $R $T $I>> data/result/evaluation/move/M,distance.txt
   fi
-#./removeUsedData.sh
+./removeUsedData.sh
 echo "$numOfData is done"
 done
