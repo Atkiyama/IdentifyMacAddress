@@ -112,16 +112,16 @@ public:
         return fileName;
     }
 
-    inline void setNormalizedR(double normalizedR)
+    void setNormalizedR(double nr)
     {
-        this->normalizedR = normalizedR;
+        normalizedR = nr;
     }
     /*
         inline void setNormalizedT(double normalizedT){
             this->normalizedT = normalizedT;
         }
     */
-    inline double getNormalized()
+    double getNormalized()
     {
         return normalizedR;
     }

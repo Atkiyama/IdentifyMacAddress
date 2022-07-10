@@ -12,7 +12,7 @@ using namespace std;//stdを省略
 vector<Address> normalize(Address, int, int);
 inline double getR(Address, Address);
 inline bool checkR(Address,Address,int);
-inline void write(vector<Address> ,int,int,int,string,int);
+inline void writeCostTable(vector<Address> ,int,int,int,string,int);
 /**
 * @brief
 * 引数によって処理の仕方を変更する
@@ -57,16 +57,16 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
     {
       //addressList[i].extract(j, I);
       if (checkR(addressList[i], addressList[i].getNextAddressList()[j], R))
-      replace.push_back(addressList[i].getNextAddressList()[j]);
+        replace.push_back(addressList[i].getNextAddressList()[j]);
     }
 
     addressList[i].setNextAddressList(replace);
   }
 
-  //正規化
+  //正規化の値をセット
   for (int i = 0; i < addressList.size(); i++)
   {
-    if (addressList[i].getNextAddressList().size() >= 2)
+    //if(addressList[i].getNextAddressList().size()>2)
     addressList[i].setNextAddressList(normalize(addressList[i], R, T));
   }
 
@@ -97,7 +97,7 @@ inline double getR(Address address, Address nextAddress)
       if (address.getRegression()[j].getTime() == nextAddress.getFPackets()[i].getTime())
       {
         sum += std::abs(address.getRegression()[j].getRssi() - nextAddress.getFPackets()[i].getRssi());
-        // std::cout <<"00>"<<address.getRegression()[j].getRssi()<<","<<nextAddress.getFPackets()[i].getRssi()<<std::endl;
+        //std::cout <<"00>"<<address.getRegression()[j].getRssi()<<","<<nextAddress.getFPackets()[i].getRssi()<<std::endl;
         count++;
         break;
       }
@@ -106,7 +106,7 @@ inline double getR(Address address, Address nextAddress)
   }
   //std::cout <<"sum="<< sum << ",count =" << count <<",sum/count="<<sum/count<< std::endl;
   if (count == 0)
-  return 99;
+    return 99;
   return sum / count;
 }
 
@@ -115,11 +115,12 @@ std::vector<Address> normalize(Address address, int R, int T)
 {
   int times = address.getNextAddressList().size();
   //距離が最小のアドレスを格納するための変数
-  Address minAddress = address.getNextAddressList()[0];
   for (int i = 0; i < times; i++)
   {
     //address.getNextAddressList()[i].setNormalizedT(std::pow(address.getNextAddressList()[i].getFTime() - address.getLTime() / (double)T, 2));
-    address.getNextAddressList()[i].setNormalizedR(getR(address, address.getNextAddressList()[i]) / R);
+    address.getNextAddressList()[i].setNormalizedR(getR(address, address.getNextAddressList()[i]));
+    //cout <<address.getAddress()<<","<<getR(address, address.getNextAddressList()[i]) <<","<<address.getNextAddressList()[i].getNormalized()<<endl;
+
   }
   return address.getNextAddressList();
 }
@@ -134,19 +135,23 @@ inline void writeCostTable(vector<Address> addressList,int R,int T,int I,string 
   ossI << I;
   ostringstream ossDataNumber;
   ossDataNumber << dataNumber;
-  std::string filename = "data/result/address/proceseed/costTable/"+method +"/"+ossDataNumber.str()+"/"+ossR.str()+","+ossT.str()+","+ossI.str()+".csv";
+  std::string filename = "data/address/processed/costTable/"+method +"/"+ossDataNumber.str()+"_"+ossR.str()+","+ossT.str()+","+ossI.str()+".csv";
   writing_file.open(filename, std::ios::out);
   for(int i=0;i<addressList.size();i++){
-    //コスト関数の無限の代わり
-    writing_file << "999,";
     for(int j=0;j<addressList.size();j++){
       double output =999;
       for(int k=0;k<addressList[i].getNextAddressList().size();k++){
          //writing_file << output[i] << std::endl;
-         if(addressList[j].getAddress()==addressList[i].getNextAddressList()[k])
-          output=addressList[i].getNextAddressList()[k].getNormalized()
+         if(addressList[j].getAddress()==addressList[i].getNextAddressList()[k].getAddress())
+            output = getR(addressList[i],addressList[j]);
+            //output=addressList[i].getNextAddressList()[k].getNormalized();
       }
-      writing_file << output;
+      ostringstream ossOutput;
+      ossOutput << output;
+      //cout << addressList[i].getAddress() << ","<<addressList[j].getAddress() << "," << getR(addressList[i],addressList[j]) << "," << ossOutput.str() <<endl;
+      writing_file << ossOutput.str();
+      if(j!=addressList.size()-1)
+         writing_file << ",";
     }
     writing_file << std::endl;
   }
@@ -162,8 +167,10 @@ inline void writeCostTable(vector<Address> addressList,int R,int T,int I,string 
 */
 int main(int argc, char *argv[])
 {
-  int T = 6;
   string method = argv[2];
+  int R=stoi(argv[3]);
+  int T=stoi(argv[4]);
+  int I=stoi(argv[5]);
   if(stoi(argv[1])==1){
     for(int dataNumber=1;dataNumber<=100;dataNumber++){
       Data data;
@@ -205,8 +212,6 @@ int main(int argc, char *argv[])
       }
     }
   }else if(stoi(argv[1])==4){
-    int R=15;
-    int I=15;
     int dataNumber = 0;
     Data data;
     ostringstream ossDataNumber;

@@ -66,7 +66,7 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
   for (int i = 0; i < addressList.size(); i++)
   {
     if (addressList[i].getNextAddressList().size() >= 2)
-    addressList[i].setNextAddressList(normalize(addressList[i], R, T));
+      addressList[i].setNextAddressList(normalize(addressList[i], R, T));
   }
 
 

@@ -80,6 +80,15 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
   {
     output.push_back(addressList[i].getMyString());
     output.push_back(addressList[i].getNextAddressString());
+    /*
+    if (addressList[i].getNextAddressList().size()==1&&addressList[i].getFileName() != addressList[i].getNextAddressList()[0].getFileName()){
+      std::cout <<"変化前アドレス"<<addressList[i].getMyString()<< std::endl;
+      std::cout <<"変化後アドレス"<<addressList[i].getNextAddressString()<< std::endl;
+      std::cout <<"回帰値と実際の値の差"<<getR(addressList[i],addressList[i].nextAddressList[0])<< std::endl;
+      std::cout <<"正規化値"<<addressList[i].getNextAddressList()[0].getNormalized()<< std::endl;
+    }
+    */
+    
     output.push_back("\n");
   }
 
@@ -130,8 +139,8 @@ std::vector<Address> normalize(Address address, int R, int T)
   Address minAddress = address.getNextAddressList()[0];
   for (int i = 0; i < times; i++)
   {
-    address.getNextAddressList()[i].setNormalizedT(std::pow(address.getNextAddressList()[i].getFTime() - address.getLTime() / (double)T, 2));
-    address.getNextAddressList()[i].setNormalizedR(std::pow(getR(address, address.getNextAddressList()[i]) / (double)R, 2));
+    //address.getNextAddressList()[i].setNormalizedT(std::pow(address.getNextAddressList()[i].getFTime() - address.getLTime() / (double)T, 2));
+    address.getNextAddressList()[i].setNormalizedR(getR(address, address.getNextAddressList()[i]) / R);
     //距離
     double distance = address.getNextAddressList()[i].getNormalized();
     if (distance < min)
@@ -218,7 +227,7 @@ int main(int argc, char *argv[])
     }
   }else if(stoi(argv[1])==4){
     int R=15;
-    int I=15;
+    int I=10;
     int dataNumber = 0;
     Data data;
     ostringstream ossDataNumber;
@@ -235,8 +244,9 @@ int main(int argc, char *argv[])
     data.readFAddress(dataNumber);
     data.readRegression(dataNumber,method);
     //データのリストを作成してから同定へ
-    int R=20;
-    int I=20;
+    int R=stoi(argv[3]);
+    T=stoi(argv[4]);
+    int I=stoi(argv[5]);
     identify(R,T,I,data,method,dataNumber);
 
 
