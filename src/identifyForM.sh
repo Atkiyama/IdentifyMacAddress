@@ -9,21 +9,29 @@ do
   I=5
   ./identifyAverage $R $T $I &
   #./identifyDistance $R $T $I &
-  ./identifyForM_sub.sh randomForest $numOfData $R $T $I 
-  ./identifyTimeDifference 2 timeDifference $R $T $I
+  ./identifyTimeDifference 2 timeDifference $R $T $I &
+  for method in linerRegression svr
+  do
+    ./identifyForM_sub2.sh $method $numOfData $R $T $I 
+  done
+  ./identify 2 linerRegression $R $T $I
+  if [ $numOfData -eq "1" ]; then
+    java evaluation/evaluation/EvaluationForM $numOfData linerRegression $R $T $I> data/result/evaluation/move/M,oldLiner.txt
+  else
+    java evaluation/evaluation/EvaluationForM $numOfData linerRegression $R $T $I>> data/result/evaluation/move/M,oldLiner.txt
+  fi
+
   for n in {1..100}
   do
     python assignment.py timeDifference $n $R $T $I
+    python assignment.py old $n $R $T $I
   done
   if [ $numOfData -eq "1" ]; then
     java evaluation/evaluation/EvaluationForM $numOfData timeDifference $R $T $I> data/result/evaluation/move/M,timeDifference.txt
   else
     java evaluation/evaluation/EvaluationForM $numOfData timeDifference $R $T $I>> data/result/evaluation/move/M,timeDifference.txt
   fi
-  for method in linerRegression svr
-  do
-    ./identifyForM_sub2.sh $method $numOfData $R $T $I 
-  done
+
   if [ $numOfData -eq "1" ]; then
     java evaluation/evaluation/EvaluationForM $numOfData old $R $T $I> data/result/evaluation/move/M,old.txt
     #java evaluation/evaluation/EvaluationForM $numOfData distance $R $T $I> data/result/evaluation/move/M,distance.txt

@@ -16,17 +16,15 @@ set output "data/result/graph/graph/move/d.pdf"
 
 
 plot \
-"data/result/evaluation/move/D,false.txt" using 1:2 lw 6   title "False Method"\
-with linespoints,\
-"data/result/evaluation/move/D,distance.txt" using 1:2 lw 6   title "Compared Method"\
-with linespoints,\
 "data/result/evaluation/move/D,old.txt" using 1:2 lw 6   title "Average"\
+with lines,\
+"data/result/evaluation/move/D,distance.txt" using 1:2 lw 6   title "Time Difference"\
 with lines,\
 "data/result/evaluation/move/D,linerRegression.txt" using 1:2 lw 6   title "Liner Regression"\
 with lines,\
 "data/result/evaluation/move/D,svr.txt" using 1:2 lw 6   title "Support Vector Regression"\
 with lines,\
-"data/result/evaluation/move/D,randomForest.txt" using 1:2 lw 6   title "Random Forest"\
+"data/result/evaluation/move/D,oldLiner.txt" using 1:2 lw 6   title "Traditional Liner Regression"\
 with lines
 #"data/result/evaluation/move/D,bagging.txt" using 1:2 lw 6   title "Bagging"\
 #with points,\

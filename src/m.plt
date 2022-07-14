@@ -23,7 +23,7 @@ with lines,\
 with lines,\
 "data/result/evaluation/move/M,svr.txt" using 1:2 lw 6   title "Support Vector Regression"\
 with lines,\
-"data/result/evaluation/move/M,randomForest.txt" using 1:2 lw 6   title "Traditional Random Forest"\
+"data/result/evaluation/move/M,oldLiner.txt" using 1:2 lw 6   title "Traditional Liner Regression"\
 with lines
 #"data/result/evaluation/move/M,bagging.txt" using 1:2 lw 6   title "Bagging"\
 #with points,\

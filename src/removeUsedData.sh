@@ -11,6 +11,7 @@ mkdir  data/address/processed/regression/linerRegression
 mkdir  data/address/processed/regression/randomForest
 mkdir  data/address/processed/regression/approximate
 mkdir  data/address/processed/costTable
+mkdir  data/address/processed/costTable/old
 mkdir  data/address/processed/costTable/svr
 mkdir  data/address/processed/costTable/bagging
 mkdir  data/address/processed/costTable/linerRegression

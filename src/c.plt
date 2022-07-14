@@ -5,7 +5,7 @@ set colorsequence default
 set xlabel font ",24" "C"
 set ylabel font ",24" "accuracy"
 set yrange [0:100]
-set xrange [0:79]
+set xrange [0:20]
 set datafile separator ","
 set xtics font ",20"
 set ytics font ",20"
@@ -23,7 +23,7 @@ with lines,\
 with lines,\
 "data/result/evaluation/move/C,svr.txt" using 1:2 lw 6   title "Support Vector Regression"\
 with lines,\
-"data/result/evaluation/move/C,randomForest.txt" using 1:2 lw 6   title "Traditional Random Forest"\
+"data/result/evaluation/move/C,oldLiner.txt" using 1:2 lw 6   title "Traditional Liner Regression"\
 with lines
 #"data/result/evaluation/move/M,bagging.txt" using 1:2 lw 6   title "Bagging"\
 #with points,\

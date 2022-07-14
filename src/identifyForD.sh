@@ -10,12 +10,13 @@ do
   java processed/lineUp/LineUp $numOfData $delay
   ./identifyAverage $R $T $I &
   ./identifyTimeDifference 2 timeDifference $R $T $I &
-  ./identifyForD_sub2.sh linerRegression $numOfData $delay $R $T $I &
-  ./identifyForD_sub.sh randomForest $numOfData $delay $R $T $I
+  ./identifyForD_sub2.sh linerRegression $numOfData $delay $R $T $I
+  ./identifyForD_sub.sh linerRegression $numOfData $delay $R $T $I &
   ./identifyForD_sub2.sh svr $numOfData $delay $R $T $I
   for n in {1..100}
   do
     python assignment.py timeDifference $n $R $T $I
+    python assignment.py old $n $R $T $I
   done 
   if [ $delay -eq "0" ]; then
     java evaluation/evaluation/EvaluationForLineUp2 $delay old $R $T $I> data/result/evaluation/move/D,old.txt
@@ -27,6 +28,6 @@ do
     #java evaluation/evaluation/EvaluationForLineUp2 $delay false $R $T $I>> data/result/evaluation/move/D,false.txt
 
   fi
-  #./removeUsedData.sh
+  ./removeUsedData.sh
   echo "$delay is done"
 done
