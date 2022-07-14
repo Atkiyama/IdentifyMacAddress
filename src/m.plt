@@ -15,15 +15,15 @@ set key right bottom
 set output "data/result/graph/graph/move/m.pdf"
 
 plot \
-"data/result/evaluation/move/M,old.txt" using 1:2 lw 6   title "Average"\
+"data/result/evaluation/move/M,oldLiner.txt" using 1:2 lw 6   title "Traditional (LR)"\
 with lines,\
-"data/result/evaluation/move/M,timeDifference.txt" using 1:2 lw 6   title "Time Difference"\
+"data/result/evaluation/move/M,linerRegression.txt" using 1:2 lw 6   title "Proposal(LR)"\
 with lines,\
-"data/result/evaluation/move/M,linerRegression.txt" using 1:2 lw 6   title "Liner Regression"\
+"data/result/evaluation/move/M,svr.txt" using 1:2 lw 6   title "Proposal(SVR)"\
 with lines,\
-"data/result/evaluation/move/M,svr.txt" using 1:2 lw 6   title "Support Vector Regression"\
+"data/result/evaluation/move/M,timeDifference.txt" using 1:2 lw 6   title "Liner Assignment(Time)"\
 with lines,\
-"data/result/evaluation/move/M,oldLiner.txt" using 1:2 lw 6   title "Traditional Liner Regression"\
+"data/result/evaluation/move/M,old.txt" using 1:2 lw 6   title "Liner Assignment(RSSi)"\
 with lines
 #"data/result/evaluation/move/M,bagging.txt" using 1:2 lw 6   title "Bagging"\
 #with points,\
