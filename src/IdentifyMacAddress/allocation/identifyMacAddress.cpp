@@ -47,7 +47,7 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
   {
     addressList[i].setRegression(data.getRegression(),I);
   }
-
+  /*
   //Rで絞り込み ここで候補が消えてる
   for (int i = 0; i < addressList.size(); i++)
   {
@@ -69,7 +69,7 @@ inline void identify(int R,int T,int I,Data data,string method,int dataNumber){
     //if(addressList[i].getNextAddressList().size()>2)
     addressList[i].setNextAddressList(normalize(addressList[i], R, T));
   }
-
+  */
 
 
   writeCostTable(addressList,R,T,I,method,dataNumber);

@@ -1,25 +1,24 @@
 set term pdfcairo enhanced color font ",16"
 #set size 0.9,1
 
-set xlabel font ",20" "Time"
+set xlabel font ",18" "Time"
 set ylabel font ",20" "RSSI"
-set yrange [-30:-150]
+set yrange [-70:-95]
 set xtics font ",20"
 set ytics font ",20"
-set xrange [-10:10]
+set xrange [0:15]
 set datafile separator ","
 
-set key right bottom font ",20"
+set key right below font ",18"
 
-set output "data/result/graph/graph/changeAddressAllocation.pdf"
+set output "data/result/graph/graph/changeAddress.pdf"
 
 plot \
-"data/address/processed/lAddress/7d:ae:67:19:51:03_5.csv" using 1:2 lw 6 lc rgb "red" title "変化前のMACアドレス"\
+"data/address/processed/lAddress/7f:a9:2a:14:12:f4_1.csv" using 1:2 lw 6 lc rgb "red" title "MACアドレスA"\
 with linespoints,\
-"data/address/processed/regression/svr/7d:ae:67:19:51:03_5_5.csv" using 1:2 lw 6 lc rgb "blue" title "変化前のMACアドレスの回帰結果"\
+"data/address/processed/lAddress/72:f3:00:18:24:2d_1.csv" using 1:2 lw 6 lc rgb "green" title "MACアドレスB"\
 with linespoints,\
-"data/address/processed/fAddress/4d:69:aa:69:53:1f_2_4.csv" using 1:2 lw 1  lc rgb "green" title "変化後のMACアドレス"\
+"data/address/processed/fAddress/78:f4:32:4c:9c:80_2_1.csv" using 1:2 lw 1  lc rgb "red" title "MACアドレスC"\
+with linespoints,\
+"data/address/processed/fAddress/74:bd:6d:a4:14:1c_2_1.csv" using 1:2 lw 1  lc rgb "green" title "MACアドレスD"\
 with linespoints
-#"data/address/processed/fAddress/70:08:e6:e0:5f:50_0.csv" using 1:2 lw 6 lc rgb "black" title "実際の変化後のMACアドレス"\
-#with linespoints,\
-
