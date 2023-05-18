@@ -19,6 +19,7 @@ public class Split {
 		double hour = Double.parseDouble(mTime.group(1));
 		double minute = Double.parseDouble(mTime.group(2));
 		double second = Double.parseDouble(mTime.group(3));
+		//System.out.println(hour+":"+minute+":"+second);
 		return hour*3600 + minute*60 +second;
 	}
 	public static void main(String args[]) throws IOException {
@@ -29,10 +30,10 @@ public class Split {
 			double fTime = parseTime(splitTimeTable.get(i)[0]);
 			double lTime = parseTime(splitTimeTable.get(i)[1]);
 			fileWriter.append("address,time,rssi\n");
-//			System.out.print("fTime="+fTime);
-//			System.out.println("Time="+lTime);
+//			System.out.println("fTime="+fTime);
+//			System.out.println("lTime="+lTime);
 			for(Packet packet:packets) {
-				//System.out.print("time="+packet.getTime());
+				System.out.println("time="+packet.getTime());
 				if(fTime<=packet.getTime()&&packet.getTime()<=lTime) {
 					//System.out.println(" *");
 					fileWriter.append(packet.getAddress()+","+(packet.getTime()-fTime)+","+packet.getRssi()+"\n");
@@ -43,8 +44,9 @@ public class Split {
 			}
 			fileWriter.close();
 		}
-		
+		//System.out.println("");
 	}
+	
 	
 	
 
