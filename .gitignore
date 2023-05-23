@@ -1,0 +1,17 @@
+.DS_Store
+
+.classpath
+
+.project
+
+.settings/
+
+bin/
+
+*.csv
+
+src/data
+
+src/identify
+
+*.class
