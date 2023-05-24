@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import processed.ReadCSV;
+import processed.ReadTXT;
 import processed.extract.node.Packet;
 
 public class SelectAddress {
@@ -21,51 +22,51 @@ public class SelectAddress {
 
 	public static void main(String[] args) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		 ArrayList<String[]> selectAddressTable = ReadCSV.read("data/capture/ver3/selectAddress.csv");
-		 //ヘッダを削除
-		 selectAddressTable.remove(0);
-		 ArrayList<SelectAddress> selectAddresses = new ArrayList<>();
-		
-		 for(String[] fileData:selectAddressTable) {
-			 String fileName = fileData[0];
-			 String address = fileData[1];
-			 if(fileName.equals("")&&address.equals("")) {
-				 SelectAddress selectAddress = new SelectAddress(fileName,address);
-				 selectAddresses.add(selectAddress);
-			 }
-		 }
-		 
-		 for(SelectAddress selectAddress:selectAddresses) {
-			 selectAddress.selectAddress();
-			 selectAddress.writeTXT();
-		 }
+		ArrayList<String[]> selectAddressTable = ReadCSV.read("data/capture/ver3/selectAddress.csv");
+		//ヘッダを削除
+		selectAddressTable.remove(0);
+		ArrayList<SelectAddress> selectAddresses = new ArrayList<>();
+
+		for (String[] fileData : selectAddressTable) {
+			String fileName = fileData[0];
+			String address = fileData[1];
+
+			SelectAddress selectAddress = new SelectAddress(fileName, address);
+			selectAddresses.add(selectAddress);
+
+		}
+
+		for (SelectAddress selectAddress : selectAddresses) {
+			selectAddress.selectAddress();
+			selectAddress.writeCSV();
+
+		}
 
 	}
 
-	private void writeTXT() throws IOException {
+	private void writeCSV() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		FileWriter fileWriter = new FileWriter("data/capture/ver3/masterPiece/"+fileName+".csv");
-		fileWriter.append(",address,time,rssi");
+		FileWriter fileWriter = new FileWriter("data/capture/ver3/csv/" + fileName + ".csv");
+		fileWriter.append("address,time,rssi");
 		fileWriter.append("\r\n");
-		for(Packet packet:packets) {
-			fileWriter.append(packet.getAddress()+","+packet.getTime()+","+packet.getRssi());
+		for (Packet packet : packets) {
+			fileWriter.append(packet.getAddress() + "," + packet.getTime() + "," + packet.getRssi());
 			fileWriter.append("\r\n");
 		}
 		fileWriter.close();
 
-		
 	}
 
 	private void selectAddress() throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
-		ArrayList<Packet> packets = new ArrayList<>();
-		ArrayList<String[]> read = ReadCSV.read("data/capture/ver3/csv/"+fileName+".csv");
-		for(String[] st:read) {
-			packets.add(new Packet(st[0],Double.parseDouble(st[1]),Integer.parseInt(st[2])));
-		}
-		for(Packet packet:packets) {
-			if(packet.getAddress().equals(address)) {
+
+		ArrayList<Packet> read = ReadTXT.read("data/capture/ver3/txt/" + fileName + ".txt");
+
+		for (Packet packet : read) {
+			//System.out.println(packet.getAddress()+"," +address);
+			if (packet.getAddress().equals(address)) {
 				this.packets.add(packet);
+				
 			}
 		}
 	}

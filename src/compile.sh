@@ -14,6 +14,7 @@ javac processed/lineUp/*.java &
 javac processed/extract/*.java &
 javac processed/delay/*.java &
 javac processed/timeAdjustment/*.java &
+javac processed/selectAddress/*.java &
 g++ -O3 identifyMacAddress/new/identifyMacAddress.cpp -o identify &
 g++ -O3 identifyMacAddress/average/identifyAverage.cpp -o identifyAverage &
 g++ -O3 identifyMacAddress/distance/identifyDistance.cpp -o identifyDistance

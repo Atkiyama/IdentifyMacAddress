@@ -1,7 +1,7 @@
-LS=$(ls data/capture/ver3/original/)
+#bin/bash
 
-LS=$(ls data/capture/ver3/txt/)
+LS=$(ls data/capture/ver3/csv/)
 for inputFileName in ${LS}
 do
-    java processed/timeAdjustment/Split data/capture/ver3/txt/$inputFileName
+    java processed/timeAdjustment/Split data/capture/ver3/csv/$inputFileName
 done
