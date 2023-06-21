@@ -27,6 +27,9 @@ for filename in os.listdir(input_dir):
         plt.xlabel('Time')
         plt.ylabel('RSSI')
 
+        # 縦軸の範囲を設定
+        plt.ylim(-100, -20)
+
         # 出力ファイルのパス
         output_file = os.path.join(output_dir, f'{os.path.splitext(filename)[0]}.png')
 

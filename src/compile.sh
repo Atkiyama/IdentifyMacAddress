@@ -9,6 +9,7 @@ javac evaluation/table/move/*.java &
 javac evaluation/table/stay/*.java &
 javac graph/Graph.java &
 javac graph/makeCDF/MakeCDF.java &
+javac graph/time/Time.java &
 javac identifyMacAddress/identify/*.java &
 javac processed/lineUp/*.java &
 javac processed/extract/*.java &
