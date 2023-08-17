@@ -1,4 +1,6 @@
 #bin/bash
+#実験用に作ったデータを消去するスクリプト
+#オリジナルデータは消えないので何かデータ容量を削除したり実験状態のリセットに使うこと
 rm -rf data/address/processed/
 mkdir data/address/processed
 mkdir data/address/processed/addressList
@@ -18,11 +20,12 @@ mkdir  data/address/processed/costTable/linerRegression
 mkdir  data/address/processed/costTable/randomForest
 mkdir  data/address/processed/costTable/approximate
 mkdir  data/address/processed/costTable/timeDifference
+mkdir  data/address/processed/costTable/random
 rm -rf data/capture/convert/move/
 mkdir data/capture/convert/move
 rm -rf data/result/multi/move
 #windows用なのでMACではエラー出るけど気にしないこと
-#mkdir  data/result/multi
+mkdir  data/result/multi
 mkdir  data/result/multi/move
 mkdir  data/result/multi/move/svr/
 mkdir  data/result/multi/move/svr/{0..100}
