@@ -35,6 +35,8 @@ mkdir  data/result/multi/move/distance/
 mkdir  data/result/multi/move/distance/{0..100}
 mkdir  data/result/multi/move/false/
 mkdir  data/result/multi/move/false/{0..100}
+mkdir  data/result/multi/move/stay/
+mkdir  data/result/multi/move/stay/{0..100}
 mkdir  data/result/multi/move/timeDifference/
 mkdir  data/result/multi/move/timeDifference/{0..100}
 mkdir  data/result/multi/move/bagging

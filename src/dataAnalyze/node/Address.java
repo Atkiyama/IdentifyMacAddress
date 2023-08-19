@@ -52,6 +52,9 @@ public class Address {
 	/**
 	 *RとTの相対距離
 	 */
+	String fileName;
+	
+	private double aveRssi;
 
 	private ArrayList<Packet> packets;
 	private BigDecimal tmpLength;
@@ -81,6 +84,19 @@ public class Address {
 		this.nextAdr = new ArrayList<>();
 		packets = new ArrayList<>();
 		packets.add(new Packet(advA,ftime,rssi));
+	}
+	
+	public Address(String fileName,String advA, double ftime, double ltime,double aveRssi) {
+		this.fileName=fileName;
+		this.advA = advA;
+		this.ftime = ftime;
+		this.ltime = ltime;
+		this.aveRssi=aveRssi;
+		this.nextAdr = new ArrayList<>();
+	}
+
+	public double getAveRssi() {
+		return aveRssi;
 	}
 
 	public void addPacket(Packet packet) {
@@ -135,7 +151,9 @@ public class Address {
 	}
 
 	public void setDeltaR(double r) {
-		BigDecimal aveR = BigDecimal.valueOf(getAverageRssi());
+		
+		//BigDecimal aveR = BigDecimal.valueOf(getAverageRssi());
+		BigDecimal aveR = BigDecimal.valueOf(getAveRssi());
 		BigDecimal bigR;
 		if(r == 0)
 			bigR = BigDecimal.ONE;
@@ -186,6 +204,15 @@ public class Address {
 		System.out.println(numPkt);
 		for (Address nextAdr : this.nextAdr) {
 			nextAdr.printData();
+		}
+		System.out.println();
+
+	}
+	public void printData2() {
+		System.out.println("fileName>" + fileName + ",address>" + advA + ",fTime>" + ftime + ",lTime>" + ltime);
+
+		for (Address nextAdr : this.nextAdr) {
+			nextAdr.printData2();
 		}
 		System.out.println();
 

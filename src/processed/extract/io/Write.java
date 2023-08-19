@@ -18,6 +18,17 @@ public class Write {
 		}
 		fileWriter.close();
 	}
+	
+	public static void writeRssi(ArrayList<Address> addressList) throws IOException {
+		FileWriter fileWriter = new FileWriter("data/address/original/aveRssiList.csv");
+		fileWriter.append("fileName,address,aveRSSI");
+		fileWriter.append("\r\n");
+		for(Address address:addressList) {
+			fileWriter.append(address.getFileName()+","+address.getName()+","+address.getAverageRssi());
+			fileWriter.append("\r\n");
+		}
+		fileWriter.close();
+	}
 	public static void writeFAddress(Address address) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		FileWriter fileWriter = new FileWriter("data/address/original/fAddress/"+address.getName()+".csv");

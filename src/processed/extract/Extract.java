@@ -55,6 +55,12 @@ public class Extract {
 		ex.extract(Integer.parseInt(args[0]));
 		ex.writeAddress();
 		ex.writeAllAddress();
+		ex.writeRssi();
+	}
+	void writeRssi() throws IOException {
+		// TODO 自動生成されたメソッド・スタブ
+		Write.writeRssi(addressList);
+
 	}
 
 	/*

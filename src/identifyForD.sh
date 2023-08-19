@@ -5,15 +5,19 @@ numOfData=50
 R=15
 T=6
 I=5
-for delay in 0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200 210 220 230 240 250 260 270 280 290 300 310 320 330 340 350
+for delay in 0 100 200 300  350
 do
     java processed/lineUp/LineUp $numOfData $delay
+    for n in {1..100}
+    do
+        java identifyMacAddress/identify/IdentifyStay $n $R $I >data/result/multi/move/stay/$n/$R,$T,$I.txt &
+    done
     ./identifyAverage $R $T $I &
     ./identifyTimeDifference 2 timeDifference $R $T $I &
     ./identifyForD_sub2.sh linerRegression $numOfData $delay $R $T $I
     ./identifyForD_sub.sh linerRegression $numOfData $delay $R $T $I &
     ./identifyForD_sub2.sh svr $numOfData $delay $R $T $I
-    ./identifyForD_sub3.sh random $numOfData $delay $R $T $I
+    #./identifyForD_sub3.sh random $numOfData $delay $R $T $I
     for n in {1..100}
     do
         python assignment.py timeDifference $n $R $T $I

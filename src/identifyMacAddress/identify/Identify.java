@@ -41,6 +41,14 @@ public abstract class Identify {
 		this.T = T;
 
 	}
+	
+	public Identify(int R,double T) {
+		
+		addressList = new ArrayList<>();
+		this.R = R;
+		this.T = T;
+
+	}
 
 	/**
 	 * 特定を行うメソッド
@@ -49,7 +57,32 @@ public abstract class Identify {
 	 * @throws IOException
 	 */
 
-	public void makeAddressList() {
+	public void makeAddressList() throws IOException {
+		//既知のアドレスかどうかのフラグ
+		boolean ad_known = false;
+		for (Packet packet : packets) {
+			for (Address address : addressList) {
+				if (address.getAdvA().equals(packet.getAddress())) {
+					address.setLtime(packet.getTime());
+					address.addRssi(packet.getRssi());
+					address.incrementNumPkt();
+					ad_known = true;
+					address.addPacket(packet);
+				}
+
+			}
+			if (!ad_known) {
+				addressList
+						.add(new Address(packet.getAddress(), packet.getTime(), packet.getTime(), packet.getRssi(), 1));
+			}
+			ad_known = false;
+		}
+
+	}
+	/**
+	 * 既存のadddressList.csvをもとにアドレスリストを作るd
+	 */
+	public void makeAddressList2() {
 		//既知のアドレスかどうかのフラグ
 		boolean ad_known = false;
 		for (Packet packet : packets) {
