@@ -22,8 +22,8 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.base import clone
 
 
-USE_NUM =20
-useData = pd.read_csv('data/capture/ver3/useDataFull.csv')
+USE_NUM =10
+useData = pd.read_csv('data/capture/ver3/useData.csv')
 useData.drop(useData.index[USE_NUM:], inplace=True)
 
 print(useData.fileName)
@@ -72,7 +72,7 @@ def changeAddress():
             #point = changeP[0]
         for line in data.itertuples():
 
-            if float(point.time)-5<= float(line.time) <= float(point.time):
+            if float(line.time) <= float(point.time):
                 packet=[]
                 packet.append(line.address)
                 packet.append(line.time)
@@ -80,7 +80,7 @@ def changeAddress():
                 before.append(packet)
             elif float(point.time) < float(line.time) and afterFirst == 999:
                 afterFirst = float(line.time)
-            elif float(line.time) - afterFirst <= 5 and afterFirst !=999:
+            elif float(line.time) - afterFirst <= 5:
                 modified_address = line.address + "_2"
                 line = line._replace(address=modified_address)
                 packet=[]
@@ -545,36 +545,34 @@ def run3(studyInfo,model,bias1,bias2,changed,addressList,i):
 
 
 def main():
-    studyInfo1="timeDiff"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # studyInfo1="timeDiff"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    studyInfo2="Liner"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # studyInfo2="Liner"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    studyInfo3="svr"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    studyInfo4="ridge"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # studyInfo3="svr"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    #studyInfo4="combine_liner_1"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    studyInfo4="combine_liner_1"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    #studyInfo5="combine_svr_1"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    studyInfo5="combine_svr_1"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     studyInfo6="combine_liner_075"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     studyInfo7="combine_svr_075"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    studyInfo8="combine_ridge_075"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
-    # studyInfo8="combine_liner_05"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    studyInfo8="combine_liner_05"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # studyInfo9="combine_svr_05"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    studyInfo9="combine_svr_05"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
-    # studyInfo10="combine_liner_025"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    studyInfo10="combine_liner_025"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # studyInfo11="combine_svr_025"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    studyInfo11="combine_svr_025"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     # studyInfo12="combine_liner_01"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # studyInfo13="combine_svr_01"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     os.makedirs("data/test/evaluation/",exist_ok=True)
-    f= open("data/test/evaluation/test"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+".csv", 'w')
+    f= open("data/test/evaluation/test2"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+".csv", 'w')
 
 
     liner=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = -1)
@@ -595,19 +593,17 @@ def main():
     f.write("timeDiff,")
     f.write("liner,")
     f.write("svr,")
-    #f.write("ridge,")
+    f.write("combine_liner_1,")
+    f.write("combine_svr_1,")
     f.write("combine_liner_075,")
-    f.write("combine_svr_075\n")
-    #f.write("combine_ridge_075\n")
-    # f.write("combine_liner_075,")
-    # f.write("combine_svr_075,")
-    # f.write("combine_liner_05,")
-    # f.write("combine_svr_05,")
-    # f.write("combine_liner_025,")
-    # f.write("combine_svr_025,")
-    # f.write("combine_liner_01,")
-    # f.write("combine_svr_01\n")
-    sum=[0]*5
+    f.write("combine_svr_075,")
+    f.write("combine_liner_05,")
+    f.write("combine_svr_05,")
+    f.write("combine_liner_025,")
+    f.write("combine_svr_025,")
+    f.write("combine_liner_01,")
+    f.write("combine_svr_01\n")
+    sum=[0]*10
     plist=[]
     for i in range(attempt):
             changed,addressList=changeAddress()
@@ -617,21 +613,18 @@ def main():
             studyD(changed,150)
 
             ac=[]
-            ac.append(run1(studyInfo1,changed,addressList,i))
-            #ac.append(run4(studyInfo2,ridge,changed,addressList,i,param_grid_ridge))
-            ac.append(run2(studyInfo2,liner,changed,addressList,i))
-            ac.append(run2(studyInfo3,svr,changed,addressList,i))
-            # ac.append(run2(studyInfo4,ridge,changed,addressList,i))
+            # ac.append(run1(studyInfo1,changed,addressList,i))
+            # #ac.append(run4(studyInfo2,ridge,changed,addressList,i,param_grid_ridge))
+            # ac.append(run2(studyInfo2,liner,changed,addressList,i))
+            # ac.append(run2(studyInfo3,svr,changed,addressList,i))
+            ac.append(run3(studyInfo4,liner,1,1,changed,addressList,i))
+            ac.append(run3(studyInfo5,svr,1,1,changed,addressList,i))
             ac.append(run3(studyInfo6,liner,0.75,1,changed,addressList,i))
             ac.append(run3(studyInfo7,svr,0.75,1,changed,addressList,i))
-            # ac.append(run3(studyInfo8,svr,0.75,1,changed,addressList,i))
-            
-            # ac.append(run3(studyInfo6,liner,0.75,1,changed,addressList,i))
-            # ac.append(run3(studyInfo7,svr,0.75,1,changed,addressList,i))
-            # ac.append(run3(studyInfo8,liner,0.5,1,changed,addressList,i))
-            # ac.append(run3(studyInfo9,svr,0.5,1,changed,addressList,i))
-            # ac.append(run3(studyInfo10,liner,0.25,1,changed,addressList,i))
-            # ac.append(run3(studyInfo11,svr,0.25,1,changed,addressList,i))
+            ac.append(run3(studyInfo8,liner,0.5,1,changed,addressList,i))
+            ac.append(run3(studyInfo9,svr,0.5,1,changed,addressList,i))
+            ac.append(run3(studyInfo10,liner,0.25,1,changed,addressList,i))
+            ac.append(run3(studyInfo11,svr,0.25,1,changed,addressList,i))
             # ac.append(run3(studyInfo12,liner,0.1,1,changed,addressList,i))
             # ac.append(run3(studyInfo13,svr,0.1,1,changed,addressList,i))
 

@@ -1,0 +1,88 @@
+7f:7e:bb:a3:09:30,-43.15967799999635,-72
+7f:7e:bb:a3:09:30,-41.72827399999369,-70
+7f:7e:bb:a3:09:30,-40.87221200000204,-71
+7f:7e:bb:a3:09:30,-39.999353999999585,-70
+7f:7e:bb:a3:09:30,-39.717087999990326,-76
+7f:7e:bb:a3:09:30,-38.863466999988304,-66
+7f:7e:bb:a3:09:30,-38.0,-67
+7f:7e:bb:a3:09:30_2,-35.7273520000017,-63
+7f:7e:bb:a3:09:30_2,-34.29849000000104,-74
+7f:7e:bb:a3:09:30_2,-33.72218499999144,-88
+7f:7e:bb:a3:09:30_2,-32.86734599999909,-83
+import pandas as pd
+import os
+import sys
+import random
+
+def regression(model,changed):
+    models={}
+    assignment_table=[]
+    predicts={}
+    
+    #学習データを学習させる
+    for data in changed:
+        #print(data[0].address)
+        x_train=[]
+        y_train=[]
+        for line in data:
+            x_train.append(float(line[1]))
+            y_train.append(float(line[2]))
+    #ここでクローンしておかないと同じモデルになる
+        clf =clone(model)
+        clf.fit(pd.DataFrame(x_train),y_train)
+
+        models[data[0][0]]=clf
+    
+
+    #テストデータとの差分をどんどんコスト関数として割り当てテーブルに記録していく
+    for data in changed:
+        regression_data=[]
+        assignment_line=[]
+        for data2 in changed:
+            diff =float(data2[0][1])-float(data[len(data)-1][1])
+            if data[0][0] != data2[0][0] and 0 <= diff and diff<= 6:
+                x_test=[]
+                for line in data2:
+                    x_test.append(line[1])
+                    predict=models[data[0][0]].predict(pd.DataFrame(x_test))
+
+                sum=0
+                for i in range(len(data2)):
+                    sum+=abs(data2[i][2]-predict[i])
+                assignment_line.append(abs(sum/len(data2)))
+   
+                for i in range(len(predict)):
+                    regression_data.append((x_test[i],predict[i]))
+            else:
+                assignment_line.append(sys.float_info.max)
+
+        regression_data.sort()
+        predicts[data[0][0]]=regression_data
+        assignment_table.append(assignment_line)
+
+    
+    return assignment_table,predicts
+
+def assignment(assignment_table,addressList,changed,fileName,number):
+
+    row_ind, col_ind = linear_sum_assignment(np.array(assignment_table))
+
+    isTrue = 0
+    for i in row_ind:
+        if i % 2 == 0 and i + 1 == col_ind[i]:
+            isTrue += 1
+    accuracy = isTrue / float(len(addressList) / 2)
+    return row_ind,col_ind,accuracy
+
+def main():
+    changed=[]
+    for line in sys.stdin:
+        changed.append(list(line.replace("\n", "").split(",")))
+    assignment_table,predicts=regression(model,changed)
+    row_ind,col_ind,accuracy = assignment(assignment_table,addressList,changed,txtName,i)
+    print(accuracy)
+
+
+
+if __name__=='__main__' :
+    main()

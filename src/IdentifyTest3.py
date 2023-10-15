@@ -22,8 +22,8 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.base import clone
 
 
-USE_NUM =20
-useData = pd.read_csv('data/capture/ver3/useDataFull.csv')
+USE_NUM =10
+useData = pd.read_csv('data/capture/ver3/useData.csv')
 useData.drop(useData.index[USE_NUM:], inplace=True)
 
 print(useData.fileName)
@@ -72,7 +72,7 @@ def changeAddress():
             #point = changeP[0]
         for line in data.itertuples():
 
-            if float(point.time)-5<= float(line.time) <= float(point.time):
+            if float(line.time) <= float(point.time):
                 packet=[]
                 packet.append(line.address)
                 packet.append(line.time)
@@ -80,7 +80,7 @@ def changeAddress():
                 before.append(packet)
             elif float(point.time) < float(line.time) and afterFirst == 999:
                 afterFirst = float(line.time)
-            elif float(line.time) - afterFirst <= 5 and afterFirst !=999:
+            elif float(line.time) - afterFirst <= 5:
                 modified_address = line.address + "_2"
                 line = line._replace(address=modified_address)
                 packet=[]
@@ -574,7 +574,7 @@ def main():
     # studyInfo13="combine_svr_01"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     os.makedirs("data/test/evaluation/",exist_ok=True)
-    f= open("data/test/evaluation/test"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+".csv", 'w')
+    f= open("data/test/evaluation/test3"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+".csv", 'w')
 
 
     liner=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = -1)
@@ -595,10 +595,10 @@ def main():
     f.write("timeDiff,")
     f.write("liner,")
     f.write("svr,")
-    #f.write("ridge,")
+    f.write("ridge,")
     f.write("combine_liner_075,")
-    f.write("combine_svr_075\n")
-    #f.write("combine_ridge_075\n")
+    f.write("combine_svr_075,")
+    f.write("combine_ridge_075\n")
     # f.write("combine_liner_075,")
     # f.write("combine_svr_075,")
     # f.write("combine_liner_05,")
@@ -607,7 +607,7 @@ def main():
     # f.write("combine_svr_025,")
     # f.write("combine_liner_01,")
     # f.write("combine_svr_01\n")
-    sum=[0]*5
+    sum=[0]*7
     plist=[]
     for i in range(attempt):
             changed,addressList=changeAddress()
@@ -621,10 +621,10 @@ def main():
             #ac.append(run4(studyInfo2,ridge,changed,addressList,i,param_grid_ridge))
             ac.append(run2(studyInfo2,liner,changed,addressList,i))
             ac.append(run2(studyInfo3,svr,changed,addressList,i))
-            # ac.append(run2(studyInfo4,ridge,changed,addressList,i))
+            ac.append(run2(studyInfo4,ridge,changed,addressList,i))
             ac.append(run3(studyInfo6,liner,0.75,1,changed,addressList,i))
             ac.append(run3(studyInfo7,svr,0.75,1,changed,addressList,i))
-            # ac.append(run3(studyInfo8,svr,0.75,1,changed,addressList,i))
+            ac.append(run3(studyInfo8,svr,0.75,1,changed,addressList,i))
             
             # ac.append(run3(studyInfo6,liner,0.75,1,changed,addressList,i))
             # ac.append(run3(studyInfo7,svr,0.75,1,changed,addressList,i))
