@@ -21,18 +21,19 @@ def regression(model,changed):
     models={}
     assignment_table=[]
     
-    
+    #このループが原因
+    #address7が読み込めない
     #学習データを学習させる
     for data in changed:
-        #print(data[0].address)
         x_train = [float(line[1]) for line in data]
         y_train = [float(line[2]) for line in data]
+        
     #ここでクローンしておかないと同じモデルになる
         clf =clone(model)
         clf.fit(pd.DataFrame(x_train),y_train)
 
         models[data[0][0]]=clf
-    
+
 
     #テストデータとの差分をどんどんコスト関数として割り当てテーブルに記録していく
     assignment_table=[[INF for _ in range(len(changed))] for _ in range(len(changed))]
@@ -81,16 +82,32 @@ def assignment(assignment_table,changed):
     accuracy = isTrue / float(len(changed) / 2)
     return accuracy
 
+'''
+デバック用にファイルを読み込み関数
+'''
+def read_data(filename):
+    addressDict = defaultdict(list)
+    with open(filename, 'r') as file:
+        for line in file:
+            packet = list(line.replace("\n", "").split(","))
+            addressDict[packet[0]].append(packet)
+    return list(addressDict.values())
+
 def main():
     changed=[]
     addressDict=defaultdict(list)
     i=0
+    # print("run")
     for line in sys.stdin:
         packet=list(line.replace("\n", "").split(","))
         addressDict[packet[0]].append(packet)
     for k,v in addressDict.items():
         changed.append(v)
 
+    #debug用
+    #changed = read_data("data/capture/ver3/simulate/data_5_281.csv")
+    #print(changed)
+    print(sys.argv)
     #回帰にかけるバイアス
     bias1=float(sys.argv[2])
     #時間差にかけるバイアス
@@ -112,7 +129,7 @@ def main():
     else:
         print("Invalid argument. Please provide a valid argument: 'timeDiff', 'linear', 'svr', 'combine_linear', or 'combine_svr'")
         sys.exit(1)
-        
+    #print("regreesion OK")
     accuracy = assignment(assignment_table,changed)
     print(accuracy)
 
