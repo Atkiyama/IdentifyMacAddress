@@ -3,7 +3,7 @@ import numpy as np
 import bisect
 
 # CSVファイルからデータを読み込む（ヘッダーがない場合）
-df_liner = pd.read_csv('data/result/evaluation/ver3/diff_timeDiff_20.csv', header=None, names=['values'])
+df_liner = pd.read_csv('data/result/evaluation/ver3/diff_liner_20.csv', header=None, names=['values'])
 
 # データをソート
 sorted_liner = np.sort(df_liner['values'])

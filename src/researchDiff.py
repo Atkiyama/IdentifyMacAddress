@@ -47,10 +47,12 @@ def regression(model,changed):
                 diff =float(changed[j][0][1])-float(changed[i][-1][1])
                 if 0 <= diff <= 6:
                     x_test=[line[1] for line in changed[j]]
-                    predict=models[data[0][0]].predict(pd.DataFrame(x_test))
+                    predict=models[changed[i][0][0]].predict(pd.DataFrame(x_test))
                     sum=0
                     for k in range(len(changed[j])):
-                        sum+=abs(float(changed[j][k][2])-predict[k])
+                        a=float(changed[j][k][2])
+                        b=float(predict[k])
+                        sum+=abs(a-b)
                     assignment_table[i][j]=sum/len(changed[j])
                     
     return assignment_table
@@ -104,6 +106,7 @@ diffを出力する関数
 def calcdiff(assignment_table,changed):
 
     for i in range(0,len(assignment_table),2):
+        #print(changed[i][0][0] ,changed[i+1][0][0],assignment_table[i][i+1])
         print(assignment_table[i][i+1])
 '''
 デバック用にファイルを読み込み関数

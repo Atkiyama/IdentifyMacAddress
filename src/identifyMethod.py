@@ -7,6 +7,9 @@ from scipy.optimize import linear_sum_assignment
 from sklearn.base import clone
 from collections import defaultdict
 INF=10**5
+'''
+changed[i番目のアドレス][i番目のアドレスのj番目のパケット][0,address 1,time 2,rssi]
+'''
 def timeDiff(changed):
     assignment_table=[[INF for _ in range(len(changed))] for _ in range(len(changed))]
     for i in range(len(changed)):
@@ -47,7 +50,7 @@ def regression(model,changed):
                 diff =float(changed[j][0][1])-float(changed[i][-1][1])
                 if 0 <= diff <= 6:
                     x_test=[line[1] for line in changed[j]]
-                    predict=models[data[0][0]].predict(pd.DataFrame(x_test))
+                    predict=models[changed[i][0][0]].predict(pd.DataFrame(x_test))
                     sum=0
                     for k in range(len(changed[j])):
                         sum+=abs(float(changed[j][k][2])-predict[k])
