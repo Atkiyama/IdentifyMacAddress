@@ -9,30 +9,36 @@ do
         if [ $CASE_NUM -eq "1" ]; then
             cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py timeDiff ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/timeDiff_${USE_NUM}.csv &
             cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py liner ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/liner_${USE_NUM}.csv &
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py svr ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/svr_${USE_NUM}.csv &
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_liner 0.75 1 ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/combine_liner_${USE_NUM}.csv &
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_svr 0.75 1 ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/combine_svr_${USE_NUM}.csv
+            #cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py svr ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/svr_${USE_NUM}.csv &
+            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_liner_sum 0.75 1 ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/combine_liner_sum_${USE_NUM}.csv &
+            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_liner_dist 0.75 1 ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/combine_liner_dist_${USE_NUM}.csv &
+            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_liner_mul 0.75 1 ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/combine_liner_mul_${USE_NUM}.csv
+            #cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_svr 0.75 1 ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/combine_svr_${USE_NUM}.csv
         else
             cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py timeDiff ${USE_NUM} ${CASE_NUM}>> data/result/evaluation/ver3/case/timeDiff_${USE_NUM}.csv &
             cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py liner ${USE_NUM} ${CASE_NUM}>> data/result/evaluation/ver3/case/liner_${USE_NUM}.csv &
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py svr ${USE_NUM} ${CASE_NUM}>> data/result/evaluation/ver3/case/svr_${USE_NUM}.csv &
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_liner 0.75 1 ${USE_NUM} ${CASE_NUM}>> data/result/evaluation/ver3/case/combine_liner_${USE_NUM}.csv &
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_svr 0.75 1 ${USE_NUM} ${CASE_NUM}>> data/result/evaluation/ver3/case/combine_svr_${USE_NUM}.csv
+            #cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py svr ${USE_NUM} ${CASE_NUM}>> data/result/evaluation/ver3/case/svr_${USE_NUM}.csv &
+            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_liner_sum 0.75 1 ${USE_NUM} ${CASE_NUM}>> data/result/evaluation/ver3/case/combine_liner_sum_${USE_NUM}.csv &
+            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_liner_dist 0.75 1 ${USE_NUM} ${CASE_NUM}>> data/result/evaluation/ver3/case/combine_liner_dist_${USE_NUM}.csv &
+            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_liner_mul 0.75 1 ${USE_NUM} ${CASE_NUM}>> data/result/evaluation/ver3/case/combine_liner_mul_${USE_NUM}.csv
+            #cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py combine_svr 0.75 1 ${USE_NUM} ${CASE_NUM}>> data/result/evaluation/ver3/case/combine_svr_${USE_NUM}.csv
         fi
     done
     
-    if [ $USE_NUM -eq "1" ]; then
-        cat data/result/evaluation/ver3/case/timeDiff_${USE_NUM}.csv |python calcAverageAccuracy.py >data/result/evaluation/ver3/actual/timeDiff.csv &
-        cat data/result/evaluation/ver3/case/liner_${USE_NUM}.csv |python calcAverageAccuracy.py >data/result/evaluation/ver3/actual/liner.csv &
-        cat data/result/evaluation/ver3/case/svr_${USE_NUM}.csv |python calcAverageAccuracy.py >data/result/evaluation/ver3/actual/svr.csv &
-        cat data/result/evaluation/ver3/case/combine_liner_${USE_NUM}.csv |python calcAverageAccuracy.py >data/result/evaluation/ver3/actual/combine_liner.csv &
-        cat data/result/evaluation/ver3/case/combine_svr_${USE_NUM}.csv |python calcAverageAccuracy.py >data/result/evaluation/ver3/actual/combine_svr.csv &
+    if [ $USE_NUM -eq "20" ]; then
+        cat data/result/evaluation/ver3/case/timeDiff_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>data/result/evaluation/ver3/actual/timeDiff.csv &
+        cat data/result/evaluation/ver3/case/liner_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>data/result/evaluation/ver3/actual/liner.csv &
+        #cat data/result/evaluation/ver3/case/svr_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>data/result/evaluation/ver3/actual/svr.csv &
+        cat data/result/evaluation/ver3/case/combine_liner_sum_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>data/result/evaluation/ver3/actual/combine_liner_sum.csv &
+        cat data/result/evaluation/ver3/case/combine_liner_dist_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>data/result/evaluation/ver3/actual/combine_liner_dist.csv &
+        cat data/result/evaluation/ver3/case/combine_liner_mul_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>data/result/evaluation/ver3/actual/combine_liner_mul.csv &
+        #cat data/result/evaluation/ver3/case/combine_svr_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>data/result/evaluation/ver3/actual/combine_svr.csv &
     else
-        cat data/result/evaluation/ver3/case/timeDiff_${USE_NUM}.csv |python calcAverageAccuracy.py >>data/result/evaluation/ver3/actual/timeDiff.csv &
-        cat data/result/evaluation/ver3/case/liner_${USE_NUM}.csv |python calcAverageAccuracy.py >>data/result/evaluation/ver3/actual/liner.csv &
-        cat data/result/evaluation/ver3/case/svr_${USE_NUM}.csv |python calcAverageAccuracy.py >>data/result/evaluation/ver3/actual/svr.csv &
-        cat data/result/evaluation/ver3/case/combine_liner_${USE_NUM}.csv |python calcAverageAccuracy.py >>data/result/evaluation/ver3/actual/combine_liner.csv &
-        cat data/result/evaluation/ver3/case/combine_svr_${USE_NUM}.csv |python calcAverageAccuracy.py >>data/result/evaluation/ver3/actual/combine_svr.csv &
+        cat data/result/evaluation/ver3/case/timeDiff_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>>data/result/evaluation/ver3/actual/timeDiff.csv &
+        cat data/result/evaluation/ver3/case/liner_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>>data/result/evaluation/ver3/actual/liner.csv &
+        #cat data/result/evaluation/ver3/case/svr_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>>data/result/evaluation/ver3/actual/svr.csv &
+        cat data/result/evaluation/ver3/case/combine_liner_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>>data/result/evaluation/ver3/actual/combine_liner.csv &
+        #cat data/result/evaluation/ver3/case/combine_svr_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>>data/result/evaluation/ver3/actual/combine_svr.csv &
     fi
     echo "${USE_NUM} is done"
 done

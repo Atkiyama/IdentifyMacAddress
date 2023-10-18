@@ -6,7 +6,7 @@ from sklearn import svm
 from scipy.optimize import linear_sum_assignment
 from sklearn.base import clone
 from collections import defaultdict
-INF=np.sqrt(sys.float_info.max)
+INF=10**5
 def timeDiff(changed):
     assignment_table=[[INF for _ in range(len(changed))] for _ in range(len(changed))]
     for i in range(len(changed)):
@@ -25,15 +25,19 @@ def regression(model,changed):
     #address7が読み込めない
     #学習データを学習させる
     for data in changed:
+        #print(data[0][0],flush=True)
         x_train = [float(line[1]) for line in data]
         y_train = [float(line[2]) for line in data]
         
     #ここでクローンしておかないと同じモデルになる
         clf =clone(model)
+        # print(x_train,flush=True)
+        # print(y_train,flush=True)
         clf.fit(pd.DataFrame(x_train),y_train)
+        #ここで処理が止まる
 
         models[data[0][0]]=clf
-
+        #print(models,flush=True)
 
     #テストデータとの差分をどんどんコスト関数として割り当てテーブルに記録していく
     assignment_table=[[INF for _ in range(len(changed))] for _ in range(len(changed))]
@@ -52,7 +56,7 @@ def regression(model,changed):
     return assignment_table
 
         
-def combine(model,changed,bias1,bias2):
+def combine_sum(model,changed,bias1,bias2):
     assignment_table1=regression(model,changed)
     assignment_table2= timeDiff(changed)
         
@@ -65,10 +69,34 @@ def combine(model,changed,bias1,bias2):
             assignment_table2[i][j] *= bias2         
     assignment_table = np.add(assignment_table1, assignment_table2)
 
-        
-
     return assignment_table
     
+    
+
+def combine_dist(model,changed,bias1,bias2):
+    assignment_table1=regression(model,changed)
+    assignment_table2= timeDiff(changed)
+        
+    for i in range(len(assignment_table1)):
+        for j in range(len(assignment_table1[i])):
+            assignment_table1[i][j] *= assignment_table1[i][j]*bias1
+            
+    for i in range(len(assignment_table2)):
+        for j in range(len(assignment_table2[i])):
+            assignment_table2[i][j] *= assignment_table2[i][j]*bias2         
+    assignment_table = np.add(assignment_table1, assignment_table2)
+    
+    for i in range(len(assignment_table)):
+        for j in range(len(assignment_table[i])):
+            assignment_table[i][j] = np.sqrt(assignment_table[i][j])
+    return assignment_table
+
+def combine_mul(model,changed):
+    assignment_table1=regression(model,changed)
+    assignment_table2= timeDiff(changed)
+               
+    assignment_table = np.multiply(assignment_table1, assignment_table2)
+    return assignment_table
     
 
 def assignment(assignment_table,changed):
@@ -96,8 +124,7 @@ def read_data(filename):
 def main():
     changed=[]
     addressDict=defaultdict(list)
-    i=0
-    # print("run")
+
     for line in sys.stdin:
         packet=list(line.replace("\n", "").split(","))
         addressDict[packet[0]].append(packet)
@@ -105,9 +132,8 @@ def main():
         changed.append(v)
 
     #debug用
-    #changed = read_data("data/capture/ver3/simulate/data_5_281.csv")
-    #print(changed)
-    print(sys.argv)
+    #changed = read_data("data/capture/ver3/simulate/data_"+sys.argv[4]+"_"+sys.argv[5]+".csv")
+
     #回帰にかけるバイアス
     bias1=float(sys.argv[2])
     #時間差にかけるバイアス
@@ -118,14 +144,20 @@ def main():
         model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = -1)
         assignment_table=regression(model,changed)
     elif sys.argv[1]=="svr":
-        model=svm.SVR(kernel='poly')
+        model=svm.SVR(kernel='poly',degree=2)
         assignment_table=regression(model,changed)
-    elif sys.argv[1]=="combine_liner":
+    elif sys.argv[1]=="combine_liner_sum":
         model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = -1)
-        assignment_table=combine(model,changed,bias1,bias2)
+        assignment_table=combine_sum(model,changed,bias1,bias2)
+    elif sys.argv[1]=="combine_liner_dist":
+        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = -1)
+        assignment_table=combine_dist(model,changed,bias1,bias2)
+    elif sys.argv[1]=="combine_liner_mul":
+        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = -1)
+        assignment_table=combine_mul(model,changed)
     elif sys.argv[1]=="combine_svr":
         model=svm.SVR(kernel='poly')
-        assignment_table=combine(model,changed,bias1,bias2)
+        assignment_table=combine_sum(model,changed,bias1,bias2)
     else:
         print("Invalid argument. Please provide a valid argument: 'timeDiff', 'linear', 'svr', 'combine_linear', or 'combine_svr'")
         sys.exit(1)

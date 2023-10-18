@@ -12,7 +12,8 @@ def main():
         except ValueError:
             # 数値以外の入力があった場合は無視
             continue
-    print(numpy.average(data))
+    #引数はデータ数
+    print(sys.argv[1]+","+str(numpy.average(data)))
 
 if __name__ == "__main__":
     main()
