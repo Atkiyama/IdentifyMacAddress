@@ -107,22 +107,21 @@ def main():
     
     for i in range(len(df_list)):
         df_list[i].address="address" + str(i)
-    print(sys.argv)
     #使いたいデータ数
     USE_NUM= int(sys.argv[1])
     #何番目の検証か
     CASE_NUM=int(sys.argv[2])
-    #D=int(sys.argv[3])
+    D=int(sys.argv[3])
     selects=random.sample(df_list, k=USE_NUM)
     #print(selects[0])
     #print("selects",selects)
     #ここまでは時系列順になっている
     changed,addressList=changeAddress(selects)
-    studyD(changed,150)
-    # for data in changed:
-    #     for i in data:
-    #         output_string = ','.join(map(str,i))
-    #         print(output_string)
+    studyD(changed,D)
+    for data in changed:
+        for i in data:
+            output_string = ','.join(map(str,i))
+            print(output_string)
     
     
 
