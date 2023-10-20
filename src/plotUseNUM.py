@@ -15,7 +15,7 @@ def read_csv(file_path):
 # 3つのCSVファイルからデータを読み込む
 x_values1, y_values1 = read_csv('data/result/evaluation/ver3/actual/timeDiff.csv')
 x_values2, y_values2 = read_csv('data/result/evaluation/ver3/actual/liner.csv')
-x_values3, y_values3 = read_csv('data/result/evaluation/ver3/actual/combine_liner.csv')
+x_values3, y_values3 = read_csv('data/result/evaluation/ver3/actual/combine_liner_dist.csv')
 
 # プロット
 plt.figure(figsize=(8, 6))

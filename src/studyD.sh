@@ -7,13 +7,13 @@ do
     for CASE_NUM in {1..1000}
     do
         if [ $CASE_NUM -eq "1" ]; then
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py timeDiff ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/timeDiff_${USE_NUM}_${D}.csv &
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py liner ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/liner_${USE_NUM}_${D}.csv &
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py combine_liner_dist 0.14 1 ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/combine_liner_dist_${USE_NUM}_${D}.csv
+            cat data/capture/ver3/simulate/D/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py timeDiff ${USE_NUM} ${CASE_NUM} ${D}> data/result/evaluation/ver3/case/timeDiff_${USE_NUM}_${D}.csv &
+            cat data/capture/ver3/simulate/D/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py liner ${USE_NUM} ${CASE_NUM} ${D}> data/result/evaluation/ver3/case/liner_${USE_NUM}_${D}.csv &
+            cat data/capture/ver3/simulate/D/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py combine_liner_dist 0.14 1 ${USE_NUM} ${CASE_NUM} ${D}> data/result/evaluation/ver3/case/combine_liner_dist_${USE_NUM}_${D}.csv
         else
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py timeDiff ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/timeDiff_${USE_NUM}_${D}.csv &
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py liner ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/liner_${USE_NUM}_${D}.csv &
-            cat data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py combine_liner_dist 0.14 1 ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/combine_liner_dist_${USE_NUM}_${D}.csv
+            cat data/capture/ver3/simulate/D/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py timeDiff ${USE_NUM} ${CASE_NUM} ${D}> data/result/evaluation/ver3/case/timeDiff_${USE_NUM}_${D}.csv &
+            cat data/capture/ver3/simulate/D/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py liner ${USE_NUM} ${CASE_NUM} ${D}> data/result/evaluation/ver3/case/liner_${USE_NUM}_${D}.csv &
+            cat data/capture/ver3/simulate/D/data_${USE_NUM}_${CASE_NUM}_${D}.csv| python identifyMethod.py combine_liner_dist 0.14 1 ${USE_NUM} ${CASE_NUM} ${D}> data/result/evaluation/ver3/case/combine_liner_dist_${USE_NUM}_${D}.csv
         fi
     done
     

@@ -6,10 +6,10 @@ do
     do
         # CASE_NUMの8の剰余が0の場合
         if [ $((CASE_NUM % 8)) -eq 7 ]; then
-            python makeData.py $USE_NUM $CASE_NUM $D> "data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv"
+            python makeData.py $USE_NUM $CASE_NUM $D> "data/capture/ver3/simulate/USE_NUM/data_${USE_NUM}_${CASE_NUM}.csv"
         else
             # CASE_NUMの8の剰余が0でない場合
-            python makeData.py $USE_NUM $CASE_NUM $D> "data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}.csv" &
+            python makeData.py $USE_NUM $CASE_NUM $D> "data/capture/ver3/simulate/USE_NUM/data_${USE_NUM}_${CASE_NUM}.csv" &
         fi
     done
     echo "${USE_NUM} is done"
