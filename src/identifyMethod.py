@@ -46,7 +46,9 @@ def regression(model,changed):
     assignment_table=[[INF for _ in range(len(changed))] for _ in range(len(changed))]
     for i in range(len(changed)):
         for j in range(len(changed)):
-            if i!=j:
+            #ここの条件分岐によって実験環境が変化する
+            #変化後アドレス同士や変化前アドレス同士ならコスト関数にINFを割り当てる
+            if i!=j and ((changed[i][0][0] in "_2" and not changed[j][0][0] in "_2") or (not changed[i][0][0] in "_2" and changed[j][0][0] in "_2")):
                 diff =float(changed[j][0][1])-float(changed[i][-1][1])
                 if 0 <= diff <= 6:
                     x_test=[line[1] for line in changed[j]]
@@ -144,7 +146,7 @@ def main():
     if sys.argv[1]=="timeDiff":
         assignment_table=timeDiff(changed)
     elif sys.argv[1]=="liner":
-        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 2)
+        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 4)
         assignment_table=regression(model,changed)
     elif sys.argv[1]=="svr":
         model=svm.SVR(kernel='poly',degree=2)
@@ -153,7 +155,7 @@ def main():
         model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 2)
         assignment_table=combine_sum(model,changed,bias1,bias2)
     elif sys.argv[1]=="combine_liner_dist":
-        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 2)
+        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 4)
         assignment_table=combine_dist(model,changed,bias1,bias2)
     elif sys.argv[1]=="combine_liner_mul":
         model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 2)

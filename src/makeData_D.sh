@@ -1,7 +1,7 @@
 #!/bin/bash
 USE_NUM=20
 # 変数Dを0から300まで10ずつ増加させるループ
-for D in $(seq 0 10 300)
+for D in $(seq 310 10 450)
 do
     for CASE_NUM in {1..1000}
     do
