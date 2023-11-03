@@ -14,7 +14,12 @@ def timeDiff(changed):
     assignment_table=[[INF for _ in range(len(changed))] for _ in range(len(changed))]
     for i in range(len(changed)):
         for j in range(len(changed)):
-            if i!=j:
+            iAddress = changed[i][0][0]
+            jAddress = changed[j][0][0]
+            _2="_2"
+            judge1=_2 in iAddress and (_2 not in jAddress)
+            judge2= _2 not in iAddress and (_2  in jAddress)
+            if i!=j and (judge1 or judge2):
                 diff =float(changed[j][0][1])-float(changed[i][-1][1])
                 if   0 <= diff <= 6:
                     assignment_table[i][j]=diff
@@ -48,7 +53,12 @@ def regression(model,changed):
         for j in range(len(changed)):
             #ここの条件分岐によって実験環境が変化する
             #変化後アドレス同士や変化前アドレス同士ならコスト関数にINFを割り当てる
-            if i!=j and ((changed[i][0][0] in "_2" and not changed[j][0][0] in "_2") or (not changed[i][0][0] in "_2" and changed[j][0][0] in "_2")):
+            iAddress = changed[i][0][0]
+            jAddress = changed[j][0][0]
+            _2="_2"
+            judge1=_2 in iAddress and (_2 not in jAddress)
+            judge2= _2 not in iAddress and (_2  in jAddress)
+            if i!=j and (judge1 or judge2):
                 diff =float(changed[j][0][1])-float(changed[i][-1][1])
                 if 0 <= diff <= 6:
                     x_test=[line[1] for line in changed[j]]
@@ -137,7 +147,7 @@ def main():
         changed.append(v)
 
     #debug用
-    #changed = read_data("data/capture/ver3/simulate/data_"+sys.argv[4]+"_"+sys.argv[5]+".csv")
+    #changed = read_data("data/capture/ver3/simulate/USE_NUM/data_"+sys.argv[4]+"_"+sys.argv[5]+".csv")
 
     #回帰にかけるバイアス
     bias1=float(sys.argv[2])
