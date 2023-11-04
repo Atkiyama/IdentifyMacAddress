@@ -94,11 +94,14 @@ def combine_dist(model,changed,bias1,bias2):
         
     for i in range(len(assignment_table1)):
         for j in range(len(assignment_table1[i])):
-            assignment_table1[i][j] *= assignment_table1[i][j]*bias1
+            assignment_table1[i][j] *=bias1
+            assignment_table1[i][j] *=assignment_table1[i][j]
             
     for i in range(len(assignment_table2)):
         for j in range(len(assignment_table2[i])):
-            assignment_table2[i][j] *= assignment_table2[i][j]*bias2         
+            assignment_table2[i][j] *= bias2
+            assignment_table2[i][j] *= assignment_table2[i][j]
+                     
     assignment_table = np.add(assignment_table1, assignment_table2)
     
     for i in range(len(assignment_table)):
