@@ -27,7 +27,7 @@ plt.plot(x_values1, y_values1, marker='o', color='b', linestyle='-', linewidth=2
 plt.plot(x_values2, y_values2, marker='s', color='g', linestyle='-', linewidth=2, markersize=8, label='liner')
 
 # データ3のプロット
-plt.plot(x_values3, y_values3, marker='^', color='r', linestyle='-', linewidth=2, markersize=8, label='timediff+liner*0.75')
+plt.plot(x_values3, y_values3, marker='^', color='r', linestyle='-', linewidth=2, markersize=8, label='timediff+liner*0.14')
 
 plt.title('Study of the D')
 plt.xlabel('D')

@@ -17,7 +17,7 @@ do
         fi
     done
     
-    if [ $USE_NUM -eq "20" ]; then
+    if [ $USE_NUM -eq "1" ]; then
         cat data/result/evaluation/ver3/case/USE_NUM/timeDiff_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>data/result/evaluation/ver3/actual/USE_NUM/timeDiff.csv &
         cat data/result/evaluation/ver3/case/USE_NUM/liner_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>data/result/evaluation/ver3/actual/USE_NUM/liner.csv &
         cat data/result/evaluation/ver3/case/USE_NUM/combine_liner_dist_${USE_NUM}.csv |python calcAverageAccuracy.py ${USE_NUM}>data/result/evaluation/ver3/actual/USE_NUM/combine_liner_dist.csv &
