@@ -1,9 +1,9 @@
 #!/bin/bash
 USE_NUM=20
 # 変数Dを0から300まで10ずつ増加させるループ
-for D in $(seq 310 10 450)
+for D in $(seq 0 10 300)
 do
-    for CASE_NUM in {1..1000}
+    for CASE_NUM in {1001..3000}
     do
         #echo "data/capture/ver3/simulate/data_${USE_NUM}_${CASE_NUM}_${D}.csv"
         # CASE_NUMの8の剰余が0の場合

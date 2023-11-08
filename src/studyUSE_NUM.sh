@@ -4,7 +4,7 @@
 
 for USE_NUM in {1..20}
 do
-    for CASE_NUM in {1..1000}
+    for CASE_NUM in {1001..3000}
     do
         if [ $CASE_NUM -eq "1" ]; then
             cat data/capture/ver3/simulate/USE_NUM/data_${USE_NUM}_${CASE_NUM}.csv| python identifyMethod.py timeDiff ${USE_NUM} ${CASE_NUM}> data/result/evaluation/ver3/case/USE_NUM/timeDiff_${USE_NUM}.csv &

@@ -1,37 +1,42 @@
+import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
-import csv
 
-# CSVファイルの読み込みとデータの取得
-def read_csv(file_path):
-    x_values = []
-    y_values = []
-    with open(file_path, 'r') as csvfile:
-        csv_reader = csv.reader(csvfile)
-        for row in csv_reader:
-            x_values.append(int(row[0]))
-            y_values.append(float(row[1]))
-    return x_values, y_values
+plt.rcParams['pdf.fonttype'] = 42
+plt.rcParams['font.size'] = 16
+plt.rcParams['axes.labelsize'] = 19
+plt.rcParams['axes.titlesize'] = 24
+plt.rcParams['xtick.labelsize'] = 20
+plt.rcParams['ytick.labelsize'] = 20
 
-# 3つのCSVファイルからデータを読み込む
-x_values1, y_values1 = read_csv('data/result/evaluation/ver3/actual/USE_NUM/timeDiff.csv')
-x_values2, y_values2 = read_csv('data/result/evaluation/ver3/actual/USE_NUM/liner.csv')
-x_values3, y_values3 = read_csv('data/result/evaluation/ver3/actual/USE_NUM/combine_liner_dist.csv')
+plt.rcParams['legend.fontsize'] = 19
+plt.rcParams['legend.loc'] = 'lower right'
 
-# プロット
-plt.figure(figsize=(8, 6))
+plt.rcParams['figure.figsize'] = (8, 6)
+plt.rcParams['figure.dpi'] = 100
 
-# データ1のプロット
-plt.plot(x_values1, y_values1, marker='o', color='b', linestyle='-', linewidth=2, markersize=8, label='timediff')
+plt.xlabel("M")
+plt.ylabel("Accuracy")
+plt.ylim(0, 100)
+plt.xlim(0, 20)
 
-# データ2のプロット
-plt.plot(x_values2, y_values2, marker='s', color='g', linestyle='-', linewidth=2, markersize=8, label='liner')
+datafile_separator = ","
 
-# データ3のプロット
-plt.plot(x_values3, y_values3, marker='^', color='r', linestyle='-', linewidth=2, markersize=8, label='timediff+liner*0.14')
+# CSVファイルを読み取る
+data1 = pd.read_csv("data/result/evaluation/ver3/actual/USE_NUM/timeDiff.csv", header=None,delimiter=datafile_separator)
+data2 = pd.read_csv("data/result/evaluation/ver3/actual/USE_NUM/liner.csv",header=None, delimiter=datafile_separator)
+data3 = pd.read_csv("data/result/evaluation/ver3/actual/USE_NUM/combine_liner_dist.csv", header=None,delimiter=datafile_separator)
 
-plt.title('Study of the number of data')
-plt.xlabel('NUMofData')
-plt.ylabel('accuracy')
-plt.legend()  # 凡例を表示
-plt.grid(True)
-plt.show()
+# Pandas DataFrameからNumPy配列に変換
+data1 = data1.values
+data2 = data2.values
+data3 = data3.values
+
+plt.plot(data1[:, 0], data1[:, 1]*100, linewidth=6, label="LA using time (traditional)", linestyle=":",color="dodgerblue")
+plt.plot(data2[:, 0], data2[:, 1]*100, linewidth=6, label="LA using RSSI", linestyle="--",color="green")
+plt.plot(data3[:, 0], data3[:, 1]*100, linewidth=6, label="LA using time and RSSI (proposal) ", linestyle="-",color="magenta")
+
+
+plt.legend(loc='lower right',frameon=False)
+
+plt.savefig("data/result/graph/ver3/m.pdf")
