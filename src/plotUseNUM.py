@@ -15,7 +15,7 @@ plt.rcParams['legend.loc'] = 'lower right'
 plt.rcParams['figure.figsize'] = (8, 6)
 plt.rcParams['figure.dpi'] = 100
 
-plt.xlabel("M")
+plt.xlabel("The number of devices M")
 plt.ylabel("Accuracy")
 plt.ylim(0, 100)
 plt.xlim(0, 20)
@@ -32,9 +32,9 @@ data1 = data1.values
 data2 = data2.values
 data3 = data3.values
 
-plt.plot(data1[:, 0], data1[:, 1]*100, linewidth=6, label="LA using time (traditional)", linestyle=":",color="dodgerblue")
-plt.plot(data2[:, 0], data2[:, 1]*100, linewidth=6, label="LA using RSSI", linestyle="--",color="green")
-plt.plot(data3[:, 0], data3[:, 1]*100, linewidth=6, label="LA using time and RSSI (proposal) ", linestyle="-",color="magenta")
+plt.plot(data1[:, 0], data1[:, 1]*100, linewidth=6, label="Time-based method", linestyle=":",color="dodgerblue")
+plt.plot(data2[:, 0], data2[:, 1]*100, linewidth=6, label="RSSI-based method", linestyle="--",color="green")
+plt.plot(data3[:, 0], data3[:, 1]*100, linewidth=6, label="Proposed method", linestyle="-",color="magenta")
 
 
 plt.legend(loc='lower right',frameon=False)
