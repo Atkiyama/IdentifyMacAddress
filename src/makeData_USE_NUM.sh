@@ -1,6 +1,6 @@
 #bin/bash
 D=150
-for D in 75 150 225 300
+for D in 75 225 300
 do
     for USE_NUM in {1..20}
     do
