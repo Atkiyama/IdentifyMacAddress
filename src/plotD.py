@@ -22,23 +22,31 @@ plt.xlim(0, 600)
 
 datafile_separator = ","
 
-# CSVファイルを読み取る
-data1 = pd.read_csv("data/result/evaluation/ver3/actual/D/timeDiff_D2.csv", header=None,delimiter=datafile_separator)
-data2 = pd.read_csv("data/result/evaluation/ver3/actual/D/liner_D2.csv",header=None, delimiter=datafile_separator)
-data3 = pd.read_csv("data/result/evaluation/ver3/actual/D/combine_liner_dist_D2.csv", header=None,delimiter=datafile_separator)
+for i in [5,10,15,20]:
+    plt.figure()
 
-# Pandas DataFrameからNumPy配列に変換
-data1 = data1.values
-data2 = data2.values
-data3 = data3.values
+    plt.xlabel("Address change interval D")
+    plt.ylabel("Accuracy")
+    plt.ylim(0, 100)
+    plt.xlim(0, 600)
+
+    # CSVファイルを読み取る
+    data1 = pd.read_csv("data/result/evaluation/ver3/actual/D/timeDiff_D_" + str(i) + ".csv", header=None,delimiter=datafile_separator)
+    data2 = pd.read_csv("data/result/evaluation/ver3/actual/D/liner_D_" + str(i) + ".csv",header=None, delimiter=datafile_separator)
+    data3 = pd.read_csv("data/result/evaluation/ver3/actual/D/combine_liner_dist_D_" + str(i) + ".csv", header=None,delimiter=datafile_separator)
+
+    # Pandas DataFrameからNumPy配列に変換
+    data1 = data1.values
+    data2 = data2.values
+    data3 = data3.values
 
 
 
 
-plt.plot(data1[:, 0], data1[:, 1]*100, linewidth=6, label="Time-based method", linestyle=":",color="dodgerblue")
-plt.plot(data2[:, 0], data2[:, 1]*100, linewidth=6, label="RSSI-based method", linestyle="--",color="green")
-plt.plot(data3[:, 0], data3[:, 1]*100, linewidth=6, label="Proposed method", linestyle="-",color="magenta")
+    plt.plot(data1[:, 0], data1[:, 1]*100, linewidth=6, label="Time-based method", linestyle=":",color="dodgerblue")
+    plt.plot(data2[:, 0], data2[:, 1]*100, linewidth=6, label="RSSI-based method", linestyle="--",color="green")
+    plt.plot(data3[:, 0], data3[:, 1]*100, linewidth=6, label="Proposed method", linestyle="-",color="magenta")
 
-plt.legend(loc='lower right',frameon=False)
+    plt.legend(loc='lower right',frameon=False)
 
-plt.savefig("data/result/graph/ver3/d.pdf")
+    plt.savefig("data/result/graph/ver3/d"+str(i)+".pdf")

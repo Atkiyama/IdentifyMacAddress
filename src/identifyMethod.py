@@ -159,7 +159,7 @@ def main():
     if sys.argv[1]=="timeDiff":
         assignment_table=timeDiff(changed)
     elif sys.argv[1]=="liner":
-        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 1)
+        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 2)
         assignment_table=regression(model,changed)
     elif sys.argv[1]=="svr":
         model=svm.SVR(kernel='poly',degree=2)
@@ -168,7 +168,7 @@ def main():
         model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 1)
         assignment_table=combine_sum(model,changed,bias1,bias2)
     elif sys.argv[1]=="combine_liner_dist":
-        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 1)
+        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 3)
         assignment_table=combine_dist(model,changed,bias1,bias2)
     elif sys.argv[1]=="combine_liner_mul":
         model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 1)
