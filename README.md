@@ -104,8 +104,8 @@
 
 - capture
   - キャプチャしたデータやその加工データがあるフォルダ
-  - single/move/original/
-    -2021 卒論から[ICCE-ASIA2023](https://ieeexplore.ieee.org/abstract/document/10326401?casa_token=sGkqiTnJrqQAAAAA:g-_4m1ZhkbkOlVqa5r1gRkM02UTIIQXW05wBMh_2WOi67Xx5D4gpBFQrunyMdVEibqyKdp1GHX79bQ)までの論文で使ったデータのオリジナル
+  - single/move/original
+    - 2021 卒論から[ICCE-ASIA2023](https://ieeexplore.ieee.org/abstract/document/10326401?casa_token=sGkqiTnJrqQAAAAA:g-_4m1ZhkbkOlVqa5r1gRkM02UTIIQXW05wBMh_2WOi67Xx5D4gpBFQrunyMdVEibqyKdp1GHX79bQ)までの論文で使ったデータのオリジナル
   - ver3
     - 修論で使ったデータが入っているフォルダ
     - どこに何があるのかはパケットキャプチャのドキュメントを参照
@@ -155,3 +155,12 @@
 - [VS Code エディタ入門 デバック入門](https://zenn.dev/karaage0703/books/80b6999d429abc8051bb/viewer/898591)
   - VS Code のデバッガの記事です
   - これがあればデバッグが爆速になるのでおすすめ
+
+## 今後の方向性
+
+大体以下が考えられるかなと思います
+
+- より大規模な環境(複数観測端末)における実験
+- 現状のまま、いろんなデータ(生データではなくこちらで生成した人工データ)による実験
+- 機械学習部分の改良
+- 特性時間も用いてみる[Associating the Randomized Bluetooth MAC Addresses of a Device](https://ieeexplore.ieee.org/document/9369628)
