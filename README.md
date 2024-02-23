@@ -105,12 +105,12 @@
 - capture
   - キャプチャしたデータやその加工データがあるフォルダ
   - single/move/original/
-    - 秋山卒論から[ICCE-ASIA2023](https://ieeexplore.ieee.org/abstract/document/10326401?casa_token=sGkqiTnJrqQAAAAA:g-_4m1ZhkbkOlVqa5r1gRkM02UTIIQXW05wBMh_2WOi67Xx5D4gpBFQrunyMdVEibqyKdp1GHX79bQ)までの論文で使ったデータのオリジナル
+    -2021 卒論から[ICCE-ASIA2023](https://ieeexplore.ieee.org/abstract/document/10326401?casa_token=sGkqiTnJrqQAAAAA:g-_4m1ZhkbkOlVqa5r1gRkM02UTIIQXW05wBMh_2WOi67Xx5D4gpBFQrunyMdVEibqyKdp1GHX79bQ)までの論文で使ったデータのオリジナル
   - ver3
     - 修論で使ったデータが入っているフォルダ
     - どこに何があるのかはパケットキャプチャのドキュメントを参照
     - 通算三度目のデータ収集なので ver3 となっている
-      - 一度目は[IPSJ 関西 2021](https://www.icnl.jp/local/papers/security/wnet/s-akiyama21icceasia-BLERandomMAC.pdf)、二度目は秋山卒論、三度目は[ジャーナル](https://www.icnl.jp/local/papers/security/wnet/s-akiyama24comex-BLERandomMAC.pdf)以降
+      - 一度目は[IPSJ 関西 2021](https://www.icnl.jp/local/papers/security/wnet/s-akiyama21icceasia-BLERandomMAC.pdf)、二度目は 2021 卒論、三度目は[ジャーナル](https://www.icnl.jp/local/papers/security/wnet/s-akiyama24comex-BLERandomMAC.pdf)以降
     - simulate
       - makeData\*\*.sh 系で生成されるファイルの設置場所
       - 容量、ファイル数共に多いので扱いには注意すること
