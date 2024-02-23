@@ -25,6 +25,54 @@ def timeDiff(changed):
                     assignment_table[i][j]=diff
     return assignment_table
 
+'''
+割り当て問題を用いずにパケット間の時間差のみで同定する関数
+'''
+def onlyTimeDiff(changed):
+    assignment_table=timeDiff(changed)
+    #回帰値との差を出すのはregression関数と同じなので再利
+           
+    accuracy = solve(changed,assignment_table)
+    return accuracy
+    
+'''
+パケット間の時間差をコスト関数とする
+'''
+def packetDiff(changed):
+    assignment_table=[[INF for _ in range(len(changed))] for _ in range(len(changed))]
+    packetdiff=[INF for _ in range(len(changed))]
+
+    for i in range(len(changed)):
+        sum=0
+        for j in range(len(changed[i])-1):
+            sum+=abs(float(changed[i][j+1][1])-float(changed[i][j][1]))
+        packetdiff[i]=sum/(len(changed[i])-1)
+        
+    for i in range(len(changed)):
+        for j in range(len(changed)):
+            iAddress = changed[i][0][0]
+            jAddress = changed[j][0][0]
+            _2="_2"
+            judge1=_2 in iAddress and (_2 not in jAddress)
+            judge2= _2 not in iAddress and (_2  in jAddress)
+            if i!=j and (judge1 or judge2):
+                diff =float(changed[j][0][1])-float(changed[i][-1][1])
+                if   0 <= diff <= 6:
+                    assignment_table[i][j]=abs(packetdiff[i]-packetdiff[j])
+    return assignment_table
+        
+'''
+既存の回帰だけの手法
+'''
+def traditionalRegression(model,changed):
+    assignment_table=regression(model,changed)
+    #回帰値との差を出すのはregression関数と同じなので再利用
+    accuracy = solve(changed,assignment_table)
+    return accuracy
+    
+    
+      
+
 def regression(model,changed):
     models={}
     assignment_table=[]
@@ -116,6 +164,27 @@ def combine_mul(model,changed):
     assignment_table = np.multiply(assignment_table1, assignment_table2)
     return assignment_table
     
+def solve(changed,assignment_table):
+    ans=[]
+    _2="_2"
+    for i in range(len(assignment_table)):
+        diff=INF
+        diff_index=-1
+        if _2 not in changed[i][0][0]:
+            for j in range(len(assignment_table[i])):
+                if _2  in changed[j][0][0] and assignment_table[i][j]<diff:
+                    diff_index=j
+                    diff=assignment_table[i][j]
+                    
+        ans.append(diff_index)
+    isTrue = 0
+    
+    for i in range(len(ans)):
+        if ans[i]==i+1:
+           isTrue+=1
+           
+    accuracy = isTrue / len(ans)
+    return accuracy
 
 def assignment(assignment_table,changed):
 
@@ -176,6 +245,17 @@ def main():
     elif sys.argv[1]=="combine_svr":
         model=svm.SVR(kernel='poly')
         assignment_table=combine_sum(model,changed,bias1,bias2)
+    elif sys.argv[1]=="packetDiff":
+        assignment_table=packetDiff(changed)
+    elif sys.argv[1]=="TRegression":
+        model=LinearRegression(fit_intercept = True, copy_X = True, n_jobs = 1)
+        accuracy=traditionalRegression(model,changed)
+        print(accuracy)
+        sys.exit(0)
+    elif sys.argv[1]=="onlyTimeDiff":
+        accuracy=onlyTimeDiff(changed)
+        print(accuracy)
+        sys.exit(0)
     else:
         print("Invalid argument. Please provide a valid argument: 'timeDiff', 'linear', 'svr', 'combine_linear', or 'combine_svr'")
         sys.exit(1)
